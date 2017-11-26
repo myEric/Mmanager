@@ -80,7 +80,6 @@ abstract class AbstractDB extends Cache {
 	*  Dumps the contents of any input variable to screen in a nicely
 	*  formatted and easy to understand way - any type: Object, Var or Array
 	*/
-
 	public function vardump($mixed = '')
 	{
 		// Start outup buffering
