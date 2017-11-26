@@ -137,7 +137,6 @@ abstract class AbstractDB extends Cache {
 
 	public function debug($print_to_screen = true)
 	{
-
 		// Start outup buffering
 		ob_start();
 
@@ -162,18 +161,16 @@ abstract class AbstractDB extends Cache {
 		echo "<font face=arial size=2 color=000099><b>Query</b> [$this->num_queries] <b>--</b> ";
 		echo "[<font color=000000><b>$this->last_query</b></font>]</font><p>";
 
-			echo "<font face=arial size=2 color=000099><b>Query Result..</b></font>";
-			echo "<blockquote>";
+		echo "<font face=arial size=2 color=000099><b>Query Result..</b></font>";
+		echo "<blockquote>";
 
 		if ($this->col_info)
 		{
-
 			// =====================================================
 			// Results top rows
 
 			echo "<table cellpadding=5 cellspacing=1 bgcolor=555555>";
 			echo "<tr bgcolor=eeeeee><td nowrap valign=bottom><font color=555599 face=arial size=2><b>(row)</b></font></td>";
-
 
 			for ($i = 0, $j = count($this->col_info); $i < $j; $i++)
 			{
@@ -195,7 +192,6 @@ abstract class AbstractDB extends Cache {
 
 		if ($this->last_result)
 		{
-
 			$i = 0;
 			foreach ($this->get_results(null, ARRAY_N) as $one_row)
 			{
