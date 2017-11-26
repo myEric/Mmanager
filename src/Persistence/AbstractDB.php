@@ -42,7 +42,8 @@ defined('OBJECT') or define('OBJECT', 'OBJECT');
 defined('ARRAY_A') or define('ARRAY_A', 'ARRAY_A');
 defined('ARRAY_N') or define('ARRAY_N', 'ARRAY_N');
 
-abstract class AbstractDB extends Cache {
+abstract class AbstractDB extends Cache
+{
 	
 	protected $num_rows = null; // hours
 	
@@ -80,16 +81,14 @@ abstract class AbstractDB extends Cache {
 	*  Dumps the contents of any input variable to screen in a nicely
 	*  formatted and easy to understand way - any type: Object, Var or Array
 	*/
-	public function vardump($mixed = '')
-	{
+	public function vardump($mixed = '') {
 		// Start outup buffering
 		ob_start();
 
 		echo "<p><table><tr><td bgcolor=ffffff><blockquote><font color=000090>";
 		echo "<pre><font face=arial>";
 
-		if (!$this->vardump_called)
-		{
+		if (!$this->vardump_called) {
 			echo "<font color=800080><b>ezSQL</b> (v".EZSQL_VERSION.") <b>Variable Dump..</b></font>\n\n";
 		}
 		$var_type = gettype($mixed);
@@ -106,8 +105,7 @@ abstract class AbstractDB extends Cache {
 		ob_end_clean();
 
 		// Only echo output if it is turned on
-		if ($this->debug_echo_is_on)
-		{
+		if ($this->debug_echo_is_on) {
 			echo $html;
 		}
 
@@ -120,8 +118,7 @@ abstract class AbstractDB extends Cache {
 	*  Alias for the above function
 	*/
 
-	public function dumpvar($mixed)
-	{
+	public function dumpvar($mixed) {
 		$this->vardump($mixed);
 	}
 
@@ -131,26 +128,22 @@ abstract class AbstractDB extends Cache {
 	* (abstracted into a seperate file to save server overhead).
 	*/
 
-	public function debug($print_to_screen = true)
-	{
+	public function debug($print_to_screen = true) {
 		// Start outup buffering
 		ob_start();
 
 		echo "<blockquote>";
 
 		// Only show ezSQL credits once..
-		if (!$this->debug_called)
-		{
+		if (!$this->debug_called) {
 			echo "<font color=800080 face=arial size=2><b>ezSQL</b> (v".EZSQL_VERSION.") <b>Debug..</b></font><p>\n";
 		}
 
-		if ($this->last_error)
-		{
+		if ($this->last_error) {
 			echo "<font face=arial size=2 color=000099><b>Last Error --</b> [<font color=000000><b>$this->last_error</b></font>]<p>";
 		}
 
-		if ($this->from_disk_cache)
-		{
+		if ($this->from_disk_cache) {
 			echo "<font face=arial size=2 color=000099><b>Results retrieved from disk cache</b></font><p>";
 		}
 
@@ -160,20 +153,17 @@ abstract class AbstractDB extends Cache {
 		echo "<font face=arial size=2 color=000099><b>Query Result..</b></font>";
 		echo "<blockquote>";
 
-		if ($this->col_info)
-		{
+		if ($this->col_info) {
 			// =====================================================
 			// Results top rows
 
 			echo "<table cellpadding=5 cellspacing=1 bgcolor=555555>";
 			echo "<tr bgcolor=eeeeee><td nowrap valign=bottom><font color=555599 face=arial size=2><b>(row)</b></font></td>";
 
-			for ($i = 0, $j = count($this->col_info); $i < $j; $i++)
-			{
+			for ($i = 0, $j = count($this->col_info); $i < $j; $i++) {
 				/* when selecting count(*) the maxlengh is not set, size is set instead. */
 				echo "<td nowrap align=left valign=top><font size=1 color=555599 face=arial>{$this->col_info[$i]->type}";
-				if (!isset($this->col_info[$i]->max_length))
-				{
+				if (!isset($this->col_info[$i]->max_length)) {
 					echo "{$this->col_info[$i]->size}";
 				} else {
 					echo "{$this->col_info[$i]->max_length}";
@@ -186,16 +176,13 @@ abstract class AbstractDB extends Cache {
 			// ======================================================
 			// print main results
 
-		if ($this->last_result)
-		{
+		if ($this->last_result) {
 			$i = 0;
-			foreach ($this->get_results(null, ARRAY_N) as $one_row)
-			{
+			foreach ($this->get_results(null, ARRAY_N) as $one_row) {
 				$i++;
 				echo "<tr bgcolor=ffffff><td bgcolor=eeeeee nowrap align=middle><font size=2 color=555599 face=arial>$i</font></td>";
 
-				foreach ($one_row as $item)
-				{
+				foreach ($one_row as $item) {
 					echo "<td nowrap><font face=arial size=2>$item</font></td>";
 				}
 
@@ -203,16 +190,14 @@ abstract class AbstractDB extends Cache {
 			}
 
 		} // if last result
-		else
-		{
+		else {
 			echo "<tr bgcolor=ffffff><td colspan=".(count($this->col_info) + 1)."><font face=arial size=2>No Results</font></td></tr>";
 		}
 
 		echo "</table>";
 
 		} // if col_info
-		else
-		{
+		else {
 			echo "<font face=arial size=2>No Results</font>";
 		}
 
@@ -223,8 +208,7 @@ abstract class AbstractDB extends Cache {
 		ob_end_clean();
 
 		// Only echo output if it is turned on
-		if ($this->debug_echo_is_on && $print_to_screen)
-		{
+		if ($this->debug_echo_is_on && $print_to_screen) {
 			echo $html;
 		}
 
