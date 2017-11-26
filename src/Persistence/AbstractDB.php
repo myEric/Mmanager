@@ -246,5 +246,5 @@ abstract class AbstractDB extends Cache {
 	public function escape($str) {
 		return $this->CI->db->escape_str(stripslashes($str));
 	}
-	public abstract function get_results();
+	public abstract function get_results($query, $output);
 }

@@ -325,4 +325,5 @@ abstract class AbstractRepository extends AbstractDB implements RepositoryInterf
 
 		return ($all) ? $this->num_queries : $this->conn_queries;
 	}
+	abstract public function query($query);
 }
