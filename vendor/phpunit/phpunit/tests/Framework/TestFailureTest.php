@@ -54,7 +54,6 @@
  */
 class Framework_TestFailureTest extends PHPUnit_Framework_TestCase
 {
-<<<<<<< HEAD
     /**
      * @covers PHPUnit_Framework_TestFailure::toString
      */
@@ -63,17 +62,7 @@ class Framework_TestFailureTest extends PHPUnit_Framework_TestCase
         $test = new self(__FUNCTION__);
         $exception = new PHPUnit_Framework_Exception('message');
         $failure = new PHPUnit_Framework_TestFailure($test, $exception);
-=======
-	/**
-	 * @covers PHPUnit_Framework_TestFailure::toString
-	 */
-	public function testToString()
-	{
-		$test      = new self(__FUNCTION__);
-		$exception = new PHPUnit_Framework_Exception('message');
-		$failure   = new PHPUnit_Framework_TestFailure($test, $exception);
->>>>>>> ea79a2f50edc89e12eeb879d17155d120f28d68e
 
-		$this->assertEquals(__METHOD__ . ': message', $failure->toString());
-	}
+        $this->assertEquals(__METHOD__ . ': message', $failure->toString());
+    }
 }

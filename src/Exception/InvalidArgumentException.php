@@ -35,7 +35,7 @@
  * @filesource
  */
 
-namespace Mmanager\Exception;
+namespace MyEric\Mmanager\Exception;
 
 class InvalidArgumentException extends \InvalidArgumentException implements
 	ExceptionInterface

@@ -60,7 +60,6 @@
  */
 class PHPUnit_Framework_ExpectationFailedException extends PHPUnit_Framework_AssertionFailedError
 {
-<<<<<<< HEAD
     /**
      * @var PHPUnit_Framework_ComparisonFailure
      */
@@ -69,21 +68,10 @@ class PHPUnit_Framework_ExpectationFailedException extends PHPUnit_Framework_Ass
     public function __construct($message, PHPUnit_Framework_ComparisonFailure $comparisonFailure = null, Exception $previous = null)
     {
         $this->comparisonFailure = $comparisonFailure;
-=======
-	/**
-	 * @var SebastianBergmann\Comparator\ComparisonFailure
-	 */
-	protected $comparisonFailure;
 
-	public function __construct($message, SebastianBergmann\Comparator\ComparisonFailure $comparisonFailure = null, Exception $previous = null)
-	{
-		$this->comparisonFailure = $comparisonFailure;
->>>>>>> ea79a2f50edc89e12eeb879d17155d120f28d68e
+        parent::__construct($message, 0, $previous);
+    }
 
-		parent::__construct($message, 0, $previous);
-	}
-
-<<<<<<< HEAD
     /**
      * @return PHPUnit_Framework_ComparisonFailure
      */
@@ -91,13 +79,4 @@ class PHPUnit_Framework_ExpectationFailedException extends PHPUnit_Framework_Ass
     {
         return $this->comparisonFailure;
     }
-=======
-	/**
-	 * @return SebastianBergmann\Comparator\ComparisonFailure
-	 */
-	public function getComparisonFailure()
-	{
-		return $this->comparisonFailure;
-	}
->>>>>>> ea79a2f50edc89e12eeb879d17155d120f28d68e
 }

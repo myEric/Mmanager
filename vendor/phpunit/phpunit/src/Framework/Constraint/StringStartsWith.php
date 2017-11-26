@@ -59,21 +59,20 @@
  */
 class PHPUnit_Framework_Constraint_StringStartsWith extends PHPUnit_Framework_Constraint
 {
-	/**
-	 * @var string
-	 */
-	protected $prefix;
+    /**
+     * @var string
+     */
+    protected $prefix;
 
-	/**
-	 * @param string $prefix
-	 */
-	public function __construct($prefix)
-	{
-		parent::__construct();
-		$this->prefix = $prefix;
-	}
+    /**
+     * @param string $prefix
+     */
+    public function __construct($prefix)
+    {
+        parent::__construct();
+        $this->prefix = $prefix;
+    }
 
-<<<<<<< HEAD
     /**
      * Evaluates the constraint for parameter $other. Returns true if the
      * constraint is met, false otherwise.
@@ -85,28 +84,14 @@ class PHPUnit_Framework_Constraint_StringStartsWith extends PHPUnit_Framework_Co
     {
         return strpos($other, $this->prefix) === 0;
     }
-=======
-	/**
-	 * Evaluates the constraint for parameter $other. Returns true if the
-	 * constraint is met, false otherwise.
-	 *
-	 * @param mixed $other Value or object to evaluate.
-	 *
-	 * @return bool
-	 */
-	protected function matches($other)
-	{
-		return strpos($other, $this->prefix) === 0;
-	}
->>>>>>> ea79a2f50edc89e12eeb879d17155d120f28d68e
 
-	/**
-	 * Returns a string representation of the constraint.
-	 *
-	 * @return string
-	 */
-	public function toString()
-	{
-		return 'starts with "' . $this->prefix . '"';
-	}
+    /**
+     * Returns a string representation of the constraint.
+     *
+     * @return string
+     */
+    public function toString()
+    {
+        return 'starts with "' . $this->prefix . '"';
+    }
 }

@@ -59,7 +59,6 @@
  */
 abstract class PHPUnit_Framework_MockObject_Matcher_InvokedRecorder implements PHPUnit_Framework_MockObject_Matcher_Invocation
 {
-<<<<<<< HEAD
     /**
      * @var PHPUnit_Framework_MockObject_Invocation[]
      */
@@ -72,30 +71,15 @@ abstract class PHPUnit_Framework_MockObject_Matcher_InvokedRecorder implements P
     {
         return count($this->invocations);
     }
-=======
-	/**
-	 * @var PHPUnit_Framework_MockObject_Invocation[]
-	 */
-	protected $invocations = [];
 
-	/**
-	 * @return int
-	 */
-	public function getInvocationCount()
-	{
-		return count($this->invocations);
-	}
->>>>>>> ea79a2f50edc89e12eeb879d17155d120f28d68e
+    /**
+     * @return PHPUnit_Framework_MockObject_Invocation[]
+     */
+    public function getInvocations()
+    {
+        return $this->invocations;
+    }
 
-	/**
-	 * @return PHPUnit_Framework_MockObject_Invocation[]
-	 */
-	public function getInvocations()
-	{
-		return $this->invocations;
-	}
-
-<<<<<<< HEAD
     /**
      * @return boolean
      */
@@ -103,25 +87,15 @@ abstract class PHPUnit_Framework_MockObject_Matcher_InvokedRecorder implements P
     {
         return count($this->invocations) > 0;
     }
-=======
-	/**
-	 * @return bool
-	 */
-	public function hasBeenInvoked()
-	{
-		return count($this->invocations) > 0;
-	}
->>>>>>> ea79a2f50edc89e12eeb879d17155d120f28d68e
 
-	/**
-	 * @param PHPUnit_Framework_MockObject_Invocation $invocation
-	 */
-	public function invoked(PHPUnit_Framework_MockObject_Invocation $invocation)
-	{
-		$this->invocations[] = $invocation;
-	}
+    /**
+     * @param PHPUnit_Framework_MockObject_Invocation $invocation
+     */
+    public function invoked(PHPUnit_Framework_MockObject_Invocation $invocation)
+    {
+        $this->invocations[] = $invocation;
+    }
 
-<<<<<<< HEAD
     /**
      * @param  PHPUnit_Framework_MockObject_Invocation $invocation
      * @return boolean
@@ -130,15 +104,4 @@ abstract class PHPUnit_Framework_MockObject_Matcher_InvokedRecorder implements P
     {
         return TRUE;
     }
-=======
-	/**
-	 * @param PHPUnit_Framework_MockObject_Invocation $invocation
-	 *
-	 * @return bool
-	 */
-	public function matches(PHPUnit_Framework_MockObject_Invocation $invocation)
-	{
-		return true;
-	}
->>>>>>> ea79a2f50edc89e12eeb879d17155d120f28d68e
 }

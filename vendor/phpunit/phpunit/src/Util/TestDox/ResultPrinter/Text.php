@@ -56,17 +56,16 @@
  */
 class PHPUnit_Util_TestDox_ResultPrinter_Text extends PHPUnit_Util_TestDox_ResultPrinter
 {
-	/**
-	 * Handler for 'start class' event.
-	 *
-	 * @param string $name
-	 */
-	protected function startClass($name)
-	{
-		$this->write($this->currentTestClassPrettified . "\n");
-	}
+    /**
+     * Handler for 'start class' event.
+     *
+     * @param string $name
+     */
+    protected function startClass($name)
+    {
+        $this->write($this->currentTestClassPrettified . "\n");
+    }
 
-<<<<<<< HEAD
     /**
      * Handler for 'on test' event.
      *
@@ -80,32 +79,17 @@ class PHPUnit_Util_TestDox_ResultPrinter_Text extends PHPUnit_Util_TestDox_Resul
         } else {
             $this->write(' [ ] ');
         }
-=======
-	/**
-	 * Handler for 'on test' event.
-	 *
-	 * @param string $name
-	 * @param bool   $success
-	 */
-	protected function onTest($name, $success = true)
-	{
-		if ($success) {
-			$this->write(' [x] ');
-		} else {
-			$this->write(' [ ] ');
-		}
->>>>>>> ea79a2f50edc89e12eeb879d17155d120f28d68e
 
-		$this->write($name . "\n");
-	}
+        $this->write($name . "\n");
+    }
 
-	/**
-	 * Handler for 'end class' event.
-	 *
-	 * @param string $name
-	 */
-	protected function endClass($name)
-	{
-		$this->write("\n");
-	}
+    /**
+     * Handler for 'end class' event.
+     *
+     * @param string $name
+     */
+    protected function endClass($name)
+    {
+        $this->write("\n");
+    }
 }

@@ -8,11 +8,6 @@
  * file that was distributed with this source code.
  */
 
-<<<<<<< HEAD
-=======
-require_once dirname(dirname(dirname(__FILE__))).DIRECTORY_SEPARATOR.'TestCase.php';
-
->>>>>>> ea79a2f50edc89e12eeb879d17155d120f28d68e
 /**
  * Tests for the PHP_CodeCoverage_Util class.
  *
@@ -27,7 +22,6 @@ require_once dirname(dirname(dirname(__FILE__))).DIRECTORY_SEPARATOR.'TestCase.p
  */
 class PHP_CodeCoverage_UtilTest extends PHPUnit_Framework_TestCase
 {
-<<<<<<< HEAD
     /**
      * @covers PHP_CodeCoverage_Util::percent
      */
@@ -39,18 +33,4 @@ class PHP_CodeCoverage_UtilTest extends PHPUnit_Framework_TestCase
           '100.00%', PHP_CodeCoverage_Util::percent(100, 100, true)
         );
     }
-=======
-	/**
-	 * @covers PHP_CodeCoverage_Util::percent
-	 */
-	public function testPercent()
-	{
-		$this->assertEquals(100, PHP_CodeCoverage_Util::percent(100, 0));
-		$this->assertEquals(100, PHP_CodeCoverage_Util::percent(100, 100));
-		$this->assertEquals(
-			'100.00%',
-			PHP_CodeCoverage_Util::percent(100, 100, true)
-		);
-	}
->>>>>>> ea79a2f50edc89e12eeb879d17155d120f28d68e
 }

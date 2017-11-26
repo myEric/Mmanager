@@ -56,7 +56,6 @@
  */
 interface PHPUnit_Framework_Test extends Countable
 {
-<<<<<<< HEAD
     /**
      * Runs a test and collects its result in a TestResult instance.
      *
@@ -64,14 +63,4 @@ interface PHPUnit_Framework_Test extends Countable
      * @return PHPUnit_Framework_TestResult
      */
     public function run(PHPUnit_Framework_TestResult $result = null);
-=======
-	/**
-	 * Runs a test and collects its result in a TestResult instance.
-	 *
-	 * @param PHPUnit_Framework_TestResult $result
-	 *
-	 * @return PHPUnit_Framework_TestResult
-	 */
-	public function run(PHPUnit_Framework_TestResult $result = null);
->>>>>>> ea79a2f50edc89e12eeb879d17155d120f28d68e
 }

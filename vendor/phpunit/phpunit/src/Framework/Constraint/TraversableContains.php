@@ -59,7 +59,6 @@
  */
 class PHPUnit_Framework_Constraint_TraversableContains extends PHPUnit_Framework_Constraint
 {
-<<<<<<< HEAD
     /**
      * @var boolean
      */
@@ -69,24 +68,12 @@ class PHPUnit_Framework_Constraint_TraversableContains extends PHPUnit_Framework
      * @var boolean
      */
     protected $checkForNonObjectIdentity;
-=======
-	/**
-	 * @var bool
-	 */
-	protected $checkForObjectIdentity;
 
-	/**
-	 * @var bool
-	 */
-	protected $checkForNonObjectIdentity;
->>>>>>> ea79a2f50edc89e12eeb879d17155d120f28d68e
+    /**
+     * @var mixed
+     */
+    protected $value;
 
-	/**
-	 * @var mixed
-	 */
-	protected $value;
-
-<<<<<<< HEAD
     /**
      * @param  mixed                       $value
      * @param  boolean                     $checkForObjectIdentity
@@ -96,33 +83,20 @@ class PHPUnit_Framework_Constraint_TraversableContains extends PHPUnit_Framework
     public function __construct($value, $checkForObjectIdentity = true, $checkForNonObjectIdentity = false)
     {
         parent::__construct();
-=======
-	/**
-	 * @param mixed $value
-	 * @param bool  $checkForObjectIdentity
-	 * @param bool  $checkForNonObjectIdentity
-	 *
-	 * @throws PHPUnit_Framework_Exception
-	 */
-	public function __construct($value, $checkForObjectIdentity = true, $checkForNonObjectIdentity = false)
-	{
-		parent::__construct();
->>>>>>> ea79a2f50edc89e12eeb879d17155d120f28d68e
 
-		if (!is_bool($checkForObjectIdentity)) {
-			throw PHPUnit_Util_InvalidArgumentHelper::factory(2, 'boolean');
-		}
+        if (!is_bool($checkForObjectIdentity)) {
+            throw PHPUnit_Util_InvalidArgumentHelper::factory(2, 'boolean');
+        }
 
-		if (!is_bool($checkForNonObjectIdentity)) {
-			throw PHPUnit_Util_InvalidArgumentHelper::factory(3, 'boolean');
-		}
+        if (!is_bool($checkForNonObjectIdentity)) {
+            throw PHPUnit_Util_InvalidArgumentHelper::factory(3, 'boolean');
+        }
 
-		$this->checkForObjectIdentity    = $checkForObjectIdentity;
-		$this->checkForNonObjectIdentity = $checkForNonObjectIdentity;
-		$this->value                     = $value;
-	}
+        $this->checkForObjectIdentity    = $checkForObjectIdentity;
+        $this->checkForNonObjectIdentity = $checkForNonObjectIdentity;
+        $this->value                     = $value;
+    }
 
-<<<<<<< HEAD
     /**
      * Evaluates the constraint for parameter $other. Returns true if the
      * constraint is met, false otherwise.
@@ -135,60 +109,44 @@ class PHPUnit_Framework_Constraint_TraversableContains extends PHPUnit_Framework
         if ($other instanceof SplObjectStorage) {
             return $other->contains($this->value);
         }
-=======
-	/**
-	 * Evaluates the constraint for parameter $other. Returns true if the
-	 * constraint is met, false otherwise.
-	 *
-	 * @param mixed $other Value or object to evaluate.
-	 *
-	 * @return bool
-	 */
-	protected function matches($other)
-	{
-		if ($other instanceof SplObjectStorage) {
-			return $other->contains($this->value);
-		}
->>>>>>> ea79a2f50edc89e12eeb879d17155d120f28d68e
 
-		if (is_object($this->value)) {
-			foreach ($other as $element) {
-				if (($this->checkForObjectIdentity &&
-					 $element === $this->value) ||
-					(!$this->checkForObjectIdentity &&
-					 $element == $this->value)) {
-					return true;
-				}
-			}
-		} else {
-			foreach ($other as $element) {
-				if (($this->checkForNonObjectIdentity &&
-					 $element === $this->value) ||
-					(!$this->checkForNonObjectIdentity &&
-					 $element == $this->value)) {
-					return true;
-				}
-			}
-		}
+        if (is_object($this->value)) {
+            foreach ($other as $element) {
+                if (($this->checkForObjectIdentity &&
+                     $element === $this->value) ||
+                    (!$this->checkForObjectIdentity &&
+                     $element == $this->value)) {
+                    return true;
+                }
+            }
+        } else {
+            foreach ($other as $element) {
+                if (($this->checkForNonObjectIdentity &&
+                     $element === $this->value) ||
+                    (!$this->checkForNonObjectIdentity &&
+                     $element == $this->value)) {
+                    return true;
+                }
+            }
+        }
 
-		return false;
-	}
+        return false;
+    }
 
-	/**
-	 * Returns a string representation of the constraint.
-	 *
-	 * @return string
-	 */
-	public function toString()
-	{
-		if (is_string($this->value) && strpos($this->value, "\n") !== false) {
-			return 'contains "' . $this->value . '"';
-		} else {
-			return 'contains ' . $this->exporter->export($this->value);
-		}
-	}
+    /**
+     * Returns a string representation of the constraint.
+     *
+     * @return string
+     */
+    public function toString()
+    {
+        if (is_string($this->value) && strpos($this->value, "\n") !== false) {
+            return 'contains "' . $this->value . '"';
+        } else {
+            return 'contains ' . $this->exporter->export($this->value);
+        }
+    }
 
-<<<<<<< HEAD
     /**
      * Returns the description of the failure
      *
@@ -207,24 +165,4 @@ class PHPUnit_Framework_Constraint_TraversableContains extends PHPUnit_Framework
            $this->toString()
         );
     }
-=======
-	/**
-	 * Returns the description of the failure
-	 *
-	 * The beginning of failure messages is "Failed asserting that" in most
-	 * cases. This method should return the second part of that sentence.
-	 *
-	 * @param mixed $other Evaluated value or object.
-	 *
-	 * @return string
-	 */
-	protected function failureDescription($other)
-	{
-		return sprintf(
-			'%s %s',
-			is_array($other) ? 'an array' : 'a traversable',
-			$this->toString()
-		);
-	}
->>>>>>> ea79a2f50edc89e12eeb879d17155d120f28d68e
 }

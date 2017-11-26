@@ -54,12 +54,11 @@
  */
 class Framework_BaseTestListenerTest extends PHPUnit_Framework_TestCase
 {
-	/**
-	 * @var PHPUnit_Framework_TestResult
-	 */
-	private $result;
+    /**
+     * @var PHPUnit_Framework_TestResult
+     */
+    private $result;
 
-<<<<<<< HEAD
     /**
      * @covers PHPUnit_Framework_TestResult
      */
@@ -70,19 +69,7 @@ class Framework_BaseTestListenerTest extends PHPUnit_Framework_TestCase
         $this->result->addListener($listener);
         $test = new Success;
         $test->run($this->result);
-=======
-	/**
-	 * @covers PHPUnit_Framework_TestResult
-	 */
-	public function testEndEventsAreCounted()
-	{
-		$this->result = new PHPUnit_Framework_TestResult;
-		$listener     = new BaseTestListenerSample();
-		$this->result->addListener($listener);
-		$test = new Success;
-		$test->run($this->result);
->>>>>>> ea79a2f50edc89e12eeb879d17155d120f28d68e
 
-		$this->assertEquals(1, $listener->endCount);
-	}
+        $this->assertEquals(1, $listener->endCount);
+    }
 }

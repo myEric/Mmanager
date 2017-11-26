@@ -22,7 +22,6 @@
  */
 class PHP_CodeCoverage_Report_PHP
 {
-<<<<<<< HEAD
     /**
      * @param  PHP_CodeCoverage $coverage
      * @param  string           $target
@@ -31,20 +30,9 @@ class PHP_CodeCoverage_Report_PHP
     public function process(PHP_CodeCoverage $coverage, $target = null)
     {
         $filter = $coverage->filter();
-=======
-	/**
-	 * @param PHP_CodeCoverage $coverage
-	 * @param string           $target
-	 *
-	 * @return string
-	 */
-	public function process(PHP_CodeCoverage $coverage, $target = null)
-	{
-		$filter = $coverage->filter();
->>>>>>> ea79a2f50edc89e12eeb879d17155d120f28d68e
 
-		$output = sprintf(
-			'<?php
+        $output = sprintf(
+            '<?php
 $coverage = new PHP_CodeCoverage;
 $coverage->setData(%s);
 $coverage->setTests(%s);
@@ -54,23 +42,16 @@ $filter->setBlacklistedFiles(%s);
 $filter->setWhitelistedFiles(%s);
 
 return $coverage;',
-<<<<<<< HEAD
             var_export($coverage->getData(true), 1),
             var_export($coverage->getTests(), 1),
             var_export($filter->getBlacklistedFiles(), 1),
             var_export($filter->getWhitelistedFiles(), 1)
         );
-=======
-			var_export($coverage->getData(true), 1),
-			var_export($coverage->getTests(), 1),
-			var_export($filter->getWhitelistedFiles(), 1)
-		);
->>>>>>> ea79a2f50edc89e12eeb879d17155d120f28d68e
 
-		if ($target !== null) {
-			return file_put_contents($target, $output);
-		} else {
-			return $output;
-		}
-	}
+        if ($target !== null) {
+            return file_put_contents($target, $output);
+        } else {
+            return $output;
+        }
+    }
 }

@@ -65,24 +65,16 @@
  */
 class PHPUnit_Extensions_GroupTestSuite extends PHPUnit_Framework_TestSuite
 {
-<<<<<<< HEAD
     public function __construct(PHPUnit_Framework_TestSuite $suite, array $groups)
     {
         $groupSuites = array();
         $name        = $suite->getName();
-=======
-	public function __construct(PHPUnit_Framework_TestSuite $suite, array $groups)
-	{
-		$groupSuites = [];
-		$name        = $suite->getName();
->>>>>>> ea79a2f50edc89e12eeb879d17155d120f28d68e
 
-		foreach ($groups as $group) {
-			$groupSuites[$group] = new PHPUnit_Framework_TestSuite($name . ' - ' . $group);
-			$this->addTest($groupSuites[$group]);
-		}
+        foreach ($groups as $group) {
+            $groupSuites[$group] = new PHPUnit_Framework_TestSuite($name . ' - ' . $group);
+            $this->addTest($groupSuites[$group]);
+        }
 
-<<<<<<< HEAD
         $tests = new RecursiveIteratorIterator(
           new PHPUnit_Util_TestSuiteIterator($suite),
           RecursiveIteratorIterator::LEAVES_ONLY
@@ -93,28 +85,15 @@ class PHPUnit_Extensions_GroupTestSuite extends PHPUnit_Framework_TestSuite
                 $testGroups = PHPUnit_Util_Test::getGroups(
                   get_class($test), $test->getName(false)
                 );
-=======
-		$tests = new RecursiveIteratorIterator(
-			new PHPUnit_Util_TestSuiteIterator($suite),
-			RecursiveIteratorIterator::LEAVES_ONLY
-		);
 
-		foreach ($tests as $test) {
-			if ($test instanceof PHPUnit_Framework_TestCase) {
-				$testGroups = PHPUnit_Util_Test::getGroups(
-					get_class($test),
-					$test->getName(false)
-				);
->>>>>>> ea79a2f50edc89e12eeb879d17155d120f28d68e
-
-				foreach ($groups as $group) {
-					foreach ($testGroups as $testGroup) {
-						if ($group == $testGroup) {
-							$groupSuites[$group]->addTest($test);
-						}
-					}
-				}
-			}
-		}
-	}
+                foreach ($groups as $group) {
+                    foreach ($testGroups as $testGroup) {
+                        if ($group == $testGroup) {
+                            $groupSuites[$group]->addTest($test);
+                        }
+                    }
+                }
+            }
+        }
+    }
 }

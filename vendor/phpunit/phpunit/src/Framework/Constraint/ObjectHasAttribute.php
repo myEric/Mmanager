@@ -61,7 +61,6 @@
  */
 class PHPUnit_Framework_Constraint_ObjectHasAttribute extends PHPUnit_Framework_Constraint_ClassHasAttribute
 {
-<<<<<<< HEAD
     /**
      * Evaluates the constraint for parameter $other. Returns true if the
      * constraint is met, false otherwise.
@@ -72,20 +71,7 @@ class PHPUnit_Framework_Constraint_ObjectHasAttribute extends PHPUnit_Framework_
     protected function matches($other)
     {
         $object = new ReflectionObject($other);
-=======
-	/**
-	 * Evaluates the constraint for parameter $other. Returns true if the
-	 * constraint is met, false otherwise.
-	 *
-	 * @param mixed $other Value or object to evaluate.
-	 *
-	 * @return bool
-	 */
-	protected function matches($other)
-	{
-		$object = new ReflectionObject($other);
->>>>>>> ea79a2f50edc89e12eeb879d17155d120f28d68e
 
-		return $object->hasProperty($this->attributeName);
-	}
+        return $object->hasProperty($this->attributeName);
+    }
 }

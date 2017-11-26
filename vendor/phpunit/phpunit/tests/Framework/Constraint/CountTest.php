@@ -57,7 +57,6 @@
  */
 class CountTest extends PHPUnit_Framework_TestCase
 {
-<<<<<<< HEAD
     public function testCount()
     {
         $countConstraint = new PHPUnit_Framework_Constraint_Count(3);
@@ -70,62 +69,38 @@ class CountTest extends PHPUnit_Framework_TestCase
         $it = new TestIterator(array(1, 2));
         $this->assertTrue($countConstraint->evaluate($it, '', true));
     }
-=======
-	public function testCount()
-	{
-		$countConstraint = new PHPUnit_Framework_Constraint_Count(3);
-		$this->assertTrue($countConstraint->evaluate([1, 2, 3], '', true));
 
-		$countConstraint = new PHPUnit_Framework_Constraint_Count(0);
-		$this->assertTrue($countConstraint->evaluate([], '', true));
+    public function testCountDoesNotChangeIteratorKey()
+    {
+        $countConstraint = new PHPUnit_Framework_Constraint_Count(2);
 
-		$countConstraint = new PHPUnit_Framework_Constraint_Count(2);
-		$it              = new TestIterator([1, 2]);
-		$this->assertTrue($countConstraint->evaluate($it, '', true));
-	}
->>>>>>> ea79a2f50edc89e12eeb879d17155d120f28d68e
-
-	public function testCountDoesNotChangeIteratorKey()
-	{
-		$countConstraint = new PHPUnit_Framework_Constraint_Count(2);
-
-<<<<<<< HEAD
         // test with 1st implementation of Iterator
         $it = new TestIterator(array(1, 2));
-=======
-		// test with 1st implementation of Iterator
-		$it = new TestIterator([1, 2]);
->>>>>>> ea79a2f50edc89e12eeb879d17155d120f28d68e
 
-		$countConstraint->evaluate($it, '', true);
-		$this->assertEquals(1, $it->current());
+        $countConstraint->evaluate($it, '', true);
+        $this->assertEquals(1, $it->current());
 
-		$it->next();
-		$countConstraint->evaluate($it, '', true);
-		$this->assertEquals(2, $it->current());
+        $it->next();
+        $countConstraint->evaluate($it, '', true);
+        $this->assertEquals(2, $it->current());
 
-		$it->next();
-		$countConstraint->evaluate($it, '', true);
-		$this->assertFalse($it->valid());
+        $it->next();
+        $countConstraint->evaluate($it, '', true);
+        $this->assertFalse($it->valid());
 
-<<<<<<< HEAD
         // test with 2nd implementation of Iterator
         $it = new TestIterator2(array(1, 2));
-=======
-		// test with 2nd implementation of Iterator
-		$it = new TestIterator2([1, 2]);
->>>>>>> ea79a2f50edc89e12eeb879d17155d120f28d68e
 
-		$countConstraint = new PHPUnit_Framework_Constraint_Count(2);
-		$countConstraint->evaluate($it, '', true);
-		$this->assertEquals(1, $it->current());
+        $countConstraint = new PHPUnit_Framework_Constraint_Count(2);
+        $countConstraint->evaluate($it, '', true);
+        $this->assertEquals(1, $it->current());
 
-		$it->next();
-		$countConstraint->evaluate($it, '', true);
-		$this->assertEquals(2, $it->current());
+        $it->next();
+        $countConstraint->evaluate($it, '', true);
+        $this->assertEquals(2, $it->current());
 
-		$it->next();
-		$countConstraint->evaluate($it, '', true);
-		$this->assertFalse($it->valid());
-	}
+        $it->next();
+        $countConstraint->evaluate($it, '', true);
+        $this->assertFalse($it->valid());
+    }
 }

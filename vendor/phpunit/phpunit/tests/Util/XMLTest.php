@@ -59,7 +59,6 @@
  */
 class Util_XMLTest extends PHPUnit_Framework_TestCase
 {
-<<<<<<< HEAD
     public function testAssertValidKeysValidKeys()
     {
         $options   = array('testA' => 1, 'testB' => 2, 'testC' => 3);
@@ -364,38 +363,7 @@ class Util_XMLTest extends PHPUnit_Framework_TestCase
         for ($i = 0; $i < 256; $i++) {
             $data[] = array(chr($i));
         }
-=======
-	/**
-	 * @dataProvider charProvider
-	 */
-	public function testPrepareString($char)
-	{
-		$e = null;
 
-		$escapedString = PHPUnit_Util_XML::prepareString($char);
-		$xml           = "<?xml version='1.0' encoding='UTF-8' ?><tag>$escapedString</tag>";
-		$dom           = new DomDocument('1.0', 'UTF-8');
-
-		try {
-			$dom->loadXML($xml);
-		} catch (Exception $e) {
-		}
-
-		$this->assertNull($e, sprintf(
-			'PHPUnit_Util_XML::prepareString("\x%02x") should not crash DomDocument',
-			ord($char)
-		));
-	}
-
-	public function charProvider()
-	{
-		$data = [];
-
-		for ($i = 0; $i < 256; $i++) {
-			$data[] = [chr($i)];
-		}
->>>>>>> ea79a2f50edc89e12eeb879d17155d120f28d68e
-
-		return $data;
-	}
+        return $data;
+    }
 }

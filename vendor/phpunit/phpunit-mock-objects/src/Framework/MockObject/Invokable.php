@@ -58,7 +58,6 @@
  */
 interface PHPUnit_Framework_MockObject_Invokable extends PHPUnit_Framework_MockObject_Verifiable
 {
-<<<<<<< HEAD
     /**
      * Invokes the invocation object $invocation so that it can be checked for
      * expectations or matched against stubs.
@@ -77,26 +76,4 @@ interface PHPUnit_Framework_MockObject_Invokable extends PHPUnit_Framework_MockO
      * @return boolean
      */
     public function matches(PHPUnit_Framework_MockObject_Invocation $invocation);
-=======
-	/**
-	 * Invokes the invocation object $invocation so that it can be checked for
-	 * expectations or matched against stubs.
-	 *
-	 * @param PHPUnit_Framework_MockObject_Invocation $invocation
-	 *                                                            The invocation object passed from mock object.
-	 *
-	 * @return object
-	 */
-	public function invoke(PHPUnit_Framework_MockObject_Invocation $invocation);
-
-	/**
-	 * Checks if the invocation matches.
-	 *
-	 * @param PHPUnit_Framework_MockObject_Invocation $invocation
-	 *                                                            The invocation object passed from mock object.
-	 *
-	 * @return bool
-	 */
-	public function matches(PHPUnit_Framework_MockObject_Invocation $invocation);
->>>>>>> ea79a2f50edc89e12eeb879d17155d120f28d68e
 }

@@ -35,7 +35,7 @@
  * @filesource
  */
  
-namespace Mmanager\Persistence;
+namespace MyEric\Mmanager\Persistence;
 
 defined('EZSQL_VERSION') or define('EZSQL_VERSION', '2.17');
 defined('OBJECT') or define('OBJECT', 'OBJECT');

@@ -56,7 +56,6 @@
  */
 class PHPUnit_Util_String
 {
-<<<<<<< HEAD
     /**
      * Converts a string to UTF-8 encoding.
      *
@@ -72,29 +71,10 @@ class PHPUnit_Util_String
                 $string = utf8_encode($string);
             }
         }
-=======
-	/**
-	 * Converts a string to UTF-8 encoding.
-	 *
-	 * @param string $string
-	 *
-	 * @return string
-	 */
-	public static function convertToUtf8($string)
-	{
-		if (!self::isUtf8($string)) {
-			if (function_exists('mb_convert_encoding')) {
-				$string = mb_convert_encoding($string, 'UTF-8');
-			} else {
-				$string = utf8_encode($string);
-			}
-		}
->>>>>>> ea79a2f50edc89e12eeb879d17155d120f28d68e
 
-		return $string;
-	}
+        return $string;
+    }
 
-<<<<<<< HEAD
     /**
      * Checks a string for UTF-8 encoding.
      *
@@ -104,39 +84,27 @@ class PHPUnit_Util_String
     protected static function isUtf8($string)
     {
         $length = strlen($string);
-=======
-	/**
-	 * Checks a string for UTF-8 encoding.
-	 *
-	 * @param string $string
-	 *
-	 * @return bool
-	 */
-	protected static function isUtf8($string)
-	{
-		$length = strlen($string);
->>>>>>> ea79a2f50edc89e12eeb879d17155d120f28d68e
 
-		for ($i = 0; $i < $length; $i++) {
-			if (ord($string[$i]) < 0x80) {
-				$n = 0;
-			} elseif ((ord($string[$i]) & 0xE0) == 0xC0) {
-				$n = 1;
-			} elseif ((ord($string[$i]) & 0xF0) == 0xE0) {
-				$n = 2;
-			} elseif ((ord($string[$i]) & 0xF0) == 0xF0) {
-				$n = 3;
-			} else {
-				return false;
-			}
+        for ($i = 0; $i < $length; $i++) {
+            if (ord($string[$i]) < 0x80) {
+                $n = 0;
+            } elseif ((ord($string[$i]) & 0xE0) == 0xC0) {
+                $n = 1;
+            } elseif ((ord($string[$i]) & 0xF0) == 0xE0) {
+                $n = 2;
+            } elseif ((ord($string[$i]) & 0xF0) == 0xF0) {
+                $n = 3;
+            } else {
+                return false;
+            }
 
-			for ($j = 0; $j < $n; $j++) {
-				if ((++$i == $length) || ((ord($string[$i]) & 0xC0) != 0x80)) {
-					return false;
-				}
-			}
-		}
+            for ($j = 0; $j < $n; $j++) {
+                if ((++$i == $length) || ((ord($string[$i]) & 0xC0) != 0x80)) {
+                    return false;
+                }
+            }
+        }
 
-		return true;
-	}
+        return true;
+    }
 }

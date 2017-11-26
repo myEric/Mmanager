@@ -63,7 +63,6 @@
  */
 class PHPUnit_Framework_Constraint_ArrayHasKey extends PHPUnit_Framework_Constraint
 {
-<<<<<<< HEAD
     /**
      * @var integer|string
      */
@@ -90,54 +89,24 @@ class PHPUnit_Framework_Constraint_ArrayHasKey extends PHPUnit_Framework_Constra
         if (is_array($other)) {
             return array_key_exists($this->key, $other);
         }
-=======
-	/**
-	 * @var int|string
-	 */
-	protected $key;
 
-	/**
-	 * @param int|string $key
-	 */
-	public function __construct($key)
-	{
-		parent::__construct();
-		$this->key = $key;
-	}
+        if ($other instanceof ArrayAccess) {
+            return $other->offsetExists($this->key);
+        }
 
-	/**
-	 * Evaluates the constraint for parameter $other. Returns true if the
-	 * constraint is met, false otherwise.
-	 *
-	 * @param mixed $other Value or object to evaluate.
-	 *
-	 * @return bool
-	 */
-	protected function matches($other)
-	{
-		if (is_array($other)) {
-			return array_key_exists($this->key, $other);
-		}
->>>>>>> ea79a2f50edc89e12eeb879d17155d120f28d68e
+        return false;
+    }
 
-		if ($other instanceof ArrayAccess) {
-			return $other->offsetExists($this->key);
-		}
+    /**
+     * Returns a string representation of the constraint.
+     *
+     * @return string
+     */
+    public function toString()
+    {
+        return 'has the key ' . $this->exporter->export($this->key);
+    }
 
-		return false;
-	}
-
-	/**
-	 * Returns a string representation of the constraint.
-	 *
-	 * @return string
-	 */
-	public function toString()
-	{
-		return 'has the key ' . $this->exporter->export($this->key);
-	}
-
-<<<<<<< HEAD
     /**
      * Returns the description of the failure
      *
@@ -151,20 +120,4 @@ class PHPUnit_Framework_Constraint_ArrayHasKey extends PHPUnit_Framework_Constra
     {
         return 'an array ' . $this->toString();
     }
-=======
-	/**
-	 * Returns the description of the failure
-	 *
-	 * The beginning of failure messages is "Failed asserting that" in most
-	 * cases. This method should return the second part of that sentence.
-	 *
-	 * @param mixed $other Evaluated value or object.
-	 *
-	 * @return string
-	 */
-	protected function failureDescription($other)
-	{
-		return 'an array ' . $this->toString();
-	}
->>>>>>> ea79a2f50edc89e12eeb879d17155d120f28d68e
 }

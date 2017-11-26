@@ -56,7 +56,6 @@
  */
 class PHPUnit_Util_Fileloader
 {
-<<<<<<< HEAD
     /**
      * Checks if a PHP sourcefile is readable.
      * The sourcefile is loaded through the load() method.
@@ -74,34 +73,12 @@ class PHPUnit_Util_Fileloader
               sprintf('Cannot open file "%s".' . "\n", $filename)
             );
         }
-=======
-	/**
-	 * Checks if a PHP sourcefile is readable.
-	 * The sourcefile is loaded through the load() method.
-	 *
-	 * @param string $filename
-	 *
-	 * @return string
-	 *
-	 * @throws PHPUnit_Framework_Exception
-	 */
-	public static function checkAndLoad($filename)
-	{
-		$includePathFilename = stream_resolve_include_path($filename);
 
-		if (!$includePathFilename || !is_readable($includePathFilename)) {
-			throw new PHPUnit_Framework_Exception(
-				sprintf('Cannot open file "%s".' . "\n", $filename)
-			);
-		}
->>>>>>> ea79a2f50edc89e12eeb879d17155d120f28d68e
+        self::load($includePathFilename);
 
-		self::load($includePathFilename);
+        return $includePathFilename;
+    }
 
-		return $includePathFilename;
-	}
-
-<<<<<<< HEAD
     /**
      * Loads a PHP sourcefile.
      *
@@ -112,42 +89,20 @@ class PHPUnit_Util_Fileloader
     public static function load($filename)
     {
         $oldVariableNames = array_keys(get_defined_vars());
-=======
-	/**
-	 * Loads a PHP sourcefile.
-	 *
-	 * @param string $filename
-	 *
-	 * @return mixed
-	 *
-	 * @since  Method available since Release 3.0.0
-	 */
-	public static function load($filename)
-	{
-		$oldVariableNames = array_keys(get_defined_vars());
->>>>>>> ea79a2f50edc89e12eeb879d17155d120f28d68e
 
-		include_once $filename;
+        include_once $filename;
 
-<<<<<<< HEAD
         $newVariables     = get_defined_vars();
         $newVariableNames = array_diff(
                               array_keys($newVariables), $oldVariableNames
                             );
-=======
-		$newVariables     = get_defined_vars();
-		$newVariableNames = array_diff(
-			array_keys($newVariables),
-			$oldVariableNames
-		);
->>>>>>> ea79a2f50edc89e12eeb879d17155d120f28d68e
 
-		foreach ($newVariableNames as $variableName) {
-			if ($variableName != 'oldVariableNames') {
-				$GLOBALS[$variableName] = $newVariables[$variableName];
-			}
-		}
+        foreach ($newVariableNames as $variableName) {
+            if ($variableName != 'oldVariableNames') {
+                $GLOBALS[$variableName] = $newVariables[$variableName];
+            }
+        }
 
-		return $filename;
-	}
+        return $filename;
+    }
 }

@@ -56,7 +56,6 @@
  */
 class PHPUnit_Util_Type
 {
-<<<<<<< HEAD
     public static function isType($type)
     {
         return in_array(
@@ -77,26 +76,4 @@ class PHPUnit_Util_Type
           )
         );
     }
-=======
-	public static function isType($type)
-	{
-		return in_array(
-			$type,
-			[
-			'numeric',
-			'integer',
-			'int',
-			'float',
-			'string',
-			'boolean',
-			'bool',
-			'null',
-			'array',
-			'object',
-			'resource',
-			'scalar'
-			]
-		);
-	}
->>>>>>> ea79a2f50edc89e12eeb879d17155d120f28d68e
 }

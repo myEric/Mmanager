@@ -35,7 +35,7 @@
  * @filesource
  */
 
-namespace Mmanager\Exception;
+namespace MyEric\Mmanager\Exception;
 
 class RuntimeException extends \RuntimeException implements ExceptionInterface
 {

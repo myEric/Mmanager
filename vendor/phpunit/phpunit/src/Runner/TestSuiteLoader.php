@@ -56,7 +56,6 @@
  */
 interface PHPUnit_Runner_TestSuiteLoader
 {
-<<<<<<< HEAD
     /**
      * @param  string          $suiteClassName
      * @param  string          $suiteClassFile
@@ -69,20 +68,4 @@ interface PHPUnit_Runner_TestSuiteLoader
      * @return ReflectionClass
      */
     public function reload(ReflectionClass $aClass);
-=======
-	/**
-	 * @param string $suiteClassName
-	 * @param string $suiteClassFile
-	 *
-	 * @return ReflectionClass
-	 */
-	public function load($suiteClassName, $suiteClassFile = '');
-
-	/**
-	 * @param ReflectionClass $aClass
-	 *
-	 * @return ReflectionClass
-	 */
-	public function reload(ReflectionClass $aClass);
->>>>>>> ea79a2f50edc89e12eeb879d17155d120f28d68e
 }

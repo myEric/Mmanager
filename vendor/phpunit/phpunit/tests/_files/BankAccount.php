@@ -56,33 +56,23 @@ class BankAccountException extends RuntimeException {}
  */
 class BankAccount
 {
-<<<<<<< HEAD
     /**
      * The bank account's balance.
      *
      * @var    float
      */
     protected $balance = 0;
-=======
-	/**
-	 * The bank account's balance.
-	 *
-	 * @var float
-	 */
-	protected $balance = 0;
->>>>>>> ea79a2f50edc89e12eeb879d17155d120f28d68e
 
-	/**
-	 * Returns the bank account's balance.
-	 *
-	 * @return float
-	 */
-	public function getBalance()
-	{
-		return $this->balance;
-	}
+    /**
+     * Returns the bank account's balance.
+     *
+     * @return float
+     */
+    public function getBalance()
+    {
+        return $this->balance;
+    }
 
-<<<<<<< HEAD
     /**
      * Sets the bank account's balance.
      *
@@ -107,39 +97,10 @@ class BankAccount
     public function depositMoney($balance)
     {
         $this->setBalance($this->getBalance() + $balance);
-=======
-	/**
-	 * Sets the bank account's balance.
-	 *
-	 * @param float $balance
-	 *
-	 * @throws BankAccountException
-	 */
-	protected function setBalance($balance)
-	{
-		if ($balance >= 0) {
-			$this->balance = $balance;
-		} else {
-			throw new BankAccountException;
-		}
-	}
 
-	/**
-	 * Deposits an amount of money to the bank account.
-	 *
-	 * @param float $balance
-	 *
-	 * @throws BankAccountException
-	 */
-	public function depositMoney($balance)
-	{
-		$this->setBalance($this->getBalance() + $balance);
->>>>>>> ea79a2f50edc89e12eeb879d17155d120f28d68e
+        return $this->getBalance();
+    }
 
-		return $this->getBalance();
-	}
-
-<<<<<<< HEAD
     /**
      * Withdraws an amount of money from the bank account.
      *
@@ -149,19 +110,7 @@ class BankAccount
     public function withdrawMoney($balance)
     {
         $this->setBalance($this->getBalance() - $balance);
-=======
-	/**
-	 * Withdraws an amount of money from the bank account.
-	 *
-	 * @param float $balance
-	 *
-	 * @throws BankAccountException
-	 */
-	public function withdrawMoney($balance)
-	{
-		$this->setBalance($this->getBalance() - $balance);
->>>>>>> ea79a2f50edc89e12eeb879d17155d120f28d68e
 
-		return $this->getBalance();
-	}
+        return $this->getBalance();
+    }
 }

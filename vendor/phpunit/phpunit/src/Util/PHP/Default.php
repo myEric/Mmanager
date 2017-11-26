@@ -58,7 +58,6 @@ use SebastianBergmann\Environment\Runtime;
  */
 class PHPUnit_Util_PHP_Default extends PHPUnit_Util_PHP
 {
-<<<<<<< HEAD
     /**
      * Runs a single job (PHP code) using a separate PHP process.
      *
@@ -86,56 +85,19 @@ class PHPUnit_Util_PHP_Default extends PHPUnit_Util_PHP
               'Unable to spawn worker process'
             );
         }
-=======
-	/**
-	 * Runs a single job (PHP code) using a separate PHP process.
-	 *
-	 * @param string $job
-	 * @param array  $settings
-	 *
-	 * @return array
-	 *
-	 * @throws PHPUnit_Framework_Exception
-	 */
-	public function runJob($job, array $settings = [])
-	{
-		$runtime = new Runtime;
-		$runtime = $runtime->getBinary() . $this->settingsToParameters($settings);
 
-		if ('phpdbg' === PHP_SAPI) {
-			$runtime .= ' -qrr ' . escapeshellarg(__DIR__ . '/eval-stdin.php');
-		}
+        $this->process($pipes[0], $job);
+        fclose($pipes[0]);
 
-		$process = proc_open(
-			$runtime,
-			[
-				0 => ['pipe', 'r'],
-				1 => ['pipe', 'w'],
-				2 => ['pipe', 'w']
-			],
-			$pipes
-		);
+        $stdout = stream_get_contents($pipes[1]);
+        fclose($pipes[1]);
 
-		if (!is_resource($process)) {
-			throw new PHPUnit_Framework_Exception(
-				'Unable to spawn worker process'
-			);
-		}
->>>>>>> ea79a2f50edc89e12eeb879d17155d120f28d68e
+        $stderr = stream_get_contents($pipes[2]);
+        fclose($pipes[2]);
 
-		$this->process($pipes[0], $job);
-		fclose($pipes[0]);
+        proc_close($process);
+        $this->cleanup();
 
-		$stdout = stream_get_contents($pipes[1]);
-		fclose($pipes[1]);
-
-		$stderr = stream_get_contents($pipes[2]);
-		fclose($pipes[2]);
-
-		proc_close($process);
-		$this->cleanup();
-
-<<<<<<< HEAD
         return array('stdout' => $stdout, 'stderr' => $stderr);
     }
 
@@ -149,28 +111,11 @@ class PHPUnit_Util_PHP_Default extends PHPUnit_Util_PHP
     {
         fwrite($pipe, $job);
     }
-=======
-		return ['stdout' => $stdout, 'stderr' => $stderr];
-	}
 
-	/**
-	 * @param resource $pipe
-	 * @param string   $job
-	 *
-	 * @throws PHPUnit_Framework_Exception
-	 *
-	 * @since Method available since Release 3.5.12
-	 */
-	protected function process($pipe, $job)
-	{
-		fwrite($pipe, $job);
-	}
->>>>>>> ea79a2f50edc89e12eeb879d17155d120f28d68e
-
-	/**
-	 * @since Method available since Release 3.5.12
-	 */
-	protected function cleanup()
-	{
-	}
+    /**
+     * @since Method available since Release 3.5.12
+     */
+    protected function cleanup()
+    {
+    }
 }

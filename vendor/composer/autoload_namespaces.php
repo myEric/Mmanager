@@ -6,8 +6,4 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
-<<<<<<< HEAD
-=======
-	'Prophecy\\' => array($vendorDir . '/phpspec/prophecy/src'),
->>>>>>> ea79a2f50edc89e12eeb879d17155d120f28d68e
 );

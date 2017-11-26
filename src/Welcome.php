@@ -1,4 +1,5 @@
-<?php namespace MyEric\Mmanager;
+<?php 
+namespace MyEric\Mmanager;
 
 class Welcome {
 	public function hello($bool = true) {

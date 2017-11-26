@@ -13,15 +13,8 @@ class source_with_namespace
  */
 function &foo($bar)
 {
-<<<<<<< HEAD
     $baz = function () {};
     $a   = true ? true : false;
     $b = "{$a}";
     $c = "${b}";
-=======
-	$baz = function () {};
-	$a   = true ? true : false;
-	$b   = "{$a}";
-	$c   = "${b}";
->>>>>>> ea79a2f50edc89e12eeb879d17155d120f28d68e
 }

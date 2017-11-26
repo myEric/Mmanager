@@ -61,21 +61,20 @@
  */
 class PHPUnit_Framework_Constraint_ClassHasAttribute extends PHPUnit_Framework_Constraint
 {
-	/**
-	 * @var string
-	 */
-	protected $attributeName;
+    /**
+     * @var string
+     */
+    protected $attributeName;
 
-	/**
-	 * @param string $attributeName
-	 */
-	public function __construct($attributeName)
-	{
-		parent::__construct();
-		$this->attributeName = $attributeName;
-	}
+    /**
+     * @param string $attributeName
+     */
+    public function __construct($attributeName)
+    {
+        parent::__construct();
+        $this->attributeName = $attributeName;
+    }
 
-<<<<<<< HEAD
     /**
      * Evaluates the constraint for parameter $other. Returns true if the
      * constraint is met, false otherwise.
@@ -86,24 +85,10 @@ class PHPUnit_Framework_Constraint_ClassHasAttribute extends PHPUnit_Framework_C
     protected function matches($other)
     {
         $class = new ReflectionClass($other);
-=======
-	/**
-	 * Evaluates the constraint for parameter $other. Returns true if the
-	 * constraint is met, false otherwise.
-	 *
-	 * @param mixed $other Value or object to evaluate.
-	 *
-	 * @return bool
-	 */
-	protected function matches($other)
-	{
-		$class = new ReflectionClass($other);
->>>>>>> ea79a2f50edc89e12eeb879d17155d120f28d68e
 
-		return $class->hasProperty($this->attributeName);
-	}
+        return $class->hasProperty($this->attributeName);
+    }
 
-<<<<<<< HEAD
     /**
      * Returns a string representation of the constraint.
      *
@@ -137,38 +122,4 @@ class PHPUnit_Framework_Constraint_ClassHasAttribute extends PHPUnit_Framework_C
           $this->toString()
         );
     }
-=======
-	/**
-	 * Returns a string representation of the constraint.
-	 *
-	 * @return string
-	 */
-	public function toString()
-	{
-		return sprintf(
-			'has attribute "%s"',
-			$this->attributeName
-		);
-	}
-
-	/**
-	 * Returns the description of the failure
-	 *
-	 * The beginning of failure messages is "Failed asserting that" in most
-	 * cases. This method should return the second part of that sentence.
-	 *
-	 * @param mixed $other Evaluated value or object.
-	 *
-	 * @return string
-	 */
-	protected function failureDescription($other)
-	{
-		return sprintf(
-			'%sclass "%s" %s',
-			is_object($other) ? 'object of ' : '',
-			is_object($other) ? get_class($other) : $other,
-			$this->toString()
-		);
-	}
->>>>>>> ea79a2f50edc89e12eeb879d17155d120f28d68e
 }

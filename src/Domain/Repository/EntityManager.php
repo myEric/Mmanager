@@ -35,7 +35,7 @@
  * @filesource
  */
 
-namespace Mmanager\Domain\Repository;
+namespace MyEric\Mmanager\Domain\Repository;
 /**
  * Entity Manager
  */

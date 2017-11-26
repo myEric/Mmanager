@@ -56,7 +56,6 @@
  */
 class PHPUnit_Util_Blacklist
 {
-<<<<<<< HEAD
     /**
      * @var array
      */
@@ -71,76 +70,18 @@ class PHPUnit_Util_Blacklist
         if (defined('PHPUNIT_TESTSUITE')) {
             return false;
         }
-=======
-	/**
-	 * @var array
-	 */
-	public static $blacklistedClassNames = [
-		'File_Iterator'                              => 1,
-		'PHP_CodeCoverage'                           => 1,
-		'PHP_Invoker'                                => 1,
-		'PHP_Timer'                                  => 1,
-		'PHP_Token'                                  => 1,
-		'PHPUnit_Framework_TestCase'                 => 2,
-		'PHPUnit_Extensions_Database_TestCase'       => 2,
-		'PHPUnit_Framework_MockObject_Generator'     => 2,
-		'Text_Template'                              => 1,
-		'Symfony\Component\Yaml\Yaml'                => 1,
-		'SebastianBergmann\Diff\Diff'                => 1,
-		'SebastianBergmann\Environment\Runtime'      => 1,
-		'SebastianBergmann\Comparator\Comparator'    => 1,
-		'SebastianBergmann\Exporter\Exporter'        => 1,
-		'SebastianBergmann\GlobalState\Snapshot'     => 1,
-		'SebastianBergmann\RecursionContext\Context' => 1,
-		'SebastianBergmann\Version'                  => 1,
-		'Composer\Autoload\ClassLoader'              => 1,
-		'Doctrine\Instantiator\Instantiator'         => 1,
-		'phpDocumentor\Reflection\DocBlock'          => 1,
-		'Prophecy\Prophet'                           => 1,
-		'DeepCopy\DeepCopy'                          => 1
-	];
 
-	/**
-	 * @var array
-	 */
-	private static $directories;
+        $this->initialize();
 
-	/**
-	 * @return array
-	 *
-	 * @since  Method available since Release 4.1.0
-	 */
-	public function getBlacklistedDirectories()
-	{
-		$this->initialize();
+        foreach (self::$directories as $directory) {
+            if (strpos($file, $directory) === 0) {
+                return true;
+            }
+        }
 
-		return self::$directories;
-	}
+        return false;
+    }
 
-	/**
-	 * @param string $file
-	 *
-	 * @return bool
-	 */
-	public function isBlacklisted($file)
-	{
-		if (defined('PHPUNIT_TESTSUITE')) {
-			return false;
-		}
->>>>>>> ea79a2f50edc89e12eeb879d17155d120f28d68e
-
-		$this->initialize();
-
-		foreach (self::$directories as $directory) {
-			if (strpos($file, $directory) === 0) {
-				return true;
-			}
-		}
-
-		return false;
-	}
-
-<<<<<<< HEAD
     private function initialize()
     {
         if (self::$directories === null) {
@@ -150,43 +91,16 @@ class PHPUnit_Util_Blacklist
                 if (!class_exists($className)) {
                     continue;
                 }
-=======
-	private function initialize()
-	{
-		if (self::$directories === null) {
-			self::$directories = [];
 
-			foreach (self::$blacklistedClassNames as $className => $parent) {
-				if (!class_exists($className)) {
-					continue;
-				}
->>>>>>> ea79a2f50edc89e12eeb879d17155d120f28d68e
+                $reflector = new ReflectionClass($className);
+                $directory = $reflector->getFileName();
 
-				$reflector = new ReflectionClass($className);
-				$directory = $reflector->getFileName();
+                for ($i = 0; $i < $parent; $i++) {
+                    $directory = dirname($directory);
+                }
 
-				for ($i = 0; $i < $parent; $i++) {
-					$directory = dirname($directory);
-				}
-
-<<<<<<< HEAD
                 self::$directories[] = $directory;
             }
        }
     }
-=======
-				self::$directories[] = $directory;
-			}
-
-			// Hide process isolation workaround on Windows.
-			// @see PHPUnit_Util_PHP::factory()
-			// @see PHPUnit_Util_PHP_Windows::process()
-			if (DIRECTORY_SEPARATOR === '\\') {
-				// tempnam() prefix is limited to first 3 chars.
-				// @see http://php.net/manual/en/function.tempnam.php
-				self::$directories[] = sys_get_temp_dir() . '\\PHP';
-			}
-		}
-	}
->>>>>>> ea79a2f50edc89e12eeb879d17155d120f28d68e
 }

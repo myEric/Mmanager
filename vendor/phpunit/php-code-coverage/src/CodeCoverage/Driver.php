@@ -21,43 +21,15 @@
  */
 interface PHP_CodeCoverage_Driver
 {
-<<<<<<< HEAD
     /**
      * Start collection of code coverage information.
      */
     public function start();
-=======
-	/**
-	 * @var int
-	 *
-	 * @see http://xdebug.org/docs/code_coverage
-	 */
-	const LINE_EXECUTED = 1;
 
-	/**
-	 * @var int
-	 *
-	 * @see http://xdebug.org/docs/code_coverage
-	 */
-	const LINE_NOT_EXECUTED = -1;
-
-	/**
-	 * @var int
-	 *
-	 * @see http://xdebug.org/docs/code_coverage
-	 */
-	const LINE_NOT_EXECUTABLE = -2;
-
-	/**
-	 * Start collection of code coverage information.
-	 */
-	public function start();
->>>>>>> ea79a2f50edc89e12eeb879d17155d120f28d68e
-
-	/**
-	 * Stop collection of code coverage information.
-	 *
-	 * @return array
-	 */
-	public function stop();
+    /**
+     * Stop collection of code coverage information.
+     *
+     * @return array
+     */
+    public function stop();
 }

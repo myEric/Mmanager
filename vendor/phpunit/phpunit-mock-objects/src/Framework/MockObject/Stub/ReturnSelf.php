@@ -57,7 +57,6 @@
  */
 class PHPUnit_Framework_MockObject_Stub_ReturnSelf implements PHPUnit_Framework_MockObject_Stub
 {
-<<<<<<< HEAD
     public function invoke(PHPUnit_Framework_MockObject_Invocation $invocation)
     {
         if (!$invocation instanceof PHPUnit_Framework_MockObject_Invocation_Object) {
@@ -66,22 +65,12 @@ class PHPUnit_Framework_MockObject_Stub_ReturnSelf implements PHPUnit_Framework_
                 'object, not a static class.'
             );
         }
-=======
-	public function invoke(PHPUnit_Framework_MockObject_Invocation $invocation)
-	{
-		if (!$invocation instanceof PHPUnit_Framework_MockObject_Invocation_Object) {
-			throw new PHPUnit_Framework_MockObject_RuntimeException(
-				'The current object can only be returned when mocking an ' .
-				'object, not a static class.'
-			);
-		}
->>>>>>> ea79a2f50edc89e12eeb879d17155d120f28d68e
 
-		return $invocation->object;
-	}
+        return $invocation->object;
+    }
 
-	public function toString()
-	{
-		return 'return the current object';
-	}
+    public function toString()
+    {
+        return 'return the current object';
+    }
 }

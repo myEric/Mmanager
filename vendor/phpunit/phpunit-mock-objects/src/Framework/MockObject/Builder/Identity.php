@@ -60,7 +60,6 @@
  */
 interface PHPUnit_Framework_MockObject_Builder_Identity
 {
-<<<<<<< HEAD
     /**
      * Sets the identification of the expectation to $id.
      *
@@ -68,14 +67,4 @@ interface PHPUnit_Framework_MockObject_Builder_Identity
      * @param string $id Unique identifiation of expectation.
      */
     public function id($id);
-=======
-	/**
-	 * Sets the identification of the expectation to $id.
-	 *
-	 * @note The identifier is unique per mock object.
-	 *
-	 * @param string $id Unique identifiation of expectation.
-	 */
-	public function id($id);
->>>>>>> ea79a2f50edc89e12eeb879d17155d120f28d68e
 }

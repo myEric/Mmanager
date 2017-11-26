@@ -55,9 +55,8 @@
  */
 class PHPUnit_Framework_Constraint_Callback extends PHPUnit_Framework_Constraint
 {
-	private $callback;
+    private $callback;
 
-<<<<<<< HEAD
     /**
      * @param  callable                    $callback
      * @throws PHPUnit_Framework_Exception
@@ -69,28 +68,12 @@ class PHPUnit_Framework_Constraint_Callback extends PHPUnit_Framework_Constraint
                 1, 'callable'
             );
         }
-=======
-	/**
-	 * @param callable $callback
-	 *
-	 * @throws PHPUnit_Framework_Exception
-	 */
-	public function __construct($callback)
-	{
-		if (!is_callable($callback)) {
-			throw PHPUnit_Util_InvalidArgumentHelper::factory(
-				1,
-				'callable'
-			);
-		}
->>>>>>> ea79a2f50edc89e12eeb879d17155d120f28d68e
 
-		parent::__construct();
+        parent::__construct();
 
-		$this->callback = $callback;
-	}
+        $this->callback = $callback;
+    }
 
-<<<<<<< HEAD
     /**
      * Evaluates the constraint for parameter $value. Returns true if the
      * constraint is met, false otherwise.
@@ -130,28 +113,4 @@ class PHPUnit_Framework_Constraint_Callback extends PHPUnit_Framework_Constraint
 
         return $callback[0] . '::' . $callback[1];
     }
-=======
-	/**
-	 * Evaluates the constraint for parameter $value. Returns true if the
-	 * constraint is met, false otherwise.
-	 *
-	 * @param mixed $other Value or object to evaluate.
-	 *
-	 * @return bool
-	 */
-	protected function matches($other)
-	{
-		return call_user_func($this->callback, $other);
-	}
-
-	/**
-	 * Returns a string representation of the constraint.
-	 *
-	 * @return string
-	 */
-	public function toString()
-	{
-		return 'is accepted by specified callback';
-	}
->>>>>>> ea79a2f50edc89e12eeb879d17155d120f28d68e
 }

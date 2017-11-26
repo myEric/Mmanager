@@ -34,7 +34,7 @@
  * @since	Version 1.0.0
  * @filesource
  */
-namespace Mmanager\Domain\Repository;
+namespace MyEric\Mmanager\Domain\Repository;
 
 interface EntityRepositoryInterface extends RepositoryInterface {
 	public function setTable($table);
