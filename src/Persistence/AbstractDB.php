@@ -83,7 +83,6 @@ abstract class AbstractDB extends Cache {
 
 	public function vardump($mixed = '')
 	{
-
 		// Start outup buffering
 		ob_start();
 
@@ -94,7 +93,6 @@ abstract class AbstractDB extends Cache {
 		{
 			echo "<font color=800080><b>ezSQL</b> (v".EZSQL_VERSION.") <b>Variable Dump..</b></font>\n\n";
 		}
-
 		$var_type = gettype($mixed);
 		print_r(($mixed ? $mixed : "<font color=red>No Value / False</font>"));
 		echo "\n\n<b>Type:</b> ".ucfirst($var_type)."\n";
@@ -117,7 +115,6 @@ abstract class AbstractDB extends Cache {
 		$this->vardump_called = true;
 
 		return $html;
-
 	}
 
 	/**********************************************************************
