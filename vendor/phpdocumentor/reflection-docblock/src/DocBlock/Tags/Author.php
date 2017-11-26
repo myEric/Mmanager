@@ -19,82 +19,82 @@ use Webmozart\Assert\Assert;
  */
 final class Author extends BaseTag implements Factory\StaticMethod
 {
-    /** @var string register that this is the author tag. */
-    protected $name = 'author';
+	/** @var string register that this is the author tag. */
+	protected $name = 'author';
 
-    /** @var string The name of the author */
-    private $authorName = '';
+	/** @var string The name of the author */
+	private $authorName = '';
 
-    /** @var string The email of the author */
-    private $authorEmail = '';
+	/** @var string The email of the author */
+	private $authorEmail = '';
 
-    /**
-     * Initializes this tag with the author name and e-mail.
-     *
-     * @param string $authorName
-     * @param string $authorEmail
-     */
-    public function __construct($authorName, $authorEmail)
-    {
-        Assert::string($authorName);
-        Assert::string($authorEmail);
-        if ($authorEmail && !filter_var($authorEmail, FILTER_VALIDATE_EMAIL)) {
-            throw new \InvalidArgumentException('The author tag does not have a valid e-mail address');
-        }
+	/**
+	 * Initializes this tag with the author name and e-mail.
+	 *
+	 * @param string $authorName
+	 * @param string $authorEmail
+	 */
+	public function __construct($authorName, $authorEmail)
+	{
+		Assert::string($authorName);
+		Assert::string($authorEmail);
+		if ($authorEmail && !filter_var($authorEmail, FILTER_VALIDATE_EMAIL)) {
+			throw new \InvalidArgumentException('The author tag does not have a valid e-mail address');
+		}
 
-        $this->authorName  = $authorName;
-        $this->authorEmail = $authorEmail;
-    }
+		$this->authorName  = $authorName;
+		$this->authorEmail = $authorEmail;
+	}
 
-    /**
-     * Gets the author's name.
-     *
-     * @return string The author's name.
-     */
-    public function getAuthorName()
-    {
-        return $this->authorName;
-    }
+	/**
+	 * Gets the author's name.
+	 *
+	 * @return string The author's name.
+	 */
+	public function getAuthorName()
+	{
+		return $this->authorName;
+	}
 
-    /**
-     * Returns the author's email.
-     *
-     * @return string The author's email.
-     */
-    public function getEmail()
-    {
-        return $this->authorEmail;
-    }
+	/**
+	 * Returns the author's email.
+	 *
+	 * @return string The author's email.
+	 */
+	public function getEmail()
+	{
+		return $this->authorEmail;
+	}
 
-    /**
-     * Returns this tag in string form.
-     *
-     * @return string
-     */
-    public function __toString()
-    {
-        return $this->authorName . (strlen($this->authorEmail) ? ' <' . $this->authorEmail . '>' : '');
-    }
+	/**
+	 * Returns this tag in string form.
+	 *
+	 * @return string
+	 */
+	public function __toString()
+	{
+		return $this->authorName . (strlen($this->authorEmail) ? ' <' . $this->authorEmail . '>' : '');
+	}
 
-    /**
-     * Attempts to create a new Author object based on †he tag body.
-     *
-     * @param string $body
-     *
-     * @return static
-     */
-    public static function create($body)
-    {
-        Assert::string($body);
+	/**
+	 * Attempts to create a new Author object based on †he tag body.
+	 *
+	 * @param string $body
+	 *
+	 * @return static
+	 */
+	public static function create($body)
+	{
+		Assert::string($body);
 
-        $splitTagContent = preg_match('/^([^\<]*)(?:\<([^\>]*)\>)?$/u', $body, $matches);
-        if (!$splitTagContent) {
-            return null;
-        }
+		$splitTagContent = preg_match('/^([^\<]*)(?:\<([^\>]*)\>)?$/u', $body, $matches);
+		if (!$splitTagContent) {
+			return null;
+		}
 
-        $authorName = trim($matches[1]);
-        $email = isset($matches[2]) ? trim($matches[2]) : '';
+		$authorName = trim($matches[1]);
+		$email = isset($matches[2]) ? trim($matches[2]) : '';
 
-        return new static($authorName, $email);
-    }
+		return new static($authorName, $email);
+	}
 }

@@ -20,63 +20,63 @@
  */
 class PHPUnit_Framework_Constraint_ArrayHasKey extends PHPUnit_Framework_Constraint
 {
-    /**
-     * @var int|string
-     */
-    protected $key;
+	/**
+	 * @var int|string
+	 */
+	protected $key;
 
-    /**
-     * @param int|string $key
-     */
-    public function __construct($key)
-    {
-        parent::__construct();
-        $this->key = $key;
-    }
+	/**
+	 * @param int|string $key
+	 */
+	public function __construct($key)
+	{
+		parent::__construct();
+		$this->key = $key;
+	}
 
-    /**
-     * Evaluates the constraint for parameter $other. Returns true if the
-     * constraint is met, false otherwise.
-     *
-     * @param mixed $other Value or object to evaluate.
-     *
-     * @return bool
-     */
-    protected function matches($other)
-    {
-        if (is_array($other)) {
-            return array_key_exists($this->key, $other);
-        }
+	/**
+	 * Evaluates the constraint for parameter $other. Returns true if the
+	 * constraint is met, false otherwise.
+	 *
+	 * @param mixed $other Value or object to evaluate.
+	 *
+	 * @return bool
+	 */
+	protected function matches($other)
+	{
+		if (is_array($other)) {
+			return array_key_exists($this->key, $other);
+		}
 
-        if ($other instanceof ArrayAccess) {
-            return $other->offsetExists($this->key);
-        }
+		if ($other instanceof ArrayAccess) {
+			return $other->offsetExists($this->key);
+		}
 
-        return false;
-    }
+		return false;
+	}
 
-    /**
-     * Returns a string representation of the constraint.
-     *
-     * @return string
-     */
-    public function toString()
-    {
-        return 'has the key ' . $this->exporter->export($this->key);
-    }
+	/**
+	 * Returns a string representation of the constraint.
+	 *
+	 * @return string
+	 */
+	public function toString()
+	{
+		return 'has the key ' . $this->exporter->export($this->key);
+	}
 
-    /**
-     * Returns the description of the failure
-     *
-     * The beginning of failure messages is "Failed asserting that" in most
-     * cases. This method should return the second part of that sentence.
-     *
-     * @param mixed $other Evaluated value or object.
-     *
-     * @return string
-     */
-    protected function failureDescription($other)
-    {
-        return 'an array ' . $this->toString();
-    }
+	/**
+	 * Returns the description of the failure
+	 *
+	 * The beginning of failure messages is "Failed asserting that" in most
+	 * cases. This method should return the second part of that sentence.
+	 *
+	 * @param mixed $other Evaluated value or object.
+	 *
+	 * @return string
+	 */
+	protected function failureDescription($other)
+	{
+		return 'an array ' . $this->toString();
+	}
 }

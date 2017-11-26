@@ -18,10 +18,10 @@ namespace Prophecy\Prophecy;
  */
 interface ProphecyInterface
 {
-    /**
-     * Reveals prophecy object (double) .
-     *
-     * @return object
-     */
-    public function reveal();
+	/**
+	 * Reveals prophecy object (double) .
+	 *
+	 * @return object
+	 */
+	public function reveal();
 }

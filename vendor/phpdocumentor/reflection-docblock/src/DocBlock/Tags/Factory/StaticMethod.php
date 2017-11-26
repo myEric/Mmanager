@@ -14,5 +14,5 @@ namespace phpDocumentor\Reflection\DocBlock\Tags\Factory;
 
 interface StaticMethod
 {
-    public static function create($body);
+	public static function create($body);
 }

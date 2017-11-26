@@ -6,8 +6,8 @@ use BadMethodCallException;
 
 class UnclonableItem
 {
-    private function __clone()
-    {
-        throw new BadMethodCallException('Unsupported call.');
-    }
+	private function __clone()
+	{
+		throw new BadMethodCallException('Unsupported call.');
+	}
 }

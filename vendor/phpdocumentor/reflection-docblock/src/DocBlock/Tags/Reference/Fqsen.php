@@ -19,24 +19,24 @@ use phpDocumentor\Reflection\Fqsen as RealFqsen;
  */
 final class Fqsen implements Reference
 {
-    /**
-     * @var RealFqsen
-     */
-    private $fqsen;
+	/**
+	 * @var RealFqsen
+	 */
+	private $fqsen;
 
-    /**
-     * Fqsen constructor.
-     */
-    public function __construct(RealFqsen $fqsen)
-    {
-        $this->fqsen = $fqsen;
-    }
+	/**
+	 * Fqsen constructor.
+	 */
+	public function __construct(RealFqsen $fqsen)
+	{
+		$this->fqsen = $fqsen;
+	}
 
-    /**
-     * @return string string representation of the referenced fqsen
-     */
-    public function __toString()
-    {
-        return (string)$this->fqsen;
-    }
+	/**
+	 * @return string string representation of the referenced fqsen
+	 */
+	public function __toString()
+	{
+		return (string)$this->fqsen;
+	}
 }

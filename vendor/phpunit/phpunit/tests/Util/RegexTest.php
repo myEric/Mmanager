@@ -13,40 +13,40 @@
  */
 class Util_RegexTest extends PHPUnit_Framework_TestCase
 {
-    public function validRegexpProvider()
-    {
-        return [
-          ['#valid regexp#', 'valid regexp', 1],
-          [';val.*xp;', 'valid regexp', 1],
-          ['/val.*xp/i', 'VALID REGEXP', 1],
-          ['/a val.*p/','valid regexp', 0],
-        ];
-    }
+	public function validRegexpProvider()
+	{
+		return [
+		  ['#valid regexp#', 'valid regexp', 1],
+		  [';val.*xp;', 'valid regexp', 1],
+		  ['/val.*xp/i', 'VALID REGEXP', 1],
+		  ['/a val.*p/','valid regexp', 0],
+		];
+	}
 
-    public function invalidRegexpProvider()
-    {
-        return [
-          ['valid regexp', 'valid regexp'],
-          [';val.*xp', 'valid regexp'],
-          ['val.*xp/i', 'VALID REGEXP'],
-        ];
-    }
+	public function invalidRegexpProvider()
+	{
+		return [
+		  ['valid regexp', 'valid regexp'],
+		  [';val.*xp', 'valid regexp'],
+		  ['val.*xp/i', 'VALID REGEXP'],
+		];
+	}
 
-    /**
-     * @dataProvider validRegexpProvider
-     * @covers       PHPUnit_Util_Regex::pregMatchSafe
-     */
-    public function testValidRegex($pattern, $subject, $return)
-    {
-        $this->assertEquals($return, PHPUnit_Util_Regex::pregMatchSafe($pattern, $subject));
-    }
+	/**
+	 * @dataProvider validRegexpProvider
+	 * @covers       PHPUnit_Util_Regex::pregMatchSafe
+	 */
+	public function testValidRegex($pattern, $subject, $return)
+	{
+		$this->assertEquals($return, PHPUnit_Util_Regex::pregMatchSafe($pattern, $subject));
+	}
 
-    /**
-     * @dataProvider invalidRegexpProvider
-     * @covers       PHPUnit_Util_Regex::pregMatchSafe
-     */
-    public function testInvalidRegex($pattern, $subject)
-    {
-        $this->assertFalse(PHPUnit_Util_Regex::pregMatchSafe($pattern, $subject));
-    }
+	/**
+	 * @dataProvider invalidRegexpProvider
+	 * @covers       PHPUnit_Util_Regex::pregMatchSafe
+	 */
+	public function testInvalidRegex($pattern, $subject)
+	{
+		$this->assertFalse(PHPUnit_Util_Regex::pregMatchSafe($pattern, $subject));
+	}
 }

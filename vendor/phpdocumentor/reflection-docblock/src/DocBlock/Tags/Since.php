@@ -22,13 +22,13 @@ use Webmozart\Assert\Assert;
  */
 final class Since extends BaseTag implements Factory\StaticMethod
 {
-    protected $name = 'since';
+	protected $name = 'since';
 
-    /**
-     * PCRE regular expression matching a version vector.
-     * Assumes the "x" modifier.
-     */
-    const REGEX_VECTOR = '(?:
+	/**
+	 * PCRE regular expression matching a version vector.
+	 * Assumes the "x" modifier.
+	 */
+	const REGEX_VECTOR = '(?:
         # Normal release vectors.
         \d\S*
         |
@@ -40,55 +40,55 @@ final class Since extends BaseTag implements Factory\StaticMethod
         [^\s\:]+\:\s*\$[^\$]+\$
     )';
 
-    /** @var string The version vector. */
-    private $version = '';
+	/** @var string The version vector. */
+	private $version = '';
 
-    public function __construct($version = null, Description $description = null)
-    {
-        Assert::nullOrStringNotEmpty($version);
+	public function __construct($version = null, Description $description = null)
+	{
+		Assert::nullOrStringNotEmpty($version);
 
-        $this->version     = $version;
-        $this->description = $description;
-    }
+		$this->version     = $version;
+		$this->description = $description;
+	}
 
-    /**
-     * @return static
-     */
-    public static function create($body, DescriptionFactory $descriptionFactory = null, TypeContext $context = null)
-    {
-        Assert::nullOrString($body);
-        if (empty($body)) {
-            return new static();
-        }
+	/**
+	 * @return static
+	 */
+	public static function create($body, DescriptionFactory $descriptionFactory = null, TypeContext $context = null)
+	{
+		Assert::nullOrString($body);
+		if (empty($body)) {
+			return new static();
+		}
 
-        $matches = [];
-        if (! preg_match('/^(' . self::REGEX_VECTOR . ')\s*(.+)?$/sux', $body, $matches)) {
-            return null;
-        }
+		$matches = [];
+		if (! preg_match('/^(' . self::REGEX_VECTOR . ')\s*(.+)?$/sux', $body, $matches)) {
+			return null;
+		}
 
-        return new static(
-            $matches[1],
-            $descriptionFactory->create(isset($matches[2]) ? $matches[2] : '', $context)
-        );
-    }
+		return new static(
+			$matches[1],
+			$descriptionFactory->create(isset($matches[2]) ? $matches[2] : '', $context)
+		);
+	}
 
-    /**
-     * Gets the version section of the tag.
-     *
-     * @return string
-     */
-    public function getVersion()
-    {
-        return $this->version;
-    }
+	/**
+	 * Gets the version section of the tag.
+	 *
+	 * @return string
+	 */
+	public function getVersion()
+	{
+		return $this->version;
+	}
 
-    /**
-     * Returns a string representation for this tag.
-     *
-     * @return string
-     */
-    public function __toString()
-    {
-        return $this->version . ($this->description ? ' ' . $this->description->render() : '');
-    }
+	/**
+	 * Returns a string representation for this tag.
+	 *
+	 * @return string
+	 */
+	public function __toString()
+	{
+		return $this->version . ($this->description ? ' ' . $this->description->render() : '');
+	}
 }

@@ -18,38 +18,38 @@ namespace Prophecy\Argument\Token;
  */
 class ApproximateValueToken implements TokenInterface
 {
-    private $value;
-    private $precision;
+	private $value;
+	private $precision;
 
-    public function __construct($value, $precision = 0)
-    {
-        $this->value = $value;
-        $this->precision = $precision;
-    }
+	public function __construct($value, $precision = 0)
+	{
+		$this->value = $value;
+		$this->precision = $precision;
+	}
 
-    /**
-     * {@inheritdoc}
-     */
-    public function scoreArgument($argument)
-    {
-        return round($argument, $this->precision) === round($this->value, $this->precision) ? 10 : false;
-    }
+	/**
+	 * {@inheritdoc}
+	 */
+	public function scoreArgument($argument)
+	{
+		return round($argument, $this->precision) === round($this->value, $this->precision) ? 10 : false;
+	}
 
-    /**
-     * {@inheritdoc}
-     */
-    public function isLast()
-    {
-        return false;
-    }
+	/**
+	 * {@inheritdoc}
+	 */
+	public function isLast()
+	{
+		return false;
+	}
 
-    /**
-     * Returns string representation for token.
-     *
-     * @return string
-     */
-    public function __toString()
-    {
-        return sprintf('≅%s', round($this->value, $this->precision));
-    }
+	/**
+	 * Returns string representation for token.
+	 *
+	 * @return string
+	 */
+	public function __toString()
+	{
+		return sprintf('≅%s', round($this->value, $this->precision));
+	}
 }

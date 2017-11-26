@@ -6,10 +6,10 @@ use DateTimeZone;
 
 class FooDateTimeZone extends DateTimeZone
 {
-    public $cloned = false;
+	public $cloned = false;
 
-    public function __clone()
-    {
-        $this->cloned = true;
-    }
+	public function __clone()
+	{
+		$this->cloned = true;
+	}
 }

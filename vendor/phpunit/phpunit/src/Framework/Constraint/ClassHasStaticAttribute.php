@@ -18,39 +18,39 @@
  */
 class PHPUnit_Framework_Constraint_ClassHasStaticAttribute extends PHPUnit_Framework_Constraint_ClassHasAttribute
 {
-    /**
-     * Evaluates the constraint for parameter $other. Returns true if the
-     * constraint is met, false otherwise.
-     *
-     * @param mixed $other Value or object to evaluate.
-     *
-     * @return bool
-     */
-    protected function matches($other)
-    {
-        $class = new ReflectionClass($other);
+	/**
+	 * Evaluates the constraint for parameter $other. Returns true if the
+	 * constraint is met, false otherwise.
+	 *
+	 * @param mixed $other Value or object to evaluate.
+	 *
+	 * @return bool
+	 */
+	protected function matches($other)
+	{
+		$class = new ReflectionClass($other);
 
-        if ($class->hasProperty($this->attributeName)) {
-            $attribute = $class->getProperty($this->attributeName);
+		if ($class->hasProperty($this->attributeName)) {
+			$attribute = $class->getProperty($this->attributeName);
 
-            return $attribute->isStatic();
-        } else {
-            return false;
-        }
-    }
+			return $attribute->isStatic();
+		} else {
+			return false;
+		}
+	}
 
-    /**
-     * Returns a string representation of the constraint.
-     *
-     * @return string
-     *
-     * @since  Method available since Release 3.3.0
-     */
-    public function toString()
-    {
-        return sprintf(
-            'has static attribute "%s"',
-            $this->attributeName
-        );
-    }
+	/**
+	 * Returns a string representation of the constraint.
+	 *
+	 * @return string
+	 *
+	 * @since  Method available since Release 3.3.0
+	 */
+	public function toString()
+	{
+		return sprintf(
+			'has static attribute "%s"',
+			$this->attributeName
+		);
+	}
 }

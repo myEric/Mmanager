@@ -26,12 +26,12 @@ namespace Doctrine\Instantiator;
  */
 interface InstantiatorInterface
 {
-    /**
-     * @param string $className
-     *
-     * @return object
-     *
-     * @throws \Doctrine\Instantiator\Exception\ExceptionInterface
-     */
-    public function instantiate($className);
+	/**
+	 * @param string $className
+	 *
+	 * @return object
+	 *
+	 * @throws \Doctrine\Instantiator\Exception\ExceptionInterface
+	 */
+	public function instantiate($className);
 }

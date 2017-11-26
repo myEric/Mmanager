@@ -15,84 +15,84 @@
  */
 class PHP_CodeCoverage_Report_HTML_Renderer_Directory extends PHP_CodeCoverage_Report_HTML_Renderer
 {
-    /**
-     * @param PHP_CodeCoverage_Report_Node_Directory $node
-     * @param string                                 $file
-     */
-    public function render(PHP_CodeCoverage_Report_Node_Directory $node, $file)
-    {
-        $template = new Text_Template($this->templatePath . 'directory.html', '{{', '}}');
+	/**
+	 * @param PHP_CodeCoverage_Report_Node_Directory $node
+	 * @param string                                 $file
+	 */
+	public function render(PHP_CodeCoverage_Report_Node_Directory $node, $file)
+	{
+		$template = new Text_Template($this->templatePath . 'directory.html', '{{', '}}');
 
-        $this->setCommonTemplateVariables($template, $node);
+		$this->setCommonTemplateVariables($template, $node);
 
-        $items = $this->renderItem($node, true);
+		$items = $this->renderItem($node, true);
 
-        foreach ($node->getDirectories() as $item) {
-            $items .= $this->renderItem($item);
-        }
+		foreach ($node->getDirectories() as $item) {
+			$items .= $this->renderItem($item);
+		}
 
-        foreach ($node->getFiles() as $item) {
-            $items .= $this->renderItem($item);
-        }
+		foreach ($node->getFiles() as $item) {
+			$items .= $this->renderItem($item);
+		}
 
-        $template->setVar(
-            [
-                'id'    => $node->getId(),
-                'items' => $items
-            ]
-        );
+		$template->setVar(
+			[
+				'id'    => $node->getId(),
+				'items' => $items
+			]
+		);
 
-        $template->renderTo($file);
-    }
+		$template->renderTo($file);
+	}
 
-    /**
-     * @param PHP_CodeCoverage_Report_Node $item
-     * @param bool                         $total
-     *
-     * @return string
-     */
-    protected function renderItem(PHP_CodeCoverage_Report_Node $item, $total = false)
-    {
-        $data = [
-            'numClasses'                   => $item->getNumClassesAndTraits(),
-            'numTestedClasses'             => $item->getNumTestedClassesAndTraits(),
-            'numMethods'                   => $item->getNumMethods(),
-            'numTestedMethods'             => $item->getNumTestedMethods(),
-            'linesExecutedPercent'         => $item->getLineExecutedPercent(false),
-            'linesExecutedPercentAsString' => $item->getLineExecutedPercent(),
-            'numExecutedLines'             => $item->getNumExecutedLines(),
-            'numExecutableLines'           => $item->getNumExecutableLines(),
-            'testedMethodsPercent'         => $item->getTestedMethodsPercent(false),
-            'testedMethodsPercentAsString' => $item->getTestedMethodsPercent(),
-            'testedClassesPercent'         => $item->getTestedClassesAndTraitsPercent(false),
-            'testedClassesPercentAsString' => $item->getTestedClassesAndTraitsPercent()
-        ];
+	/**
+	 * @param PHP_CodeCoverage_Report_Node $item
+	 * @param bool                         $total
+	 *
+	 * @return string
+	 */
+	protected function renderItem(PHP_CodeCoverage_Report_Node $item, $total = false)
+	{
+		$data = [
+			'numClasses'                   => $item->getNumClassesAndTraits(),
+			'numTestedClasses'             => $item->getNumTestedClassesAndTraits(),
+			'numMethods'                   => $item->getNumMethods(),
+			'numTestedMethods'             => $item->getNumTestedMethods(),
+			'linesExecutedPercent'         => $item->getLineExecutedPercent(false),
+			'linesExecutedPercentAsString' => $item->getLineExecutedPercent(),
+			'numExecutedLines'             => $item->getNumExecutedLines(),
+			'numExecutableLines'           => $item->getNumExecutableLines(),
+			'testedMethodsPercent'         => $item->getTestedMethodsPercent(false),
+			'testedMethodsPercentAsString' => $item->getTestedMethodsPercent(),
+			'testedClassesPercent'         => $item->getTestedClassesAndTraitsPercent(false),
+			'testedClassesPercentAsString' => $item->getTestedClassesAndTraitsPercent()
+		];
 
-        if ($total) {
-            $data['name'] = 'Total';
-        } else {
-            if ($item instanceof PHP_CodeCoverage_Report_Node_Directory) {
-                $data['name'] = sprintf(
-                    '<a href="%s/index.html">%s</a>',
-                    $item->getName(),
-                    $item->getName()
-                );
+		if ($total) {
+			$data['name'] = 'Total';
+		} else {
+			if ($item instanceof PHP_CodeCoverage_Report_Node_Directory) {
+				$data['name'] = sprintf(
+					'<a href="%s/index.html">%s</a>',
+					$item->getName(),
+					$item->getName()
+				);
 
-                $data['icon'] = '<span class="glyphicon glyphicon-folder-open"></span> ';
-            } else {
-                $data['name'] = sprintf(
-                    '<a href="%s.html">%s</a>',
-                    $item->getName(),
-                    $item->getName()
-                );
+				$data['icon'] = '<span class="glyphicon glyphicon-folder-open"></span> ';
+			} else {
+				$data['name'] = sprintf(
+					'<a href="%s.html">%s</a>',
+					$item->getName(),
+					$item->getName()
+				);
 
-                $data['icon'] = '<span class="glyphicon glyphicon-file"></span> ';
-            }
-        }
+				$data['icon'] = '<span class="glyphicon glyphicon-file"></span> ';
+			}
+		}
 
-        return $this->renderItemTemplate(
-            new Text_Template($this->templatePath . 'directory_item.html', '{{', '}}'),
-            $data
-        );
-    }
+		return $this->renderItemTemplate(
+			new Text_Template($this->templatePath . 'directory_item.html', '{{', '}}'),
+			$data
+		);
+	}
 }

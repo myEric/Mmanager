@@ -15,22 +15,22 @@
  */
 class PHPUnit_Framework_MockObject_Invocation_Object extends PHPUnit_Framework_MockObject_Invocation_Static
 {
-    /**
-     * @var object
-     */
-    public $object;
+	/**
+	 * @var object
+	 */
+	public $object;
 
-    /**
-     * @param string $className
-     * @param string $methodname
-     * @param array  $parameters
-     * @param string $returnType
-     * @param object $object
-     * @param object $cloneObjects
-     */
-    public function __construct($className, $methodName, array $parameters, $returnType, $object, $cloneObjects = false)
-    {
-        parent::__construct($className, $methodName, $parameters, $returnType, $cloneObjects);
-        $this->object = $object;
-    }
+	/**
+	 * @param string $className
+	 * @param string $methodname
+	 * @param array  $parameters
+	 * @param string $returnType
+	 * @param object $object
+	 * @param object $cloneObjects
+	 */
+	public function __construct($className, $methodName, array $parameters, $returnType, $object, $cloneObjects = false)
+	{
+		parent::__construct($className, $methodName, $parameters, $returnType, $cloneObjects);
+		$this->object = $object;
+	}
 }

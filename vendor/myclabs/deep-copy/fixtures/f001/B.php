@@ -4,17 +4,17 @@ namespace DeepCopy\f001;
 
 class B extends A
 {
-    private $bProp;
+	private $bProp;
 
-    public function getBProp()
-    {
-        return $this->bProp;
-    }
+	public function getBProp()
+	{
+		return $this->bProp;
+	}
 
-    public function setBProp($prop)
-    {
-        $this->bProp = $prop;
+	public function setBProp($prop)
+	{
+		$this->bProp = $prop;
 
-        return $this;
-    }
+		return $this;
+	}
 }

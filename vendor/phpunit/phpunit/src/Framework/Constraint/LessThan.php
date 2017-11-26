@@ -16,40 +16,40 @@
  */
 class PHPUnit_Framework_Constraint_LessThan extends PHPUnit_Framework_Constraint
 {
-    /**
-     * @var numeric
-     */
-    protected $value;
+	/**
+	 * @var numeric
+	 */
+	protected $value;
 
-    /**
-     * @param numeric $value
-     */
-    public function __construct($value)
-    {
-        parent::__construct();
-        $this->value = $value;
-    }
+	/**
+	 * @param numeric $value
+	 */
+	public function __construct($value)
+	{
+		parent::__construct();
+		$this->value = $value;
+	}
 
-    /**
-     * Evaluates the constraint for parameter $other. Returns true if the
-     * constraint is met, false otherwise.
-     *
-     * @param mixed $other Value or object to evaluate.
-     *
-     * @return bool
-     */
-    protected function matches($other)
-    {
-        return $this->value > $other;
-    }
+	/**
+	 * Evaluates the constraint for parameter $other. Returns true if the
+	 * constraint is met, false otherwise.
+	 *
+	 * @param mixed $other Value or object to evaluate.
+	 *
+	 * @return bool
+	 */
+	protected function matches($other)
+	{
+		return $this->value > $other;
+	}
 
-    /**
-     * Returns a string representation of the constraint.
-     *
-     * @return string
-     */
-    public function toString()
-    {
-        return 'is less than ' . $this->exporter->export($this->value);
-    }
+	/**
+	 * Returns a string representation of the constraint.
+	 *
+	 * @return string
+	 */
+	public function toString()
+	{
+		return 'is less than ' . $this->exporter->export($this->value);
+	}
 }

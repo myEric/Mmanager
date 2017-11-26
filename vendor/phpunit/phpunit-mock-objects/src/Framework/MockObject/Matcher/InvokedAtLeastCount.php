@@ -16,42 +16,42 @@
  */
 class PHPUnit_Framework_MockObject_Matcher_InvokedAtLeastCount extends PHPUnit_Framework_MockObject_Matcher_InvokedRecorder
 {
-    /**
-     * @var int
-     */
-    private $requiredInvocations;
+	/**
+	 * @var int
+	 */
+	private $requiredInvocations;
 
-    /**
-     * @param int $requiredInvocations
-     */
-    public function __construct($requiredInvocations)
-    {
-        $this->requiredInvocations = $requiredInvocations;
-    }
+	/**
+	 * @param int $requiredInvocations
+	 */
+	public function __construct($requiredInvocations)
+	{
+		$this->requiredInvocations = $requiredInvocations;
+	}
 
-    /**
-     * @return string
-     */
-    public function toString()
-    {
-        return 'invoked at least ' . $this->requiredInvocations . ' times';
-    }
+	/**
+	 * @return string
+	 */
+	public function toString()
+	{
+		return 'invoked at least ' . $this->requiredInvocations . ' times';
+	}
 
-    /**
-     * Verifies that the current expectation is valid. If everything is OK the
-     * code should just return, if not it must throw an exception.
-     *
-     * @throws PHPUnit_Framework_ExpectationFailedException
-     */
-    public function verify()
-    {
-        $count = $this->getInvocationCount();
+	/**
+	 * Verifies that the current expectation is valid. If everything is OK the
+	 * code should just return, if not it must throw an exception.
+	 *
+	 * @throws PHPUnit_Framework_ExpectationFailedException
+	 */
+	public function verify()
+	{
+		$count = $this->getInvocationCount();
 
-        if ($count < $this->requiredInvocations) {
-            throw new PHPUnit_Framework_ExpectationFailedException(
-                'Expected invocation at least ' . $this->requiredInvocations .
-                ' times but it occured ' . $count . ' time(s).'
-            );
-        }
-    }
+		if ($count < $this->requiredInvocations) {
+			throw new PHPUnit_Framework_ExpectationFailedException(
+				'Expected invocation at least ' . $this->requiredInvocations .
+				' times but it occured ' . $count . ' time(s).'
+			);
+		}
+	}
 }

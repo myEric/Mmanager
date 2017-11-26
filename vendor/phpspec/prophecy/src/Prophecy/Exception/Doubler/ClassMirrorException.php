@@ -15,17 +15,17 @@ use ReflectionClass;
 
 class ClassMirrorException extends \RuntimeException implements DoublerException
 {
-    private $class;
+	private $class;
 
-    public function __construct($message, ReflectionClass $class)
-    {
-        parent::__construct($message);
+	public function __construct($message, ReflectionClass $class)
+	{
+		parent::__construct($message);
 
-        $this->class = $class;
-    }
+		$this->class = $class;
+	}
 
-    public function getReflectedClass()
-    {
-        return $this->class;
-    }
+	public function getReflectedClass()
+	{
+		return $this->class;
+	}
 }

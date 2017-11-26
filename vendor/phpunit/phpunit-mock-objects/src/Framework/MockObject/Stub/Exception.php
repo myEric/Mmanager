@@ -17,32 +17,32 @@ use SebastianBergmann\Exporter\Exporter;
  */
 class PHPUnit_Framework_MockObject_Stub_Exception implements PHPUnit_Framework_MockObject_Stub
 {
-    protected $exception;
+	protected $exception;
 
-    public function __construct($exception)
-    {
-        // TODO Replace check with type declaration when support for PHP 5 is dropped
-        if (!$exception instanceof Throwable && !$exception instanceof Exception) {
-            throw new PHPUnit_Framework_MockObject_RuntimeException(
-                'Exception must be an instance of Throwable (PHP 7) or Exception (PHP 5)'
-            );
-        }
+	public function __construct($exception)
+	{
+		// TODO Replace check with type declaration when support for PHP 5 is dropped
+		if (!$exception instanceof Throwable && !$exception instanceof Exception) {
+			throw new PHPUnit_Framework_MockObject_RuntimeException(
+				'Exception must be an instance of Throwable (PHP 7) or Exception (PHP 5)'
+			);
+		}
 
-        $this->exception = $exception;
-    }
+		$this->exception = $exception;
+	}
 
-    public function invoke(PHPUnit_Framework_MockObject_Invocation $invocation)
-    {
-        throw $this->exception;
-    }
+	public function invoke(PHPUnit_Framework_MockObject_Invocation $invocation)
+	{
+		throw $this->exception;
+	}
 
-    public function toString()
-    {
-        $exporter = new Exporter;
+	public function toString()
+	{
+		$exporter = new Exporter;
 
-        return sprintf(
-            'raise user-specified exception %s',
-            $exporter->export($this->exception)
-        );
-    }
+		return sprintf(
+			'raise user-specified exception %s',
+			$exporter->export($this->exception)
+		);
+	}
 }

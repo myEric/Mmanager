@@ -19,38 +19,38 @@ use phpDocumentor\Reflection\Type;
  */
 final class Nullable implements Type
 {
-    /**
-     * @var Type
-     */
-    private $realType;
+	/**
+	 * @var Type
+	 */
+	private $realType;
 
-    /**
-     * Initialises this nullable type using the real type embedded
-     *
-     * @param Type $realType
-     */
-    public function __construct(Type $realType)
-    {
-        $this->realType = $realType;
-    }
+	/**
+	 * Initialises this nullable type using the real type embedded
+	 *
+	 * @param Type $realType
+	 */
+	public function __construct(Type $realType)
+	{
+		$this->realType = $realType;
+	}
 
-    /**
-     * Provide access to the actual type directly, if needed.
-     *
-     * @return Type
-     */
-    public function getActualType()
-    {
-        return $this->realType;
-    }
+	/**
+	 * Provide access to the actual type directly, if needed.
+	 *
+	 * @return Type
+	 */
+	public function getActualType()
+	{
+		return $this->realType;
+	}
 
-    /**
-     * Returns a rendered output of the Type as it would be used in a DocBlock.
-     *
-     * @return string
-     */
-    public function __toString()
-    {
-        return '?' . $this->realType->__toString();
-    }
+	/**
+	 * Returns a rendered output of the Type as it would be used in a DocBlock.
+	 *
+	 * @return string
+	 */
+	public function __toString()
+	{
+		return '?' . $this->realType->__toString();
+	}
 }

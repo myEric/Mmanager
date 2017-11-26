@@ -27,63 +27,63 @@ use Webmozart\Assert\Assert;
  */
 class See extends BaseTag implements Factory\StaticMethod
 {
-    protected $name = 'see';
+	protected $name = 'see';
 
-    /** @var Reference */
-    protected $refers = null;
+	/** @var Reference */
+	protected $refers = null;
 
-    /**
-     * Initializes this tag.
-     *
-     * @param Reference $refers
-     * @param Description $description
-     */
-    public function __construct(Reference $refers, Description $description = null)
-    {
-        $this->refers = $refers;
-        $this->description = $description;
-    }
+	/**
+	 * Initializes this tag.
+	 *
+	 * @param Reference $refers
+	 * @param Description $description
+	 */
+	public function __construct(Reference $refers, Description $description = null)
+	{
+		$this->refers = $refers;
+		$this->description = $description;
+	}
 
-    /**
-     * {@inheritdoc}
-     */
-    public static function create(
-        $body,
-        FqsenResolver $resolver = null,
-        DescriptionFactory $descriptionFactory = null,
-        TypeContext $context = null
-    ) {
-        Assert::string($body);
-        Assert::allNotNull([$resolver, $descriptionFactory]);
+	/**
+	 * {@inheritdoc}
+	 */
+	public static function create(
+		$body,
+		FqsenResolver $resolver = null,
+		DescriptionFactory $descriptionFactory = null,
+		TypeContext $context = null
+	) {
+		Assert::string($body);
+		Assert::allNotNull([$resolver, $descriptionFactory]);
 
-        $parts       = preg_split('/\s+/Su', $body, 2);
-        $description = isset($parts[1]) ? $descriptionFactory->create($parts[1], $context) : null;
+		$parts       = preg_split('/\s+/Su', $body, 2);
+		$description = isset($parts[1]) ? $descriptionFactory->create($parts[1], $context) : null;
 
-        // https://tools.ietf.org/html/rfc2396#section-3
-        if (preg_match('/\w:\/\/\w/i', $parts[0])) {
-            return new static(new Url($parts[0]), $description);
-        }
+		// https://tools.ietf.org/html/rfc2396#section-3
+		if (preg_match('/\w:\/\/\w/i', $parts[0])) {
+			return new static(new Url($parts[0]), $description);
+		}
 
-        return new static(new FqsenRef($resolver->resolve($parts[0], $context)), $description);
-    }
+		return new static(new FqsenRef($resolver->resolve($parts[0], $context)), $description);
+	}
 
-    /**
-     * Returns the ref of this tag.
-     *
-     * @return Reference
-     */
-    public function getReference()
-    {
-        return $this->refers;
-    }
+	/**
+	 * Returns the ref of this tag.
+	 *
+	 * @return Reference
+	 */
+	public function getReference()
+	{
+		return $this->refers;
+	}
 
-    /**
-     * Returns a string representation of this tag.
-     *
-     * @return string
-     */
-    public function __toString()
-    {
-        return $this->refers . ($this->description ? ' ' . $this->description->render() : '');
-    }
+	/**
+	 * Returns a string representation of this tag.
+	 *
+	 * @return string
+	 */
+	public function __toString()
+	{
+		return $this->refers . ($this->description ? ' ' . $this->description->render() : '');
+	}
 }

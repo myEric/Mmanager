@@ -10,23 +10,23 @@
 
 class Framework_Constraint_IsJsonTest extends PHPUnit_Framework_TestCase
 {
-    /**
-     * @dataProvider evaluateDataprovider
-     * @covers PHPUnit_Framework_Constraint_IsJson::evaluate
-     * @covers PHPUnit_Framework_Constraint_IsJson::matches
-     * @covers PHPUnit_Framework_Constraint_IsJson::__construct
-     */
-    public function testEvaluate($expected, $jsonOther)
-    {
-        $constraint = new PHPUnit_Framework_Constraint_IsJson();
-        $this->assertEquals($expected, $constraint->evaluate($jsonOther, '', true));
-    }
+	/**
+	 * @dataProvider evaluateDataprovider
+	 * @covers PHPUnit_Framework_Constraint_IsJson::evaluate
+	 * @covers PHPUnit_Framework_Constraint_IsJson::matches
+	 * @covers PHPUnit_Framework_Constraint_IsJson::__construct
+	 */
+	public function testEvaluate($expected, $jsonOther)
+	{
+		$constraint = new PHPUnit_Framework_Constraint_IsJson();
+		$this->assertEquals($expected, $constraint->evaluate($jsonOther, '', true));
+	}
 
-    public static function evaluateDataprovider()
-    {
-        return [
-            'valid JSON'                                     => [true, '{}'],
-            'empty string should be treated as invalid JSON' => [false, ''],
-        ];
-    }
+	public static function evaluateDataprovider()
+	{
+		return [
+			'valid JSON'                                     => [true, '{}'],
+			'empty string should be treated as invalid JSON' => [false, ''],
+		];
+	}
 }
