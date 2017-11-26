@@ -58,6 +58,7 @@
  */
 class PHPUnit_Framework_Constraint_IsNull extends PHPUnit_Framework_Constraint
 {
+<<<<<<< HEAD
     /**
      * Evaluates the constraint for parameter $other. Returns true if the
      * constraint is met, false otherwise.
@@ -69,14 +70,28 @@ class PHPUnit_Framework_Constraint_IsNull extends PHPUnit_Framework_Constraint
     {
         return $other === null;
     }
+=======
+	/**
+	 * Evaluates the constraint for parameter $other. Returns true if the
+	 * constraint is met, false otherwise.
+	 *
+	 * @param mixed $other Value or object to evaluate.
+	 *
+	 * @return bool
+	 */
+	protected function matches($other)
+	{
+		return $other === null;
+	}
+>>>>>>> ea79a2f50edc89e12eeb879d17155d120f28d68e
 
-    /**
-     * Returns a string representation of the constraint.
-     *
-     * @return string
-     */
-    public function toString()
-    {
-        return 'is null';
-    }
+	/**
+	 * Returns a string representation of the constraint.
+	 *
+	 * @return string
+	 */
+	public function toString()
+	{
+		return 'is null';
+	}
 }

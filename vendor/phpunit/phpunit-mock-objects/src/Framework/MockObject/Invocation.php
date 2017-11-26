@@ -55,4 +55,11 @@
  */
 interface PHPUnit_Framework_MockObject_Invocation
 {
+<<<<<<< HEAD
+=======
+	/**
+	 * @return mixed Mocked return value.
+	 */
+	public function generateReturnValue();
+>>>>>>> ea79a2f50edc89e12eeb879d17155d120f28d68e
 }

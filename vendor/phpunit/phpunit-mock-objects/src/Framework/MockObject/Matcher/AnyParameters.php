@@ -55,14 +55,15 @@
  */
 class PHPUnit_Framework_MockObject_Matcher_AnyParameters extends PHPUnit_Framework_MockObject_Matcher_StatelessInvocation
 {
-    /**
-     * @return string
-     */
-    public function toString()
-    {
-        return 'with any parameters';
-    }
+	/**
+	 * @return string
+	 */
+	public function toString()
+	{
+		return 'with any parameters';
+	}
 
+<<<<<<< HEAD
     /**
      * @param  PHPUnit_Framework_MockObject_Invocation $invocation
      * @return boolean
@@ -71,4 +72,15 @@ class PHPUnit_Framework_MockObject_Matcher_AnyParameters extends PHPUnit_Framewo
     {
         return TRUE;
     }
+=======
+	/**
+	 * @param PHPUnit_Framework_MockObject_Invocation $invocation
+	 *
+	 * @return bool
+	 */
+	public function matches(PHPUnit_Framework_MockObject_Invocation $invocation)
+	{
+		return true;
+	}
+>>>>>>> ea79a2f50edc89e12eeb879d17155d120f28d68e
 }

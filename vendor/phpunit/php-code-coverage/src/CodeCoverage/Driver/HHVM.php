@@ -22,6 +22,7 @@
  */
 class PHP_CodeCoverage_Driver_HHVM implements PHP_CodeCoverage_Driver
 {
+<<<<<<< HEAD
     /**
      * Constructor.
      */
@@ -53,4 +54,13 @@ class PHP_CodeCoverage_Driver_HHVM implements PHP_CodeCoverage_Driver
 
         return $codeCoverage;
     }
+=======
+	/**
+	 * Start collection of code coverage information.
+	 */
+	public function start()
+	{
+		xdebug_start_code_coverage();
+	}
+>>>>>>> ea79a2f50edc89e12eeb879d17155d120f28d68e
 }

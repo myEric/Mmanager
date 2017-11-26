@@ -58,6 +58,7 @@
  */
 class PHPUnit_Framework_Constraint_SameSize extends PHPUnit_Framework_Constraint_Count
 {
+<<<<<<< HEAD
     /**
      * @var integer
      */
@@ -70,4 +71,18 @@ class PHPUnit_Framework_Constraint_SameSize extends PHPUnit_Framework_Constraint
     {
         parent::__construct($this->getCountOf($expected));
     }
+=======
+	/**
+	 * @var int
+	 */
+	protected $expectedCount;
+
+	/**
+	 * @param int $expected
+	 */
+	public function __construct($expected)
+	{
+		parent::__construct($this->getCountOf($expected));
+	}
+>>>>>>> ea79a2f50edc89e12eeb879d17155d120f28d68e
 }

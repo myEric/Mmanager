@@ -56,11 +56,12 @@
  */
 class PHPUnit_Framework_Warning extends PHPUnit_Framework_TestCase
 {
-    /**
-     * @var string
-     */
-    protected $message = '';
+	/**
+	 * @var string
+	 */
+	protected $message = '';
 
+<<<<<<< HEAD
     /**
      * @var boolean
      */
@@ -80,24 +81,46 @@ class PHPUnit_Framework_Warning extends PHPUnit_Framework_TestCase
      * @var boolean
      */
     protected $useErrorHandler = false;
+=======
+	/**
+	 * @var bool
+	 */
+	protected $backupGlobals = false;
 
-    /**
-     * @param string $message
-     */
-    public function __construct($message = '')
-    {
-        $this->message = $message;
-        parent::__construct('Warning');
-    }
+	/**
+	 * @var bool
+	 */
+	protected $backupStaticAttributes = false;
 
-    /**
-     * @throws PHPUnit_Framework_Exception
-     */
-    protected function runTest()
-    {
-        $this->fail($this->message);
-    }
+	/**
+	 * @var bool
+	 */
+	protected $runTestInSeparateProcess = false;
 
+	/**
+	 * @var bool
+	 */
+	protected $useErrorHandler = false;
+>>>>>>> ea79a2f50edc89e12eeb879d17155d120f28d68e
+
+	/**
+	 * @param string $message
+	 */
+	public function __construct($message = '')
+	{
+		$this->message = $message;
+		parent::__construct('Warning');
+	}
+
+	/**
+	 * @throws PHPUnit_Framework_Exception
+	 */
+	protected function runTest()
+	{
+		$this->fail($this->message);
+	}
+
+<<<<<<< HEAD
     /**
      * @return string
      * @since  Method available since Release 3.0.0
@@ -117,4 +140,27 @@ class PHPUnit_Framework_Warning extends PHPUnit_Framework_TestCase
     {
         return 'Warning';
     }
+=======
+	/**
+	 * @return string
+	 *
+	 * @since  Method available since Release 3.0.0
+	 */
+	public function getMessage()
+	{
+		return $this->message;
+	}
+
+	/**
+	 * Returns a string representation of the test case.
+	 *
+	 * @return string
+	 *
+	 * @since  Method available since Release 3.4.0
+	 */
+	public function toString()
+	{
+		return 'Warning';
+	}
+>>>>>>> ea79a2f50edc89e12eeb879d17155d120f28d68e
 }

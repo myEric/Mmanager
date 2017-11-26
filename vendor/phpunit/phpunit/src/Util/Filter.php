@@ -56,6 +56,7 @@
  */
 class PHPUnit_Util_Filter
 {
+<<<<<<< HEAD
     /**
      * Filters stack frames from PHPUnit classes.
      *
@@ -67,11 +68,26 @@ class PHPUnit_Util_Filter
     {
         $prefix = false;
         $script = realpath($GLOBALS['_SERVER']['SCRIPT_NAME']);
+=======
+	/**
+	 * Filters stack frames from PHPUnit classes.
+	 *
+	 * @param Exception $e
+	 * @param bool      $asString
+	 *
+	 * @return string
+	 */
+	public static function getFilteredStacktrace($e, $asString = true)
+	{
+		$prefix = false;
+		$script = realpath($GLOBALS['_SERVER']['SCRIPT_NAME']);
+>>>>>>> ea79a2f50edc89e12eeb879d17155d120f28d68e
 
-        if (defined('__PHPUNIT_PHAR_ROOT__')) {
-            $prefix = __PHPUNIT_PHAR_ROOT__;
-        }
+		if (defined('__PHPUNIT_PHAR_ROOT__')) {
+			$prefix = __PHPUNIT_PHAR_ROOT__;
+		}
 
+<<<<<<< HEAD
         if ($asString === true) {
             $filteredStacktrace = '';
         } else {
@@ -97,9 +113,41 @@ class PHPUnit_Util_Filter
               $eTrace, array('file' => $eFile, 'line' => $eLine)
             );
         }
+=======
+		if ($asString === true) {
+			$filteredStacktrace = '';
+		} else {
+			$filteredStacktrace = [];
+		}
 
-        $blacklist = new PHPUnit_Util_Blacklist;
+		if ($e instanceof PHPUnit_Framework_SyntheticError) {
+			$eTrace = $e->getSyntheticTrace();
+			$eFile  = $e->getSyntheticFile();
+			$eLine  = $e->getSyntheticLine();
+		} elseif ($e instanceof PHPUnit_Framework_Exception) {
+			$eTrace = $e->getSerializableTrace();
+			$eFile  = $e->getFile();
+			$eLine  = $e->getLine();
+		} else {
+			if ($e->getPrevious()) {
+				$e = $e->getPrevious();
+			}
+			$eTrace = $e->getTrace();
+			$eFile  = $e->getFile();
+			$eLine  = $e->getLine();
+		}
 
+		if (!self::frameExists($eTrace, $eFile, $eLine)) {
+			array_unshift(
+				$eTrace,
+				['file' => $eFile, 'line' => $eLine]
+			);
+		}
+>>>>>>> ea79a2f50edc89e12eeb879d17155d120f28d68e
+
+		$blacklist = new PHPUnit_Util_Blacklist;
+
+<<<<<<< HEAD
         foreach ($eTrace as $frame) {
             if (isset($frame['file']) && is_file($frame['file']) &&
                 !$blacklist->isBlacklisted($frame['file']) &&
@@ -117,10 +165,29 @@ class PHPUnit_Util_Filter
                 }
             }
         }
+=======
+		foreach ($eTrace as $frame) {
+			if (isset($frame['file']) && is_file($frame['file']) &&
+				!$blacklist->isBlacklisted($frame['file']) &&
+				($prefix === false || strpos($frame['file'], $prefix) !== 0) &&
+				$frame['file'] !== $script) {
+				if ($asString === true) {
+					$filteredStacktrace .= sprintf(
+						"%s:%s\n",
+						$frame['file'],
+						isset($frame['line']) ? $frame['line'] : '?'
+					);
+				} else {
+					$filteredStacktrace[] = $frame;
+				}
+			}
+		}
+>>>>>>> ea79a2f50edc89e12eeb879d17155d120f28d68e
 
-        return $filteredStacktrace;
-    }
+		return $filteredStacktrace;
+	}
 
+<<<<<<< HEAD
     /**
      * @param  array   $trace
      * @param  string  $file
@@ -136,7 +203,26 @@ class PHPUnit_Util_Filter
                 return true;
             }
         }
+=======
+	/**
+	 * @param array  $trace
+	 * @param string $file
+	 * @param int    $line
+	 *
+	 * @return bool
+	 *
+	 * @since  Method available since Release 3.3.2
+	 */
+	private static function frameExists(array $trace, $file, $line)
+	{
+		foreach ($trace as $frame) {
+			if (isset($frame['file']) && $frame['file'] == $file &&
+				isset($frame['line']) && $frame['line'] == $line) {
+				return true;
+			}
+		}
+>>>>>>> ea79a2f50edc89e12eeb879d17155d120f28d68e
 
-        return false;
-    }
+		return false;
+	}
 }

@@ -57,6 +57,7 @@
  */
 class PHPUnit_Framework_MockObject_Stub_ConsecutiveCalls implements PHPUnit_Framework_MockObject_Stub
 {
+<<<<<<< HEAD
     protected $stack;
     protected $value;
 
@@ -84,4 +85,34 @@ class PHPUnit_Framework_MockObject_Stub_ConsecutiveCalls implements PHPUnit_Fram
           PHPUnit_Util_Type::export($this->value)
         );
     }
+=======
+	protected $stack;
+	protected $value;
+
+	public function __construct($stack)
+	{
+		$this->stack = $stack;
+	}
+
+	public function invoke(PHPUnit_Framework_MockObject_Invocation $invocation)
+	{
+		$this->value = array_shift($this->stack);
+
+		if ($this->value instanceof PHPUnit_Framework_MockObject_Stub) {
+			$this->value = $this->value->invoke($invocation);
+		}
+
+		return $this->value;
+	}
+
+	public function toString()
+	{
+		$exporter = new Exporter;
+
+		return sprintf(
+			'return user-specified value %s',
+			$exporter->export($this->value)
+		);
+	}
+>>>>>>> ea79a2f50edc89e12eeb879d17155d120f28d68e
 }

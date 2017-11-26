@@ -56,6 +56,7 @@
  */
 class PHPUnit_Util_TestDox_ResultPrinter_HTML extends PHPUnit_Util_TestDox_ResultPrinter
 {
+<<<<<<< HEAD
     /**
      * @var    boolean
      */
@@ -98,20 +99,64 @@ class PHPUnit_Util_TestDox_ResultPrinter_HTML extends PHPUnit_Util_TestDox_Resul
             $strikeOpen  = '';
             $strikeClose = '';
         }
+=======
+	/**
+	 * @var bool
+	 */
+	protected $printsHTML = true;
 
-        $this->write('<li>' . $strikeOpen . $name . $strikeClose . '</li>');
-    }
+	/**
+	 * Handler for 'start run' event.
+	 */
+	protected function startRun()
+	{
+		$this->write('<html><body>');
+	}
 
-    /**
-     * Handler for 'end class' event.
-     *
-     * @param string $name
-     */
-    protected function endClass($name)
-    {
-        $this->write('</ul>');
-    }
+	/**
+	 * Handler for 'start class' event.
+	 *
+	 * @param string $name
+	 */
+	protected function startClass($name)
+	{
+		$this->write(
+			'<h2 id="' . $name . '">' . $this->currentTestClassPrettified .
+			'</h2><ul>'
+		);
+	}
 
+	/**
+	 * Handler for 'on test' event.
+	 *
+	 * @param string $name
+	 * @param bool   $success
+	 */
+	protected function onTest($name, $success = true)
+	{
+		if (!$success) {
+			$strikeOpen  = '<span style="text-decoration:line-through;">';
+			$strikeClose = '</span>';
+		} else {
+			$strikeOpen  = '';
+			$strikeClose = '';
+		}
+>>>>>>> ea79a2f50edc89e12eeb879d17155d120f28d68e
+
+		$this->write('<li>' . $strikeOpen . $name . $strikeClose . '</li>');
+	}
+
+	/**
+	 * Handler for 'end class' event.
+	 *
+	 * @param string $name
+	 */
+	protected function endClass($name)
+	{
+		$this->write('</ul>');
+	}
+
+<<<<<<< HEAD
     /**
      * Handler for 'end run' event.
      *
@@ -120,4 +165,13 @@ class PHPUnit_Util_TestDox_ResultPrinter_HTML extends PHPUnit_Util_TestDox_Resul
     {
         $this->write('</body></html>');
     }
+=======
+	/**
+	 * Handler for 'end run' event.
+	 */
+	protected function endRun()
+	{
+		$this->write('</body></html>');
+	}
+>>>>>>> ea79a2f50edc89e12eeb879d17155d120f28d68e
 }

@@ -64,11 +64,12 @@
  */
 class PHPUnit_Framework_Constraint_StringContains extends PHPUnit_Framework_Constraint
 {
-    /**
-     * @var string
-     */
-    protected $string;
+	/**
+	 * @var string
+	 */
+	protected $string;
 
+<<<<<<< HEAD
     /**
      * @var boolean
      */
@@ -81,11 +82,26 @@ class PHPUnit_Framework_Constraint_StringContains extends PHPUnit_Framework_Cons
     public function __construct($string, $ignoreCase = false)
     {
         parent::__construct();
+=======
+	/**
+	 * @var bool
+	 */
+	protected $ignoreCase;
 
-        $this->string     = $string;
-        $this->ignoreCase = $ignoreCase;
-    }
+	/**
+	 * @param string $string
+	 * @param bool   $ignoreCase
+	 */
+	public function __construct($string, $ignoreCase = false)
+	{
+		parent::__construct();
+>>>>>>> ea79a2f50edc89e12eeb879d17155d120f28d68e
 
+		$this->string     = $string;
+		$this->ignoreCase = $ignoreCase;
+	}
+
+<<<<<<< HEAD
     /**
      * Evaluates the constraint for parameter $other. Returns true if the
      * constraint is met, false otherwise.
@@ -101,24 +117,50 @@ class PHPUnit_Framework_Constraint_StringContains extends PHPUnit_Framework_Cons
             return strpos($other, $this->string) !== false;
         }
     }
+=======
+	/**
+	 * Evaluates the constraint for parameter $other. Returns true if the
+	 * constraint is met, false otherwise.
+	 *
+	 * @param mixed $other Value or object to evaluate.
+	 *
+	 * @return bool
+	 */
+	protected function matches($other)
+	{
+		if ($this->ignoreCase) {
+			return stripos($other, $this->string) !== false;
+		} else {
+			return strpos($other, $this->string) !== false;
+		}
+	}
+>>>>>>> ea79a2f50edc89e12eeb879d17155d120f28d68e
 
-    /**
-     * Returns a string representation of the constraint.
-     *
-     * @return string
-     */
-    public function toString()
-    {
-        if ($this->ignoreCase) {
-            $string = strtolower($this->string);
-        } else {
-            $string = $this->string;
-        }
+	/**
+	 * Returns a string representation of the constraint.
+	 *
+	 * @return string
+	 */
+	public function toString()
+	{
+		if ($this->ignoreCase) {
+			$string = strtolower($this->string);
+		} else {
+			$string = $this->string;
+		}
 
+<<<<<<< HEAD
         return sprintf(
           'contains "%s"',
 
           $string
         );
     }
+=======
+		return sprintf(
+			'contains "%s"',
+			$string
+		);
+	}
+>>>>>>> ea79a2f50edc89e12eeb879d17155d120f28d68e
 }

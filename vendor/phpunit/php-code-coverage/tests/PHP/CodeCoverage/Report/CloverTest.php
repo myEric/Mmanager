@@ -8,6 +8,7 @@
  * file that was distributed with this source code.
  */
 
+<<<<<<< HEAD
 if (!defined('TEST_FILES_PATH')) {
     define(
       'TEST_FILES_PATH',
@@ -17,6 +18,9 @@ if (!defined('TEST_FILES_PATH')) {
 }
 
 require_once TEST_FILES_PATH . '../TestCase.php';
+=======
+require_once dirname(dirname(dirname(dirname(__FILE__)))).DIRECTORY_SEPARATOR.'TestCase.php';
+>>>>>>> ea79a2f50edc89e12eeb879d17155d120f28d68e
 
 /**
  * Tests for the PHP_CodeCoverage_Report_Clover class.
@@ -32,42 +36,66 @@ require_once TEST_FILES_PATH . '../TestCase.php';
  */
 class PHP_CodeCoverage_Report_CloverTest extends PHP_CodeCoverage_TestCase
 {
-    /**
-     * @covers PHP_CodeCoverage_Report_Clover
-     */
-    public function testCloverForBankAccountTest()
-    {
-        $clover = new PHP_CodeCoverage_Report_Clover;
+	/**
+	 * @covers PHP_CodeCoverage_Report_Clover
+	 */
+	public function testCloverForBankAccountTest()
+	{
+		$clover = new PHP_CodeCoverage_Report_Clover;
 
+<<<<<<< HEAD
         $this->assertStringMatchesFormatFile(
           TEST_FILES_PATH . 'BankAccount-clover.xml',
           $clover->process($this->getCoverageForBankAccount(), null, 'BankAccount')
         );
     }
+=======
+		$this->assertStringMatchesFormatFile(
+			TEST_FILES_PATH . 'BankAccount-clover.xml',
+			$clover->process($this->getCoverageForBankAccount(), null, 'BankAccount')
+		);
+	}
+>>>>>>> ea79a2f50edc89e12eeb879d17155d120f28d68e
 
-    /**
-     * @covers PHP_CodeCoverage_Report_Clover
-     */
-    public function testCloverForFileWithIgnoredLines()
-    {
-        $clover = new PHP_CodeCoverage_Report_Clover;
+	/**
+	 * @covers PHP_CodeCoverage_Report_Clover
+	 */
+	public function testCloverForFileWithIgnoredLines()
+	{
+		$clover = new PHP_CodeCoverage_Report_Clover;
 
+<<<<<<< HEAD
         $this->assertStringMatchesFormatFile(
           TEST_FILES_PATH . 'ignored-lines-clover.xml',
           $clover->process($this->getCoverageForFileWithIgnoredLines())
         );
     }
+=======
+		$this->assertStringMatchesFormatFile(
+			TEST_FILES_PATH . 'ignored-lines-clover.xml',
+			$clover->process($this->getCoverageForFileWithIgnoredLines())
+		);
+	}
+>>>>>>> ea79a2f50edc89e12eeb879d17155d120f28d68e
 
-    /**
-     * @covers PHP_CodeCoverage_Report_Clover
-     */
-    public function testCloverForClassWithAnonymousFunction()
-    {
-        $clover = new PHP_CodeCoverage_Report_Clover;
+	/**
+	 * @covers PHP_CodeCoverage_Report_Clover
+	 */
+	public function testCloverForClassWithAnonymousFunction()
+	{
+		$clover = new PHP_CodeCoverage_Report_Clover;
 
+<<<<<<< HEAD
         $this->assertStringMatchesFormatFile(
           TEST_FILES_PATH . 'class-with-anonymous-function-clover.xml',
           $clover->process($this->getCoverageForClassWithAnonymousFunction())
         );
     }
+=======
+		$this->assertStringMatchesFormatFile(
+			TEST_FILES_PATH . 'class-with-anonymous-function-clover.xml',
+			$clover->process($this->getCoverageForClassWithAnonymousFunction())
+		);
+	}
+>>>>>>> ea79a2f50edc89e12eeb879d17155d120f28d68e
 }

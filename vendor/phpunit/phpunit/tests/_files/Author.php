@@ -54,13 +54,18 @@
  */
 class Author
 {
+<<<<<<< HEAD
     // the order of properties is important for testing the cycle!
     public $books = array();
+=======
+	// the order of properties is important for testing the cycle!
+	public $books = [];
+>>>>>>> ea79a2f50edc89e12eeb879d17155d120f28d68e
 
-    private $name = '';
+	private $name = '';
 
-    public function __construct($name)
-    {
-        $this->name = $name;
-    }
+	public function __construct($name)
+	{
+		$this->name = $name;
+	}
 }

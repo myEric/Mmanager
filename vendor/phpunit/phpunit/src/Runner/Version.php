@@ -56,28 +56,36 @@
  */
 class PHPUnit_Runner_Version
 {
-    private static $pharVersion;
-    private static $version;
+	private static $pharVersion;
+	private static $version;
 
-    /**
-     * Returns the current version of PHPUnit.
-     *
-     * @return string
-     */
-    public static function id()
-    {
-        if (self::$pharVersion !== null) {
-            return self::$pharVersion;
-        }
+	/**
+	 * Returns the current version of PHPUnit.
+	 *
+	 * @return string
+	 */
+	public static function id()
+	{
+		if (self::$pharVersion !== null) {
+			return self::$pharVersion;
+		}
 
+<<<<<<< HEAD
         if (self::$version === null) {
             $version = new SebastianBergmann\Version('4.0.20', dirname(dirname(__DIR__)));
             self::$version = $version->getVersion();
         }
+=======
+		if (self::$version === null) {
+			$version       = new SebastianBergmann\Version('5.0.10', dirname(dirname(__DIR__)));
+			self::$version = $version->getVersion();
+		}
+>>>>>>> ea79a2f50edc89e12eeb879d17155d120f28d68e
 
-        return self::$version;
-    }
+		return self::$version;
+	}
 
+<<<<<<< HEAD
     /**
      * @return string
      */
@@ -95,11 +103,41 @@ class PHPUnit_Runner_Version
         if (strpos(self::$pharVersion, 'alpha') !== false) {
             return '-alpha';
         }
+=======
+	/**
+	 * @return string
+	 *
+	 * @since Method available since Release 4.8.13
+	 */
+	public static function series()
+	{
+		return implode('.', array_slice(explode('.', self::id()), 0, 2));
+	}
 
-        if (strpos(self::$pharVersion, 'beta') !== false) {
-            return '-beta';
-        }
+	/**
+	 * @return string
+	 */
+	public static function getVersionString()
+	{
+		return 'PHPUnit ' . self::id() . ' by Sebastian Bergmann and contributors.';
+	}
 
-        return '';
-    }
+	/**
+	 * @return string
+	 *
+	 * @since  Method available since Release 4.0.0
+	 */
+	public static function getReleaseChannel()
+	{
+		if (strpos(self::$pharVersion, 'alpha') !== false) {
+			return '-alpha';
+		}
+>>>>>>> ea79a2f50edc89e12eeb879d17155d120f28d68e
+
+		if (strpos(self::$pharVersion, 'beta') !== false) {
+			return '-beta';
+		}
+
+		return '';
+	}
 }

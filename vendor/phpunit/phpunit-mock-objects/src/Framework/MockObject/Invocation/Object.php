@@ -55,11 +55,12 @@
  */
 class PHPUnit_Framework_MockObject_Invocation_Object extends PHPUnit_Framework_MockObject_Invocation_Static
 {
-    /**
-     * @var object
-     */
-    public $object;
+	/**
+	 * @var object
+	 */
+	public $object;
 
+<<<<<<< HEAD
     /**
      * @param string $className
      * @param string $methodname
@@ -72,4 +73,19 @@ class PHPUnit_Framework_MockObject_Invocation_Object extends PHPUnit_Framework_M
         parent::__construct($className, $methodName, $parameters, $cloneObjects);
         $this->object = $object;
     }
+=======
+	/**
+	 * @param string $className
+	 * @param string $methodname
+	 * @param array  $parameters
+	 * @param string $returnType
+	 * @param object $object
+	 * @param object $cloneObjects
+	 */
+	public function __construct($className, $methodName, array $parameters, $returnType, $object, $cloneObjects = false)
+	{
+		parent::__construct($className, $methodName, $parameters, $returnType, $cloneObjects);
+		$this->object = $object;
+	}
+>>>>>>> ea79a2f50edc89e12eeb879d17155d120f28d68e
 }

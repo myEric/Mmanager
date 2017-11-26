@@ -55,11 +55,11 @@
  */
 interface PHPUnit_Framework_MockObject_Verifiable
 {
-    /**
-     * Verifies that the current expectation is valid. If everything is OK the
-     * code should just return, if not it must throw an exception.
-     *
-     * @throws PHPUnit_Framework_ExpectationFailedException
-     */
-    public function verify();
+	/**
+	 * Verifies that the current expectation is valid. If everything is OK the
+	 * code should just return, if not it must throw an exception.
+	 *
+	 * @throws PHPUnit_Framework_ExpectationFailedException
+	 */
+	public function verify();
 }

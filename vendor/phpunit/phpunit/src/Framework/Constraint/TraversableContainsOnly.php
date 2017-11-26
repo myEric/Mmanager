@@ -59,16 +59,17 @@
  */
 class PHPUnit_Framework_Constraint_TraversableContainsOnly extends PHPUnit_Framework_Constraint
 {
-    /**
-     * @var PHPUnit_Framework_Constraint
-     */
-    protected $constraint;
+	/**
+	 * @var PHPUnit_Framework_Constraint
+	 */
+	protected $constraint;
 
-    /**
-     * @var string
-     */
-    protected $type;
+	/**
+	 * @var string
+	 */
+	protected $type;
 
+<<<<<<< HEAD
     /**
      * @param string  $type
      * @param boolean $isNativeType
@@ -84,10 +85,28 @@ class PHPUnit_Framework_Constraint_TraversableContainsOnly extends PHPUnit_Frame
               $type
             );
         }
+=======
+	/**
+	 * @param string $type
+	 * @param bool   $isNativeType
+	 */
+	public function __construct($type, $isNativeType = true)
+	{
+		parent::__construct();
 
-        $this->type = $type;
-    }
+		if ($isNativeType) {
+			$this->constraint = new PHPUnit_Framework_Constraint_IsType($type);
+		} else {
+			$this->constraint = new PHPUnit_Framework_Constraint_IsInstanceOf(
+				$type
+			);
+		}
+>>>>>>> ea79a2f50edc89e12eeb879d17155d120f28d68e
 
+		$this->type = $type;
+	}
+
+<<<<<<< HEAD
     /**
      * Evaluates the constraint for parameter $other
      *
@@ -107,30 +126,53 @@ class PHPUnit_Framework_Constraint_TraversableContainsOnly extends PHPUnit_Frame
     public function evaluate($other, $description = '', $returnResult = false)
     {
         $success = true;
+=======
+	/**
+	 * Evaluates the constraint for parameter $other
+	 *
+	 * If $returnResult is set to false (the default), an exception is thrown
+	 * in case of a failure. null is returned otherwise.
+	 *
+	 * If $returnResult is true, the result of the evaluation is returned as
+	 * a boolean value instead: true in case of success, false in case of a
+	 * failure.
+	 *
+	 * @param mixed  $other        Value or object to evaluate.
+	 * @param string $description  Additional information about the test
+	 * @param bool   $returnResult Whether to return a result or throw an exception
+	 *
+	 * @return mixed
+	 *
+	 * @throws PHPUnit_Framework_ExpectationFailedException
+	 */
+	public function evaluate($other, $description = '', $returnResult = false)
+	{
+		$success = true;
+>>>>>>> ea79a2f50edc89e12eeb879d17155d120f28d68e
 
-        foreach ($other as $item) {
-            if (!$this->constraint->evaluate($item, '', true)) {
-                $success = false;
-                break;
-            }
-        }
+		foreach ($other as $item) {
+			if (!$this->constraint->evaluate($item, '', true)) {
+				$success = false;
+				break;
+			}
+		}
 
-        if ($returnResult) {
-            return $success;
-        }
+		if ($returnResult) {
+			return $success;
+		}
 
-        if (!$success) {
-            $this->fail($other, $description);
-        }
-    }
+		if (!$success) {
+			$this->fail($other, $description);
+		}
+	}
 
-    /**
-     * Returns a string representation of the constraint.
-     *
-     * @return string
-     */
-    public function toString()
-    {
-        return 'contains only values of type "' . $this->type . '"';
-    }
+	/**
+	 * Returns a string representation of the constraint.
+	 *
+	 * @return string
+	 */
+	public function toString()
+	{
+		return 'contains only values of type "' . $this->type . '"';
+	}
 }

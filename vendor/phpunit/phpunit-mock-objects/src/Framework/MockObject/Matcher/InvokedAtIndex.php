@@ -62,6 +62,7 @@
  */
 class PHPUnit_Framework_MockObject_Matcher_InvokedAtIndex implements PHPUnit_Framework_MockObject_Matcher_Invocation
 {
+<<<<<<< HEAD
     /**
      * @var integer
      */
@@ -79,15 +80,35 @@ class PHPUnit_Framework_MockObject_Matcher_InvokedAtIndex implements PHPUnit_Fra
     {
         $this->sequenceIndex = $sequenceIndex;
     }
+=======
+	/**
+	 * @var int
+	 */
+	protected $sequenceIndex;
 
-    /**
-     * @return string
-     */
-    public function toString()
-    {
-        return 'invoked at sequence index ' . $this->sequenceIndex;
-    }
+	/**
+	 * @var int
+	 */
+	protected $currentIndex = -1;
 
+	/**
+	 * @param int $sequenceIndex
+	 */
+	public function __construct($sequenceIndex)
+	{
+		$this->sequenceIndex = $sequenceIndex;
+	}
+>>>>>>> ea79a2f50edc89e12eeb879d17155d120f28d68e
+
+	/**
+	 * @return string
+	 */
+	public function toString()
+	{
+		return 'invoked at sequence index ' . $this->sequenceIndex;
+	}
+
+<<<<<<< HEAD
     /**
      * @param  PHPUnit_Framework_MockObject_Invocation $invocation
      * @return boolean
@@ -95,17 +116,28 @@ class PHPUnit_Framework_MockObject_Matcher_InvokedAtIndex implements PHPUnit_Fra
     public function matches(PHPUnit_Framework_MockObject_Invocation $invocation)
     {
         $this->currentIndex++;
+=======
+	/**
+	 * @param PHPUnit_Framework_MockObject_Invocation $invocation
+	 *
+	 * @return bool
+	 */
+	public function matches(PHPUnit_Framework_MockObject_Invocation $invocation)
+	{
+		$this->currentIndex++;
+>>>>>>> ea79a2f50edc89e12eeb879d17155d120f28d68e
 
-        return $this->currentIndex == $this->sequenceIndex;
-    }
+		return $this->currentIndex == $this->sequenceIndex;
+	}
 
-    /**
-     * @param PHPUnit_Framework_MockObject_Invocation $invocation
-     */
-    public function invoked(PHPUnit_Framework_MockObject_Invocation $invocation)
-    {
-    }
+	/**
+	 * @param PHPUnit_Framework_MockObject_Invocation $invocation
+	 */
+	public function invoked(PHPUnit_Framework_MockObject_Invocation $invocation)
+	{
+	}
 
+<<<<<<< HEAD
     /**
      * Verifies that the current expectation is valid. If everything is OK the
      * code should just return, if not it must throw an exception.
@@ -124,4 +156,23 @@ class PHPUnit_Framework_MockObject_Matcher_InvokedAtIndex implements PHPUnit_Fra
             );
         }
     }
+=======
+	/**
+	 * Verifies that the current expectation is valid. If everything is OK the
+	 * code should just return, if not it must throw an exception.
+	 *
+	 * @throws PHPUnit_Framework_ExpectationFailedException
+	 */
+	public function verify()
+	{
+		if ($this->currentIndex < $this->sequenceIndex) {
+			throw new PHPUnit_Framework_ExpectationFailedException(
+				sprintf(
+					'The expected invocation at index %s was never reached.',
+					$this->sequenceIndex
+				)
+			);
+		}
+	}
+>>>>>>> ea79a2f50edc89e12eeb879d17155d120f28d68e
 }

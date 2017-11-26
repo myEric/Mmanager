@@ -16,6 +16,7 @@ use Symfony\Component\Yaml\Exception\ParseException;
 
 class ParseExceptionTest extends TestCase
 {
+<<<<<<< HEAD
     public function testGetMessage()
     {
         $exception = new ParseException('Error message', 42, 'foo: bar', '/var/www/app/config.yml');
@@ -24,10 +25,17 @@ class ParseExceptionTest extends TestCase
         } else {
             $message = 'Error message in "\\/var\\/www\\/app\\/config.yml" at line 42 (near "foo: bar")';
         }
+=======
+	public function testGetMessage()
+	{
+		$exception = new ParseException('Error message', 42, 'foo: bar', '/var/www/app/config.yml');
+		$message = 'Error message in "/var/www/app/config.yml" at line 42 (near "foo: bar")';
+>>>>>>> ea79a2f50edc89e12eeb879d17155d120f28d68e
 
-        $this->assertEquals($message, $exception->getMessage());
-    }
+		$this->assertEquals($message, $exception->getMessage());
+	}
 
+<<<<<<< HEAD
     public function testGetMessageWithUnicodeInFilename()
     {
         $exception = new ParseException('Error message', 42, 'foo: bar', 'äöü.yml');
@@ -36,7 +44,13 @@ class ParseExceptionTest extends TestCase
         } else {
             $message = 'Error message in "\u00e4\u00f6\u00fc.yml" at line 42 (near "foo: bar")';
         }
+=======
+	public function testGetMessageWithUnicodeInFilename()
+	{
+		$exception = new ParseException('Error message', 42, 'foo: bar', 'äöü.yml');
+		$message = 'Error message in "äöü.yml" at line 42 (near "foo: bar")';
+>>>>>>> ea79a2f50edc89e12eeb879d17155d120f28d68e
 
-        $this->assertEquals($message, $exception->getMessage());
-    }
+		$this->assertEquals($message, $exception->getMessage());
+	}
 }

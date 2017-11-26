@@ -54,6 +54,7 @@
  */
 class PHPUnit_Runner_Filter_Factory
 {
+<<<<<<< HEAD
     /**
      * @var array
      */
@@ -86,7 +87,41 @@ class PHPUnit_Runner_Filter_Factory
             list($class, $args) = $filter;
             $iterator = $class->newInstance($iterator, $args, $suite);
         }
+=======
+	/**
+	 * @var array
+	 */
+	private $filters = [];
 
-        return $iterator;
-    }
+	/**
+	 * @param ReflectionClass $filter
+	 * @param mixed           $args
+	 */
+	public function addFilter(ReflectionClass $filter, $args)
+	{
+		if (!$filter->isSubclassOf('RecursiveFilterIterator')) {
+			throw new InvalidArgumentException(
+				sprintf(
+					'Class "%s" does not extend RecursiveFilterIterator',
+					$filter->name
+				)
+			);
+		}
+
+		$this->filters[] = [$filter, $args];
+	}
+
+	/**
+	 * @return FilterIterator
+	 */
+	public function factory(Iterator $iterator, PHPUnit_Framework_TestSuite $suite)
+	{
+		foreach ($this->filters as $filter) {
+			list($class, $args) = $filter;
+			$iterator           = $class->newInstance($iterator, $args, $suite);
+		}
+>>>>>>> ea79a2f50edc89e12eeb879d17155d120f28d68e
+
+		return $iterator;
+	}
 }

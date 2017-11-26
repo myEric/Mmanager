@@ -54,11 +54,12 @@
  */
 class PHPUnit_Runner_Filter_Test extends RecursiveFilterIterator
 {
-    /**
-     * @var string
-     */
-    protected $filter = null;
+	/**
+	 * @var string
+	 */
+	protected $filter = null;
 
+<<<<<<< HEAD
     /**
      * @var integer
      */
@@ -67,17 +68,28 @@ class PHPUnit_Runner_Filter_Test extends RecursiveFilterIterator
      * @var integer
      */
     protected $filterMax;
+=======
+	/**
+	 * @var int
+	 */
+	protected $filterMin;
+	/**
+	 * @var int
+	 */
+	protected $filterMax;
+>>>>>>> ea79a2f50edc89e12eeb879d17155d120f28d68e
 
-    /**
-     * @param RecursiveIterator $iterator
-     * @param string            $filter
-     */
-    public function __construct(RecursiveIterator $iterator, $filter)
-    {
-        parent::__construct($iterator);
-        $this->setFilter($filter);
-    }
+	/**
+	 * @param RecursiveIterator $iterator
+	 * @param string            $filter
+	 */
+	public function __construct(RecursiveIterator $iterator, $filter)
+	{
+		parent::__construct($iterator);
+		$this->setFilter($filter);
+	}
 
+<<<<<<< HEAD
     /**
      * @param string $filter
      */
@@ -124,36 +136,106 @@ class PHPUnit_Runner_Filter_Test extends RecursiveFilterIterator
               '/', '\\/', $filter
             ));
         }
+=======
+	/**
+	 * @param string $filter
+	 */
+	protected function setFilter($filter)
+	{
+		if (PHPUnit_Util_Regex::pregMatchSafe($filter, '') === false) {
+			// Handles:
+			//  * testAssertEqualsSucceeds#4
+			//  * testAssertEqualsSucceeds#4-8
+			if (preg_match('/^(.*?)#(\d+)(?:-(\d+))?$/', $filter, $matches)) {
+				if (isset($matches[3]) && $matches[2] < $matches[3]) {
+					$filter = sprintf(
+						'%s.*with data set #(\d+)$',
+						$matches[1]
+					);
 
-        $this->filter = $filter;
-    }
+					$this->filterMin = $matches[2];
+					$this->filterMax = $matches[3];
+				} else {
+					$filter = sprintf(
+						'%s.*with data set #%s$',
+						$matches[1],
+						$matches[2]
+					);
+				}
+			} // Handles:
+			//  * testDetermineJsonError@JSON_ERROR_NONE
+			//  * testDetermineJsonError@JSON.*
+			elseif (preg_match('/^(.*?)@(.+)$/', $filter, $matches)) {
+				$filter = sprintf(
+					'%s.*with data set "%s"$',
+					$matches[1],
+					$matches[2]
+				);
+			}
 
+			// Escape delimiters in regular expression. Do NOT use preg_quote,
+			// to keep magic characters.
+			$filter = sprintf('/%s/', str_replace(
+				'/',
+				'\\/',
+				$filter
+			));
+		}
+>>>>>>> ea79a2f50edc89e12eeb879d17155d120f28d68e
+
+		$this->filter = $filter;
+	}
+
+<<<<<<< HEAD
     /**
      * @return boolean
      */
     public function accept()
     {
         $test = $this->getInnerIterator()->current();
+=======
+	/**
+	 * @return bool
+	 */
+	public function accept()
+	{
+		$test = $this->getInnerIterator()->current();
+>>>>>>> ea79a2f50edc89e12eeb879d17155d120f28d68e
 
-        if ($test instanceof PHPUnit_Framework_TestSuite) {
-            return true;
-        }
+		if ($test instanceof PHPUnit_Framework_TestSuite) {
+			return true;
+		}
 
-        $tmp = PHPUnit_Util_Test::describe($test, false);
+		$tmp = PHPUnit_Util_Test::describe($test, false);
 
+<<<<<<< HEAD
         if ($tmp[0] != '') {
             $name = join('::', $tmp);
         } else {
             $name = $tmp[1];
         }
+=======
+		if ($tmp[0] != '') {
+			$name = implode('::', $tmp);
+		} else {
+			$name = $tmp[1];
+		}
+>>>>>>> ea79a2f50edc89e12eeb879d17155d120f28d68e
 
-        $accepted = preg_match($this->filter, $name, $matches);
+		$accepted = preg_match($this->filter, $name, $matches);
 
+<<<<<<< HEAD
         if ($accepted && isset($this->filterMax)) {
             $set = end($matches);
             $accepted = $set >= $this->filterMin && $set <= $this->filterMax;
         }
+=======
+		if ($accepted && isset($this->filterMax)) {
+			$set      = end($matches);
+			$accepted = $set >= $this->filterMin && $set <= $this->filterMax;
+		}
+>>>>>>> ea79a2f50edc89e12eeb879d17155d120f28d68e
 
-        return $accepted;
-    }
+		return $accepted;
+	}
 }

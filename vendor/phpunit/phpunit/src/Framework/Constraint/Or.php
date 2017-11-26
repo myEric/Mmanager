@@ -58,6 +58,7 @@
  */
 class PHPUnit_Framework_Constraint_Or extends PHPUnit_Framework_Constraint
 {
+<<<<<<< HEAD
     /**
      * @var PHPUnit_Framework_Constraint[]
      */
@@ -76,11 +77,32 @@ class PHPUnit_Framework_Constraint_Or extends PHPUnit_Framework_Constraint
                   $constraint
                 );
             }
+=======
+	/**
+	 * @var PHPUnit_Framework_Constraint[]
+	 */
+	protected $constraints = [];
 
-            $this->constraints[] = $constraint;
-        }
-    }
+	/**
+	 * @param PHPUnit_Framework_Constraint[] $constraints
+	 */
+	public function setConstraints(array $constraints)
+	{
+		$this->constraints = [];
 
+		foreach ($constraints as $constraint) {
+			if (!($constraint instanceof PHPUnit_Framework_Constraint)) {
+				$constraint = new PHPUnit_Framework_Constraint_IsEqual(
+					$constraint
+				);
+			}
+>>>>>>> ea79a2f50edc89e12eeb879d17155d120f28d68e
+
+			$this->constraints[] = $constraint;
+		}
+	}
+
+<<<<<<< HEAD
     /**
      * Evaluates the constraint for parameter $other
      *
@@ -101,43 +123,68 @@ class PHPUnit_Framework_Constraint_Or extends PHPUnit_Framework_Constraint
     {
         $success = false;
         $constraint = null;
+=======
+	/**
+	 * Evaluates the constraint for parameter $other
+	 *
+	 * If $returnResult is set to false (the default), an exception is thrown
+	 * in case of a failure. null is returned otherwise.
+	 *
+	 * If $returnResult is true, the result of the evaluation is returned as
+	 * a boolean value instead: true in case of success, false in case of a
+	 * failure.
+	 *
+	 * @param mixed  $other        Value or object to evaluate.
+	 * @param string $description  Additional information about the test
+	 * @param bool   $returnResult Whether to return a result or throw an exception
+	 *
+	 * @return mixed
+	 *
+	 * @throws PHPUnit_Framework_ExpectationFailedException
+	 */
+	public function evaluate($other, $description = '', $returnResult = false)
+	{
+		$success    = false;
+		$constraint = null;
+>>>>>>> ea79a2f50edc89e12eeb879d17155d120f28d68e
 
-        foreach ($this->constraints as $constraint) {
-            if ($constraint->evaluate($other, $description, true)) {
-                $success = true;
-                break;
-            }
-        }
+		foreach ($this->constraints as $constraint) {
+			if ($constraint->evaluate($other, $description, true)) {
+				$success = true;
+				break;
+			}
+		}
 
-        if ($returnResult) {
-            return $success;
-        }
+		if ($returnResult) {
+			return $success;
+		}
 
-        if (!$success) {
-            $this->fail($other, $description);
-        }
-    }
+		if (!$success) {
+			$this->fail($other, $description);
+		}
+	}
 
-    /**
-     * Returns a string representation of the constraint.
-     *
-     * @return string
-     */
-    public function toString()
-    {
-        $text = '';
+	/**
+	 * Returns a string representation of the constraint.
+	 *
+	 * @return string
+	 */
+	public function toString()
+	{
+		$text = '';
 
-        foreach ($this->constraints as $key => $constraint) {
-            if ($key > 0) {
-                $text .= ' or ';
-            }
+		foreach ($this->constraints as $key => $constraint) {
+			if ($key > 0) {
+				$text .= ' or ';
+			}
 
-            $text .= $constraint->toString();
-        }
+			$text .= $constraint->toString();
+		}
 
-        return $text;
-    }
+		return $text;
+	}
 
+<<<<<<< HEAD
     /**
      * Counts the number of constraint elements.
      *
@@ -147,11 +194,23 @@ class PHPUnit_Framework_Constraint_Or extends PHPUnit_Framework_Constraint
     public function count()
     {
         $count = 0;
+=======
+	/**
+	 * Counts the number of constraint elements.
+	 *
+	 * @return int
+	 *
+	 * @since  Method available since Release 3.4.0
+	 */
+	public function count()
+	{
+		$count = 0;
+>>>>>>> ea79a2f50edc89e12eeb879d17155d120f28d68e
 
-        foreach ($this->constraints as $constraint) {
-            $count += count($constraint);
-        }
+		foreach ($this->constraints as $constraint) {
+			$count += count($constraint);
+		}
 
-        return $count;
-    }
+		return $count;
+	}
 }

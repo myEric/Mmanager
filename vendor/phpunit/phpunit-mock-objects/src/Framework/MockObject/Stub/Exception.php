@@ -57,18 +57,33 @@
  */
 class PHPUnit_Framework_MockObject_Stub_Exception implements PHPUnit_Framework_MockObject_Stub
 {
-    protected $exception;
+	protected $exception;
 
+<<<<<<< HEAD
     public function __construct(Exception $exception)
     {
         $this->exception = $exception;
     }
+=======
+	public function __construct($exception)
+	{
+		// TODO Replace check with type declaration when support for PHP 5 is dropped
+		if (!$exception instanceof Throwable && !$exception instanceof Exception) {
+			throw new PHPUnit_Framework_MockObject_RuntimeException(
+				'Exception must be an instance of Throwable (PHP 7) or Exception (PHP 5)'
+			);
+		}
 
-    public function invoke(PHPUnit_Framework_MockObject_Invocation $invocation)
-    {
-        throw $this->exception;
-    }
+		$this->exception = $exception;
+	}
+>>>>>>> ea79a2f50edc89e12eeb879d17155d120f28d68e
 
+	public function invoke(PHPUnit_Framework_MockObject_Invocation $invocation)
+	{
+		throw $this->exception;
+	}
+
+<<<<<<< HEAD
     public function toString()
     {
         return sprintf(
@@ -77,4 +92,15 @@ class PHPUnit_Framework_MockObject_Stub_Exception implements PHPUnit_Framework_M
           PHPUnit_Util_Type::export($this->exception)
         );
     }
+=======
+	public function toString()
+	{
+		$exporter = new Exporter;
+
+		return sprintf(
+			'raise user-specified exception %s',
+			$exporter->export($this->exception)
+		);
+	}
+>>>>>>> ea79a2f50edc89e12eeb879d17155d120f28d68e
 }

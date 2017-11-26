@@ -54,23 +54,24 @@
  */
 class BankAccountTest extends PHPUnit_Framework_TestCase
 {
-    protected $ba;
+	protected $ba;
 
-    protected function setUp()
-    {
-        $this->ba = new BankAccount;
-    }
+	protected function setUp()
+	{
+		$this->ba = new BankAccount;
+	}
 
-    /**
-     * @covers BankAccount::getBalance
-     * @group balanceIsInitiallyZero
-     * @group specification
-     */
-    public function testBalanceIsInitiallyZero()
-    {
-        $this->assertEquals(0, $this->ba->getBalance());
-    }
+	/**
+	 * @covers BankAccount::getBalance
+	 * @group balanceIsInitiallyZero
+	 * @group specification
+	 */
+	public function testBalanceIsInitiallyZero()
+	{
+		$this->assertEquals(0, $this->ba->getBalance());
+	}
 
+<<<<<<< HEAD
     /**
      * @covers BankAccount::withdrawMoney
      * @group balanceCannotBecomeNegative
@@ -84,13 +85,27 @@ class BankAccountTest extends PHPUnit_Framework_TestCase
 
         catch (BankAccountException $e) {
             $this->assertEquals(0, $this->ba->getBalance());
+=======
+	/**
+	 * @covers BankAccount::withdrawMoney
+	 * @group balanceCannotBecomeNegative
+	 * @group specification
+	 */
+	public function testBalanceCannotBecomeNegative()
+	{
+		try {
+			$this->ba->withdrawMoney(1);
+		} catch (BankAccountException $e) {
+			$this->assertEquals(0, $this->ba->getBalance());
+>>>>>>> ea79a2f50edc89e12eeb879d17155d120f28d68e
 
-            return;
-        }
+			return;
+		}
 
-        $this->fail();
-    }
+		$this->fail();
+	}
 
+<<<<<<< HEAD
     /**
      * @covers BankAccount::depositMoney
      * @group balanceCannotBecomeNegative
@@ -104,20 +119,37 @@ class BankAccountTest extends PHPUnit_Framework_TestCase
 
         catch (BankAccountException $e) {
             $this->assertEquals(0, $this->ba->getBalance());
+=======
+	/**
+	 * @covers BankAccount::depositMoney
+	 * @group balanceCannotBecomeNegative
+	 * @group specification
+	 */
+	public function testBalanceCannotBecomeNegative2()
+	{
+		try {
+			$this->ba->depositMoney(-1);
+		} catch (BankAccountException $e) {
+			$this->assertEquals(0, $this->ba->getBalance());
+>>>>>>> ea79a2f50edc89e12eeb879d17155d120f28d68e
 
-            return;
-        }
+			return;
+		}
 
-        $this->fail();
-    }
+		$this->fail();
+	}
 
+<<<<<<< HEAD
     /**
+=======
+	/*
+>>>>>>> ea79a2f50edc89e12eeb879d17155d120f28d68e
      * @covers BankAccount::getBalance
      * @covers BankAccount::depositMoney
      * @covers BankAccount::withdrawMoney
      * @group balanceCannotBecomeNegative
      */
-    /*
+	/*
     public function testDepositingAndWithdrawingMoneyWorks()
     {
         $this->assertEquals(0, $this->ba->getBalance());

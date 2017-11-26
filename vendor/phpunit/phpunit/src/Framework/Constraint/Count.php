@@ -58,6 +58,7 @@
  */
 class PHPUnit_Framework_Constraint_Count extends PHPUnit_Framework_Constraint
 {
+<<<<<<< HEAD
     /**
      * @var integer
      */
@@ -112,11 +113,68 @@ class PHPUnit_Framework_Constraint_Count extends PHPUnit_Framework_Constraint
                     $iterator->next();
                 }
             }
+=======
+	/**
+	 * @var int
+	 */
+	protected $expectedCount = 0;
 
-            return $count;
-        }
-    }
+	/**
+	 * @param int $expected
+	 */
+	public function __construct($expected)
+	{
+		parent::__construct();
+		$this->expectedCount = $expected;
+	}
 
+	/**
+	 * Evaluates the constraint for parameter $other. Returns true if the
+	 * constraint is met, false otherwise.
+	 *
+	 * @param mixed $other
+	 *
+	 * @return bool
+	 */
+	protected function matches($other)
+	{
+		return $this->expectedCount === $this->getCountOf($other);
+	}
+
+	/**
+	 * @param mixed $other
+	 *
+	 * @return bool
+	 */
+	protected function getCountOf($other)
+	{
+		if ($other instanceof Countable || is_array($other)) {
+			return count($other);
+		} elseif ($other instanceof Traversable) {
+			if ($other instanceof IteratorAggregate) {
+				$iterator = $other->getIterator();
+			} else {
+				$iterator = $other;
+			}
+
+			$key   = $iterator->key();
+			$count = iterator_count($iterator);
+
+			// manually rewind $iterator to previous key, since iterator_count
+			// moves pointer
+			if ($key !== null) {
+				$iterator->rewind();
+				while ($iterator->valid() && $key !== $iterator->key()) {
+					$iterator->next();
+				}
+			}
+>>>>>>> ea79a2f50edc89e12eeb879d17155d120f28d68e
+
+			return $count;
+		}
+	}
+
+<<<<<<< HEAD
     /**
      * Returns the description of the failure
      *
@@ -143,4 +201,35 @@ class PHPUnit_Framework_Constraint_Count extends PHPUnit_Framework_Constraint
     {
         return 'count matches ';
     }
+=======
+	/**
+	 * Returns the description of the failure
+	 *
+	 * The beginning of failure messages is "Failed asserting that" in most
+	 * cases. This method should return the second part of that sentence.
+	 *
+	 * @param mixed $other Evaluated value or object.
+	 *
+	 * @return string
+	 */
+	protected function failureDescription($other)
+	{
+		return sprintf(
+			'actual size %d matches expected size %d',
+			$this->getCountOf($other),
+			$this->expectedCount
+		);
+	}
+
+	/**
+	 * @return string
+	 */
+	public function toString()
+	{
+		return sprintf(
+			'count matches %d',
+			$this->expectedCount
+		);
+	}
+>>>>>>> ea79a2f50edc89e12eeb879d17155d120f28d68e
 }

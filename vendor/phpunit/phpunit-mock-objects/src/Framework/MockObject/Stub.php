@@ -58,6 +58,7 @@
  */
 interface PHPUnit_Framework_MockObject_Stub extends PHPUnit_Framework_SelfDescribing
 {
+<<<<<<< HEAD
     /**
      * Fakes the processing of the invocation $invocation by returning a
      * specific value.
@@ -68,4 +69,17 @@ interface PHPUnit_Framework_MockObject_Stub extends PHPUnit_Framework_SelfDescri
      * @return mixed
      */
     public function invoke(PHPUnit_Framework_MockObject_Invocation $invocation);
+=======
+	/**
+	 * Fakes the processing of the invocation $invocation by returning a
+	 * specific value.
+	 *
+	 * @param PHPUnit_Framework_MockObject_Invocation $invocation
+	 *                                                            The invocation which was mocked and matched by the current method
+	 *                                                            and argument matchers.
+	 *
+	 * @return mixed
+	 */
+	public function invoke(PHPUnit_Framework_MockObject_Invocation $invocation);
+>>>>>>> ea79a2f50edc89e12eeb879d17155d120f28d68e
 }

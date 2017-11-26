@@ -55,18 +55,19 @@
  */
 class PHPUnit_Framework_MockObject_Stub_Return implements PHPUnit_Framework_MockObject_Stub
 {
-    protected $value;
+	protected $value;
 
-    public function __construct($value)
-    {
-        $this->value = $value;
-    }
+	public function __construct($value)
+	{
+		$this->value = $value;
+	}
 
-    public function invoke(PHPUnit_Framework_MockObject_Invocation $invocation)
-    {
-        return $this->value;
-    }
+	public function invoke(PHPUnit_Framework_MockObject_Invocation $invocation)
+	{
+		return $this->value;
+	}
 
+<<<<<<< HEAD
     public function toString()
     {
         return sprintf(
@@ -75,4 +76,15 @@ class PHPUnit_Framework_MockObject_Stub_Return implements PHPUnit_Framework_Mock
           PHPUnit_Util_Type::export($this->value)
         );
     }
+=======
+	public function toString()
+	{
+		$exporter = new Exporter;
+
+		return sprintf(
+			'return user-specified value %s',
+			$exporter->export($this->value)
+		);
+	}
+>>>>>>> ea79a2f50edc89e12eeb879d17155d120f28d68e
 }

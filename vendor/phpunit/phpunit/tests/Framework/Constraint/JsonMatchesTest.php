@@ -52,6 +52,7 @@
  */
 class Framework_Constraint_JsonMatchesTest extends PHPUnit_Framework_TestCase
 {
+<<<<<<< HEAD
 
     /**
      * @dataProvider evaluateDataprovider
@@ -72,10 +73,32 @@ class Framework_Constraint_JsonMatchesTest extends PHPUnit_Framework_TestCase
     {
         $jsonValue = json_encode(array('Mascott' => 'Tux'));
         $constraint = new PHPUnit_Framework_Constraint_JsonMatches($jsonValue);
+=======
+	/**
+	 * @dataProvider evaluateDataprovider
+	 * @covers PHPUnit_Framework_Constraint_JsonMatches::evaluate
+	 * @covers PHPUnit_Framework_Constraint_JsonMatches::matches
+	 * @covers PHPUnit_Framework_Constraint_JsonMatches::__construct
+	 */
+	public function testEvaluate($expected, $jsonOther, $jsonValue)
+	{
+		$constraint = new PHPUnit_Framework_Constraint_JsonMatches($jsonValue);
+		$this->assertEquals($expected, $constraint->evaluate($jsonOther, '', true));
+	}
 
-        $this->assertEquals('matches JSON string "' . $jsonValue . '"', $constraint->toString());
-    }
+	/**
+	 * @covers PHPUnit_Framework_Constraint_JsonMatches::toString
+	 */
+	public function testToString()
+	{
+		$jsonValue  = json_encode(['Mascott' => 'Tux']);
+		$constraint = new PHPUnit_Framework_Constraint_JsonMatches($jsonValue);
+>>>>>>> ea79a2f50edc89e12eeb879d17155d120f28d68e
 
+		$this->assertEquals('matches JSON string "' . $jsonValue . '"', $constraint->toString());
+	}
+
+<<<<<<< HEAD
 
     public static function evaluateDataprovider()
     {
@@ -86,4 +109,15 @@ class Framework_Constraint_JsonMatchesTest extends PHPUnit_Framework_TestCase
             'invalid JSON in class instantiation' => array(false, json_encode(array('Mascott' => 'Tux')), '{"Mascott"::}'),
         );
     }
+=======
+	public static function evaluateDataprovider()
+	{
+		return [
+			'valid JSON'                          => [true, json_encode(['Mascott'                           => 'Tux']), json_encode(['Mascott'                           => 'Tux'])],
+			'error syntax'                        => [false, '{"Mascott"::}', json_encode(['Mascott'         => 'Tux'])],
+			'error UTF-8'                         => [false, json_encode('\xB1\x31'), json_encode(['Mascott' => 'Tux'])],
+			'invalid JSON in class instantiation' => [false, json_encode(['Mascott'                          => 'Tux']), '{"Mascott"::}'],
+		];
+	}
+>>>>>>> ea79a2f50edc89e12eeb879d17155d120f28d68e
 }

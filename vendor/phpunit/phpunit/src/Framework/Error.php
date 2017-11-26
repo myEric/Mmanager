@@ -56,6 +56,7 @@
  */
 class PHPUnit_Framework_Error extends Exception
 {
+<<<<<<< HEAD
     /**
      * Constructor.
      *
@@ -68,8 +69,22 @@ class PHPUnit_Framework_Error extends Exception
     public function __construct($message, $code, $file, $line, Exception $previous = null)
     {
         parent::__construct($message, $code, $previous);
+=======
+	/**
+	 * Constructor.
+	 *
+	 * @param string    $message
+	 * @param int       $code
+	 * @param string    $file
+	 * @param int       $line
+	 * @param Exception $previous
+	 */
+	public function __construct($message, $code, $file, $line, Exception $previous = null)
+	{
+		parent::__construct($message, $code, $previous);
+>>>>>>> ea79a2f50edc89e12eeb879d17155d120f28d68e
 
-        $this->file  = $file;
-        $this->line  = $line;
-    }
+		$this->file  = $file;
+		$this->line  = $line;
+	}
 }

@@ -58,6 +58,7 @@
  */
 class PHPUnit_Framework_Constraint_IsAnything extends PHPUnit_Framework_Constraint
 {
+<<<<<<< HEAD
     /**
      * Evaluates the constraint for parameter $other
      *
@@ -78,17 +79,42 @@ class PHPUnit_Framework_Constraint_IsAnything extends PHPUnit_Framework_Constrai
     {
         return $returnResult ? true : null;
     }
+=======
+	/**
+	 * Evaluates the constraint for parameter $other
+	 *
+	 * If $returnResult is set to false (the default), an exception is thrown
+	 * in case of a failure. null is returned otherwise.
+	 *
+	 * If $returnResult is true, the result of the evaluation is returned as
+	 * a boolean value instead: true in case of success, false in case of a
+	 * failure.
+	 *
+	 * @param mixed  $other        Value or object to evaluate.
+	 * @param string $description  Additional information about the test
+	 * @param bool   $returnResult Whether to return a result or throw an exception
+	 *
+	 * @return mixed
+	 *
+	 * @throws PHPUnit_Framework_ExpectationFailedException
+	 */
+	public function evaluate($other, $description = '', $returnResult = false)
+	{
+		return $returnResult ? true : null;
+	}
+>>>>>>> ea79a2f50edc89e12eeb879d17155d120f28d68e
 
-    /**
-     * Returns a string representation of the constraint.
-     *
-     * @return string
-     */
-    public function toString()
-    {
-        return 'is anything';
-    }
+	/**
+	 * Returns a string representation of the constraint.
+	 *
+	 * @return string
+	 */
+	public function toString()
+	{
+		return 'is anything';
+	}
 
+<<<<<<< HEAD
     /**
      * Counts the number of constraint elements.
      *
@@ -99,4 +125,17 @@ class PHPUnit_Framework_Constraint_IsAnything extends PHPUnit_Framework_Constrai
     {
         return 0;
     }
+=======
+	/**
+	 * Counts the number of constraint elements.
+	 *
+	 * @return int
+	 *
+	 * @since  Method available since Release 3.5.0
+	 */
+	public function count()
+	{
+		return 0;
+	}
+>>>>>>> ea79a2f50edc89e12eeb879d17155d120f28d68e
 }

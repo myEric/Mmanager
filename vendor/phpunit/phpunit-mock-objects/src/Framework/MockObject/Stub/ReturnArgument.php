@@ -55,13 +55,14 @@
  */
 class PHPUnit_Framework_MockObject_Stub_ReturnArgument extends PHPUnit_Framework_MockObject_Stub_Return
 {
-    protected $argumentIndex;
+	protected $argumentIndex;
 
-    public function __construct($argumentIndex)
-    {
-        $this->argumentIndex = $argumentIndex;
-    }
+	public function __construct($argumentIndex)
+	{
+		$this->argumentIndex = $argumentIndex;
+	}
 
+<<<<<<< HEAD
     public function invoke(PHPUnit_Framework_MockObject_Invocation $invocation)
     {
         if (isset($invocation->parameters[$this->argumentIndex])) {
@@ -70,9 +71,19 @@ class PHPUnit_Framework_MockObject_Stub_ReturnArgument extends PHPUnit_Framework
             return NULL;
         }
     }
+=======
+	public function invoke(PHPUnit_Framework_MockObject_Invocation $invocation)
+	{
+		if (isset($invocation->parameters[$this->argumentIndex])) {
+			return $invocation->parameters[$this->argumentIndex];
+		} else {
+			return;
+		}
+	}
+>>>>>>> ea79a2f50edc89e12eeb879d17155d120f28d68e
 
-    public function toString()
-    {
-        return sprintf('return argument #%d', $this->argumentIndex);
-    }
+	public function toString()
+	{
+		return sprintf('return argument #%d', $this->argumentIndex);
+	}
 }

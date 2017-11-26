@@ -56,6 +56,7 @@
  */
 class File_Iterator_Facade
 {
+<<<<<<< HEAD:vendor/phpunit/php-file-iterator/File/Iterator/Facade.php
     /**
      * @param  array|string $paths
      * @param  array|string $suffixes
@@ -158,4 +159,108 @@ class File_Iterator_Facade
 
         return DIRECTORY_SEPARATOR . $common;
     }
+=======
+	/**
+	 * @param  array|string $paths
+	 * @param  array|string $suffixes
+	 * @param  array|string $prefixes
+	 * @param  array        $exclude
+	 * @param  bool         $commonPath
+	 * @return array
+	 */
+	public function getFilesAsArray($paths, $suffixes = '', $prefixes = '', array $exclude = array(), $commonPath = FALSE)
+	{
+		if (is_string($paths)) {
+			$paths = array($paths);
+		}
+
+		$factory  = new File_Iterator_Factory;
+		$iterator = $factory->getFileIterator(
+		  $paths, $suffixes, $prefixes, $exclude
+		);
+
+		$files = array();
+
+		foreach ($iterator as $file) {
+			$file = $file->getRealPath();
+
+			if ($file) {
+				$files[] = $file;
+			}
+		}
+
+		foreach ($paths as $path) {
+			if (is_file($path)) {
+				$files[] = realpath($path);
+			}
+		}
+
+		$files = array_unique($files);
+		sort($files);
+
+		if ($commonPath) {
+			return array(
+			  'commonPath' => $this->getCommonPath($files),
+			  'files'      => $files
+			);
+		} else {
+			return $files;
+		}
+	}
+
+	/**
+	 * Returns the common path of a set of files.
+	 *
+	 * @param  array  $files
+	 * @return string
+	 */
+	protected function getCommonPath(array $files)
+	{
+		$count = count($files);
+
+		if ($count == 0) {
+			return '';
+		}
+
+		if ($count == 1) {
+			return dirname($files[0]) . DIRECTORY_SEPARATOR;
+		}
+
+		$_files = array();
+
+		foreach ($files as $file) {
+			$_files[] = $_fileParts = explode(DIRECTORY_SEPARATOR, $file);
+
+			if (empty($_fileParts[0])) {
+				$_fileParts[0] = DIRECTORY_SEPARATOR;
+			}
+		}
+
+		$common = '';
+		$done   = FALSE;
+		$j      = 0;
+		$count--;
+
+		while (!$done) {
+			for ($i = 0; $i < $count; $i++) {
+				if ($_files[$i][$j] != $_files[$i+1][$j]) {
+					$done = TRUE;
+					break;
+				}
+			}
+
+			if (!$done) {
+				$common .= $_files[0][$j];
+
+				if ($j > 0) {
+					$common .= DIRECTORY_SEPARATOR;
+				}
+			}
+
+			$j++;
+		}
+
+		return DIRECTORY_SEPARATOR . $common;
+	}
+>>>>>>> ea79a2f50edc89e12eeb879d17155d120f28d68e:vendor/phpunit/php-file-iterator/src/Facade.php
 }
