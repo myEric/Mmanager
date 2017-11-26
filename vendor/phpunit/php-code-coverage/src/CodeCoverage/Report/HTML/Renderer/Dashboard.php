@@ -11,7 +11,13 @@
 /**
  * Renders the dashboard for a PHP_CodeCoverage_Report_Node_Directory node.
  *
- * @since Class available since Release 1.1.0
+ * @category   PHP
+ * @package    CodeCoverage
+ * @author     Sebastian Bergmann <sebastian@phpunit.de>
+ * @copyright  Sebastian Bergmann <sebastian@phpunit.de>
+ * @license    http://www.opensource.org/licenses/BSD-3-Clause  The BSD 3-Clause License
+ * @link       http://github.com/sebastianbergmann/php-code-coverage
+ * @since      Class available since Release 1.1.0
  */
 class PHP_CodeCoverage_Report_HTML_Renderer_Dashboard extends PHP_CodeCoverage_Report_HTML_Renderer
 {
@@ -37,7 +43,7 @@ class PHP_CodeCoverage_Report_HTML_Renderer_Dashboard extends PHP_CodeCoverage_R
         $projectRisks         = $this->projectRisks($classes, $baseLink);
 
         $template->setVar(
-            [
+            array(
                 'insufficient_coverage_classes' => $insufficientCoverage['class'],
                 'insufficient_coverage_methods' => $insufficientCoverage['method'],
                 'project_risks_classes'         => $projectRisks['class'],
@@ -46,7 +52,7 @@ class PHP_CodeCoverage_Report_HTML_Renderer_Dashboard extends PHP_CodeCoverage_R
                 'complexity_method'             => $complexity['method'],
                 'class_coverage_distribution'   => $coverageDistribution['class'],
                 'method_coverage_distribution'  => $coverageDistribution['method']
-            ]
+            )
         );
 
         $template->renderTo($file);
@@ -55,14 +61,13 @@ class PHP_CodeCoverage_Report_HTML_Renderer_Dashboard extends PHP_CodeCoverage_R
     /**
      * Returns the data for the Class/Method Complexity charts.
      *
-     * @param array  $classes
-     * @param string $baseLink
-     *
+     * @param  array  $classes
+     * @param  string $baseLink
      * @return array
      */
     protected function complexity(array $classes, $baseLink)
     {
-        $result = ['class' => [], 'method' => []];
+        $result = array('class' => array(), 'method' => array());
 
         foreach ($classes as $className => $class) {
             foreach ($class['methods'] as $methodName => $method) {
@@ -70,7 +75,7 @@ class PHP_CodeCoverage_Report_HTML_Renderer_Dashboard extends PHP_CodeCoverage_R
                     $methodName = $className . '::' . $methodName;
                 }
 
-                $result['method'][] = [
+                $result['method'][] = array(
                     $method['coverage'],
                     $method['ccn'],
                     sprintf(
@@ -78,10 +83,10 @@ class PHP_CodeCoverage_Report_HTML_Renderer_Dashboard extends PHP_CodeCoverage_R
                         str_replace($baseLink, '', $method['link']),
                         $methodName
                     )
-                ];
+                );
             }
 
-            $result['class'][] = [
+            $result['class'][] = array(
                 $class['coverage'],
                 $class['ccn'],
                 sprintf(
@@ -89,26 +94,25 @@ class PHP_CodeCoverage_Report_HTML_Renderer_Dashboard extends PHP_CodeCoverage_R
                     str_replace($baseLink, '', $class['link']),
                     $className
                 )
-            ];
+            );
         }
 
-        return [
-            'class'  => json_encode($result['class']),
+        return array(
+            'class' => json_encode($result['class']),
             'method' => json_encode($result['method'])
-        ];
+        );
     }
 
     /**
      * Returns the data for the Class / Method Coverage Distribution chart.
      *
-     * @param array $classes
-     *
+     * @param  array $classes
      * @return array
      */
     protected function coverageDistribution(array $classes)
     {
-        $result = [
-            'class' => [
+        $result = array(
+            'class' => array(
                 '0%'      => 0,
                 '0-10%'   => 0,
                 '10-20%'  => 0,
@@ -121,8 +125,8 @@ class PHP_CodeCoverage_Report_HTML_Renderer_Dashboard extends PHP_CodeCoverage_R
                 '80-90%'  => 0,
                 '90-100%' => 0,
                 '100%'    => 0
-            ],
-            'method' => [
+            ),
+            'method' => array(
                 '0%'      => 0,
                 '0-10%'   => 0,
                 '10-20%'  => 0,
@@ -135,8 +139,8 @@ class PHP_CodeCoverage_Report_HTML_Renderer_Dashboard extends PHP_CodeCoverage_R
                 '80-90%'  => 0,
                 '90-100%' => 0,
                 '100%'    => 0
-            ]
-        ];
+            )
+        );
 
         foreach ($classes as $class) {
             foreach ($class['methods'] as $methodName => $method) {
@@ -162,25 +166,24 @@ class PHP_CodeCoverage_Report_HTML_Renderer_Dashboard extends PHP_CodeCoverage_R
             }
         }
 
-        return [
-            'class'  => json_encode(array_values($result['class'])),
+        return array(
+            'class' => json_encode(array_values($result['class'])),
             'method' => json_encode(array_values($result['method']))
-        ];
+        );
     }
 
     /**
      * Returns the classes / methods with insufficient coverage.
      *
-     * @param array  $classes
-     * @param string $baseLink
-     *
+     * @param  array  $classes
+     * @param  string $baseLink
      * @return array
      */
     protected function insufficientCoverage(array $classes, $baseLink)
     {
-        $leastTestedClasses = [];
-        $leastTestedMethods = [];
-        $result             = ['class' => '', 'method' => ''];
+        $leastTestedClasses = array();
+        $leastTestedMethods = array();
+        $result             = array('class' => '', 'method' => '');
 
         foreach ($classes as $className => $class) {
             foreach ($class['methods'] as $methodName => $method) {
@@ -216,7 +219,7 @@ class PHP_CodeCoverage_Report_HTML_Renderer_Dashboard extends PHP_CodeCoverage_R
             list($class, $method) = explode('::', $methodName);
 
             $result['method'] .= sprintf(
-                '       <tr><td><a href="%s"><abbr title="%s">%s</abbr></a></td><td class="text-right">%d%%</td></tr>' . "\n",
+                '       <tr><td><a href="%s"><abbr title="%s">%s</a></a></td><td class="text-right">%d%%</td></tr>' . "\n",
                 str_replace($baseLink, '', $classes[$class]['methods'][$method]['link']),
                 $methodName,
                 $method,
@@ -230,16 +233,15 @@ class PHP_CodeCoverage_Report_HTML_Renderer_Dashboard extends PHP_CodeCoverage_R
     /**
      * Returns the project risks according to the CRAP index.
      *
-     * @param array  $classes
-     * @param string $baseLink
-     *
+     * @param  array  $classes
+     * @param  string $baseLink
      * @return array
      */
     protected function projectRisks(array $classes, $baseLink)
     {
-        $classRisks  = [];
-        $methodRisks = [];
-        $result      = ['class' => '', 'method' => ''];
+        $classRisks  = array();
+        $methodRisks = array();
+        $result      = array('class' => '', 'method' => '');
 
         foreach ($classes as $className => $class) {
             foreach ($class['methods'] as $methodName => $method) {
