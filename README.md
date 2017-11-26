@@ -47,6 +47,3 @@ public function test()
 
 ## License
 MIT License
-
-
-# mmanager
