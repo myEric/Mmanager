@@ -35,10 +35,10 @@
  * @filesource
  */
 
-namespace MyEric\Mmanager\Domain\Repository;
+namespace Mmanager\Domain\Repository;
 
-use MyEric\Mmanager\Helper\Sql\AbstractArrayHelper;
-use MyEric\Mmanager\Persistence\CodeIgniter\Repository\CodeIgniterQueryBuilder as CodeIgniterQueryBuilder;
+use Mmanager\Helper\Sql\AbstractArrayHelper;
+use Mmanager\Persistence\CodeIgniter\Repository\CodeIgniterQueryBuilder as CodeIgniterQueryBuilder;
 /**
  * Entity Repository Class
  */

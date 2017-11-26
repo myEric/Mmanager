@@ -15,7 +15,7 @@
     },
 	"autoload": {
         "psr-4": {
-            "MyEric\\Mmanager\\": "src"
+            "Mmanager\\": "src"
         }
     }
 }

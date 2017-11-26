@@ -13,7 +13,7 @@ class ComposerStaticInit4a7aff2a3f1c3e5bb737714b1caf30b9
         ),
         'M' => 
         array (
-            'MyEric\\Mmanager\\' => 16,
+            'Mmanager\\' => 9,
         ),
     );
 
@@ -22,7 +22,7 @@ class ComposerStaticInit4a7aff2a3f1c3e5bb737714b1caf30b9
         array (
             0 => __DIR__ . '/..' . '/symfony/yaml',
         ),
-        'MyEric\\Mmanager\\' => 
+        'Mmanager\\' => 
         array (
             0 => __DIR__ . '/../..' . '/src',
         ),

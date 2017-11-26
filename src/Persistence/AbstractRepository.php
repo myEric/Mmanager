@@ -35,10 +35,10 @@
  * @filesource
  */
  
-namespace MyEric\Mmanager\Persistence;
-use MyEric\Mmanager\Domain\Repository\RepositoryInterface;
-use MyEric\Mmanager\Domain\Repository\QueryBuilderInterface;
-use MyEric\Mmanager\Domain\Repository;
+namespace Mmanager\Persistence;
+use Mmanager\Domain\Repository\RepositoryInterface;
+use Mmanager\Domain\Repository\QueryBuilderInterface;
+use Mmanager\Domain\Repository;
 
 defined('EZSQL_VERSION') or define('EZSQL_VERSION', '2.17');
 defined('OBJECT') or define('OBJECT', 'OBJECT');

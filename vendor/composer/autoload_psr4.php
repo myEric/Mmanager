@@ -7,5 +7,5 @@ $baseDir = dirname($vendorDir);
 
 return array(
     'Symfony\\Component\\Yaml\\' => array($vendorDir . '/symfony/yaml'),
-    'MyEric\\Mmanager\\' => array($baseDir . '/src'),
+    'Mmanager\\' => array($baseDir . '/src'),
 );

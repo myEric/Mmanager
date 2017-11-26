@@ -35,7 +35,7 @@
  * @filesource
  */
  
-namespace MyEric\Mmanager\Domain\Repository;
+namespace Mmanager\Domain\Repository;
 /**
  * Interface RepositoryInterface
  * @package Mmanager\Domain\Repository

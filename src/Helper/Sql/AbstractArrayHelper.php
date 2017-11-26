@@ -35,7 +35,7 @@
  * @filesource
  */
 
-namespace MyEric\Mmanager\Helper\Sql;
+namespace Mmanager\Helper\Sql;
 
 /**
  * Array helper

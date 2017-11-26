@@ -35,11 +35,11 @@
  * @filesource
  */
 
-namespace MyEric\Mmanager\Domain\Repository;
+namespace Mmanager\Domain\Repository;
 
-use MyEric\Mmanager\Domain\Repository\RepositoryInterface;
-use MyEric\Mmanager\Domain\Repository\QueryBuilderInterface;
-use MyEric\Mmanager\Persistence\CodeIgniter\Repository\CodeIgniterQueryBuilder;
+use Mmanager\Domain\Repository\RepositoryInterface;
+use Mmanager\Domain\Repository\QueryBuilderInterface;
+use Mmanager\Persistence\CodeIgniter\Repository\CodeIgniterQueryBuilder;
 
 class QueryBuilder implements QueryBuilderInterface, RepositoryInterface {
 	/**

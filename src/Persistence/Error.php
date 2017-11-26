@@ -35,7 +35,7 @@
  * @filesource
  */
  
-namespace MyEric\Mmanager\Persistence;
+namespace Mmanager\Persistence;
 
 class Error {
 	protected $show_errors = true;

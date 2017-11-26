@@ -35,7 +35,7 @@
  * @filesource
  */
 
-namespace MyEric\Mmanager\Domain\Entity;
+namespace Mmanager\Domain\Entity;
 /**
  * Customer Entity
  */

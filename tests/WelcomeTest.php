@@ -1,6 +1,6 @@
 <?php
  
-use MyEric\Mmanager\Welcome;
+use Mmanager\Welcome;
  
 class WelcomeTest extends PHPUnit_Framework_TestCase {
  

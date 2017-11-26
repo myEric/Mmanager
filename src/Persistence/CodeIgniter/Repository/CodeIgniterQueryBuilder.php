@@ -34,10 +34,10 @@
  * @since	Version 1.0.0
  * @filesource
  */
-namespace MyEric\Mmanager\Persistence\CodeIgniter\Repository;
+namespace Mmanager\Persistence\CodeIgniter\Repository;
 
-use MyEric\Mmanager\Domain\Repository\QueryBuilderInterface;
-use MyEric\Mmanager\Persistence\AbstractRepository;
+use Mmanager\Domain\Repository\QueryBuilderInterface;
+use Mmanager\Persistence\AbstractRepository;
 
 /**
  * class CodeIgniterQueryBuilder

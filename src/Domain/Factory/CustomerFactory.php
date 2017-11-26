@@ -35,7 +35,7 @@
  * @filesource
  */
 
-namespace MyEric\Mmanager\Domain\Factory;
+namespace Mmanager\Domain\Factory;
 
 /**
  * Customer Factory

@@ -35,7 +35,7 @@
  * @filesource
  */
  
-namespace MyEric\Mmanager\Exception;
+namespace Mmanager\Exception;
 
 class BadMethodCallException extends \BadMethodCallException implements
 	ExceptionInterface
