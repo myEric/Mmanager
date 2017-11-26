@@ -14,39 +14,39 @@
  */
 class ExceptionMessageTest extends PHPUnit_Framework_TestCase
 {
-    /**
-     * @expectedException \Exception
-     * @expectedExceptionMessage A literal exception message
-     */
-    public function testLiteralMessage()
-    {
-        throw new Exception('A literal exception message');
-    }
+	/**
+	 * @expectedException \Exception
+	 * @expectedExceptionMessage A literal exception message
+	 */
+	public function testLiteralMessage()
+	{
+		throw new Exception('A literal exception message');
+	}
 
-    /**
-     * @expectedException \Exception
-     * @expectedExceptionMessage A partial
-     */
-    public function testPatialMessageBegin()
-    {
-        throw new Exception('A partial exception message');
-    }
+	/**
+	 * @expectedException \Exception
+	 * @expectedExceptionMessage A partial
+	 */
+	public function testPatialMessageBegin()
+	{
+		throw new Exception('A partial exception message');
+	}
 
-    /**
-     * @expectedException \Exception
-     * @expectedExceptionMessage partial exception
-     */
-    public function testPatialMessageMiddle()
-    {
-        throw new Exception('A partial exception message');
-    }
+	/**
+	 * @expectedException \Exception
+	 * @expectedExceptionMessage partial exception
+	 */
+	public function testPatialMessageMiddle()
+	{
+		throw new Exception('A partial exception message');
+	}
 
-    /**
-     * @expectedException \Exception
-     * @expectedExceptionMessage exception message
-     */
-    public function testPatialMessageEnd()
-    {
-        throw new Exception('A partial exception message');
-    }
+	/**
+	 * @expectedException \Exception
+	 * @expectedExceptionMessage exception message
+	 */
+	public function testPatialMessageEnd()
+	{
+		throw new Exception('A partial exception message');
+	}
 }

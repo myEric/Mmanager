@@ -17,25 +17,25 @@ use SebastianBergmann\Exporter\Exporter;
  */
 class PHPUnit_Framework_MockObject_Stub_Return implements PHPUnit_Framework_MockObject_Stub
 {
-    protected $value;
+	protected $value;
 
-    public function __construct($value)
-    {
-        $this->value = $value;
-    }
+	public function __construct($value)
+	{
+		$this->value = $value;
+	}
 
-    public function invoke(PHPUnit_Framework_MockObject_Invocation $invocation)
-    {
-        return $this->value;
-    }
+	public function invoke(PHPUnit_Framework_MockObject_Invocation $invocation)
+	{
+		return $this->value;
+	}
 
-    public function toString()
-    {
-        $exporter = new Exporter;
+	public function toString()
+	{
+		$exporter = new Exporter;
 
-        return sprintf(
-            'return user-specified value %s',
-            $exporter->export($this->value)
-        );
-    }
+		return sprintf(
+			'return user-specified value %s',
+			$exporter->export($this->value)
+		);
+	}
 }

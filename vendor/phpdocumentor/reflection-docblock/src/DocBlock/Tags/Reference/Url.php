@@ -19,22 +19,22 @@ use Webmozart\Assert\Assert;
  */
 final class Url implements Reference
 {
-    /**
-     * @var string
-     */
-    private $uri;
+	/**
+	 * @var string
+	 */
+	private $uri;
 
-    /**
-     * Url constructor.
-     */
-    public function __construct($uri)
-    {
-        Assert::stringNotEmpty($uri);
-        $this->uri = $uri;
-    }
+	/**
+	 * Url constructor.
+	 */
+	public function __construct($uri)
+	{
+		Assert::stringNotEmpty($uri);
+		$this->uri = $uri;
+	}
 
-    public function __toString()
-    {
-        return $this->uri;
-    }
+	public function __toString()
+	{
+		return $this->uri;
+	}
 }

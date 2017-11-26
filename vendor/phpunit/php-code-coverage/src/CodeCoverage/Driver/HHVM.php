@@ -16,11 +16,11 @@
  */
 class PHP_CodeCoverage_Driver_HHVM extends PHP_CodeCoverage_Driver_Xdebug
 {
-    /**
-     * Start collection of code coverage information.
-     */
-    public function start()
-    {
-        xdebug_start_code_coverage();
-    }
+	/**
+	 * Start collection of code coverage information.
+	 */
+	public function start()
+	{
+		xdebug_start_code_coverage();
+	}
 }

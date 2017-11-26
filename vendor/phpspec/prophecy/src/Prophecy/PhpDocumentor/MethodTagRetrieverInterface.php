@@ -21,10 +21,10 @@ use phpDocumentor\Reflection\DocBlock\Tags\Method;
  */
 interface MethodTagRetrieverInterface
 {
-    /**
-     * @param \ReflectionClass $reflectionClass
-     *
-     * @return LegacyMethodTag[]|Method[]
-     */
-    public function getTagList(\ReflectionClass $reflectionClass);
+	/**
+	 * @param \ReflectionClass $reflectionClass
+	 *
+	 * @return LegacyMethodTag[]|Method[]
+	 */
+	public function getTagList(\ReflectionClass $reflectionClass);
 }

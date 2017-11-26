@@ -23,15 +23,15 @@ use Prophecy\Prophecy\MethodProphecy;
  */
 interface PredictionInterface
 {
-    /**
-     * Tests that double fulfilled prediction.
-     *
-     * @param Call[]        $calls
-     * @param ObjectProphecy $object
-     * @param MethodProphecy $method
-     *
-     * @throws object
-     * @return void
-     */
-    public function check(array $calls, ObjectProphecy $object, MethodProphecy $method);
+	/**
+	 * Tests that double fulfilled prediction.
+	 *
+	 * @param Call[]        $calls
+	 * @param ObjectProphecy $object
+	 * @param MethodProphecy $method
+	 *
+	 * @throws object
+	 * @return void
+	 */
+	public function check(array $calls, ObjectProphecy $object, MethodProphecy $method);
 }

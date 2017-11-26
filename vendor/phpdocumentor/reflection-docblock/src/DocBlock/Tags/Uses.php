@@ -24,60 +24,60 @@ use Webmozart\Assert\Assert;
  */
 final class Uses extends BaseTag implements Factory\StaticMethod
 {
-    protected $name = 'uses';
+	protected $name = 'uses';
 
-    /** @var Fqsen */
-    protected $refers = null;
+	/** @var Fqsen */
+	protected $refers = null;
 
-    /**
-     * Initializes this tag.
-     *
-     * @param Fqsen       $refers
-     * @param Description $description
-     */
-    public function __construct(Fqsen $refers, Description $description = null)
-    {
-        $this->refers      = $refers;
-        $this->description = $description;
-    }
+	/**
+	 * Initializes this tag.
+	 *
+	 * @param Fqsen       $refers
+	 * @param Description $description
+	 */
+	public function __construct(Fqsen $refers, Description $description = null)
+	{
+		$this->refers      = $refers;
+		$this->description = $description;
+	}
 
-    /**
-     * {@inheritdoc}
-     */
-    public static function create(
-        $body,
-        FqsenResolver $resolver = null,
-        DescriptionFactory $descriptionFactory = null,
-        TypeContext $context = null
-    ) {
-        Assert::string($body);
-        Assert::allNotNull([$resolver, $descriptionFactory]);
+	/**
+	 * {@inheritdoc}
+	 */
+	public static function create(
+		$body,
+		FqsenResolver $resolver = null,
+		DescriptionFactory $descriptionFactory = null,
+		TypeContext $context = null
+	) {
+		Assert::string($body);
+		Assert::allNotNull([$resolver, $descriptionFactory]);
 
-        $parts = preg_split('/\s+/Su', $body, 2);
+		$parts = preg_split('/\s+/Su', $body, 2);
 
-        return new static(
-            $resolver->resolve($parts[0], $context),
-            $descriptionFactory->create(isset($parts[1]) ? $parts[1] : '', $context)
-        );
-    }
+		return new static(
+			$resolver->resolve($parts[0], $context),
+			$descriptionFactory->create(isset($parts[1]) ? $parts[1] : '', $context)
+		);
+	}
 
-    /**
-     * Returns the structural element this tag refers to.
-     *
-     * @return Fqsen
-     */
-    public function getReference()
-    {
-        return $this->refers;
-    }
+	/**
+	 * Returns the structural element this tag refers to.
+	 *
+	 * @return Fqsen
+	 */
+	public function getReference()
+	{
+		return $this->refers;
+	}
 
-    /**
-     * Returns a string representation of this tag.
-     *
-     * @return string
-     */
-    public function __toString()
-    {
-        return $this->refers . ' ' . $this->description->render();
-    }
+	/**
+	 * Returns a string representation of this tag.
+	 *
+	 * @return string
+	 */
+	public function __toString()
+	{
+		return $this->refers . ' ' . $this->description->render();
+	}
 }

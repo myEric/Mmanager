@@ -20,28 +20,28 @@ use SebastianBergmann\Comparator\Factory as BaseFactory;
  */
 final class Factory extends BaseFactory
 {
-    /**
-     * @var Factory
-     */
-    private static $instance;
+	/**
+	 * @var Factory
+	 */
+	private static $instance;
 
-    public function __construct()
-    {
-        parent::__construct();
+	public function __construct()
+	{
+		parent::__construct();
 
-        $this->register(new ClosureComparator());
-        $this->register(new ProphecyComparator());
-    }
+		$this->register(new ClosureComparator());
+		$this->register(new ProphecyComparator());
+	}
 
-    /**
-     * @return Factory
-     */
-    public static function getInstance()
-    {
-        if (self::$instance === null) {
-            self::$instance = new Factory;
-        }
+	/**
+	 * @return Factory
+	 */
+	public static function getInstance()
+	{
+		if (self::$instance === null) {
+			self::$instance = new Factory;
+		}
 
-        return self::$instance;
-    }
+		return self::$instance;
+	}
 }

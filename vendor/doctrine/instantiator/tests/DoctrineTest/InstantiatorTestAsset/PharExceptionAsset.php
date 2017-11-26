@@ -32,13 +32,13 @@ use PharException;
  */
 class PharExceptionAsset extends PharException
 {
-    /**
-     * Constructor - should not be called
-     *
-     * @throws BadMethodCallException
-     */
-    public function __construct()
-    {
-        throw new BadMethodCallException('Not supposed to be called!');
-    }
+	/**
+	 * Constructor - should not be called
+	 *
+	 * @throws BadMethodCallException
+	 */
+	public function __construct()
+	{
+		throw new BadMethodCallException('Not supposed to be called!');
+	}
 }

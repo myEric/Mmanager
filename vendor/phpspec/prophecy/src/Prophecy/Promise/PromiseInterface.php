@@ -22,14 +22,14 @@ use Prophecy\Prophecy\MethodProphecy;
  */
 interface PromiseInterface
 {
-    /**
-     * Evaluates promise.
-     *
-     * @param array          $args
-     * @param ObjectProphecy $object
-     * @param MethodProphecy $method
-     *
-     * @return mixed
-     */
-    public function execute(array $args, ObjectProphecy $object, MethodProphecy $method);
+	/**
+	 * Evaluates promise.
+	 *
+	 * @param array          $args
+	 * @param ObjectProphecy $object
+	 * @param MethodProphecy $method
+	 *
+	 * @return mixed
+	 */
+	public function execute(array $args, ObjectProphecy $object, MethodProphecy $method);
 }

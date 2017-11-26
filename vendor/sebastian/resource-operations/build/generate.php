@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-$functions         = require __DIR__ . '/arginfo.php';
+$functions         = require __DIR__.'/arginfo.php';
 $resourceFunctions = [];
 
 foreach ($functions as $function => $arguments) {
-    foreach ($arguments as $argument) {
-        if ($argument == 'resource') {
-            $resourceFunctions[] = $function;
-        }
-    }
+	foreach ($arguments as $argument) {
+		if ($argument == 'resource') {
+			$resourceFunctions[] = $function;
+		}
+	}
 }
 
 $resourceFunctions = array_unique($resourceFunctions);
@@ -48,7 +48,7 @@ class ResourceOperations
 EOT;
 
 foreach ($resourceFunctions as $function) {
-    $buffer .= sprintf("            '%s',\n", $function);
+	$buffer .= sprintf("            '%s',\n", $function);
 }
 
 $buffer .= <<< EOT
@@ -58,5 +58,5 @@ $buffer .= <<< EOT
 
 EOT;
 
-file_put_contents(__DIR__ . '/../src/ResourceOperations.php', $buffer);
+file_put_contents(__DIR__.'/../src/ResourceOperations.php', $buffer);
 

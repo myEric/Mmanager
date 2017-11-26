@@ -21,35 +21,35 @@ use Prophecy\Prophecy\MethodProphecy;
  */
 class ReturnPromise implements PromiseInterface
 {
-    private $returnValues = array();
+	private $returnValues = array();
 
-    /**
-     * Initializes promise.
-     *
-     * @param array $returnValues Array of values
-     */
-    public function __construct(array $returnValues)
-    {
-        $this->returnValues = $returnValues;
-    }
+	/**
+	 * Initializes promise.
+	 *
+	 * @param array $returnValues Array of values
+	 */
+	public function __construct(array $returnValues)
+	{
+		$this->returnValues = $returnValues;
+	}
 
-    /**
-     * Returns saved values one by one until last one, then continuously returns last value.
-     *
-     * @param array          $args
-     * @param ObjectProphecy $object
-     * @param MethodProphecy $method
-     *
-     * @return mixed
-     */
-    public function execute(array $args, ObjectProphecy $object, MethodProphecy $method)
-    {
-        $value = array_shift($this->returnValues);
+	/**
+	 * Returns saved values one by one until last one, then continuously returns last value.
+	 *
+	 * @param array          $args
+	 * @param ObjectProphecy $object
+	 * @param MethodProphecy $method
+	 *
+	 * @return mixed
+	 */
+	public function execute(array $args, ObjectProphecy $object, MethodProphecy $method)
+	{
+		$value = array_shift($this->returnValues);
 
-        if (!count($this->returnValues)) {
-            $this->returnValues[] = $value;
-        }
+		if (!count($this->returnValues)) {
+			$this->returnValues[] = $value;
+		}
 
-        return $value;
-    }
+		return $value;
+	}
 }
