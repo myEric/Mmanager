@@ -40,11 +40,7 @@ namespace Mmanager\Domain\Entity;
  * Customer Entity
  */
 class Customer {
-<<<<<<< HEAD
 	public function getName() {
 		return 'Eric';
 	}
-=======
-
->>>>>>> b6d53e6e10aac5411b05cd17a438ddac6af60732
 }
