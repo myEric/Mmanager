@@ -41,7 +41,12 @@ namespace Mmanager\Domain\Entity;
  */
 class Customer
 {
+	protected $name;
+	public function setName($name) {
+		$this->name = $name;
+		return $this;
+	}
 	public function getName() {
-		return 'Eric Claver';
+		return $this->name;
 	}
 }

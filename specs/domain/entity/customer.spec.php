@@ -2,10 +2,11 @@
 use Mmanager\Domain\Entity\Customer;
 
 describe('Customer', function() {
-	describe('->getName()', function() {
-		it('should return the customer name', function() {
+	describe('->setName($name)', function() {
+		it('should set the customer name', function() {
 			$customer = new Customer();
-			expect($customer->getName())->to->be->equal('Eric Claver');
+			$customer->setName('Eric Claver AKAFFOU');
+			expect($customer->getName())->to->have->string('AKAFFOU');
 		});
 	});
 });
