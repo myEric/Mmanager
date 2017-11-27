@@ -8,4 +8,4 @@ describe('Customer', function(){
 			expect($customer->getName())->to->be->equal('Eric');
 		});
 	});
-});
+}); 
