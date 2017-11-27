@@ -6,6 +6,12 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
-    'Symfony\\Component\\Yaml\\' => array($vendorDir . '/symfony/yaml'),
-    'MyEric\\Mmanager\\' => array($baseDir . '/src'),
+    'Symfony\\Polyfill\\Mbstring\\' => array($vendorDir . '/symfony/polyfill-mbstring'),
+    'Symfony\\Component\\Debug\\' => array($vendorDir . '/symfony/debug'),
+    'Symfony\\Component\\Console\\' => array($vendorDir . '/symfony/console'),
+    'Psr\\Log\\' => array($vendorDir . '/psr/log/Psr/Log'),
+    'Peridot\\Scope\\' => array($vendorDir . '/peridot-php/peridot-scope/src'),
+    'Peridot\\Leo\\' => array($vendorDir . '/peridot-php/leo/src'),
+    'Peridot\\' => array($vendorDir . '/peridot-php/peridot/src'),
+    'Mmanager\\' => array($baseDir . '/src'),
 );

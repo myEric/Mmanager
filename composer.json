@@ -1,5 +1,5 @@
 {
-    "name": "myeric/Mmanager",
+    "name": "myeric/mmanager",
     "description": "m'Manager Module Builder",
     "keywords": ["mmanager", "composer", "package"],
     "license": "MIT",
@@ -9,13 +9,13 @@
             "email": "akaffou.eric@me.com"
         }
     ],
-    "require": {},
-    "require-dev": {
-        "phpunit/phpunit": "4.0.*"
-    },
 	"autoload": {
         "psr-4": {
-            "MyEric\\Mmanager\\": "src"
+            "Mmanager\\": "src"
         }
+    },
+    "require-dev": {
+        "peridot-php/peridot": "^1.19",
+        "peridot-php/leo": "^1.6"
     }
 }

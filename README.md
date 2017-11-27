@@ -1,4 +1,5 @@
 # m'Manager Module Builder
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/myEric/mmanager/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/myEric/mmanager/?branch=master)
 [![Build Status](https://travis-ci.org/myEric/mmanager.svg?branch=master)](https://travis-ci.org/myEric/mmanager)
 [![Latest Stable Version](https://poser.pugx.org/myeric/mmanager/v/stable.svg)](https://packagist.org/packages/myeric/mmanager) [![Total Downloads](https://poser.pugx.org/myeric/mmanager/downloads.svg)](https://travis-ci.org/myEric/mmanager)
 [![Latest Unstable Version](https://poser.pugx.org/myeric/mmanager/v/unstable.svg)](https://packagist.org/packages/myeric/mmanager) [![License](https://poser.pugx.org/myeric/mmanager/license.svg)](https://packagist.org/packages/myeric/mmanager)
