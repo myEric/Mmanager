@@ -9,7 +9,7 @@ describe('Customer', function()
 		{
 			$customer = new Customer();
 			$customer->setName('Eric Claver AKAFFOU');
-			expect($customer->getName())->to->have->string('AKAFFOU');
+			expect($customer->getName())->to->have->string('Eric Claver AKAFFOU');
 		});
 	});
 });
