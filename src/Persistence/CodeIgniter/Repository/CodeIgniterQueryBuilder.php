@@ -84,8 +84,7 @@ class CodeIgniterQueryBuilder extends AbstractRepository implements QueryBuilder
 		$db = $this;
 		$this->CI = & get_instance();
 	}
-	public function query($query)
-	{
+	public function query($query) {
 		// Initialise return
 		$return_val = 0;
     	
@@ -108,15 +107,13 @@ class CodeIgniterQueryBuilder extends AbstractRepository implements QueryBuilder
 		$this->timer_start($this->num_queries);
     	
 		// Use core file cache function
-		if ($cache = $this->get_cache($query))
-		{
+		if ($cache = $this->get_cache($query)) {
 
 			// Keep tack of how long all queries have taken
 			$this->timer_update_global($this->num_queries);
 
 			// Trace all queries
-			if ($this->use_trace_log)
-			{
+			if ($this->use_trace_log) {
 				$this->trace_log[] = $this->debug(false);
 			}
 
@@ -127,8 +124,7 @@ class CodeIgniterQueryBuilder extends AbstractRepository implements QueryBuilder
 		$ci_query = $this->CI->db->query($query);
     	
 		// If there is an error then take note of it..
-		if ($str = $this->CI->db->error()['message'])
-		{
+		if ($str = $this->CI->db->error()['message']) {
 			$this->register_error($str);
 			$this->show_errors ? trigger_error($str, E_USER_WARNING) : null;				
     		
@@ -139,14 +135,12 @@ class CodeIgniterQueryBuilder extends AbstractRepository implements QueryBuilder
 		}
     	
 		// Query was write (insert/delete/update etc.) query?
-		if (preg_match("/^(insert|delete|update|replace|truncate|drop|create|alter)\s+/i", $query))
-		{
+		if (preg_match("/^(insert|delete|update|replace|truncate|drop|create|alter)\s+/i", $query)) {
 			$is_insert = true;
 			$this->rows_affected = $this->CI->db->affected_rows();
 
 			// Take note of the insert_id
-			if (preg_match("/^(insert|replace)\s+/i", $query))
-			{
+			if (preg_match("/^(insert|replace)\s+/i", $query)) {
 				$this->insert_id = $this->CI->db->insert_id();
 			}
 
@@ -154,22 +148,17 @@ class CodeIgniterQueryBuilder extends AbstractRepository implements QueryBuilder
 			$return_val = $this->rows_affected;
 		}
 		// Query was a select
-		else
-		{
+		else {
 			$is_insert = false;
     		
 			// Store Query Results
 			$num_rows = 0;
-			if ($ci_query->num_rows())
-			{
-				foreach ($ci_query->result() as $row)
-				{
+			if ($ci_query->num_rows()) {
+				foreach ($ci_query->result() as $row) {
 					// Take note of column info
-					if ($num_rows == 0)
-					{
+					if ($num_rows == 0) {
 						$i = 0;
-						foreach (get_object_vars($row) as $k => $v)
-						{
+						foreach (get_object_vars($row) as $k => $v) {
 							$this->col_info[$i] = (object) [];
 
 							$this->col_info[$i]->name = $k;
@@ -200,8 +189,7 @@ class CodeIgniterQueryBuilder extends AbstractRepository implements QueryBuilder
 		$this->timer_update_global($this->num_queries);
 
 		// Trace all queries
-		if ($this->use_trace_log)
-		{
+		if ($this->use_trace_log) {
 			$this->trace_log[] = $this->debug(false);
 		}
 

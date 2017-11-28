@@ -40,7 +40,7 @@ namespace Mmanager\Domain\Factory;
 /**
  * Customer Factory
  */
-class CustomerFactory 
+class CustomerFactory
 {
 	public function create() {
 
