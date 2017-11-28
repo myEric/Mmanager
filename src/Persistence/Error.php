@@ -37,7 +37,8 @@
  
 namespace Mmanager\Persistence;
 
-class Error {
+class Error
+{
 	protected $show_errors = true;
 	protected $last_error = null;
 	protected $captured_errors = array();
@@ -46,8 +47,7 @@ class Error {
 	*  Print SQL/DB error - over-ridden by specific DB class
 	*/
 
-	public function register_error($err_str)
-	{
+	public function register_error($err_str) {
 		// Keep track of last error
 		$this->last_error = $err_str;
 
@@ -62,13 +62,11 @@ class Error {
 	*  Turn error handling on or off..
 	*/
 
-	public function show_errors()
-	{
+	public function show_errors() {
 		$this->show_errors = true;
 	}
 
-	public function hide_errors()
-	{
+	public function hide_errors() {
 		$this->show_errors = false;
 	}
 }

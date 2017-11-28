@@ -52,8 +52,7 @@ class QueryBuilder implements QueryBuilderInterface, RepositoryInterface {
 	 * @param QueryBuilderInterface $queryBuilder 
 	 * @return type void
 	 */
-	public function __construct(QueryBuilderInterface $queryBuilder)
-	{
+	public function __construct(QueryBuilderInterface $queryBuilder) {
 		$this->queryBuilder = $queryBuilder;
 	}
 
@@ -62,8 +61,7 @@ class QueryBuilder implements QueryBuilderInterface, RepositoryInterface {
 	 * @param type $query 
 	 * @return type mixed
 	 */
-	public function query($query)
-	{
+	public function query($query) {
 		return $this->queryBuilder->query($query);
 	}
 

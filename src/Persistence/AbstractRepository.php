@@ -50,7 +50,8 @@ defined('ARRAY_N') or define('ARRAY_N', 'ARRAY_N');
 *  sets once returned
 */
 
-abstract class AbstractRepository extends AbstractDB implements RepositoryInterface {
+abstract class AbstractRepository extends AbstractDB implements RepositoryInterface
+{
 
 	protected $query;
 
@@ -58,8 +59,7 @@ abstract class AbstractRepository extends AbstractDB implements RepositoryInterf
 	*  Constructor
 	*/
 
-	public function __construct(QueryBuilderInterface $query)
-	{
+	public function __construct(QueryBuilderInterface $query) {
 		$this->query = $query;
 	}
 
@@ -67,21 +67,18 @@ abstract class AbstractRepository extends AbstractDB implements RepositoryInterf
 	*  Get one variable from the DB - see docs for more detail
 	*/
 
-	public function get_var($query = null, $x = 0, $y = 0)
-	{
+	public function get_var($query = null, $x = 0, $y = 0) {
 
 		// Log how the function was called
 		$this->func_call = "\$db->get_var(\"$query\",$x,$y)";
 
 		// If there is a query then perform it if not then use cached results..
-		if ($query)
-		{
+		if ($query) {
 			$this->query($query);
 		}
 
 		// Extract var out of cached results based x,y vals
-		if ($this->last_result[$y])
-		{
+		if ($this->last_result[$y]) {
 			$values = array_values(get_object_vars($this->last_result[$y]));
 		}
 
@@ -93,36 +90,30 @@ abstract class AbstractRepository extends AbstractDB implements RepositoryInterf
 	*  Get one row from the DB - see docs for more detail
 	*/
 
-	public function get_row($query = null, $output = OBJECT, $y = 0)
-	{
+	public function get_row($query = null, $output = OBJECT, $y = 0) {
 
 		// Log how the function was called
 		$this->func_call = "\$db->get_row(\"$query\",$output,$y)";
 
 		// If there is a query then perform it if not then use cached results..
-		if ($query)
-		{
+		if ($query) {
 			$this->query($query);
 		}
 
 		// If the output is an object then return object using the row offset..
-		if ($output == OBJECT)
-		{
+		if ($output == OBJECT) {
 			return $this->last_result[$y] ? $this->last_result[$y] : null;
 		}
 		// If the output is an associative array then return row as such..
-		elseif ($output == ARRAY_A)
-		{
+		elseif ($output == ARRAY_A) {
 			return $this->last_result[$y] ?get_object_vars($this->last_result[$y]) : null;
 		}
 		// If the output is an numerical array then return row as such..
-		elseif ($output == ARRAY_N)
-		{
+		elseif ($output == ARRAY_N) {
 			return $this->last_result[$y] ?array_values(get_object_vars($this->last_result[$y])) : null;
 		}
 		// If invalid output type was specified..
-		else
-		{
+		else {
 			$this->show_errors ? trigger_error(" \$db->get_row(string query, output type, int offset) -- Output type must be one of: OBJECT, ARRAY_A, ARRAY_N", E_USER_WARNING) : null;
 		}
 
@@ -133,21 +124,18 @@ abstract class AbstractRepository extends AbstractDB implements RepositoryInterf
 	*  see docs for usage and info
 	*/
 
-	public function get_col($query = null, $x = 0)
-	{
+	public function get_col($query = null, $x = 0) {
 
 		$new_array = array();
 
 		// If there is a query then perform it if not then use cached results..
-		if ($query)
-		{
+		if ($query) {
 			$this->query($query);
 		}
 
 		// Extract the column values
 		$j = count($this->last_result);
-		for ($i = 0; $i < $j; $i++)
-		{
+		for ($i = 0; $i < $j; $i++) {
 			$new_array[$i] = $this->get_var(null, $x, $i);
 		}
 
@@ -159,34 +147,27 @@ abstract class AbstractRepository extends AbstractDB implements RepositoryInterf
 	*  Return the the query as a result set - see docs for more details
 	*/
 
-	public function get_results($query = null, $output = OBJECT)
-	{
+	public function get_results($query = null, $output = OBJECT) {
 		$new_array = array();
 		// Log how the function was called
 		$this->func_call = "\$db->get_results(\"$query\", $output)";
 
 		// If there is a query then perform it if not then use cached results..
-		if ($query)
-		{
+		if ($query) {
 			$this->query($query);
 		}
 
 		// Send back array of objects. Each row is an object
-		if ($output == OBJECT)
-		{
+		if ($output == OBJECT) {
 			return $this->last_result;
-		} elseif ($output == ARRAY_A || $output == ARRAY_N)
-		{
-			if ($this->last_result)
-			{
+		} elseif ($output == ARRAY_A || $output == ARRAY_N) {
+			if ($this->last_result) {
 				$i = 0;
-				foreach ($this->last_result as $row)
-				{
+				foreach ($this->last_result as $row) {
 
 					$new_array[$i] = get_object_vars($row);
 
-					if ($output == ARRAY_N)
-					{
+					if ($output == ARRAY_N) {
 						$new_array[$i] = array_values($new_array[$i]);
 					}
 
@@ -194,8 +175,7 @@ abstract class AbstractRepository extends AbstractDB implements RepositoryInterf
 				}
 
 				return $new_array;
-			} else
-			{
+			} else {
 				return array();
 			}
 		}
@@ -207,22 +187,17 @@ abstract class AbstractRepository extends AbstractDB implements RepositoryInterf
 	* see docs for more info and usage
 	*/
 
-	public function get_col_info($info_type = "name", $col_offset = -1)
-	{
+	public function get_col_info($info_type = "name", $col_offset = -1) {
 		$new_array = array();
-		if ($this->col_info)
-		{
-			if ($col_offset == -1)
-			{
+		if ($this->col_info) {
+			if ($col_offset == -1) {
 				$i = 0;
-				foreach ($this->col_info as $col)
-				{
+				foreach ($this->col_info as $col) {
 					$new_array[$i] = $col->{$info_type};
 					$i++;
 				}
 				return $new_array;
-			} else
-			{
+			} else {
 				return $this->col_info[$col_offset]->{$info_type};
 			}
 
@@ -233,26 +208,21 @@ abstract class AbstractRepository extends AbstractDB implements RepositoryInterf
 	*  Timer related functions
 	*/
 
-	public function timer_get_cur()
-	{
+	public function timer_get_cur() {
 		list($usec, $sec) = explode(" ", microtime());
 		return ((float) $usec + (float) $sec);
 	}
 
-	public function timer_start($timer_name)
-	{
+	public function timer_start($timer_name) {
 		$this->timers[$timer_name] = $this->timer_get_cur();
 	}
 
-	public function timer_elapsed($timer_name)
-	{
+	public function timer_elapsed($timer_name) {
 		return round($this->timer_get_cur() - $this->timers[$timer_name], 2);
 	}
 
-	public function timer_update_global($timer_name)
-	{
-		if ($this->do_profile)
-		{
+	public function timer_update_global($timer_name) {
+		if ($this->do_profile) {
 			$this->profile_times[] = array(
 				'query' => $this->last_query,
 				'time' => $this->timer_elapsed($timer_name)
@@ -280,16 +250,13 @@ abstract class AbstractRepository extends AbstractDB implements RepositoryInterf
 	*     login = 'jv', email = 'jv@vip.ie', user_id = 1, created = NOW()
 	*/
 
-	public function get_set($params)
-	{
-		if (!is_array($params))
-		{
+	public function get_set($params) {
+		if (!is_array($params)) {
 			$this->register_error('get_set() parameter invalid. Expected array in '.__FILE__.' on line '.__LINE__);
 			return;
 		}
 		$sql = array();
-		foreach ($params as $field => $val)
-		{
+		foreach ($params as $field => $val) {
 			if ($val === 'true' || $val === true) {
 							$val = 1;
 			}

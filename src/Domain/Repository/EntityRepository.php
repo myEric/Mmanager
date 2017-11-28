@@ -42,7 +42,8 @@ use Mmanager\Persistence\CodeIgniter\Repository\CodeIgniterQueryBuilder as CodeI
 /**
  * Entity Repository Class
  */
-class EntityRepository extends QueryBuilder implements EntityRepositoryInterface {
+class EntityRepository extends QueryBuilder implements EntityRepositoryInterface
+{
 
 	/**
 	 * @var string
@@ -110,8 +111,7 @@ class EntityRepository extends QueryBuilder implements EntityRepositoryInterface
 	 * @param type $primaryKey 
 	 * @return mixed
 	 */
-	public function setPrimaryKey($primaryKey)
-	{
+	public function setPrimaryKey($primaryKey) {
 		$this->_primaryKey = $primaryKey;
 		return $this;
 	}
@@ -120,8 +120,7 @@ class EntityRepository extends QueryBuilder implements EntityRepositoryInterface
 	 * Get Primary Key
 	 * @return mixed
 	 */
-	public function getPrimaryKey()
-	{
+	public function getPrimaryKey() {
 		return $this->_primaryKey;
 	}
 
@@ -147,8 +146,7 @@ class EntityRepository extends QueryBuilder implements EntityRepositoryInterface
 	 * Get Class Name
 	 * @return type mixed
 	 */
-	public function getClassName()
-	{
+	public function getClassName() {
 		return $this->getEntityName();
 	}
 
@@ -208,8 +206,7 @@ class EntityRepository extends QueryBuilder implements EntityRepositoryInterface
 	 * @param type $arguments 
 	 * @return type mixed
 	 */
-	public function __call($method, $arguments)
-	{
+	public function __call($method, $arguments) {
 		switch (true) {
 			case (0 === strpos($method, 'findBy')):
 				$by = substr($method, 6);
@@ -256,8 +253,7 @@ class EntityRepository extends QueryBuilder implements EntityRepositoryInterface
 	 * Display query results in a table
 	 * @return type mixed
 	 */
-	public function debug()
-	{
+	public function debug() {
 		return $this->_gateway->debug();
 	}
 }
