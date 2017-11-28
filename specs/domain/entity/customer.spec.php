@@ -16,7 +16,7 @@ describe('Customer', function()
 		it('should get the customer name', function(){
 			$customer = new Customer();
 			$customer->setName('Eric Claver AKAFFOU');
-			expect($customer->setName('Eric Claver AKAFFOU')->getName())->to->have->string('Eric Claver AKAFFOU');
+			expect($customer->getName())->to->have->string('Eric Claver AKAFFOU');
 		});
 	});
 });
