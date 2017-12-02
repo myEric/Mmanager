@@ -47,6 +47,7 @@ class CodeIgniterQueryBuilder extends AbstractRepository implements QueryBuilder
 	protected $debug = true;
 	protected $rows_affected = false;
 	protected $insert_id;
+	protected $is_insert = false;
 	public $tables = array(
 		'options'			 => 'oc_options',
 		'users_options'		 => 'oc_usersoptions',
@@ -133,54 +134,9 @@ class CodeIgniterQueryBuilder extends AbstractRepository implements QueryBuilder
     		
 			return false;
 		}
-    	
-		// Query was write (insert/delete/update etc.) query?
-		if (preg_match("/^(insert|delete|update|replace|truncate|drop|create|alter)\s+/i", $query)) {
-			$is_insert = true;
-			$this->rows_affected = $this->CI->db->affected_rows();
-
-			// Take note of the insert_id
-			if (preg_match("/^(insert|replace)\s+/i", $query)) {
-				$this->insert_id = $this->CI->db->insert_id();
-			}
-
-			// Return number fo rows affected
-			$return_val = $this->rows_affected;
-		}
-		// Query was a select
-		else {
-			$is_insert = false;
-    		
-			// Store Query Results
-			$num_rows = 0;
-			if ($ci_query->num_rows()) {
-				foreach ($ci_query->result() as $row) {
-					// Take note of column info
-					if ($num_rows == 0) {
-						$i = 0;
-						foreach (get_object_vars($row) as $k => $v) {
-							$this->col_info[$i] = (object) [];
-
-							$this->col_info[$i]->name = $k;
-							$this->col_info[$i]->max_length = $k;
-							$this->col_info[$i]->type = '';
-							$i++;
-						}
-					}
-    				
-					// Store relults as an objects within main array
-					$this->last_result[$num_rows] = $row;
-					$num_rows++;
-				}
-			}
-    		
-			// Log number of rows the query returned
-			$return_val = $this->num_rows = $num_rows;
-
-		}
-
+    	$return_val = $this->_execute($query);
 		// disk caching of queries
-		$this->store_cache($query, $is_insert);
+		$this->store_cache($query, $this->is_insert);
 
 		// If debug ALL queries
 		$this->trace || $this->debug_all ? $this->debug() : null;
@@ -201,5 +157,49 @@ class CodeIgniterQueryBuilder extends AbstractRepository implements QueryBuilder
 	public function escape($str) {
 		return $this->CI->db->escape_str(stripslashes($str));
 	}
+	private function _execute($query)
+	{
+		// Query was write (insert/delete/update etc.) query?
+		if (preg_match("/^(insert|delete|update|replace|truncate|drop|create|alter)\s+/i", $query)) {
+			$this->is_insert = true;
+			$this->rows_affected = $this->CI->db->affected_rows();
 
+			// Take note of the insert_id
+			if (preg_match("/^(insert|replace)\s+/i", $query)) {
+				$this->insert_id = $this->CI->db->insert_id();
+			}
+
+			// Return number fo rows affected
+			$return_val = $this->rows_affected;
+		}
+		// Query was a select
+		else {	
+			// Store Query Results
+			$num_rows = 0;
+			if ($ci_query->num_rows()) {
+				foreach ($ci_query->result() as $row) {
+					// Take note of column info
+					if ($num_rows == 0) {
+						$i = 0;
+						foreach (get_object_vars($row) as $k => $v) {
+							$this->col_info[$i] = (object) [];
+
+							$this->col_info[$i]->name = $k;
+							$this->col_info[$i]->max_length = $k;
+							$this->col_info[$i]->type = '';
+							$i++;
+						}
+					}
+		  				
+					// Store relults as an objects within main array
+					$this->last_result[$num_rows] = $row;
+					$num_rows++;
+				}
+			}
+		  		
+			// Log number of rows the query returned
+			$return_val = $this->num_rows = $num_rows;
+
+		}
+	}
 }
