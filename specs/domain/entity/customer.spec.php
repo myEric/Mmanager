@@ -28,3 +28,4 @@ describe('Customer', function()
 		});
 	});
 });
+});
