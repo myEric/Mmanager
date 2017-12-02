@@ -48,6 +48,7 @@ class CodeIgniterQueryBuilder extends AbstractRepository implements QueryBuilder
 	protected $rows_affected = false;
 	protected $insert_id;
 	protected $is_insert = false;
+	protected $$ci_query;
 	public $tables = array(
 		'options'			 => 'oc_options',
 		'users_options'		 => 'oc_usersoptions',
@@ -122,7 +123,7 @@ class CodeIgniterQueryBuilder extends AbstractRepository implements QueryBuilder
 		}
     	
 		// Perform the query via CI database system
-		$ci_query = $this->CI->db->query($query);
+		$this->ci_query = $this->CI->db->query($query);
     	
 		// If there is an error then take note of it..
 		if ($str = $this->CI->db->error()['message']) {
@@ -170,13 +171,13 @@ class CodeIgniterQueryBuilder extends AbstractRepository implements QueryBuilder
 			}
 
 			// Return number fo rows affected
-			$return_val = $this->rows_affected;
+			return $this->rows_affected;
 		}
 		// Query was a select
 		else {	
 			// Store Query Results
 			$num_rows = 0;
-			if ($ci_query->num_rows()) {
+			if ($this->ci_query->num_rows()) {
 				foreach ($ci_query->result() as $row) {
 					// Take note of column info
 					if ($num_rows == 0) {
@@ -198,7 +199,7 @@ class CodeIgniterQueryBuilder extends AbstractRepository implements QueryBuilder
 			}
 		  		
 			// Log number of rows the query returned
-			$return_val = $this->num_rows = $num_rows;
+			return $this->num_rows = $num_rows;
 
 		}
 	}
