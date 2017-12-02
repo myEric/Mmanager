@@ -4,5 +4,5 @@ use Peridot\Plugin\Watcher\WatcherPlugin;
 
 return function(EventEmitterInterface $emitter)
 {
-	$watcher = new WatcherPlugin($emitter);
+	new WatcherPlugin($emitter);
 };
