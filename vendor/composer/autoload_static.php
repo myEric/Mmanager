@@ -12,6 +12,13 @@ class ComposerStaticInitcdb38253bf5601c99401e260b42b3a91
     );
 
     public static $prefixLengthsPsr4 = array (
+        'Z' => 
+        array (
+            'Zend\\Validator\\' => 15,
+            'Zend\\Stdlib\\' => 12,
+            'Zend\\ServiceManager\\' => 20,
+            'Zend\\Barcode\\' => 13,
+        ),
         'S' => 
         array (
             'Symfony\\Polyfill\\Mbstring\\' => 26,
@@ -25,6 +32,7 @@ class ComposerStaticInitcdb38253bf5601c99401e260b42b3a91
         'P' => 
         array (
             'Psr\\Log\\' => 8,
+            'Psr\\Container\\' => 14,
             'Peridot\\Scope\\' => 14,
             'Peridot\\Plugin\\Watcher\\' => 23,
             'Peridot\\Leo\\' => 12,
@@ -34,9 +42,29 @@ class ComposerStaticInitcdb38253bf5601c99401e260b42b3a91
         array (
             'Mmanager\\' => 9,
         ),
+        'I' => 
+        array (
+            'Interop\\Container\\' => 18,
+        ),
     );
 
     public static $prefixDirsPsr4 = array (
+        'Zend\\Validator\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/zendframework/zend-validator/src',
+        ),
+        'Zend\\Stdlib\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/zendframework/zend-stdlib/src',
+        ),
+        'Zend\\ServiceManager\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/zendframework/zend-servicemanager/src',
+        ),
+        'Zend\\Barcode\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/zendframework/zend-barcode/src',
+        ),
         'Symfony\\Polyfill\\Mbstring\\' => 
         array (
             0 => __DIR__ . '/..' . '/symfony/polyfill-mbstring',
@@ -69,6 +97,10 @@ class ComposerStaticInitcdb38253bf5601c99401e260b42b3a91
         array (
             0 => __DIR__ . '/..' . '/psr/log/Psr/Log',
         ),
+        'Psr\\Container\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/psr/container/src',
+        ),
         'Peridot\\Scope\\' => 
         array (
             0 => __DIR__ . '/..' . '/peridot-php/peridot-scope/src',
@@ -88,6 +120,10 @@ class ComposerStaticInitcdb38253bf5601c99401e260b42b3a91
         'Mmanager\\' => 
         array (
             0 => __DIR__ . '/../..' . '/src',
+        ),
+        'Interop\\Container\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/container-interop/container-interop/src/Interop/Container',
         ),
     );
 
