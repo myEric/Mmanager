@@ -10,6 +10,7 @@ describe('Customer', function()
 			$customer = new Customer();
 			$customer->setName('Eric Claver AKAFFOU');
 		});
+<<<<<<< HEAD
 		describe('->getName()', function()
 		{
 			it('should get the customer name', function(){
@@ -17,6 +18,16 @@ describe('Customer', function()
 				$customer->setName('Eric Claver AKAFFOU');
 				expect($customer->getName())->to->have->string('Eric Claver AKAFFOU');
 			});
+=======
+	});
+	describe('->getName()', function()
+	{
+		it('should get the customer name', function()
+		{
+			$customer = new Customer();
+			$customer->setName('Eric Claver AKAFFOU');
+			expect($customer->getName())->to->have->string('Eric Claver AKAFFOU');
+>>>>>>> f89ed31b341a0f92418faa2cdec97b0f0e58244b
 		});
 	});
 });

@@ -37,7 +37,8 @@
  
 namespace Mmanager\Persistence;
 
-class Cache extends Error {
+class Cache extends Error
+{
 	protected $cache_dir = false;
 	protected $use_disk_cache = false;
 	protected $cache_inserts = false;
@@ -52,21 +53,17 @@ class Cache extends Error {
 	*  store_cache
 	*/
 
-	public function store_cache($query, $is_insert)
-	{
+	public function store_cache($query, $is_insert) {
 
 		// The would be cache file for this query
 		$cache_file = $this->cache_dir.'/'.md5($query);
 
 		// disk caching of queries
-		if ($this->use_disk_cache && ($this->cache_queries && !$is_insert) || ($this->cache_inserts && $is_insert))
-		{
-			if (!is_dir($this->cache_dir))
-			{
+		if ($this->use_disk_cache && ($this->cache_queries && !$is_insert) || ($this->cache_inserts && $is_insert)) {
+			if (!is_dir($this->cache_dir)) {
 				$this->register_error("Could not open cache dir: $this->cache_dir");
 				$this->show_errors ? trigger_error("Could not open cache dir: $this->cache_dir", E_USER_WARNING) : null;
-			} else
-			{
+			} else {
 				// Cache all result values
 				$result_cache = array(
 					'col_info' => $this->col_info,
@@ -87,22 +84,18 @@ class Cache extends Error {
 	*  get_cache
 	*/
 
-	public function get_cache($query)
-	{
+	public function get_cache($query) {
 
 		// The would be cache file for this query
 		$cache_file = $this->cache_dir.'/'.md5($query);
 
 		// Try to get previously cached version
-		if ($this->use_disk_cache && file_exists($cache_file))
-		{
+		if ($this->use_disk_cache && file_exists($cache_file)) {
 			// Only use this cache file if less than 'cache_timeout' (hours)
 			if ((time() - filemtime($cache_file)) > ($this->cache_timeout * 3600) &&
-				!(file_exists($cache_file.".updating") && (time() - filemtime($cache_file.".updating") < 60)))
-			{
+				!(file_exists($cache_file.".updating") && (time() - filemtime($cache_file.".updating") < 60))) {
 				touch($cache_file.".updating"); // Show that we in the process of updating the cache
-			} else
-			{
+			} else {
 				$result_cache = unserialize(file_get_contents($cache_file));
 
 				$this->col_info = $result_cache['col_info'];
@@ -123,8 +116,7 @@ class Cache extends Error {
 	*  Kill cached query results
 	*/
 
-	public function flush()
-	{
+	public function flush() {
 		// Get rid of these
 		$this->last_result = null;
 		$this->col_info = null;

@@ -36,7 +36,8 @@
  */
 namespace Mmanager\Domain\Repository;
 
-interface EntityRepositoryInterface extends RepositoryInterface {
+interface EntityRepositoryInterface extends RepositoryInterface
+{
 	public function setTable($table);
 	public function getTable();
 
