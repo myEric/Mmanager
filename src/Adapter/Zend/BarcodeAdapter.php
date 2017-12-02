@@ -5,5 +5,5 @@ use Zend\Barcode\Barcode;
 
 class BarcodeAdapter extends Barcode
 {
-
+	
 }
