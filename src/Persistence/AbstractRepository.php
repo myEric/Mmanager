@@ -259,7 +259,6 @@ abstract class AbstractRepository extends AbstractDB implements RepositoryInterf
 
 	private function _renderResultsOutput($output) {
 
-<<<<<<< HEAD
 		switch ($output) {
 			case 'OBJECT':
 				return $this->last_result;
@@ -269,15 +268,6 @@ abstract class AbstractRepository extends AbstractDB implements RepositoryInterf
 				if ($this->last_result) {
 					$i = 0;
 					foreach ($this->last_result as $row) {
-=======
-		// Send back array of objects. Each row is an object
-		if ($output == OBJECT) {
-			return $this->last_result;
-		} elseif ($output == ARRAY_A || $output == ARRAY_N) {
-			if ($this->last_result) {
-				$i = 0;
-				foreach ($this->last_result as $row) {
->>>>>>> 167415ddc36887bebd84665b99e556087e22b118
 
 						$this->new_array[$i] = get_object_vars($row);
 
