@@ -48,7 +48,7 @@ class CodeIgniterQueryBuilder extends AbstractRepository implements QueryBuilder
 	protected $rows_affected = false;
 	protected $insert_id;
 	protected $is_insert = false;
-	protected $$ci_query;
+	protected $ci_query;
 	public $tables = array(
 		'options'			 => 'oc_options',
 		'users_options'		 => 'oc_usersoptions',
@@ -87,9 +87,7 @@ class CodeIgniterQueryBuilder extends AbstractRepository implements QueryBuilder
 		$this->CI = & get_instance();
 	}
 	public function query($query) {
-		// Initialise return
-		$return_val = 0;
-    	
+		
 		// Flush cached values..
 		$this->flush();
     	
@@ -178,7 +176,7 @@ class CodeIgniterQueryBuilder extends AbstractRepository implements QueryBuilder
 			// Store Query Results
 			$num_rows = 0;
 			if ($this->ci_query->num_rows()) {
-				foreach ($ci_query->result() as $row) {
+				foreach ($this->ci_query->result() as $row) {
 					// Take note of column info
 					if ($num_rows == 0) {
 						$i = 0;
