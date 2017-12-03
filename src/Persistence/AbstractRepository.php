@@ -198,7 +198,7 @@ abstract class AbstractRepository extends AbstractDB implements RepositoryInterf
 
 	public function get_set($params) {
 
-		is_array($params) OR $params = array($params);
+		$params = array($params);
 		$sql = array();
 		foreach ($params as $field => $val) {
 			switch ($this->_parseVal($val)) {
@@ -210,7 +210,7 @@ abstract class AbstractRepository extends AbstractDB implements RepositoryInterf
 					$sql[] = "$field = '".$this->escape($val)."'";
 			}
 		}
-		
+
 		return implode(', ', $sql);
 	}
 
