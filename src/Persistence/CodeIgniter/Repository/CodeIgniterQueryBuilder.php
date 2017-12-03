@@ -156,8 +156,7 @@ class CodeIgniterQueryBuilder extends AbstractRepository implements QueryBuilder
 	public function escape($str) {
 		return $this->CI->db->escape_str(stripslashes($str));
 	}
-	private function _execute($query)
-	{
+	private function _execute($query) {
 		// Query was write (insert/delete/update etc.) query?
 		if (preg_match("/^(insert|delete|update|replace|truncate|drop|create|alter)\s+/i", $query)) {
 			$this->is_insert = true;
@@ -172,7 +171,7 @@ class CodeIgniterQueryBuilder extends AbstractRepository implements QueryBuilder
 			return $this->rows_affected;
 		}
 		// Query was a select
-		else {	
+		else {
 			// Store Query Results
 			$num_rows = 0;
 			if ($this->ci_query->num_rows()) {
