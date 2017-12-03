@@ -16,6 +16,16 @@ class ComposerStaticInitcdb38253bf5601c99401e260b42b3a91
         array (
             'phpDocumentor\\Reflection\\' => 25,
         ),
+        'Z' => 
+        array (
+            'Zend\\Validator\\' => 15,
+            'Zend\\Stdlib\\' => 12,
+            'Zend\\ServiceManager\\' => 20,
+            'Zend\\Hydrator\\' => 14,
+            'Zend\\Escaper\\' => 13,
+            'Zend\\Debug\\' => 11,
+            'Zend\\Barcode\\' => 13,
+        ),
         'W' => 
         array (
             'Webmozart\\Assert\\' => 17,
@@ -34,6 +44,7 @@ class ComposerStaticInitcdb38253bf5601c99401e260b42b3a91
         'P' => 
         array (
             'Psr\\Log\\' => 8,
+            'Psr\\Container\\' => 14,
             'Peridot\\Scope\\' => 14,
             'Peridot\\Plugin\\Watcher\\' => 23,
             'Peridot\\Leo\\' => 12,
@@ -42,6 +53,10 @@ class ComposerStaticInitcdb38253bf5601c99401e260b42b3a91
         'M' => 
         array (
             'Mmanager\\' => 9,
+        ),
+        'I' => 
+        array (
+            'Interop\\Container\\' => 18,
         ),
         'D' => 
         array (
@@ -55,6 +70,34 @@ class ComposerStaticInitcdb38253bf5601c99401e260b42b3a91
             0 => __DIR__ . '/..' . '/phpdocumentor/reflection-common/src',
             1 => __DIR__ . '/..' . '/phpdocumentor/type-resolver/src',
             2 => __DIR__ . '/..' . '/phpdocumentor/reflection-docblock/src',
+        ),
+        'Zend\\Validator\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/zendframework/zend-validator/src',
+        ),
+        'Zend\\Stdlib\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/zendframework/zend-stdlib/src',
+        ),
+        'Zend\\ServiceManager\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/zendframework/zend-servicemanager/src',
+        ),
+        'Zend\\Hydrator\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/zendframework/zend-hydrator/src',
+        ),
+        'Zend\\Escaper\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/zendframework/zend-escaper/src',
+        ),
+        'Zend\\Debug\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/zendframework/zend-debug/src',
+        ),
+        'Zend\\Barcode\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/zendframework/zend-barcode/src',
         ),
         'Webmozart\\Assert\\' => 
         array (
@@ -96,6 +139,10 @@ class ComposerStaticInitcdb38253bf5601c99401e260b42b3a91
         array (
             0 => __DIR__ . '/..' . '/psr/log/Psr/Log',
         ),
+        'Psr\\Container\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/psr/container/src',
+        ),
         'Peridot\\Scope\\' => 
         array (
             0 => __DIR__ . '/..' . '/peridot-php/peridot-scope/src',
@@ -115,6 +162,10 @@ class ComposerStaticInitcdb38253bf5601c99401e260b42b3a91
         'Mmanager\\' => 
         array (
             0 => __DIR__ . '/../..' . '/src',
+        ),
+        'Interop\\Container\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/container-interop/container-interop/src/Interop/Container',
         ),
         'Doctrine\\Instantiator\\' => 
         array (
