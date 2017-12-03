@@ -197,10 +197,8 @@ abstract class AbstractRepository extends AbstractDB implements RepositoryInterf
 	*/
 
 	public function get_set($params) {
-		if (!is_array($params)) {
-			$this->register_error('get_set() parameter invalid. Expected array in '.__FILE__.' on line '.__LINE__);
-			return;
-		}
+
+		is_array($params) OR $params = array($params);
 		$sql = array();
 		foreach ($params as $field => $val) {
 			if ($val === 'true' || $val === true) {
@@ -209,7 +207,6 @@ abstract class AbstractRepository extends AbstractDB implements RepositoryInterf
 			if ($val === 'false' || $val === false) {
 							$val = 0;
 			}
-
 			switch ($val) {
 				case 'NOW()' :
 				case 'NULL' :
