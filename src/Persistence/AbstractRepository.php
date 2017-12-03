@@ -201,13 +201,7 @@ abstract class AbstractRepository extends AbstractDB implements RepositoryInterf
 		is_array($params) OR $params = array($params);
 		$sql = array();
 		foreach ($params as $field => $val) {
-			if ($val === 'true' || $val === true) {
-							$val = 1;
-			}
-			if ($val === 'false' || $val === false) {
-							$val = 0;
-			}
-			switch ($val) {
+			switch ($this->_parseVal($val)) {
 				case 'NOW()' :
 				case 'NULL' :
 				  $sql[] = "$field = $val";
@@ -216,7 +210,7 @@ abstract class AbstractRepository extends AbstractDB implements RepositoryInterf
 					$sql[] = "$field = '".$this->escape($val)."'";
 			}
 		}
-
+		
 		return implode(', ', $sql);
 	}
 
@@ -313,5 +307,18 @@ abstract class AbstractRepository extends AbstractDB implements RepositoryInterf
 			$this->query($query);
 		}
 	}
+	private function _parseVal($val) {
+
+		if ($val === 'true' || $val === true) {
+			return '1';
+		}
+		elseif ($val === 'false' || $val === false) {
+			return '0';
+		}
+		else {
+			return $val;
+		}
+	}
+
 	abstract public function query($query);
 }
