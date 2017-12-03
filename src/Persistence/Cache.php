@@ -36,11 +36,9 @@
  */
  
 namespace Mmanager\Persistence;
-use Mmanager\Persistence\Error;
 
-class Cache
+class Cache extends Error
 {
-	protected $error;
 	protected $cache_dir = false;
 	protected $use_disk_cache = false;
 	protected $cache_inserts = false;
@@ -55,9 +53,6 @@ class Cache
 	*  store_cache
 	*/
 
-	public function __construct(Erro $error) {
-		$this->error = $error;
-	}
 	public function store_cache($query, $is_insert) {
 
 		// The would be cache file for this query
@@ -66,8 +61,8 @@ class Cache
 		// disk caching of queries
 		if ($this->use_disk_cache && ($this->cache_queries && !$is_insert) || ($this->cache_inserts && $is_insert)) {
 			if (!is_dir($this->cache_dir)) {
-				$this->error->register_error("Could not open cache dir: $this->cache_dir");
-				$this->error->show_errors ? trigger_error("Could not open cache dir: $this->cache_dir", E_USER_WARNING) : null;
+				$this->register_error("Could not open cache dir: $this->cache_dir");
+				$this->show_errors ? trigger_error("Could not open cache dir: $this->cache_dir", E_USER_WARNING) : null;
 			} else {
 				// Cache all result values
 				$result_cache = array(
@@ -84,6 +79,7 @@ class Cache
 		}
 
 	}
+
 	/**********************************************************************
 	*  get_cache
 	*/
