@@ -123,4 +123,5 @@ class Cache extends Error
 		$this->last_query = null;
 		$this->from_disk_cache = false;
 	}
+	abstract public function debug();
 }
