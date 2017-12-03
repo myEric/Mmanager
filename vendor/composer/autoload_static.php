@@ -24,6 +24,7 @@ class ComposerStaticInitcdb38253bf5601c99401e260b42b3a91
             'Zend\\Hydrator\\' => 14,
             'Zend\\Escaper\\' => 13,
             'Zend\\Debug\\' => 11,
+            'Zend\\Db\\' => 8,
             'Zend\\Barcode\\' => 13,
         ),
         'W' => 
@@ -94,6 +95,10 @@ class ComposerStaticInitcdb38253bf5601c99401e260b42b3a91
         'Zend\\Debug\\' => 
         array (
             0 => __DIR__ . '/..' . '/zendframework/zend-debug/src',
+        ),
+        'Zend\\Db\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/zendframework/zend-db/src',
         ),
         'Zend\\Barcode\\' => 
         array (
