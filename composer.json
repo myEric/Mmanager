@@ -23,5 +23,6 @@
         "zendframework/zend-barcode": "^2.6",
         "zendframework/zend-debug": "^2.5",
         "zendframework/zend-escaper": "^2.5"
-    }
+    },
+    "minimum-stability": "dev"
 }
