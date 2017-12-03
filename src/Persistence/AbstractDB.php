@@ -139,25 +139,56 @@ abstract class AbstractDB extends Cache
 
 		echo "<blockquote>";
 
-		// Only show ezSQL credits once..
-		if (!$this->debug_called) {
-			echo "<font color=800080 face=arial size=2><b>ezSQL</b> (v".EZSQL_VERSION.") <b>Debug..</b></font><p>\n";
-		}
-
-		if ($this->last_error) {
-			echo "<font face=arial size=2 color=000099><b>Last Error --</b> [<font color=000000><b>$this->last_error</b></font>]<p>";
-		}
-
-		if ($this->from_disk_cache) {
-			echo "<font face=arial size=2 color=000099><b>Results retrieved from disk cache</b></font><p>";
-		}
+		$this->_isDebugCalled();
+		$this->_hasError();
+		$this->_isFromCache();
 
 		echo "<font face=arial size=2 color=000099><b>Query</b> [$this->num_queries] <b>--</b> ";
 		echo "[<font color=000000><b>$this->last_query</b></font>]</font><p>";
 
-			echo "<font face=arial size=2 color=000099><b>Query Result..</b></font>";
-			echo "<blockquote>";
+		echo "<font face=arial size=2 color=000099><b>Query Result..</b></font>";
+		echo "<blockquote>";
+		$this->_colInfo();
+		echo "</blockquote></blockquote><hr noshade color=dddddd size=1>";
 
+		// Stop output buffering and capture debug HTML
+		$html = ob_get_contents();
+		ob_end_clean();
+
+		// Only echo output if it is turned on
+		if ($this->debug_echo_is_on && $print_to_screen) {
+			echo $html;
+		}
+
+		$this->debug_called = true;
+
+		return $html;
+	}
+	/**********************************************************************
+	*  Format a sql string correctly for safe insert
+	*/
+	public function escape($str) {
+		return $this->CI->db->escape_str(stripslashes($str));
+	}
+	private function _isDebugCalled() {
+		if ( ! $this->debug_called) {
+			echo "<font color=800080 face=arial size=2><b>ezSQL</b> (v".EZSQL_VERSION.") <b>Debug..</b></font><p>\n";
+		}
+	}
+
+	private _hasError() {
+		if ($this->last_error) {
+			echo "<font face=arial size=2 color=000099><b>Last Error --</b> [<font color=000000><b>$this->last_error</b></font>]<p>";
+		}
+	}
+
+	private _isFromCache() {
+		if ($this->from_disk_cache) {
+			echo "<font face=arial size=2 color=000099><b>Results retrieved from disk cache</b></font><p>";
+		}
+	}
+
+	private _colInfo() {
 		if ($this->col_info) {
 
 			// =====================================================
@@ -209,26 +240,6 @@ abstract class AbstractDB extends Cache
 			echo "<font face=arial size=2>No Results</font>";
 		}
 
-		echo "</blockquote></blockquote><hr noshade color=dddddd size=1>";
-
-		// Stop output buffering and capture debug HTML
-		$html = ob_get_contents();
-		ob_end_clean();
-
-		// Only echo output if it is turned on
-		if ($this->debug_echo_is_on && $print_to_screen) {
-			echo $html;
-		}
-
-		$this->debug_called = true;
-
-		return $html;
-	}
-	/**********************************************************************
-	*  Format a sql string correctly for safe insert
-	*/
-	public function escape($str) {
-		return $this->CI->db->escape_str(stripslashes($str));
 	}
 	abstract public function get_results($query = null, $output = OBJECT);
 }
