@@ -262,8 +262,7 @@ abstract class AbstractRepository extends AbstractDB implements RepositoryInterf
 		// Send back array of objects. Each row is an object
 		if ($output == OBJECT) {
 			return $this->last_result;
-		} 
-		elseif ($output == ARRAY_A || $output == ARRAY_N) {
+		} elseif ($output == ARRAY_A || $output == ARRAY_N) {
 			if ($this->last_result) {
 				$i = 0;
 				foreach ($this->last_result as $row) {
