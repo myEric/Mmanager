@@ -22,14 +22,19 @@ class ComposerStaticInitcdb38253bf5601c99401e260b42b3a91
         'S' => 
         array (
             'Symfony\\Polyfill\\Mbstring\\' => 26,
+            'Symfony\\Component\\Process\\' => 26,
+            'Symfony\\Component\\Filesystem\\' => 29,
+            'Symfony\\Component\\EventDispatcher\\' => 34,
             'Symfony\\Component\\Debug\\' => 24,
             'Symfony\\Component\\Console\\' => 26,
+            'Symfony\\Component\\Config\\' => 25,
         ),
         'P' => 
         array (
             'Psr\\Log\\' => 8,
             'Psr\\Container\\' => 14,
             'Peridot\\Scope\\' => 14,
+            'Peridot\\Plugin\\Watcher\\' => 23,
             'Peridot\\Leo\\' => 12,
             'Peridot\\' => 8,
         ),
@@ -64,6 +69,18 @@ class ComposerStaticInitcdb38253bf5601c99401e260b42b3a91
         array (
             0 => __DIR__ . '/..' . '/symfony/polyfill-mbstring',
         ),
+        'Symfony\\Component\\Process\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/symfony/process',
+        ),
+        'Symfony\\Component\\Filesystem\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/symfony/filesystem',
+        ),
+        'Symfony\\Component\\EventDispatcher\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/symfony/event-dispatcher',
+        ),
         'Symfony\\Component\\Debug\\' => 
         array (
             0 => __DIR__ . '/..' . '/symfony/debug',
@@ -71,6 +88,10 @@ class ComposerStaticInitcdb38253bf5601c99401e260b42b3a91
         'Symfony\\Component\\Console\\' => 
         array (
             0 => __DIR__ . '/..' . '/symfony/console',
+        ),
+        'Symfony\\Component\\Config\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/symfony/config',
         ),
         'Psr\\Log\\' => 
         array (
@@ -83,6 +104,10 @@ class ComposerStaticInitcdb38253bf5601c99401e260b42b3a91
         'Peridot\\Scope\\' => 
         array (
             0 => __DIR__ . '/..' . '/peridot-php/peridot-scope/src',
+        ),
+        'Peridot\\Plugin\\Watcher\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/peridot-php/peridot-watcher-plugin/src',
         ),
         'Peridot\\Leo\\' => 
         array (
@@ -103,6 +128,13 @@ class ComposerStaticInitcdb38253bf5601c99401e260b42b3a91
     );
 
     public static $prefixesPsr0 = array (
+        'L' => 
+        array (
+            'Lurker' => 
+            array (
+                0 => __DIR__ . '/..' . '/henrikbjorn/lurker/src',
+            ),
+        ),
         'E' => 
         array (
             'Evenement' => 
