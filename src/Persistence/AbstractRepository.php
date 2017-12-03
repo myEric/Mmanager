@@ -92,7 +92,7 @@ abstract class AbstractRepository extends AbstractDB implements RepositoryInterf
 		// Log how the function was called
 		$this->func_call = "\$db->get_row(\"$query\",$output,$y)";
 		$this->_query($query);
-		$this->_renderRowOutput($output);
+		$this->_renderRowOutput($output, $y);
 	}
 
 	/**********************************************************************
@@ -238,7 +238,7 @@ abstract class AbstractRepository extends AbstractDB implements RepositoryInterf
 
 		return ($all) ? $this->num_queries : $this->conn_queries;
 	}
-	private function _renderRowOutput($output) {
+	private function _renderRowOutput($output, $y) {
 		// If the output is an object then return object using the row offset..
 		if ($output == OBJECT) {
 			return $this->last_result[$y] ? $this->last_result[$y] : null;
@@ -259,29 +259,56 @@ abstract class AbstractRepository extends AbstractDB implements RepositoryInterf
 
 	private function _renderResultsOutput($output) {
 
-		// Send back array of objects. Each row is an object
-		if ($output == OBJECT) {
-			return $this->last_result;
-		} 
-		elseif ($output == ARRAY_A || $output == ARRAY_N) {
-			if ($this->last_result) {
-				$i = 0;
-				foreach ($this->last_result as $row) {
+		switch ($output) {
+			case 'OBJECT':
+				return $this->last_result;
+				break;
+			case 'ARRAY_A':
+			case 'ARRAY_N':
+				if ($this->last_result) {
+					$i = 0;
+					foreach ($this->last_result as $row) {
 
-					$this->new_array[$i] = get_object_vars($row);
+						$this->new_array[$i] = get_object_vars($row);
 
-					if ($output == ARRAY_N) {
-						$this->new_array[$i] = array_values($this->new_array[$i]);
+						if ($output == ARRAY_N) {
+							$this->new_array[$i] = array_values($this->new_array[$i]);
+						}
+
+						$i++;
 					}
-
-					$i++;
+					return $this->new_array;
+				} else {
+					return array();
 				}
-
-				return $this->new_array;
-			} else {
-				return array();
-			}
+				break;
+			default:
+				return $this->last_result;
+				break;
 		}
+		// // Send back array of objects. Each row is an object
+		// if ($output == OBJECT) {
+		// 	return $this->last_result;
+		// } 
+		// elseif ($output == ARRAY_A || $output == ARRAY_N) {
+		// 	if ($this->last_result) {
+		// 		$i = 0;
+		// 		foreach ($this->last_result as $row) {
+
+		// 			$this->new_array[$i] = get_object_vars($row);
+
+		// 			if ($output == ARRAY_N) {
+		// 				$this->new_array[$i] = array_values($this->new_array[$i]);
+		// 			}
+
+		// 			$i++;
+		// 		}
+
+		// 		return $this->new_array;
+		// 	} else {
+		// 		return array();
+		// 	}
+		// }
 	}
 	private function _query($query) {
 		// If there is a query then perform it if not then use cached results..
