@@ -54,6 +54,7 @@ abstract class AbstractRepository extends AbstractDB implements RepositoryInterf
 {
 
 	protected $query;
+	protected $new_array = [];
 
 	/**********************************************************************
 	*  Constructor
@@ -72,11 +73,7 @@ abstract class AbstractRepository extends AbstractDB implements RepositoryInterf
 		// Log how the function was called
 		$this->func_call = "\$db->get_var(\"$query\",$x,$y)";
 
-		// If there is a query then perform it if not then use cached results..
-		if ($query) {
-			$this->query($query);
-		}
-
+		$this->_query($query);
 		// Extract var out of cached results based x,y vals
 		if ($this->last_result[$y]) {
 			$values = array_values(get_object_vars($this->last_result[$y]));
@@ -94,29 +91,8 @@ abstract class AbstractRepository extends AbstractDB implements RepositoryInterf
 
 		// Log how the function was called
 		$this->func_call = "\$db->get_row(\"$query\",$output,$y)";
-
-		// If there is a query then perform it if not then use cached results..
-		if ($query) {
-			$this->query($query);
-		}
-
-		// If the output is an object then return object using the row offset..
-		if ($output == OBJECT) {
-			return $this->last_result[$y] ? $this->last_result[$y] : null;
-		}
-		// If the output is an associative array then return row as such..
-		elseif ($output == ARRAY_A) {
-			return $this->last_result[$y] ?get_object_vars($this->last_result[$y]) : null;
-		}
-		// If the output is an numerical array then return row as such..
-		elseif ($output == ARRAY_N) {
-			return $this->last_result[$y] ?array_values(get_object_vars($this->last_result[$y])) : null;
-		}
-		// If invalid output type was specified..
-		else {
-			$this->show_errors ? trigger_error(" \$db->get_row(string query, output type, int offset) -- Output type must be one of: OBJECT, ARRAY_A, ARRAY_N", E_USER_WARNING) : null;
-		}
-
+		$this->_query($query);
+		$this->_renderRowOutput($output);
 	}
 
 	/**********************************************************************
@@ -126,20 +102,17 @@ abstract class AbstractRepository extends AbstractDB implements RepositoryInterf
 
 	public function get_col($query = null, $x = 0) {
 
-		$new_array = array();
+		$this->new_array = array();
 
-		// If there is a query then perform it if not then use cached results..
-		if ($query) {
-			$this->query($query);
-		}
+		$this->_query($query);
 
 		// Extract the column values
 		$j = count($this->last_result);
 		for ($i = 0; $i < $j; $i++) {
-			$new_array[$i] = $this->get_var(null, $x, $i);
+			$this->new_array[$i] = $this->get_var(null, $x, $i);
 		}
 
-		return $new_array;
+		return $this->new_array;
 	}
 
 
@@ -148,37 +121,12 @@ abstract class AbstractRepository extends AbstractDB implements RepositoryInterf
 	*/
 
 	public function get_results($query = null, $output = OBJECT) {
-		$new_array = array();
+		$this->new_array = array();
 		// Log how the function was called
 		$this->func_call = "\$db->get_results(\"$query\", $output)";
 
-		// If there is a query then perform it if not then use cached results..
-		if ($query) {
-			$this->query($query);
-		}
-
-		// Send back array of objects. Each row is an object
-		if ($output == OBJECT) {
-			return $this->last_result;
-		} elseif ($output == ARRAY_A || $output == ARRAY_N) {
-			if ($this->last_result) {
-				$i = 0;
-				foreach ($this->last_result as $row) {
-
-					$new_array[$i] = get_object_vars($row);
-
-					if ($output == ARRAY_N) {
-						$new_array[$i] = array_values($new_array[$i]);
-					}
-
-					$i++;
-				}
-
-				return $new_array;
-			} else {
-				return array();
-			}
-		}
+		$this->_query($query);
+		$this->_renderResultsOutput($output);
 	}
 
 
@@ -188,21 +136,19 @@ abstract class AbstractRepository extends AbstractDB implements RepositoryInterf
 	*/
 
 	public function get_col_info($info_type = "name", $col_offset = -1) {
-		$new_array = array();
+		$this->new_array = array();
 		if ($this->col_info) {
 			if ($col_offset == -1) {
 				$i = 0;
 				foreach ($this->col_info as $col) {
-					$new_array[$i] = $col->{$info_type};
+					$this->new_array[$i] = $col->{$info_type};
 					$i++;
 				}
-				return $new_array;
+				return $this->new_array;
 			} else {
 				return $this->col_info[$col_offset]->{$info_type};
 			}
-
 		}
-
 	}
 	/**********************************************************************
 	*  Timer related functions
@@ -291,6 +237,57 @@ abstract class AbstractRepository extends AbstractDB implements RepositoryInterf
 		}
 
 		return ($all) ? $this->num_queries : $this->conn_queries;
+	}
+	private function _renderRowOutput($output) {
+		// If the output is an object then return object using the row offset..
+		if ($output == OBJECT) {
+			return $this->last_result[$y] ? $this->last_result[$y] : null;
+		}
+		// If the output is an associative array then return row as such..
+		elseif ($output == ARRAY_A) {
+			return $this->last_result[$y] ?get_object_vars($this->last_result[$y]) : null;
+		}
+		// If the output is an numerical array then return row as such..
+		elseif ($output == ARRAY_N) {
+			return $this->last_result[$y] ?array_values(get_object_vars($this->last_result[$y])) : null;
+		}
+		// If invalid output type was specified..
+		else {
+			$this->show_errors ? trigger_error(" \$db->get_row(string query, output type, int offset) -- Output type must be one of: OBJECT, ARRAY_A, ARRAY_N", E_USER_WARNING) : null;
+		}
+	}
+
+	private function _renderResultsOutput($output) {
+
+		// Send back array of objects. Each row is an object
+		if ($output == OBJECT) {
+			return $this->last_result;
+		} 
+		elseif ($output == ARRAY_A || $output == ARRAY_N) {
+			if ($this->last_result) {
+				$i = 0;
+				foreach ($this->last_result as $row) {
+
+					$this->new_array[$i] = get_object_vars($row);
+
+					if ($output == ARRAY_N) {
+						$this->new_array[$i] = array_values($this->new_array[$i]);
+					}
+
+					$i++;
+				}
+
+				return $this->new_array;
+			} else {
+				return array();
+			}
+		}
+	}
+	private function _query($query) {
+		// If there is a query then perform it if not then use cached results..
+		if ($query) {
+			$this->query($query);
+		}
 	}
 	abstract public function query($query);
 }
