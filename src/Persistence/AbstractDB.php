@@ -63,6 +63,7 @@ abstract class AbstractDB extends Cache
 	protected $sql_log_file = false;
 	protected $do_profile = false;
 	protected $profile_times = array();
+	protected $last_error;
 	/**********************************************************************
 	*  Get host and port from an "host:port" notation.
 	*  Returns array of host and port. If port is omitted, returns $default
