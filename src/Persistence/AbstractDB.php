@@ -46,7 +46,6 @@ abstract class AbstractDB extends Cache
 {
 	
 	protected $num_rows = null; // hours
-	
 	protected $trace = false; // same as $debug_all
 	protected $debug_all = false; // same as $trace
 	protected $num_queries = 0;
