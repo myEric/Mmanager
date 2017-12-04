@@ -35,7 +35,7 @@
  * @filesource
  */
 
-namespace Mmanager\Persistence;
+namespace Mmanager\Domain\Persistence;
 
 use Mmanager\Domain\Repository\QueryBuilderInterface;
 
@@ -60,7 +60,7 @@ define('ARRAY_N', 'ARRAY_N');
 *  Core class containg common functions to manipulate query result
 *  sets once returned
 */
-class AbstractQueryBuilder implements QueryBuilderInterface
+abstract class AbstractQueryBuilder implements QueryBuilderInterface
 {
 	var $trace            = false;  // same as $debug_all
 	var $debug_all        = false;  // same as $trace
