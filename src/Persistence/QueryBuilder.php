@@ -37,7 +37,8 @@
 
 namespace Mmanager\Domain\Persistence;
 
-use Mmanager\Domain\Repository\QueryBuilderInterface;
+use Mmanager\Domain\Repository\QueryResultsInterface;
+use Mmanager\Domain\Repository\QueryInterface;
 
 /**********************************************************************
 *  Author: Justin Vincent (jv@vip.ie)
@@ -59,39 +60,41 @@ defined('ARRAY_N') or define('ARRAY_N', 'ARRAY_N');
 *  Core class containg common functions to manipulate query result
 *  sets once returned
 */
-abstract class AbstractQueryBuilder implements QueryBuilderInterface
+class QueryBuilder implements QueryResultsInterface
 {
-	var $trace            = false;  // same as $debug_all
-	var $debug_all        = false;  // same as $trace
-	var $debug_called     = false;
-	var $vardump_called   = false;
-	var $show_errors      = true;
-	var $num_queries      = 0;
-	var $conn_queries     = 0;
-	var $last_query       = null;
-	var $last_error       = null;
-	var $col_info         = null;
-	var $captured_errors  = array();
-	var $cache_dir        = false;
-	var $cache_queries    = false;
-	var $cache_inserts    = false;
-	var $use_disk_cache   = false;
-	var $cache_timeout    = 24; // hours
-	var $timers           = array();
-	var $total_query_time = 0;
-	var $db_connect_time  = 0;
-	var $trace_log        = array();
-	var $use_trace_log    = false;
-	var $sql_log_file     = false;
-	var $do_profile       = false;
-	var $profile_times    = array();
+	protected $trace            = false;  // same as $debug_all
+	protected $debug_all        = false;  // same as $trace
+	protected $debug_called     = false;
+	protected $vardump_called   = false;
+	protected $show_errors      = true;
+	protected $num_queries      = 0;
+	protected $conn_queries     = 0;
+	protected $last_query       = null;
+	protected $last_error       = null;
+	protected $col_info         = null;
+	protected $captured_errors  = array();
+	protected $cache_dir        = false;
+	protected $cache_queries    = false;
+	protected $cache_inserts    = false;
+	protected $use_disk_cache   = false;
+	protected $cache_timeout    = 24; // hours
+	protected $timers           = array();
+	protected $total_query_time = 0;
+	protected $db_connect_time  = 0;
+	protected $trace_log        = array();
+	protected $use_trace_log    = false;
+	protected $sql_log_file     = false;
+	protected $do_profile       = false;
+	protected $profile_times    = array();
 	// == TJH == default now needed for echo of debug function
-	var $debug_echo_is_on = true;
+	protected $debug_echo_is_on = true;
+	protected $query;
 	/**********************************************************************
 	*  Constructor
 	*/
-	public function __construct()
+	public function __construct(QueryInterface $query)
 	{
+		$this->query = $query;
 	}
 	/**********************************************************************
 	*  Get host and port from an "host:port" notation.

@@ -35,15 +35,12 @@
  * @filesource
  */
 
-namespace Mmanager\Repository;
+namespace Mmanager\Domain\Repository;
 
 /**
  * Customer Factory
  */
-interface QueryBuilderInterface
+interface QueryInterface
 {
-	public function get_var($query = null, $x = 0, $y = 0);
-	public function get_row($query = null, $output = null, $y = 0);
-	public function get_results($query = null, $output = null);
-	public function get_set($params);
+	public function quey($query);
 }

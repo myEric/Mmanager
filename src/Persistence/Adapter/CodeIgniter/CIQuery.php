@@ -2,6 +2,7 @@
 
 namespace Mmanager\Persistence\Adapter\CodeIgniter;
 
+use Mmanager\Domain\Repository\QueryInterface;
 use Mmanager\Persistence\AbstractQueryBuilder;
 
 /**********************************************************************
@@ -12,7 +13,7 @@ use Mmanager\Persistence\AbstractQueryBuilder;
 *
 */
 
-class CIQuery extends AbstractQueryBuilder
+class CIQuery implements QueryInterface
 {
 
 	var $debug = true;
