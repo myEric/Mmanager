@@ -7,6 +7,7 @@ namespace Composer\Autoload;
 class ComposerStaticInitcdb38253bf5601c99401e260b42b3a91
 {
     public static $files = array (
+        '5255c38a0faeba867671b61dfda6d864' => __DIR__ . '/..' . '/paragonie/random_compat/lib/random.php',
         '0e6d7bf4a5811bfa5cf40c5ccd6fae6a' => __DIR__ . '/..' . '/symfony/polyfill-mbstring/bootstrap.php',
         'ee4cee3195e093bfc91e7754af9eefd5' => __DIR__ . '/..' . '/peridot-php/leo/src/Interfaces/_interface.bdd.php',
     );
@@ -15,6 +16,29 @@ class ComposerStaticInitcdb38253bf5601c99401e260b42b3a91
         'p' => 
         array (
             'phpDocumentor\\Reflection\\' => 25,
+        ),
+        'Z' => 
+        array (
+            'Zend\\Xml2Json\\' => 14,
+            'Zend\\Validator\\' => 15,
+            'Zend\\Uri\\' => 9,
+            'Zend\\Stdlib\\' => 12,
+            'Zend\\ServiceManager\\' => 20,
+            'Zend\\Server\\' => 12,
+            'Zend\\Serializer\\' => 16,
+            'Zend\\Math\\' => 10,
+            'Zend\\Loader\\' => 12,
+            'Zend\\Json\\Server\\' => 17,
+            'Zend\\Json\\' => 10,
+            'Zend\\Hydrator\\' => 14,
+            'Zend\\Http\\' => 10,
+            'Zend\\Filter\\' => 12,
+            'Zend\\EventManager\\' => 18,
+            'Zend\\Escaper\\' => 13,
+            'Zend\\Db\\' => 8,
+            'Zend\\Crypt\\' => 11,
+            'Zend\\Code\\' => 10,
+            'Zend\\Barcode\\' => 13,
         ),
         'W' => 
         array (
@@ -34,6 +58,7 @@ class ComposerStaticInitcdb38253bf5601c99401e260b42b3a91
         'P' => 
         array (
             'Psr\\Log\\' => 8,
+            'Psr\\Container\\' => 14,
             'Peridot\\Scope\\' => 14,
             'Peridot\\Plugin\\Watcher\\' => 23,
             'Peridot\\Leo\\' => 12,
@@ -42,6 +67,10 @@ class ComposerStaticInitcdb38253bf5601c99401e260b42b3a91
         'M' => 
         array (
             'Mmanager\\' => 9,
+        ),
+        'I' => 
+        array (
+            'Interop\\Container\\' => 18,
         ),
         'D' => 
         array (
@@ -55,6 +84,86 @@ class ComposerStaticInitcdb38253bf5601c99401e260b42b3a91
             0 => __DIR__ . '/..' . '/phpdocumentor/reflection-common/src',
             1 => __DIR__ . '/..' . '/phpdocumentor/type-resolver/src',
             2 => __DIR__ . '/..' . '/phpdocumentor/reflection-docblock/src',
+        ),
+        'Zend\\Xml2Json\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/zendframework/zend-xml2json/src',
+        ),
+        'Zend\\Validator\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/zendframework/zend-validator/src',
+        ),
+        'Zend\\Uri\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/zendframework/zend-uri/src',
+        ),
+        'Zend\\Stdlib\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/zendframework/zend-stdlib/src',
+        ),
+        'Zend\\ServiceManager\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/zendframework/zend-servicemanager/src',
+        ),
+        'Zend\\Server\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/zendframework/zend-server/src',
+        ),
+        'Zend\\Serializer\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/zendframework/zend-serializer/src',
+        ),
+        'Zend\\Math\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/zendframework/zend-math/src',
+        ),
+        'Zend\\Loader\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/zendframework/zend-loader/src',
+        ),
+        'Zend\\Json\\Server\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/zendframework/zend-json-server/src',
+        ),
+        'Zend\\Json\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/zendframework/zend-json/src',
+        ),
+        'Zend\\Hydrator\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/zendframework/zend-hydrator/src',
+        ),
+        'Zend\\Http\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/zendframework/zend-http/src',
+        ),
+        'Zend\\Filter\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/zendframework/zend-filter/src',
+        ),
+        'Zend\\EventManager\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/zendframework/zend-eventmanager/src',
+        ),
+        'Zend\\Escaper\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/zendframework/zend-escaper/src',
+        ),
+        'Zend\\Db\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/zendframework/zend-db/src',
+        ),
+        'Zend\\Crypt\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/zendframework/zend-crypt/src',
+        ),
+        'Zend\\Code\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/zendframework/zend-code/src',
+        ),
+        'Zend\\Barcode\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/zendframework/zend-barcode/src',
         ),
         'Webmozart\\Assert\\' => 
         array (
@@ -96,6 +205,10 @@ class ComposerStaticInitcdb38253bf5601c99401e260b42b3a91
         array (
             0 => __DIR__ . '/..' . '/psr/log/Psr/Log',
         ),
+        'Psr\\Container\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/psr/container/src',
+        ),
         'Peridot\\Scope\\' => 
         array (
             0 => __DIR__ . '/..' . '/peridot-php/peridot-scope/src',
@@ -116,6 +229,10 @@ class ComposerStaticInitcdb38253bf5601c99401e260b42b3a91
         array (
             0 => __DIR__ . '/../..' . '/src',
         ),
+        'Interop\\Container\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/container-interop/container-interop/src/Interop/Container',
+        ),
         'Doctrine\\Instantiator\\' => 
         array (
             0 => __DIR__ . '/..' . '/doctrine/instantiator/src/Doctrine/Instantiator',
@@ -123,6 +240,13 @@ class ComposerStaticInitcdb38253bf5601c99401e260b42b3a91
     );
 
     public static $prefixesPsr0 = array (
+        'Z' => 
+        array (
+            'ZendXml\\' => 
+            array (
+                0 => __DIR__ . '/..' . '/zendframework/zendxml/library',
+            ),
+        ),
         'P' => 
         array (
             'Prophecy\\' => 
