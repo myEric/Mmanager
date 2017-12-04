@@ -17,7 +17,6 @@ class ComposerStaticInitcdb38253bf5601c99401e260b42b3a91
             'Zend\\Validator\\' => 15,
             'Zend\\Stdlib\\' => 12,
             'Zend\\ServiceManager\\' => 20,
-            'Zend\\Db\\' => 8,
             'Zend\\Barcode\\' => 13,
         ),
         'S' => 
@@ -61,10 +60,6 @@ class ComposerStaticInitcdb38253bf5601c99401e260b42b3a91
         'Zend\\ServiceManager\\' => 
         array (
             0 => __DIR__ . '/..' . '/zendframework/zend-servicemanager/src',
-        ),
-        'Zend\\Db\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/zendframework/zend-db/src',
         ),
         'Zend\\Barcode\\' => 
         array (
