@@ -35,7 +35,7 @@
  * @filesource
  */
 
-namespace Mmanager\Domain\Persistence;
+namespace Mmanager\Persistence;
 
 use Mmanager\Domain\Repository\QueryBuilderInterface;
 
@@ -51,11 +51,10 @@ use Mmanager\Domain\Repository\QueryBuilderInterface;
 /**********************************************************************
 *  ezSQL Constants
 */
-
-define('EZSQL_VERSION', '2.17');
-define('OBJECT', 'OBJECT');
-define('ARRAY_A', 'ARRAY_A');
-define('ARRAY_N', 'ARRAY_N');
+defined('EZSQL_VERSION') or define('EZSQL_VERSION', '2.17');
+defined('OBJECT') or define('OBJECT', 'OBJECT');
+defined('ARRAY_A') or define('ARRAY_A', 'ARRAY_A');
+defined('ARRAY_N') or define('ARRAY_N', 'ARRAY_N');
 /**********************************************************************
 *  Core class containg common functions to manipulate query result
 *  sets once returned
