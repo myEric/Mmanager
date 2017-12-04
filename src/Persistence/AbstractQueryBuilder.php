@@ -35,7 +35,7 @@
  * @filesource
  */
 
-namespace Mmanager\Persistence;
+namespace Mmanager\Domain\Persistence;
 
 use Mmanager\Domain\Repository\QueryBuilderInterface;
 
