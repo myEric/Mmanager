@@ -38,6 +38,7 @@
 namespace Mmanager\Persistence;
 
 use Mmanager\Domain\Repository\RepositoryInterface;
+use Mmanager\Domain\Repository\QueryInterface;
 
 defined('MMANAGER_VERSION') or define('MMANAGER_VERSION', '2.0');
 defined('OBJECT') or define('OBJECT', 'OBJECT');
