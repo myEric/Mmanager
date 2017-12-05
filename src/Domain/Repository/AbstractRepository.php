@@ -32,23 +32,87 @@
  * @license	http://opensource.org/licenses/MIT	MIT License
  * @link	https://codecanyon.net/item/mmanager-invoices-management-system/19866435?s_rank=1
  * @since	Version 1.0.0
- * @filesource
  */
  
  namespace Mmanager\Domain\Repository;
 
  use Mmanager\Domain\Repository\QueryInterface;
- use Mmanager\Domain\Repository\AbstractRepository;
 
- class CustomerRepository extends AbstractRepository {
+ /**
+  * Abstract Repository Class
+  */
+ abstract class AbstractRepository {
+ 	/**
+ 	 * @var type object
+ 	 */
  	protected $query;
+
+ 	/**
+ 	 * Construct
+ 	 * @param QueryInterface $query 
+ 	 * @return type $this
+ 	 */
  	public function __construct(QueryInterface $query) {
  		$this->query = $query;
  	}
- 	public function getAll() {
- 		return $this->query->get_results('SELECT * FROM oc_clients');
+
+ 	/**
+ 	 * Print a html debug
+ 	 * @return type
+ 	 */
+ 	public function debug() {
+ 		return $this->query->debug();
  	}
- 	public function find($id) {
- 		return $this->query->get_row("SELECT * FROM oc_clients WHERE client_id = {$id}");
+
+ 	/**
+ 	 * Find All
+ 	 * @param type $table 
+ 	 * @return type
+ 	 */
+ 	public function findAll($table) {
+ 		return $this->query->get_results($this->_findAll($table));
  	}
+
+ 	/**
+ 	 * Find Table by key
+ 	 * @param type $key 
+ 	 * @return type string
+ 	 */
+ 	public function findTableBy($key) {
+ 		$return = '';
+		foreach ($this->_tableArray() as $k => $table) {
+			if ($k === $this->_parseTableKey($key) || 
+				$k.'s' === $this->_parseTableKey($key)) {
+				$return = $table;
+			}
+		}
+		return $return;
+	}
+
+	/**
+	 * Helper to find all table entries
+	 * @param type $table 
+	 * @return type array
+	 */
+	private function _findAll($table) {
+		return "SELECT * FROM ". $this->findTableBy($table);
+	}
+
+	/**
+	 * Helper function to parse table key
+	 * @param type $key 
+	 * @return type string
+	 */
+	private function _parseTableKey($key) {
+		return strtolower($key);
+	}
+
+	/**
+	 * Helper function to get all table
+	 * @return type array
+	 */
+	private function _tableArray()
+	{
+	    return include dirname(dirname(__DIR__)). '/Config/tables.config.php';
+	}
  }
