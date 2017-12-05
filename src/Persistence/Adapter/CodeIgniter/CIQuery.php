@@ -1,32 +1,88 @@
-<?php 
-
+<?php
+/**
+ * m'Manager | Invoices Management System
+ *
+ * Official API to create modules for m'Manager | Invoices Management System
+ *
+ * This content is released under the MIT License (MIT)
+ *
+ * Copyright (c) 2017, Eric Claver AKAFFOU
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ *
+ * @package	m'Manager
+ * @author	Eric Claver AKAFFOU
+ * @copyright	Copyright (c) 2017, on'Eric Computing, Inc. (https://www.onericcomputing.com/)
+ * @license	http://opensource.org/licenses/MIT	MIT License
+ * @link	https://codecanyon.net/item/mmanager-invoices-management-system/19866435?s_rank=1
+ * @since	Version 1.0.0
+ * @filesource
+ */
+ 
 namespace Mmanager\Persistence\Adapter\CodeIgniter;
 
+use Mmanager\Persistence\QueryBuilder;
 use Mmanager\Domain\Repository\QueryInterface;
-use Mmanager\Persistence\AbstractQueryBuilder;
 
-/**********************************************************************
-*  Author: Justin Vincent (jv@jvmultimedia.com)
-*  Web...: http://jvmultimedia.com
-*  Name..: ezSQL_codeigniter
-*  Desc..: codeigniter component (part of ezSQL databse abstraction library)
-*
-*/
-
-class CIQuery implements QueryInterface
+class CIQuery extends QueryBuilder implements QueryInterface
 {
 
 	var $debug = true;
 	var $rows_affected = false;
+	var $tables = array(
+		'options'			 => 'oc_options',
+		'users_options'		 => 'oc_usersoptions',
+		'users'		         => 'users',
+		'clients'		     => 'oc_clients',
+		'providers'		     => 'oc_providers',
+		'invoices'		     => 'oc_invoices',
+		'quotes'		     => 'oc_quotes',
+		'invoices_items'	 => 'oc_invoiceitems',
+		'quotes_items'		 => 'oc_quoteitems',
+		'items'		         => 'oc_items',
+		'items_groups'		 => 'oc_productsgroups',
+		'taxes'		         => 'oc_taxes',
+		'transactions'		 => 'oc_transactions',
+		'charges_categories' => 'oc_charges_categories',
+		'incomes_categories' => 'oc_incomes_categories',
+		'notes' 			 => 'oc_notes',
+		'timeline' 			 => 'oc_timeline',
+		'payment_history'   			=> 'oc_payment_history',
+		'calendar'   		 			=> 'oc_calendar',
+		'purchase_order'   		 		=> 'oc_purchase_order',
+		'payment_methods'   		 	=> 'oc_payment_methods',
+		'hsn_sac'   		 			=> 'oc_hsn_sac',
+		'uom'   		 				=> 'oc_uom',
+		'cgst'   		 				=> 'oc_cgst',
+		'sgst'   		 				=> 'oc_sgst',
+		'igst'   		 				=> 'oc_igst',
+		'cess'   		 				=> 'oc_cess',
+		);
 
-	public function __construct()
+	function __construct()
 	{
 		global $db;
 		$db = $this;
 		$this->CI =& get_instance();
 	}
     
-	public function query($query)
+	function query($query)
 	{
 		// Initialise return
 		$return_val = 0;
@@ -66,7 +122,7 @@ class CIQuery implements QueryInterface
 		$ci_query = $this->CI->db->query($query);
 		
 		// If there is an error then take note of it..
-		if ( $str = $this->CI->db->_error_message() )
+		if ( $str = $this->CI->db->error()['message'] )
 		{
 			$this->register_error($str);
 			$this->show_errors ? trigger_error($str,E_USER_WARNING) : null;				
@@ -107,7 +163,7 @@ class CIQuery implements QueryInterface
 						$i=0;
 						foreach ( get_object_vars($row) as $k => $v )
 						{
-							$this->col_info[$i] = new Stdclass();
+							$this->col_info[$i] = (object)[];
 							$this->col_info[$i]->name = $k;
 							$this->col_info[$i]->max_length = $k;
 							$this->col_info[$i]->type = '';
@@ -141,8 +197,9 @@ class CIQuery implements QueryInterface
 	/**********************************************************************
 	*  Format a sql string correctly for safe insert
 	*/
-	public function escape($str, $like = FALSE)
+	function escape($str, $like = FALSE)
 	{
 		return $this->CI->db->escape_str(stripslashes($str), $like = FALSE);
 	}
+
 }

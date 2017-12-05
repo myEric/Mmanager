@@ -35,9 +35,22 @@
  * @filesource
  */
  
-namespace Mmanager\Domain\Repository;
+ namespace Mmanager\Domain\Repository;
 
-interface QueryInterface 
-{
-	public function query($query);
-}
+ use Mmanager\Domain\Repository\QueryInterface;
+
+ class CustomerRepository {
+ 	protected $query;
+ 	public function __construct(QueryInterface $query) {
+ 		$this->query = $query;
+ 	}
+ 	public function getAll() {
+ 		return $this->query->get_results('SELECT * FROM oc_clients');
+ 	}
+ 	public function find($id) {
+ 		return $this->query->get_row("SELECT * FROM oc_clients WHERE client_id = {$id}");
+ 	}
+ 	public function debug() {
+ 		return $this->query->debug();
+ 	}
+ }

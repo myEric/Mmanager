@@ -34,16 +34,13 @@
  * @since	Version 1.0.0
  * @filesource
  */
+ 
+namespace Mmanager\Domain\Repository;
 
-namespace Mmanager\Repository;
-
-/**
- * Customer Factory
- */
-interface QueryResultsInterface
+interface RepositoryInterface 
 {
-	public function get_var($query = null, $x = 0, $y = 0);
-	public function get_row($query = null, $output = null, $y = 0);
-	public function get_results($query = null, $output = null);
-	public function get_set($params);
+	function get_var($query = null, $x = 0, $y = 0);
+	function get_row($query = null, $output = null, $y = 0);
+	function get_results($query = null, $output = null);
+	function get_set($params);
 }

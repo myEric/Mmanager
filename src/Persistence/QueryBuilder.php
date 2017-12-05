@@ -34,24 +34,11 @@
  * @since	Version 1.0.0
  * @filesource
  */
+ 
+namespace Mmanager\Persistence;
 
-namespace Mmanager\Domain\Persistence;
+use Mmanager\Domain\Repository\RepositoryInterface;
 
-use Mmanager\Domain\Repository\QueryResultsInterface;
-use Mmanager\Domain\Repository\QueryInterface;
-
-/**********************************************************************
-*  Author: Justin Vincent (jv@vip.ie)
-*  Web...: http://justinvincent.com
-*  Name..: ezSQL
-*  Desc..: ezSQL Core module - database abstraction library to make
-*          it very easy to deal with databases. ezSQLcore can not be used by
-*          itself (it is designed for use by database specific modules).
-*
-*/
-/**********************************************************************
-*  ezSQL Constants
-*/
 defined('EZSQL_VERSION') or define('EZSQL_VERSION', '2.17');
 defined('OBJECT') or define('OBJECT', 'OBJECT');
 defined('ARRAY_A') or define('ARRAY_A', 'ARRAY_A');
@@ -60,39 +47,39 @@ defined('ARRAY_N') or define('ARRAY_N', 'ARRAY_N');
 *  Core class containg common functions to manipulate query result
 *  sets once returned
 */
-class QueryBuilder implements QueryResultsInterface
+class QueryBuilder implements RepositoryInterface
 {
-	protected $trace            = false;  // same as $debug_all
-	protected $debug_all        = false;  // same as $trace
-	protected $debug_called     = false;
-	protected $vardump_called   = false;
-	protected $show_errors      = true;
-	protected $num_queries      = 0;
-	protected $conn_queries     = 0;
-	protected $last_query       = null;
-	protected $last_error       = null;
-	protected $col_info         = null;
-	protected $captured_errors  = array();
-	protected $cache_dir        = false;
-	protected $cache_queries    = false;
-	protected $cache_inserts    = false;
-	protected $use_disk_cache   = false;
-	protected $cache_timeout    = 24; // hours
-	protected $timers           = array();
-	protected $total_query_time = 0;
-	protected $db_connect_time  = 0;
-	protected $trace_log        = array();
-	protected $use_trace_log    = false;
-	protected $sql_log_file     = false;
-	protected $do_profile       = false;
-	protected $profile_times    = array();
+	var $trace            = false;  // same as $debug_all
+	var $debug_all        = false;  // same as $trace
+	var $debug_called     = false;
+	var $vardump_called   = false;
+	var $show_errors      = true;
+	var $num_queries      = 0;
+	var $conn_queries     = 0;
+	var $last_query       = null;
+	var $last_error       = null;
+	var $col_info         = null;
+	var $captured_errors  = array();
+	var $cache_dir        = false;
+	var $cache_queries    = false;
+	var $cache_inserts    = false;
+	var $use_disk_cache   = false;
+	var $cache_timeout    = 24; // hours
+	var $timers           = array();
+	var $total_query_time = 0;
+	var $db_connect_time  = 0;
+	var $trace_log        = array();
+	var $use_trace_log    = false;
+	var $sql_log_file     = false;
+	var $do_profile       = false;
+	var $profile_times    = array();
 	// == TJH == default now needed for echo of debug function
-	protected $debug_echo_is_on = true;
+	var $debug_echo_is_on = true;
 	protected $query;
 	/**********************************************************************
 	*  Constructor
 	*/
-	public function __construct(QueryInterface $query)
+	function __construct(QueryInterface $query)
 	{
 		$this->query = $query;
 	}
@@ -100,7 +87,7 @@ class QueryBuilder implements QueryResultsInterface
 	*  Get host and port from an "host:port" notation.
 	*  Returns array of host and port. If port is omitted, returns $default
 	*/
-	public function get_host_port( $host, $default = false )
+	function get_host_port( $host, $default = false )
 	{
 		$port = $default;
 		if ( false !== strpos( $host, ':' ) ) {
@@ -112,7 +99,7 @@ class QueryBuilder implements QueryResultsInterface
 	/**********************************************************************
 	*  Print SQL/DB error - over-ridden by specific DB class
 	*/
-	public function register_error($err_str)
+	function register_error($err_str)
 	{
 		// Keep track of last error
 		$this->last_error = $err_str;
@@ -126,18 +113,18 @@ class QueryBuilder implements QueryResultsInterface
 	/**********************************************************************
 	*  Turn error handling on or off..
 	*/
-	public function show_errors()
+	function show_errors()
 	{
 		$this->show_errors = true;
 	}
-	public function hide_errors()
+	function hide_errors()
 	{
 		$this->show_errors = false;
 	}
 	/**********************************************************************
 	*  Kill cached query results
 	*/
-	public function flush()
+	function flush()
 	{
 		// Get rid of these
 		$this->last_result = null;
@@ -148,7 +135,7 @@ class QueryBuilder implements QueryResultsInterface
 	/**********************************************************************
 	*  Get one variable from the DB - see docs for more detail
 	*/
-	public function get_var($query=null,$x=0,$y=0)
+	function get_var($query=null,$x=0,$y=0)
 	{
 		// Log how the function was called
 		$this->func_call = "\$db->get_var(\"$query\",$x,$y)";
@@ -168,7 +155,7 @@ class QueryBuilder implements QueryResultsInterface
 	/**********************************************************************
 	*  Get one row from the DB - see docs for more detail
 	*/
-	public function get_row($query=null,$output=OBJECT,$y=0)
+	function get_row($query=null,$output=OBJECT,$y=0)
 	{
 		// Log how the function was called
 		$this->func_call = "\$db->get_row(\"$query\",$output,$y)";
@@ -202,7 +189,7 @@ class QueryBuilder implements QueryResultsInterface
 	*  Function to get 1 column from the cached result set based in X index
 	*  see docs for usage and info
 	*/
-	public function get_col($query=null,$x=0)
+	function get_col($query=null,$x=0)
 	{
 		$new_array = array();
 		// If there is a query then perform it if not then use cached results..
@@ -221,7 +208,7 @@ class QueryBuilder implements QueryResultsInterface
 	/**********************************************************************
 	*  Return the the query as a result set - see docs for more details
 	*/
-	public function get_results($query=null, $output = OBJECT)
+	function get_results($query=null, $output = OBJECT)
 	{
 		// Log how the function was called
 		$this->func_call = "\$db->get_results(\"$query\", $output)";
@@ -261,7 +248,7 @@ class QueryBuilder implements QueryResultsInterface
 	*  Function to get column meta data info pertaining to the last query
 	* see docs for more info and usage
 	*/
-	public function get_col_info($info_type="name",$col_offset=-1)
+	function get_col_info($info_type="name",$col_offset=-1)
 	{
 		if ( $this->col_info )
 		{
@@ -284,7 +271,7 @@ class QueryBuilder implements QueryResultsInterface
 	/**********************************************************************
 	*  store_cache
 	*/
-	public function store_cache($query,$is_insert)
+	function store_cache($query,$is_insert)
 	{
 		// The would be cache file for this query
 		$cache_file = $this->cache_dir.'/'.md5($query);
@@ -315,7 +302,7 @@ class QueryBuilder implements QueryResultsInterface
 	/**********************************************************************
 	*  get_cache
 	*/
-	public function get_cache($query)
+	function get_cache($query)
 	{
 		// The would be cache file for this query
 		$cache_file = $this->cache_dir.'/'.md5($query);
@@ -345,7 +332,7 @@ class QueryBuilder implements QueryResultsInterface
 	*  Dumps the contents of any input variable to screen in a nicely
 	*  formatted and easy to understand way - any type: Object, Var or Array
 	*/
-	public function vardump($mixed='')
+	function vardump($mixed='')
 	{
 		// Start outup buffering
 		ob_start();
@@ -377,7 +364,7 @@ class QueryBuilder implements QueryResultsInterface
 	/**********************************************************************
 	*  Alias for the above function
 	*/
-	public function dumpvar($mixed)
+	function dumpvar($mixed)
 	{
 		$this->vardump($mixed);
 	}
@@ -386,7 +373,7 @@ class QueryBuilder implements QueryResultsInterface
 	* table listing results (if there were any).
 	* (abstracted into a seperate file to save server overhead).
 	*/
-	public function debug($print_to_screen=true)
+	function debug($print_to_screen=true)
 	{
 		// Start outup buffering
 		ob_start();
@@ -468,27 +455,27 @@ class QueryBuilder implements QueryResultsInterface
 	/**********************************************************************
 	*  Naughty little function to ask for some remuniration!
 	*/
-	public function donation()
+	function donation()
 	{
 		return "<font size=1 face=arial color=000000>If ezSQL has helped <a href=\"https://www.paypal.com/xclick/business=justin%40justinvincent.com&item_name=ezSQL&no_note=1&tax=0\" style=\"color: 0000CC;\">make a donation!?</a> &nbsp;&nbsp;<!--[ go on! you know you want to! ]--></font>";
 	}
 	/**********************************************************************
 	*  Timer related functions
 	*/
-	public function timer_get_cur()
+	function timer_get_cur()
 	{
 		list($usec, $sec) = explode(" ",microtime());
 		return ((float)$usec + (float)$sec);
 	}
-	public function timer_start($timer_name)
+	function timer_start($timer_name)
 	{
 		$this->timers[$timer_name] = $this->timer_get_cur();
 	}
-	public function timer_elapsed($timer_name)
+	function timer_elapsed($timer_name)
 	{
 		return round($this->timer_get_cur() - $this->timers[$timer_name],2);
 	}
-	public function timer_update_global($timer_name)
+	function timer_update_global($timer_name)
 	{
 		if ( $this->do_profile )
 		{
@@ -517,7 +504,7 @@ class QueryBuilder implements QueryResultsInterface
 	*
 	*     login = 'jv', email = 'jv@vip.ie', user_id = 1, created = NOW()
 	*/
-	public function get_set($params)
+	function get_set($params)
 	{
 		if( !is_array( $params ) )
 		{
@@ -549,12 +536,12 @@ class QueryBuilder implements QueryResultsInterface
 	 * @param bool $increase Set to true to increase query count (internal usage)
 	 * @return int Returns query count base on $all
 	 */
-	public function count($all = true, $increase = false) {
+	function count ($all = true, $increase = false) {
 		if ($increase) {
 			$this->num_queries++;
 			$this->conn_queries++;
 		}
 		return ($all) ? $this->num_queries : $this->conn_queries;
 	}
-	public abstract function query($query);
+	//abstract public function query($query);
 }
