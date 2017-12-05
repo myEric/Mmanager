@@ -43,13 +43,13 @@ public function test()
 	$driver = new CIQuery();
 
 	// Pass CI Query Builder to Customer Repository
-	$customer = new CustomerRepository($driver);
+	$customerRepo = new CustomerRepository($driver);
 
 	// You can now query the customers table
-	$customer->findAll('Customer');
+	$customerRepo->findAll('Customer');
 
 	// Call Built-in debug method to get a html representation of the results
-	$customer->debug();
+	$customerRepo->debug();
 }
 
 ```
