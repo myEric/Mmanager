@@ -20,17 +20,17 @@ In the `composer.json` file of your **m'Manager installation**, add this line:
 }
 ```
 
-Then run a `composer update` on the server.
+Then run a `composer update` .
 
 ## Usage
-In a controller file, add
+In a CodeIgniter controller file, add these lines
 
 ```
 <?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 require_once('vendor/autoload.php');
-use Mmanager\Welcome as Welcome;
-use Mmanager\Greetings as Greetings;
+use Mmanager\Persistence\Adapter\CodeIgniter\CIQuery;
+use Mmanager\Domain\Repository\CustomerRepository;
 
 ```
 
@@ -39,9 +39,17 @@ In your class, define a test function
 ```
 public function test()
 {
-	$greetings = new Greetings('Eric Claver AKAFFOU');
-	$welcome = new Welcome($greetings);
-	echo $welcome->sayWelcome();
+	// Create a new instance of CI Query Builder
+	$driver = new CIQuery();
+
+	// Pass CI Query Builder to Customer Repository
+	$customer = new CustomerRepository($driver);
+
+	// You can now query the customers table
+	$customer->findAll('Customer');
+
+	// Call Built-in debug method to get a html representation of the results
+	$customer->debug();
 }
 
 ```
