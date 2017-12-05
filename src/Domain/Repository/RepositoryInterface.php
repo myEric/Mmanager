@@ -39,8 +39,8 @@ namespace Mmanager\Domain\Repository;
 
 interface RepositoryInterface 
 {
-	function get_var($query = null, $x = 0, $y = 0);
-	function get_row($query = null, $output = null, $y = 0);
-	function get_results($query = null, $output = null);
-	function get_set($params);
+	public function get_var($query = null, $x = 0, $y = 0);
+	public function get_row($query = null, $output = null, $y = 0);
+	public function get_results($query = null, $output = null);
+	public function get_set($params);
 }

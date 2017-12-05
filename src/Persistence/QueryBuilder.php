@@ -39,7 +39,7 @@ namespace Mmanager\Persistence;
 
 use Mmanager\Domain\Repository\RepositoryInterface;
 
-defined('EZSQL_VERSION') or define('EZSQL_VERSION', '2.17');
+defined('MMANAGER_VERSION') or define('MMANAGER_VERSION', '2.0');
 defined('OBJECT') or define('OBJECT', 'OBJECT');
 defined('ARRAY_A') or define('ARRAY_A', 'ARRAY_A');
 defined('ARRAY_N') or define('ARRAY_N', 'ARRAY_N');
@@ -79,7 +79,7 @@ class QueryBuilder implements RepositoryInterface
 	/**********************************************************************
 	*  Constructor
 	*/
-	function __construct(QueryInterface $query)
+	public function __construct(QueryInterface $query)
 	{
 		$this->query = $query;
 	}
@@ -87,7 +87,7 @@ class QueryBuilder implements RepositoryInterface
 	*  Get host and port from an "host:port" notation.
 	*  Returns array of host and port. If port is omitted, returns $default
 	*/
-	function get_host_port( $host, $default = false )
+	public function get_host_port( $host, $default = false )
 	{
 		$port = $default;
 		if ( false !== strpos( $host, ':' ) ) {
@@ -99,7 +99,7 @@ class QueryBuilder implements RepositoryInterface
 	/**********************************************************************
 	*  Print SQL/DB error - over-ridden by specific DB class
 	*/
-	function register_error($err_str)
+	public function register_error($err_str)
 	{
 		// Keep track of last error
 		$this->last_error = $err_str;
@@ -113,18 +113,18 @@ class QueryBuilder implements RepositoryInterface
 	/**********************************************************************
 	*  Turn error handling on or off..
 	*/
-	function show_errors()
+	public function show_errors()
 	{
 		$this->show_errors = true;
 	}
-	function hide_errors()
+	public function hide_errors()
 	{
 		$this->show_errors = false;
 	}
 	/**********************************************************************
 	*  Kill cached query results
 	*/
-	function flush()
+	public function flush()
 	{
 		// Get rid of these
 		$this->last_result = null;
@@ -135,7 +135,7 @@ class QueryBuilder implements RepositoryInterface
 	/**********************************************************************
 	*  Get one variable from the DB - see docs for more detail
 	*/
-	function get_var($query=null,$x=0,$y=0)
+	public function get_var($query=null,$x=0,$y=0)
 	{
 		// Log how the function was called
 		$this->func_call = "\$db->get_var(\"$query\",$x,$y)";
@@ -155,7 +155,7 @@ class QueryBuilder implements RepositoryInterface
 	/**********************************************************************
 	*  Get one row from the DB - see docs for more detail
 	*/
-	function get_row($query=null,$output=OBJECT,$y=0)
+	public function get_row($query=null,$output=OBJECT,$y=0)
 	{
 		// Log how the function was called
 		$this->func_call = "\$db->get_row(\"$query\",$output,$y)";
@@ -189,7 +189,7 @@ class QueryBuilder implements RepositoryInterface
 	*  Function to get 1 column from the cached result set based in X index
 	*  see docs for usage and info
 	*/
-	function get_col($query=null,$x=0)
+	public function get_col($query=null,$x=0)
 	{
 		$new_array = array();
 		// If there is a query then perform it if not then use cached results..
@@ -208,7 +208,7 @@ class QueryBuilder implements RepositoryInterface
 	/**********************************************************************
 	*  Return the the query as a result set - see docs for more details
 	*/
-	function get_results($query=null, $output = OBJECT)
+	public function get_results($query=null, $output = OBJECT)
 	{
 		// Log how the function was called
 		$this->func_call = "\$db->get_results(\"$query\", $output)";
@@ -248,7 +248,7 @@ class QueryBuilder implements RepositoryInterface
 	*  Function to get column meta data info pertaining to the last query
 	* see docs for more info and usage
 	*/
-	function get_col_info($info_type="name",$col_offset=-1)
+	public function get_col_info($info_type="name",$col_offset=-1)
 	{
 		if ( $this->col_info )
 		{
@@ -271,7 +271,7 @@ class QueryBuilder implements RepositoryInterface
 	/**********************************************************************
 	*  store_cache
 	*/
-	function store_cache($query,$is_insert)
+	public function store_cache($query,$is_insert)
 	{
 		// The would be cache file for this query
 		$cache_file = $this->cache_dir.'/'.md5($query);
@@ -302,7 +302,7 @@ class QueryBuilder implements RepositoryInterface
 	/**********************************************************************
 	*  get_cache
 	*/
-	function get_cache($query)
+	public function get_cache($query)
 	{
 		// The would be cache file for this query
 		$cache_file = $this->cache_dir.'/'.md5($query);
@@ -332,7 +332,7 @@ class QueryBuilder implements RepositoryInterface
 	*  Dumps the contents of any input variable to screen in a nicely
 	*  formatted and easy to understand way - any type: Object, Var or Array
 	*/
-	function vardump($mixed='')
+	public function vardump($mixed='')
 	{
 		// Start outup buffering
 		ob_start();
@@ -340,7 +340,7 @@ class QueryBuilder implements RepositoryInterface
 		echo "<pre><font face=arial>";
 		if ( ! $this->vardump_called )
 		{
-			echo "<font color=800080><b>ezSQL</b> (v".EZSQL_VERSION.") <b>Variable Dump..</b></font>\n\n";
+			echo "<font color=800080><b>ezSQL</b> (v".MMANAGER_VERSION.") <b>Variable Dump..</b></font>\n\n";
 		}
 		$var_type = gettype ($mixed);
 		print_r(($mixed?$mixed:"<font color=red>No Value / False</font>"));
@@ -364,7 +364,7 @@ class QueryBuilder implements RepositoryInterface
 	/**********************************************************************
 	*  Alias for the above function
 	*/
-	function dumpvar($mixed)
+	public function dumpvar($mixed)
 	{
 		$this->vardump($mixed);
 	}
@@ -373,7 +373,7 @@ class QueryBuilder implements RepositoryInterface
 	* table listing results (if there were any).
 	* (abstracted into a seperate file to save server overhead).
 	*/
-	function debug($print_to_screen=true)
+	public function debug($print_to_screen=true)
 	{
 		// Start outup buffering
 		ob_start();
@@ -381,7 +381,7 @@ class QueryBuilder implements RepositoryInterface
 		// Only show ezSQL credits once..
 		if ( ! $this->debug_called )
 		{
-			echo "<font color=800080 face=arial size=2><b>ezSQL</b> (v".EZSQL_VERSION.") <b>Debug..</b></font><p>\n";
+			echo "<font color=800080 face=arial size=2><b>m'Manager</b> (v".MMANAGER_VERSION.") <b>Debug..</b></font><p>\n";
 		}
 		if ( $this->last_error )
 		{
@@ -455,27 +455,27 @@ class QueryBuilder implements RepositoryInterface
 	/**********************************************************************
 	*  Naughty little function to ask for some remuniration!
 	*/
-	function donation()
+	public function donation()
 	{
-		return "<font size=1 face=arial color=000000>If ezSQL has helped <a href=\"https://www.paypal.com/xclick/business=justin%40justinvincent.com&item_name=ezSQL&no_note=1&tax=0\" style=\"color: 0000CC;\">make a donation!?</a> &nbsp;&nbsp;<!--[ go on! you know you want to! ]--></font>";
+		return "";
 	}
 	/**********************************************************************
 	*  Timer related functions
 	*/
-	function timer_get_cur()
+	public function timer_get_cur()
 	{
 		list($usec, $sec) = explode(" ",microtime());
 		return ((float)$usec + (float)$sec);
 	}
-	function timer_start($timer_name)
+	public function timer_start($timer_name)
 	{
 		$this->timers[$timer_name] = $this->timer_get_cur();
 	}
-	function timer_elapsed($timer_name)
+	public function timer_elapsed($timer_name)
 	{
 		return round($this->timer_get_cur() - $this->timers[$timer_name],2);
 	}
-	function timer_update_global($timer_name)
+	public function timer_update_global($timer_name)
 	{
 		if ( $this->do_profile )
 		{
@@ -504,7 +504,7 @@ class QueryBuilder implements RepositoryInterface
 	*
 	*     login = 'jv', email = 'jv@vip.ie', user_id = 1, created = NOW()
 	*/
-	function get_set($params)
+	public function get_set($params)
 	{
 		if( !is_array( $params ) )
 		{
@@ -536,12 +536,11 @@ class QueryBuilder implements RepositoryInterface
 	 * @param bool $increase Set to true to increase query count (internal usage)
 	 * @return int Returns query count base on $all
 	 */
-	function count ($all = true, $increase = false) {
+	public function count ($all = true, $increase = false) {
 		if ($increase) {
 			$this->num_queries++;
 			$this->conn_queries++;
 		}
 		return ($all) ? $this->num_queries : $this->conn_queries;
 	}
-	//abstract public function query($query);
 }

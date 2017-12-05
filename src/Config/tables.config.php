@@ -6,7 +6,7 @@ return [
     'options'			 => 'oc_options',
     'users_options'		 => 'oc_usersoptions',
     'users'		         => 'users',
-    'clients'		     => 'oc_clients',
+    'customer'		     => 'oc_clients',
     'providers'		     => 'oc_providers',
     'invoices'		     => 'oc_invoices',
     'quotes'		     => 'oc_quotes',
