@@ -130,8 +130,6 @@ class QueryBuilder extends DB implements RepositoryInterface
 	*  Return the the query as a result set - see docs for more details
 	*/
 	public function get_results($query = null, $output = OBJECT) {
-		$new_array = array();
-
 		// Log how the function was called
 		$this->func_call = "\$db->get_results(\"$query\", $output)";
 		// If there is a query then perform it if not then use cached results..
@@ -428,6 +426,7 @@ class QueryBuilder extends DB implements RepositoryInterface
 		}
 	}
 	private function _getResults($query = null, $output) {
+		$new_array = array();
 		switch ($output) {
 			case 'OBJECT':
 				return $this->last_result;
