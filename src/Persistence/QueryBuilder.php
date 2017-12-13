@@ -430,18 +430,15 @@ class QueryBuilder extends DB implements RepositoryInterface
 			$this->query($query);
 		}
 	}
-	
-	private function _rowOutput($output) {
+
+	private function _rowOutput($output, $y) {
 		switch ($output) {
 			case 'OBJECT':
 				return $this->last_result[$y] ? $this->last_result[$y] : null;
-				break;
 			case 'ARRAY_A':
 				return $this->last_result[$y] ?get_object_vars($this->last_result[$y]) : null;
-				break;
 			case 'ARRAY_N':
 				return $this->last_result[$y] ?array_values(get_object_vars($this->last_result[$y])) : null;
-				break;
 			default:
 				$this->show_errors ? trigger_error(" \$db->get_row(string query, output type, int offset) -- Output type must be one of: OBJECT, ARRAY_A, ARRAY_N", E_USER_WARNING) : null;
 				break;
