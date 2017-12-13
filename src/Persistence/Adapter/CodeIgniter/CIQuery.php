@@ -72,7 +72,7 @@ class CIQuery extends QueryBuilder implements QueryInterface
 		'cgst'   		 				=> 'oc_cgst',
 		'sgst'   		 				=> 'oc_sgst',
 		'igst'   		 				=> 'oc_igst',
-		'cess'   		 				=> 'oc_cess',
+		'cess'   		 				=> 'oc_cess'
 		);
 
 	function __construct()
