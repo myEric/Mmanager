@@ -272,8 +272,7 @@ class QueryBuilder extends DB implements RepositoryInterface
 			}
 			else
 			{
-				$cache_content = file_get_contents($cache_file) ? file_get_contents($cache_file) : '';
-				$result_cache = unserialize($cache_content);
+				$result_cache = unserialize(strval(file_get_contents($cache_file)));
 				$this->col_info = $result_cache['col_info'];
 				$this->last_result = $result_cache['last_result'];
 				$this->num_rows = $result_cache['num_rows'];
