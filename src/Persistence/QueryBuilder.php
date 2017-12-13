@@ -47,8 +47,8 @@ use Mmanager\Domain\Repository\DB;
 */
 class QueryBuilder extends DB implements RepositoryInterface
 {
-	protected $trace            = false;  // same as $debug_all
-	protected $debug_all        = false;  // same as $trace
+	protected $trace            = false; // same as $debug_all
+	protected $debug_all        = false; // same as $trace
 	protected $debug_called     = false;
 	protected $vardump_called   = false;
 	protected $show_errors      = true;
@@ -86,104 +86,104 @@ class QueryBuilder extends DB implements RepositoryInterface
 	/**********************************************************************
 	*  Get one variable from the DB - see docs for more detail
 	*/
-	public function get_var($query=null,$x=0,$y=0)
+	public function get_var($query = null, $x = 0, $y = 0)
 	{
 		// Log how the function was called
 		$this->func_call = "\$db->get_var(\"$query\",$x,$y)";
 		// If there is a query then perform it if not then use cached results..
-		if ( $query )
+		if ($query)
 		{
 			$this->query($query);
 		}
 		// Extract var out of cached results based x,y vals
-		if ( $this->last_result[$y] )
+		if ($this->last_result[$y])
 		{
 			$values = array_values(get_object_vars($this->last_result[$y]));
 		}
 		// If there is a value return it else return null
-		return (isset($values[$x]) && $values[$x]!=='')?$values[$x]:null;
+		return (isset($values[$x]) && $values[$x] !== '') ? $values[$x] : null;
 	}
 	/**********************************************************************
 	*  Get one row from the DB - see docs for more detail
 	*/
-	public function get_row($query=null,$output=OBJECT,$y=0)
+	public function get_row($query = null, $output = OBJECT, $y = 0)
 	{
 		// Log how the function was called
 		$this->func_call = "\$db->get_row(\"$query\",$output,$y)";
 		// If there is a query then perform it if not then use cached results..
-		if ( $query )
+		if ($query)
 		{
 			$this->query($query);
 		}
 		// If the output is an object then return object using the row offset..
-		if ( $output == OBJECT )
+		if ($output == OBJECT)
 		{
-			return $this->last_result[$y]?$this->last_result[$y]:null;
+			return $this->last_result[$y] ? $this->last_result[$y] : null;
 		}
 		// If the output is an associative array then return row as such..
-		elseif ( $output == ARRAY_A )
+		elseif ($output == ARRAY_A)
 		{
-			return $this->last_result[$y]?get_object_vars($this->last_result[$y]):null;
+			return $this->last_result[$y] ?get_object_vars($this->last_result[$y]) : null;
 		}
 		// If the output is an numerical array then return row as such..
-		elseif ( $output == ARRAY_N )
+		elseif ($output == ARRAY_N)
 		{
-			return $this->last_result[$y]?array_values(get_object_vars($this->last_result[$y])):null;
+			return $this->last_result[$y] ?array_values(get_object_vars($this->last_result[$y])) : null;
 		}
 		// If invalid output type was specified..
 		else
 		{
-			$this->show_errors ? trigger_error(" \$db->get_row(string query, output type, int offset) -- Output type must be one of: OBJECT, ARRAY_A, ARRAY_N",E_USER_WARNING) : null;
+			$this->show_errors ? trigger_error(" \$db->get_row(string query, output type, int offset) -- Output type must be one of: OBJECT, ARRAY_A, ARRAY_N", E_USER_WARNING) : null;
 		}
 	}
 	/**********************************************************************
 	*  Function to get 1 column from the cached result set based in X index
 	*  see docs for usage and info
 	*/
-	public function get_col($query=null,$x=0)
+	public function get_col($query = null, $x = 0)
 	{
 		$new_array = array();
 		// If there is a query then perform it if not then use cached results..
-		if ( $query )
+		if ($query)
 		{
 			$this->query($query);
 		}
 		// Extract the column values
 		$j = count($this->last_result);
-		for ( $i=0; $i < $j; $i++ )
+		for ($i = 0; $i < $j; $i++)
 		{
-			$new_array[$i] = $this->get_var(null,$x,$i);
+			$new_array[$i] = $this->get_var(null, $x, $i);
 		}
 		return $new_array;
 	}
 	/**********************************************************************
 	*  Return the the query as a result set - see docs for more details
 	*/
-	public function get_results($query=null, $output = OBJECT)
+	public function get_results($query = null, $output = OBJECT)
 	{
 		$new_array = array();
 
 		// Log how the function was called
 		$this->func_call = "\$db->get_results(\"$query\", $output)";
 		// If there is a query then perform it if not then use cached results..
-		if ( $query )
+		if ($query)
 		{
 			$this->query($query);
 		}
 		// Send back array of objects. Each row is an object
-		if ( $output == OBJECT )
+		if ($output == OBJECT)
 		{
 			return $this->last_result;
 		}
-		elseif ( $output == ARRAY_A || $output == ARRAY_N )
+		elseif ($output == ARRAY_A || $output == ARRAY_N)
 		{
-			if ( $this->last_result )
+			if ($this->last_result)
 			{
-				$i=0;
-				foreach( $this->last_result as $row )
+				$i = 0;
+				foreach ($this->last_result as $row)
 				{
 					$new_array[$i] = get_object_vars($row);
-					if ( $output == ARRAY_N )
+					if ($output == ARRAY_N)
 					{
 						$new_array[$i] = array_values($new_array[$i]);
 					}
@@ -226,31 +226,30 @@ class QueryBuilder extends DB implements RepositoryInterface
 	/**********************************************************************
 	*  store_cache
 	*/
-	public function store_cache($query,$is_insert)
+	public function store_cache($query, $is_insert)
 	{
 		// The would be cache file for this query
 		$cache_file = $this->cache_dir.'/'.md5($query);
 		// disk caching of queries
-		if ( $this->use_disk_cache && ( $this->cache_queries && ! $is_insert ) || ( $this->cache_inserts && $is_insert ))
+		if ($this->use_disk_cache && ($this->cache_queries && !$is_insert) || ($this->cache_inserts && $is_insert))
 		{
-			if ( ! is_dir($this->cache_dir) )
+			if (!is_dir($this->cache_dir))
 			{
 				$this->register_error("Could not open cache dir: $this->cache_dir");
-				$this->show_errors ? trigger_error("Could not open cache dir: $this->cache_dir",E_USER_WARNING) : null;
+				$this->show_errors ? trigger_error("Could not open cache dir: $this->cache_dir", E_USER_WARNING) : null;
 			}
 			else
 			{
 				// Cache all result values
-				$result_cache = array
-				(
+				$result_cache = array(
 					'col_info' => $this->col_info,
 					'last_result' => $this->last_result,
 					'num_rows' => $this->num_rows,
 					'return_value' => $this->num_rows,
 				);
 				file_put_contents($cache_file, serialize($result_cache));
-				if( file_exists($cache_file . ".updating") )
-					unlink($cache_file . ".updating");
+				if (file_exists($cache_file.".updating"))
+					unlink($cache_file.".updating");
 			}
 		}
 	}
@@ -262,13 +261,13 @@ class QueryBuilder extends DB implements RepositoryInterface
 		// The would be cache file for this query
 		$cache_file = $this->cache_dir.'/'.md5($query);
 		// Try to get previously cached version
-		if ( $this->use_disk_cache && file_exists($cache_file) )
+		if ($this->use_disk_cache && file_exists($cache_file))
 		{
 			// Only use this cache file if less than 'cache_timeout' (hours)
-			if ( (time() - filemtime($cache_file)) > ($this->cache_timeout*3600) &&
-				!(file_exists($cache_file . ".updating") && (time() - filemtime($cache_file . ".updating") < 60)) )
+			if ((time() - filemtime($cache_file)) > ($this->cache_timeout * 3600) &&
+				!(file_exists($cache_file.".updating") && (time() - filemtime($cache_file.".updating") < 60)))
 			{
-				touch($cache_file . ".updating"); // Show that we in the process of updating the cache
+				touch($cache_file.".updating"); // Show that we in the process of updating the cache
 			}
 			else
 			{
@@ -278,7 +277,7 @@ class QueryBuilder extends DB implements RepositoryInterface
 				$this->num_rows = $result_cache['num_rows'];
 				$this->from_disk_cache = true;
 				// If debug ALL queries
-				$this->trace || $this->debug_all ? $this->debug() : null ;
+				$this->trace || $this->debug_all ? $this->debug() : null;
 				return $result_cache['return_value'];
 			}
 		}
@@ -287,21 +286,21 @@ class QueryBuilder extends DB implements RepositoryInterface
 	*  Dumps the contents of any input variable to screen in a nicely
 	*  formatted and easy to understand way - any type: Object, Var or Array
 	*/
-	public function vardump($mixed='')
+	public function vardump($mixed = '')
 	{
 		// Start outup buffering
 		ob_start();
 		echo "<p><table><tr><td bgcolor=ffffff><blockquote><font color=000090>";
 		echo "<pre><font face=arial>";
-		if ( ! $this->vardump_called )
+		if (!$this->vardump_called)
 		{
 			echo "<font color=800080><b>ezSQL</b> (v".MMANAGER_VERSION.") <b>Variable Dump..</b></font>\n\n";
 		}
-		$var_type = gettype ($mixed);
-		print_r(($mixed?$mixed:"<font color=red>No Value / False</font>"));
-		echo "\n\n<b>Type:</b> " . ucfirst($var_type) . "\n";
-		echo "<b>Last Query</b> [$this->num_queries]<b>:</b> ".($this->last_query?$this->last_query:"NULL")."\n";
-		echo "<b>Last Function Call:</b> " . ($this->func_call?$this->func_call:"None")."\n";
+		$var_type = gettype($mixed);
+		print_r(($mixed ? $mixed : "<font color=red>No Value / False</font>"));
+		echo "\n\n<b>Type:</b> ".ucfirst($var_type)."\n";
+		echo "<b>Last Query</b> [$this->num_queries]<b>:</b> ".($this->last_query ? $this->last_query : "NULL")."\n";
+		echo "<b>Last Function Call:</b> ".($this->func_call ? $this->func_call : "None")."\n";
 		echo "<b>Last Rows Returned:</b> ".count($this->last_result)."\n";
 		echo "</font></pre></font></blockquote></td></tr></table>".$this->donation();
 		echo "\n<hr size=1 noshade color=dddddd>";
@@ -309,7 +308,7 @@ class QueryBuilder extends DB implements RepositoryInterface
 		$html = ob_get_contents();
 		ob_end_clean();
 		// Only echo output if it is turned on
-		if ( $this->debug_echo_is_on )
+		if ($this->debug_echo_is_on)
 		{
 			echo $html;
 		}
@@ -319,8 +318,7 @@ class QueryBuilder extends DB implements RepositoryInterface
 	/**********************************************************************
 	*  Alias for the above function
 	*/
-	public function dumpvar($mixed)
-	{
+	public function dumpvar($mixed) {
 		$this->vardump($mixed);
 	}
 	/**********************************************************************
@@ -328,21 +326,21 @@ class QueryBuilder extends DB implements RepositoryInterface
 	* table listing results (if there were any).
 	* (abstracted into a seperate file to save server overhead).
 	*/
-	public function debug($print_to_screen=true)
+	public function debug($print_to_screen = true)
 	{
 		// Start outup buffering
 		ob_start();
 		echo "<blockquote>";
 		// Only show ezSQL credits once..
-		if ( ! $this->debug_called )
+		if (!$this->debug_called)
 		{
 			echo "<font color=800080 face=arial size=2><b>m'Manager</b> (v".MMANAGER_VERSION.") <b>Debug..</b></font><p>\n";
 		}
-		if ( $this->last_error )
+		if ($this->last_error)
 		{
 			echo "<font face=arial size=2 color=000099><b>Last Error --</b> [<font color=000000><b>$this->last_error</b></font>]<p>";
 		}
-		if ( $this->from_disk_cache )
+		if ($this->from_disk_cache)
 		{
 			echo "<font face=arial size=2 color=000099><b>Results retrieved from disk cache</b></font><p>";
 		}
@@ -350,13 +348,13 @@ class QueryBuilder extends DB implements RepositoryInterface
 		echo "[<font color=000000><b>$this->last_query</b></font>]</font><p>";
 			echo "<font face=arial size=2 color=000099><b>Query Result..</b></font>";
 			echo "<blockquote>";
-		if ( $this->col_info )
+		if ($this->col_info)
 		{
 			// =====================================================
 			// Results top rows
 			echo "<table cellpadding=5 cellspacing=1 bgcolor=555555>";
 			echo "<tr bgcolor=eeeeee><td nowrap valign=bottom><font color=555599 face=arial size=2><b>(row)</b></font></td>";
-			for ( $i=0, $j=count($this->col_info); $i < $j; $i++ )
+			for ($i = 0, $j = count($this->col_info); $i < $j; $i++)
 			{
 				/* when selecting count(*) the maxlengh is not set, size is set instead. */
 				echo "<td nowrap align=left valign=top><font size=1 color=555599 face=arial>{$this->col_info[$i]->type}";
@@ -371,14 +369,14 @@ class QueryBuilder extends DB implements RepositoryInterface
 			echo "</tr>";
 			// ======================================================
 			// print main results
-		if ( $this->last_result )
+		if ($this->last_result)
 		{
-			$i=0;
-			foreach ( $this->get_results(null,ARRAY_N) as $one_row )
+			$i = 0;
+			foreach ($this->get_results(null, ARRAY_N) as $one_row)
 			{
 				$i++;
 				echo "<tr bgcolor=ffffff><td bgcolor=eeeeee nowrap align=middle><font size=2 color=555599 face=arial>$i</font></td>";
-				foreach ( $one_row as $item )
+				foreach ($one_row as $item)
 				{
 					echo "<td nowrap><font face=arial size=2>$item</font></td>";
 				}
@@ -387,7 +385,7 @@ class QueryBuilder extends DB implements RepositoryInterface
 		} // if last result
 		else
 		{
-			echo "<tr bgcolor=ffffff><td colspan=".(count($this->col_info)+1)."><font face=arial size=2>No Results</font></td></tr>";
+			echo "<tr bgcolor=ffffff><td colspan=".(count($this->col_info) + 1)."><font face=arial size=2>No Results</font></td></tr>";
 		}
 		echo "</table>";
 		} // if col_info
@@ -400,7 +398,7 @@ class QueryBuilder extends DB implements RepositoryInterface
 		$html = ob_get_contents();
 		ob_end_clean();
 		// Only echo output if it is turned on
-		if ( $this->debug_echo_is_on && $print_to_screen)
+		if ($this->debug_echo_is_on && $print_to_screen)
 		{
 			echo $html;
 		}
@@ -419,8 +417,8 @@ class QueryBuilder extends DB implements RepositoryInterface
 	*/
 	public function timer_get_cur()
 	{
-		list($usec, $sec) = explode(" ",microtime());
-		return ((float)$usec + (float)$sec);
+		list($usec, $sec) = explode(" ", microtime());
+		return ((float) $usec + (float) $sec);
 	}
 	public function timer_start($timer_name)
 	{
@@ -428,14 +426,13 @@ class QueryBuilder extends DB implements RepositoryInterface
 	}
 	public function timer_elapsed($timer_name)
 	{
-		return round($this->timer_get_cur() - $this->timers[$timer_name],2);
+		return round($this->timer_get_cur() - $this->timers[$timer_name], 2);
 	}
 	public function timer_update_global($timer_name)
 	{
-		if ( $this->do_profile )
+		if ($this->do_profile)
 		{
-			$this->profile_times[] = array
-			(
+			$this->profile_times[] = array(
 				'query' => $this->last_query,
 				'time' => $this->timer_elapsed($timer_name)
 			);
@@ -461,28 +458,28 @@ class QueryBuilder extends DB implements RepositoryInterface
 	*/
 	public function get_set($params)
 	{
-		if( !is_array( $params ) )
+		if (!is_array($params))
 		{
-			$this->register_error( 'get_set() parameter invalid. Expected array in '.__FILE__.' on line '.__LINE__);
+			$this->register_error('get_set() parameter invalid. Expected array in '.__FILE__.' on line '.__LINE__);
 			return;
 		}
 		$sql = array();
-		foreach ( $params as $field => $val )
+		foreach ($params as $field => $val)
 		{
-			if ( $val === 'true' || $val === true )
+			if ($val === 'true' || $val === true)
 				$val = 1;
-			if ( $val === 'false' || $val === false )
+			if ($val === 'false' || $val === false)
 				$val = 0;
-			switch( $val ){
+			switch ($val) {
 				case 'NOW()' :
 				case 'NULL' :
 				  $sql[] = "$field = $val";
 					break;
 				default :
-					$sql[] = "$field = '".$this->escape( $val )."'";
+					$sql[] = "$field = '".$this->escape($val)."'";
 			}
 		}
-		return implode( ', ' , $sql );
+		return implode(', ', $sql);
 	}
 	/**
 	 * Function for operating query count
@@ -491,7 +488,7 @@ class QueryBuilder extends DB implements RepositoryInterface
 	 * @param bool $increase Set to true to increase query count (internal usage)
 	 * @return int Returns query count base on $all
 	 */
-	public function count ($all = true, $increase = false) {
+	public function count($all = true, $increase = false) {
 		if ($increase) {
 			$this->num_queries++;
 			$this->conn_queries++;
