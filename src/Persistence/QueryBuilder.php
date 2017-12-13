@@ -78,6 +78,7 @@ class QueryBuilder extends DB implements RepositoryInterface
 	protected $last_result;
 	protected $num_rows;
 	protected $from_disk_cache;
+	protected $new_array = [];
 
 	/**********************************************************************
 	*  Constructor
@@ -116,15 +117,15 @@ class QueryBuilder extends DB implements RepositoryInterface
 	*  see docs for usage and info
 	*/
 	public function get_col($query = null, $x = 0) {
-		$new_array = array();
+		$this->new_array = array();
 		// If there is a query then perform it if not then use cached results..
 		$this->_query($query);
 		// Extract the column values
 		$j = count($this->last_result);
 		for ($i = 0; $i < $j; $i++) {
-			$new_array[$i] = $this->get_var(null, $x, $i);
+			$this->new_array[$i] = $this->get_var(null, $x, $i);
 		}
-		return $new_array;
+		return $this->new_array;
 	}
 	/**********************************************************************
 	*  Return the the query as a result set - see docs for more details
@@ -142,7 +143,7 @@ class QueryBuilder extends DB implements RepositoryInterface
 	*/
 	public function get_col_info($info_type = "name", $col_offset = -1)
 	{
-		$new_array = array();
+		$this->new_array = array();
 
 		if ($this->col_info)
 		{
@@ -151,10 +152,10 @@ class QueryBuilder extends DB implements RepositoryInterface
 				$i = 0;
 				foreach ($this->col_info as $col)
 				{
-					$new_array[$i] = $col->{$info_type};
+					$this->new_array[$i] = $col->{$info_type};
 					$i++;
 				}
-				return $new_array;
+				return $this->new_array;
 			}
 			else
 			{
@@ -426,7 +427,7 @@ class QueryBuilder extends DB implements RepositoryInterface
 		}
 	}
 	private function _getResults($query = null, $output) {
-		$new_array = array();
+		$this->new_array = array();
 		switch ($output) {
 			case 'OBJECT':
 				return $this->last_result;
@@ -435,13 +436,13 @@ class QueryBuilder extends DB implements RepositoryInterface
 				if ($this->last_result) {
 				$i = 0;
 				foreach ($this->last_result as $row) {
-					$new_array[$i] = get_object_vars($row);
+					$this->new_array[$i] = get_object_vars($row);
 					if ($output == ARRAY_N) {
-						$new_array[$i] = array_values($new_array[$i]);
+						$this->new_array[$i] = array_values($this->new_array[$i]);
 					}
 					$i++;
 				}
-				return $new_array;
+				return $this->new_array;
 			} else {
 				return array();
 			}
