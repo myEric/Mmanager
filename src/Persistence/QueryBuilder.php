@@ -109,7 +109,7 @@ class QueryBuilder extends DB implements RepositoryInterface
 		// If there is a query then perform it if not then use cached results..
 		$this->_query($query);
 		// If the output is an object then return object using the row offset..
-		$this->_rowOutput($output);
+		$this->_rowOutput($output, $y);
 	}
 	/**********************************************************************
 	*  Function to get 1 column from the cached result set based in X index
@@ -136,24 +136,7 @@ class QueryBuilder extends DB implements RepositoryInterface
 		$this->func_call = "\$db->get_results(\"$query\", $output)";
 		// If there is a query then perform it if not then use cached results..
 		$this->_query($query);
-		// Send back array of objects. Each row is an object
-		if ($output == OBJECT) {
-			return $this->last_result;
-		} elseif ($output == ARRAY_A || $output == ARRAY_N) {
-			if ($this->last_result) {
-				$i = 0;
-				foreach ($this->last_result as $row) {
-					$new_array[$i] = get_object_vars($row);
-					if ($output == ARRAY_N) {
-						$new_array[$i] = array_values($new_array[$i]);
-					}
-					$i++;
-				}
-				return $new_array;
-			} else {
-				return array();
-			}
-		}
+		$this->_getResults($query = null, $output);
 	}
 	/**********************************************************************
 	*  Function to get column meta data info pertaining to the last query
@@ -442,6 +425,27 @@ class QueryBuilder extends DB implements RepositoryInterface
 			default:
 				$this->show_errors ? trigger_error(" \$db->get_row(string query, output type, int offset) -- Output type must be one of: OBJECT, ARRAY_A, ARRAY_N", E_USER_WARNING) : null;
 				break;
+		}
+	}
+	private function _getResults($query = null, $output) {
+		switch ($output) {
+			case 'OBJECT':
+				return $this->last_result;
+			case 'ARRAY_A':
+			case 'ARRAY_N':
+				if ($this->last_result) {
+				$i = 0;
+				foreach ($this->last_result as $row) {
+					$new_array[$i] = get_object_vars($row);
+					if ($output == ARRAY_N) {
+						$new_array[$i] = array_values($new_array[$i]);
+					}
+					$i++;
+				}
+				return $new_array;
+			} else {
+				return array();
+			}
 		}
 	}
 }
