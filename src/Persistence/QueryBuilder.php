@@ -161,6 +161,8 @@ class QueryBuilder extends DB implements RepositoryInterface
 	*/
 	public function get_results($query=null, $output = OBJECT)
 	{
+		$new_array = array();
+
 		// Log how the function was called
 		$this->func_call = "\$db->get_results(\"$query\", $output)";
 		// If there is a query then perform it if not then use cached results..
@@ -201,6 +203,8 @@ class QueryBuilder extends DB implements RepositoryInterface
 	*/
 	public function get_col_info($info_type="name",$col_offset=-1)
 	{
+		$new_array = array();
+		
 		if ( $this->col_info )
 		{
 			if ( $col_offset == -1 )
