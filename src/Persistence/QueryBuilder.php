@@ -75,6 +75,9 @@ class QueryBuilder extends DB implements RepositoryInterface
 	protected $debug_echo_is_on = true;
 	protected $query;
 	protected $func_call;
+	protected $last_result;
+	protected $num_rows;
+	protected $from_disk_cache;
 
 	/**********************************************************************
 	*  Constructor
