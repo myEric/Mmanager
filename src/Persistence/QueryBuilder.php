@@ -141,24 +141,18 @@ class QueryBuilder extends DB implements RepositoryInterface
 	*  Function to get column meta data info pertaining to the last query
 	* see docs for more info and usage
 	*/
-	public function get_col_info($info_type = "name", $col_offset = -1)
-	{
+	public function get_col_info($info_type = "name", $col_offset = -1) {
 		$this->new_array = array();
 
-		if ($this->col_info)
-		{
-			if ($col_offset == -1)
-			{
+		if ($this->col_info) {
+			if ($col_offset == -1) {
 				$i = 0;
-				foreach ($this->col_info as $col)
-				{
+				foreach ($this->col_info as $col) {
 					$this->new_array[$i] = $col->{$info_type};
 					$i++;
 				}
 				return $this->new_array;
-			}
-			else
-			{
+			} else {
 				return $this->col_info[$col_offset]->{$info_type};
 			}
 		}
@@ -183,29 +177,25 @@ class QueryBuilder extends DB implements RepositoryInterface
 					'return_value' => $this->num_rows,
 				);
 				file_put_contents($cache_file, serialize($result_cache));
-				if (file_exists($cache_file.".updating"))
-					unlink($cache_file.".updating");
+				if (file_exists($cache_file.".updating")) {
+									unlink($cache_file.".updating");
+				}
 			}
 		}
 	}
 	/**********************************************************************
 	*  get_cache
 	*/
-	public function get_cache($query)
-	{
+	public function get_cache($query) {
 		// The would be cache file for this query
 		$cache_file = $this->cache_dir.'/'.md5($query);
 		// Try to get previously cached version
-		if ($this->use_disk_cache && file_exists($cache_file))
-		{
+		if ($this->use_disk_cache && file_exists($cache_file)) {
 			// Only use this cache file if less than 'cache_timeout' (hours)
 			if ((time() - filemtime($cache_file)) > ($this->cache_timeout * 3600) &&
-				!(file_exists($cache_file.".updating") && (time() - filemtime($cache_file.".updating") < 60)))
-			{
+				!(file_exists($cache_file.".updating") && (time() - filemtime($cache_file.".updating") < 60))) {
 				touch($cache_file.".updating"); // Show that we in the process of updating the cache
-			}
-			else
-			{
+			} else {
 				$result_cache = unserialize(strval(file_get_contents($cache_file)));
 				$this->col_info = $result_cache['col_info'];
 				$this->last_result = $result_cache['last_result'];
