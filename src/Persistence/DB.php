@@ -67,6 +67,9 @@ class DB extends DBResults
 	protected $debug_echo_is_on = true;
 	protected $query;
 	protected $from_disk_cache;
+	protected $last_result;
+	protected $num_rows;
+	protected $from_disk_cache;
 	/**********************************************************************
 	*  Constructor
 	*/
