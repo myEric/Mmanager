@@ -82,55 +82,6 @@ class QueryBuilder extends DB implements RepositoryInterface
 		$this->query = $query;
 	}
 	/**********************************************************************
-	*  Get host and port from an "host:port" notation.
-	*  Returns array of host and port. If port is omitted, returns $default
-	*/
-	public function get_host_port( $host, $default = false )
-	{
-		$port = $default;
-		if ( false !== strpos( $host, ':' ) ) {
-			list( $host, $port ) = explode( ':', $host );
-			$port = (int) $port;
-		}
-		return array( $host, $port );
-	}
-	/**********************************************************************
-	*  Print SQL/DB error - over-ridden by specific DB class
-	*/
-	public function register_error($err_str)
-	{
-		// Keep track of last error
-		$this->last_error = $err_str;
-		// Capture all errors to an error array no matter what happens
-		$this->captured_errors[] = array
-		(
-			'error_str' => $err_str,
-			'query'     => $this->last_query
-		);
-	}
-	/**********************************************************************
-	*  Turn error handling on or off..
-	*/
-	public function show_errors()
-	{
-		$this->show_errors = true;
-	}
-	public function hide_errors()
-	{
-		$this->show_errors = false;
-	}
-	/**********************************************************************
-	*  Kill cached query results
-	*/
-	public function flush()
-	{
-		// Get rid of these
-		$this->last_result = null;
-		$this->col_info = null;
-		$this->last_query = null;
-		$this->from_disk_cache = false;
-	}
-	/**********************************************************************
 	*  Get one variable from the DB - see docs for more detail
 	*/
 	public function get_var($query=null,$x=0,$y=0)
