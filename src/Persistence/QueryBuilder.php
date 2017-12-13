@@ -430,6 +430,7 @@ class QueryBuilder extends DB implements RepositoryInterface
 			$this->query($query);
 		}
 	}
+	
 	private function _rowOutput($output) {
 		switch ($output) {
 			case 'OBJECT':
