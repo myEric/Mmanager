@@ -37,11 +37,7 @@
  
 namespace Mmanager\Persistence;
 
-/**********************************************************************
-*  Core class containg common functions to manipulate query result
-*  sets once returned
-*/
-class DB
+class DB extends DBResults
 {
 	protected $trace            = false;  // same as $debug_all
 	protected $debug_all        = false;  // same as $trace
@@ -70,6 +66,7 @@ class DB
 	// == TJH == default now needed for echo of debug function
 	protected $debug_echo_is_on = true;
 	protected $query;
+	protected $from_disk_cache;
 	/**********************************************************************
 	*  Constructor
 	*/
