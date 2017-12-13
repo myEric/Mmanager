@@ -204,7 +204,7 @@ class QueryBuilder extends DB implements RepositoryInterface
 	public function get_col_info($info_type="name",$col_offset=-1)
 	{
 		$new_array = array();
-		
+
 		if ( $this->col_info )
 		{
 			if ( $col_offset == -1 )
@@ -272,7 +272,8 @@ class QueryBuilder extends DB implements RepositoryInterface
 			}
 			else
 			{
-				$result_cache = unserialize(file_get_contents($cache_file));
+				$cache_content = file_get_contents($cache_file) ? file_get_contents($cache_file) : '';
+				$result_cache = unserialize($cache_content);
 				$this->col_info = $result_cache['col_info'];
 				$this->last_result = $result_cache['last_result'];
 				$this->num_rows = $result_cache['num_rows'];
