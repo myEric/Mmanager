@@ -92,9 +92,7 @@ class QueryBuilder extends DB implements RepositoryInterface
 		// Log how the function was called
 		$this->func_call = "\$db->get_var(\"$query\",$x,$y)";
 		// If there is a query then perform it if not then use cached results..
-		if ($query) {
-			$this->query($query);
-		}
+		$this->_query($query);
 		// Extract var out of cached results based x,y vals
 		if ($this->last_result[$y]) {
 			$values = array_values(get_object_vars($this->last_result[$y]));
@@ -109,25 +107,9 @@ class QueryBuilder extends DB implements RepositoryInterface
 		// Log how the function was called
 		$this->func_call = "\$db->get_row(\"$query\",$output,$y)";
 		// If there is a query then perform it if not then use cached results..
-		if ($query) {
-			$this->query($query);
-		}
+		$this->_query($query);
 		// If the output is an object then return object using the row offset..
-		if ($output == OBJECT) {
-			return $this->last_result[$y] ? $this->last_result[$y] : null;
-		}
-		// If the output is an associative array then return row as such..
-		elseif ($output == ARRAY_A) {
-			return $this->last_result[$y] ?get_object_vars($this->last_result[$y]) : null;
-		}
-		// If the output is an numerical array then return row as such..
-		elseif ($output == ARRAY_N) {
-			return $this->last_result[$y] ?array_values(get_object_vars($this->last_result[$y])) : null;
-		}
-		// If invalid output type was specified..
-		else {
-			$this->show_errors ? trigger_error(" \$db->get_row(string query, output type, int offset) -- Output type must be one of: OBJECT, ARRAY_A, ARRAY_N", E_USER_WARNING) : null;
-		}
+		$this->_rowOutput($output);
 	}
 	/**********************************************************************
 	*  Function to get 1 column from the cached result set based in X index
@@ -136,9 +118,7 @@ class QueryBuilder extends DB implements RepositoryInterface
 	public function get_col($query = null, $x = 0) {
 		$new_array = array();
 		// If there is a query then perform it if not then use cached results..
-		if ($query) {
-			$this->query($query);
-		}
+		$this->_query($query);
 		// Extract the column values
 		$j = count($this->last_result);
 		for ($i = 0; $i < $j; $i++) {
@@ -155,9 +135,7 @@ class QueryBuilder extends DB implements RepositoryInterface
 		// Log how the function was called
 		$this->func_call = "\$db->get_results(\"$query\", $output)";
 		// If there is a query then perform it if not then use cached results..
-		if ($query) {
-			$this->query($query);
-		}
+		$this->_query($query);
 		// Send back array of objects. Each row is an object
 		if ($output == OBJECT) {
 			return $this->last_result;
@@ -446,5 +424,26 @@ class QueryBuilder extends DB implements RepositoryInterface
 			$this->conn_queries++;
 		}
 		return ($all) ? $this->num_queries : $this->conn_queries;
+	}
+	private function _query($query) {
+		if ($query) {
+			$this->query($query);
+		}
+	}
+	private function _rowOutput($output) {
+		switch ($output) {
+			case 'OBJECT':
+				return $this->last_result[$y] ? $this->last_result[$y] : null;
+				break;
+			case 'ARRAY_A':
+				return $this->last_result[$y] ?get_object_vars($this->last_result[$y]) : null;
+				break;
+			case 'ARRAY_N':
+				return $this->last_result[$y] ?array_values(get_object_vars($this->last_result[$y])) : null;
+				break;
+			default:
+				$this->show_errors ? trigger_error(" \$db->get_row(string query, output type, int offset) -- Output type must be one of: OBJECT, ARRAY_A, ARRAY_N", E_USER_WARNING) : null;
+				break;
+		}
 	}
 }
