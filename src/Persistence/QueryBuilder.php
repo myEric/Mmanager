@@ -187,16 +187,14 @@ class QueryBuilder extends DB implements RepositoryInterface
 	*  get_cache
 	*/
 	public function get_cache($query) {
-		// The would be cache file for this query
-		$cache_file = $this->cache_dir.'/'.md5($query);
 		// Try to get previously cached version
-		if ($this->use_disk_cache && file_exists($cache_file)) {
+		if ($this->use_disk_cache && file_exists($this->_getCache($query))) {
 			// Only use this cache file if less than 'cache_timeout' (hours)
-			if ((time() - filemtime($cache_file)) > ($this->cache_timeout * 3600) &&
-				!(file_exists($cache_file.".updating") && (time() - filemtime($cache_file.".updating") < 60))) {
-				touch($cache_file.".updating"); // Show that we in the process of updating the cache
+			if ((time() - filemtime($this->_getCache($query))) > ($this->cache_timeout * 3600) &&
+				!(file_exists($$this->_getCache($query).".updating") && (time() - filemtime($this->_getCache($query).".updating") < 60))) {
+				touch($$this->_getCache($query).".updating"); // Show that we in the process of updating the cache
 			} else {
-				$result_cache = unserialize(strval(file_get_contents($cache_file)));
+				$result_cache = unserialize(strval(file_get_contents($$this->_getCache($query))));
 				$this->col_info = $result_cache['col_info'];
 				$this->last_result = $result_cache['last_result'];
 				$this->num_rows = $result_cache['num_rows'];
@@ -437,5 +435,8 @@ class QueryBuilder extends DB implements RepositoryInterface
 				return array();
 			}
 		}
+	}
+	private function _getCache($query) {
+		return $this->cache_dir.'/'.md5($query);
 	}
 }
