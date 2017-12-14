@@ -37,6 +37,8 @@
  
 namespace Mmanager\Persistence;
 
+use Mmanager\Persistence\DBResults;
+
 class DB extends DBResults
 {
 	protected $trace            = false;  // same as $debug_all
