@@ -39,7 +39,7 @@ namespace Mmanager\Persistence;
 
 use Mmanager\Domain\Repository\RepositoryInterface;
 use Mmanager\Domain\Repository\QueryInterface;
-use Mmanager\Domain\Repository\DB;
+use Mmanager\Persistence\DB;
 
 /**********************************************************************
 *  Core class containg common functions to manipulate query result
