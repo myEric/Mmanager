@@ -79,7 +79,7 @@ class CIQuery extends QueryBuilder implements QueryInterface
 	{
 		global $db;
 		$db = $this;
-		$this->CI =& get_instance();
+		$this->CI = & get_instance();
 	}
     
 	public function query($query)
@@ -106,12 +106,12 @@ class CIQuery extends QueryBuilder implements QueryInterface
 		$this->timer_start($this->num_queries);
 		
 		// Use core file cache function
-		if ( $cache = $this->get_cache($query) )
+		if ($cache = $this->get_cache($query))
 		{
 			// Keep tack of how long all queries have taken
 			$this->timer_update_global($this->num_queries);
 			// Trace all queries
-			if ( $this->use_trace_log )
+			if ($this->use_trace_log)
 			{
 				$this->trace_log[] = $this->debug(false);
 			}
@@ -122,24 +122,24 @@ class CIQuery extends QueryBuilder implements QueryInterface
 		$ci_query = $this->CI->db->query($query);
 		
 		// If there is an error then take note of it..
-		if ( $str = $this->CI->db->error()['message'] )
+		if ($str = $this->CI->db->error()['message'])
 		{
 			$this->register_error($str);
-			$this->show_errors ? trigger_error($str,E_USER_WARNING) : null;				
+			$this->show_errors ? trigger_error($str, E_USER_WARNING) : null;				
 			
 			// If debug ALL queries
-			$this->trace || $this->debug_all ? $this->debug() : null ;
+			$this->trace || $this->debug_all ? $this->debug() : null;
 			
 			return false;
 		}
 		
 		// Query was write (insert/delete/update etc.) query?
-		if ( preg_match("/^(insert|delete|update|replace|truncate|drop|create|alter)\s+/i",$query) )
+		if (preg_match("/^(insert|delete|update|replace|truncate|drop|create|alter)\s+/i", $query))
 		{
 			$is_insert = true;
 			$this->rows_affected = $this->CI->db->affected_rows();
 			// Take note of the insert_id
-			if ( preg_match("/^(insert|replace)\s+/i",$query) )
+			if (preg_match("/^(insert|replace)\s+/i", $query))
 			{
 				$this->insert_id = $this->CI->db->insert_id();
 			}
@@ -152,18 +152,18 @@ class CIQuery extends QueryBuilder implements QueryInterface
 			$is_insert = false;
 			
 			// Store Query Results
-			$num_rows=0;
-			if ( $ci_query->num_rows() )
+			$num_rows = 0;
+			if ($ci_query->num_rows())
 			{
 				foreach ($ci_query->result() as $row)
 				{
 					// Take note of column info
-					if ( $num_rows == 0 )
+					if ($num_rows == 0)
 					{
-						$i=0;
-						foreach ( get_object_vars($row) as $k => $v )
+						$i = 0;
+						foreach (get_object_vars($row) as $k => $v)
 						{
-							$this->col_info[$i] = (object)[];
+							$this->col_info[$i] = (object) [];
 							$this->col_info[$i]->name = $k;
 							$this->col_info[$i]->max_length = $k;
 							$this->col_info[$i]->type = '';
@@ -181,13 +181,13 @@ class CIQuery extends QueryBuilder implements QueryInterface
 			$return_val = $this->num_rows = $num_rows;
 		}
 		// disk caching of queries
-		$this->store_cache($query,$is_insert);
+		$this->store_cache($query, $is_insert);
 		// If debug ALL queries
-		$this->trace || $this->debug_all ? $this->debug() : null ;
+		$this->trace || $this->debug_all ? $this->debug() : null;
 		// Keep tack of how long all queries have taken
 		$this->timer_update_global($this->num_queries);
 		// Trace all queries
-		if ( $this->use_trace_log )
+		if ($this->use_trace_log)
 		{
 			$this->trace_log[] = $this->debug(false);
 		}
@@ -197,8 +197,7 @@ class CIQuery extends QueryBuilder implements QueryInterface
 	/**********************************************************************
 	*  Format a sql string correctly for safe insert
 	*/
-	public function escape($str)
-	{
+	public function escape($str) {
 		return $this->CI->db->escape_str(stripslashes($str));
 	}
 
