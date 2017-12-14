@@ -161,8 +161,6 @@ class QueryBuilder extends DB implements RepositoryInterface
 	*  store_cache
 	*/
 	public function store_cache($query, $is_insert) {
-		// The would be cache file for this query
-		$cache_file = $this->cache_dir.'/'.md5($query);
 		// disk caching of queries
 		if ($this->use_disk_cache && ($this->cache_queries && !$is_insert) || ($this->cache_inserts && $is_insert)) {
 			if (!is_dir($this->cache_dir)) {
@@ -176,9 +174,9 @@ class QueryBuilder extends DB implements RepositoryInterface
 					'num_rows' => $this->num_rows,
 					'return_value' => $this->num_rows,
 				);
-				file_put_contents($cache_file, serialize($result_cache));
-				if (file_exists($cache_file.".updating")) {
-									unlink($cache_file.".updating");
+				file_put_contents($this->_getCache($query), serialize($result_cache));
+				if (file_exists($this->_getCache($query).".updating")) {
+					unlink($this->_getCache($query).".updating");
 				}
 			}
 		}
