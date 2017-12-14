@@ -135,7 +135,7 @@ class QueryBuilder extends DB implements RepositoryInterface
 		$this->func_call = "\$db->get_results(\"$query\", $output)";
 		// If there is a query then perform it if not then use cached results..
 		$this->_query($query);
-		$this->_getResults($query = null, $output);
+		$this->_getResults($query, $output);
 	}
 	/**********************************************************************
 	*  Function to get column meta data info pertaining to the last query
@@ -412,7 +412,7 @@ class QueryBuilder extends DB implements RepositoryInterface
 				break;
 		}
 	}
-	private function _getResults($output) {
+	private function _getResults($query, $output) {
 		$this->new_array = array();
 		switch ($output) {
 			case 'OBJECT':
