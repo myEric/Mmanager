@@ -412,7 +412,7 @@ class QueryBuilder extends DB implements RepositoryInterface
 				break;
 		}
 	}
-	private function _getResults($query = null, $output) {
+	private function _getResults($output) {
 		$this->new_array = array();
 		switch ($output) {
 			case 'OBJECT':

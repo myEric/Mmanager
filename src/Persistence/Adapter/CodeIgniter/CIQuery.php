@@ -75,14 +75,14 @@ class CIQuery extends QueryBuilder implements QueryInterface
 		'cess'   		 				=> 'oc_cess'
 		);
 
-	function __construct()
+	public function __construct()
 	{
 		global $db;
 		$db = $this;
 		$this->CI =& get_instance();
 	}
     
-	function query($query)
+	public function query($query)
 	{
 		// Initialise return
 		$return_val = 0;
@@ -197,9 +197,9 @@ class CIQuery extends QueryBuilder implements QueryInterface
 	/**********************************************************************
 	*  Format a sql string correctly for safe insert
 	*/
-	function escape($str, $like = FALSE)
+	public function escape($str)
 	{
-		return $this->CI->db->escape_str(stripslashes($str), $like = FALSE);
+		return $this->CI->db->escape_str(stripslashes($str));
 	}
 
 }
