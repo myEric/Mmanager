@@ -42,6 +42,9 @@ use Mmanager\Persistence\Adapter\CodeIgniter\CIModel;
 
 class CIQueryBuilder extends CIModel implements RepositoryInterface
 {
+    public function __construct() {
+        parent::__construct();
+    }
     public function test() {
         $query = $this->db->get('oc_clients', 10);
         return $query->result();
