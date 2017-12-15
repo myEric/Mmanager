@@ -7,11 +7,9 @@ describe('Customer', function()
 	{
 		it('should set the customer name', function()
 		{
-			$customer = new Customer();
 		});
 		describe('->getName()', function()
 		{
-			
 		});
 	});
 });
