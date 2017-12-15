@@ -52,27 +52,8 @@
  	 * @param QueryInterface $query 
  	 * @return type $this
  	 */
- 	public function __construct(QueryInterface $query) {
- 		$this->query = $query;
+ 	public function __construct() {
  	}
-
- 	/**
- 	 * Print a html debug
- 	 * @return type
- 	 */
- 	public function debug() {
- 		return $this->query->debug();
- 	}
-
- 	/**
- 	 * Find All
- 	 * @param type $table 
- 	 * @return type
- 	 */
- 	public function findAll($table) {
- 		return $this->query->get_results($this->_findAll($table));
- 	}
-
  	/**
  	 * Find Table by key
  	 * @param type $key 
