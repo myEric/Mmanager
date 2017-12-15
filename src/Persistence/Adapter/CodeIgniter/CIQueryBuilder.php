@@ -36,16 +36,30 @@
  */
 
 namespace Mmanager\Persistence\Adapter\CodeIgniter;
+use Mmanager\Domain\Repository\RepositoryInterface;
 use Mmanager\Persistence\Adapter\CodeIgniter\CIModel;
 
 
-abstract class AbstractDB extends CIModel
+class CIQueryBuilder extends CIModel implements RepositoryInterface
 {
-    public function __construct() 
-    {
-    }
     public function test() {
         $query = $this->db->get('oc_clients', 10);
+        return $query->result();
+    }
+    public function get_var($query = null, $x = 0, $y = 0) {
+    	$query = $this->db->get('oc_clients', 10);
+        return $query->result();
+    }
+    public function get_row($query = null, $output = null, $y = 0) {
+    	$query = $this->db->get('oc_clients', 10);
+        return $query->result();
+    }
+    public function get_results($query = null, $output = null) {
+    	$query = $this->db->get('oc_clients', 10);
+        return $query->result();
+    }
+    public function get_set($params) {
+    	$query = $this->db->get('oc_clients', 10);
         return $query->result();
     }
 }
