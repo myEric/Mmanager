@@ -61,7 +61,7 @@ class CIQueryBuilder extends CIModel implements QueryBuilderInterface
     public function get_results() {
 
     }
-    public function get_set($params) {
+    public function get_set() {
 
     }
 }
