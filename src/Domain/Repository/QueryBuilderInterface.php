@@ -37,7 +37,6 @@
  
 namespace Mmanager\Domain\Repository;
 
-interface QueryInterface 
+interface QueryBuilderInterface 
 {
-	public function query($query);
 }

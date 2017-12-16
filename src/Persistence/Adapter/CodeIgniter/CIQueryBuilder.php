@@ -36,33 +36,29 @@
  */
 
 namespace Mmanager\Persistence\Adapter\CodeIgniter;
-use Mmanager\Domain\Repository\RepositoryInterface;
-use Mmanager\Persistence\Adapter\CodeIgniter\CIModel;
 
+use Mmanager\Domain\Repository\QueryBuilderInterface;
 
-class CIQueryBuilder extends CIModel implements RepositoryInterface
+class CIQueryBuilder extends CIModel implements QueryBuilderInterface
 {
-    public function __construct() {
-        parent::__construct();
-    }
-    public function test() {
-        $query = $this->db->get('oc_clients', 10);
+    public function findAll($table, $limit) {
+    	$query = $this->db->get($table, $limit);
         return $query->result();
     }
-    public function get_var($query = null, $x = 0, $y = 0) {
-    	$query = $this->db->get('oc_clients', 10);
-        return $query->result();
+    public function get_var($table, $var) {
+    	$query = $this->db->get($table);
+    	foreach ($query->result() as $row)
+    	{
+    		return $row->$var;
+    	}
     }
-    public function get_row($query = null, $output = null, $y = 0) {
-    	$query = $this->db->get('oc_clients', 10);
-        return $query->result();
+    public function get_row() {
+
     }
-    public function get_results($query = null, $output = null) {
-    	$query = $this->db->get('oc_clients', 10);
-        return $query->result();
+    public function get_results() {
+
     }
     public function get_set($params) {
-    	$query = $this->db->get('oc_clients', 10);
-        return $query->result();
+
     }
 }

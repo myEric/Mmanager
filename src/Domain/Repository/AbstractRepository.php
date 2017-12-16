@@ -36,23 +36,28 @@
  
  namespace Mmanager\Domain\Repository;
 
- use Mmanager\Domain\Repository\QueryInterface;
-
  /**
   * Abstract Repository Class
   */
  abstract class AbstractRepository {
  	/**
- 	 * @var type object
+ 	 * @var object
  	 */
  	protected $query;
-
  	/**
- 	 * Construct
- 	 * @param QueryInterface $query 
- 	 * @return type $this
+ 	 * Query Builder Interface
+ 	 * @param QueryBuilderInterface $query 
+ 	 * @return type void
  	 */
- 	public function __construct() {
+ 	public function __construct(QueryBuilderInterface $query) {
+
+ 		$this->query = $query;
+ 	}
+ 	public function findAll($table, $limit = null) {
+ 	 	return $this->query->findAll($this->findTableBy($table), $limit);
+ 	}
+ 	public function get_var($table, $var) {
+ 		return $this->query->get_var($this->findTableBy($table), $var);
  	}
  	/**
  	 * Find Table by key
@@ -69,16 +74,6 @@
 		}
 		return $return;
 	}
-
-	/**
-	 * Helper to find all table entries
-	 * @param type $table 
-	 * @return type array
-	 */
-	private function _findAll($table) {
-		return "SELECT * FROM ". $this->findTableBy($table);
-	}
-
 	/**
 	 * Helper function to parse table key
 	 * @param type $key 

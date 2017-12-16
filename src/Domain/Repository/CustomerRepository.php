@@ -36,11 +36,7 @@
  */
  
  namespace Mmanager\Domain\Repository;
-
- use Mmanager\Domain\Repository\QueryInterface;
- use Mmanager\Domain\Repository\AbstractRepository;
-
+ 
  class CustomerRepository extends AbstractRepository {
- 	public function __construct() {
- 	}
+
  }
