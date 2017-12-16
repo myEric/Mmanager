@@ -36,7 +36,7 @@
  
  namespace Mmanager\Persistence;
 
- use Mmanager\Domain\Contract\QueryInterface;
+ use Mmanager\Domain\Repository\Contract\QueryInterface;
  /**
   * Abstract Repository Class
   */
@@ -47,8 +47,8 @@
  	protected $query;
  	/**
  	 * Query Builder Interface
- 	 * @param QueryBuilderInterface $query 
- 	 * @return type object
+ 	 * @param object $query 
+ 	 * @return mixed
  	 */
  	public function __construct(QueryInterface $query) {
 
@@ -62,8 +62,8 @@
  	}
  	/**
  	 * Find Table by key
- 	 * @param type $key 
- 	 * @return type string
+ 	 * @param string $key 
+ 	 * @return string
  	 */
  	public function findTableBy($key) {
  		$return = '';
@@ -77,8 +77,8 @@
 	}
 	/**
 	 * Helper function to parse table key
-	 * @param type $key 
-	 * @return type string
+	 * @param string $key 
+	 * @return string
 	 */
 	private function _parseTableKey($key) {
 		return strtolower($key);
@@ -86,7 +86,7 @@
 
 	/**
 	 * Helper function to get all table
-	 * @return type array
+	 * @return array
 	 */
 	private function _tableArray()
 	{
