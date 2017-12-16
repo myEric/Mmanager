@@ -29,8 +29,8 @@ In a CodeIgniter controller file, add these lines
 <?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 require_once('vendor/autoload.php');
-use Mmanager\Persistence\Adapter\CodeIgniter\CIQuery;
 use Mmanager\Domain\Repository\CustomerRepository;
+use Mmanager\Persistence\Adapter\CodeIgniter\CIQueryBuilder;
 
 ```
 
@@ -40,16 +40,13 @@ In your class, define a test function
 public function test()
 {
 	// Create a new instance of CI Query Builder
-	$driver = new CIQuery();
+	$driver = new CIQueryBuilder();
 
 	// Pass CI Query Builder to Customer Repository
 	$customerRepo = new CustomerRepository($driver);
 
 	// You can now query the customers table
 	$customerRepo->findAll('Customer');
-
-	// Call Built-in debug method to get a html representation of the results
-	$customerRepo->debug();
 }
 
 ```
