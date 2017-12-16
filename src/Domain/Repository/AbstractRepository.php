@@ -47,7 +47,7 @@
  	/**
  	 * Query Builder Interface
  	 * @param QueryBuilderInterface $query 
- 	 * @return type void
+ 	 * @return type object
  	 */
  	public function __construct(QueryBuilderInterface $query) {
 
