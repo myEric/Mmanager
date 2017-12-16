@@ -41,7 +41,6 @@ use Mmanager\Domain\Repository\QueryBuilderInterface;
 
 class CIQueryBuilder extends CIModel implements QueryBuilderInterface
 {
-<<<<<<< HEAD
     public function findAll($table, $limit) {
     	$query = $this->db->get($table, $limit);
         return $query->result();
@@ -62,29 +61,4 @@ class CIQueryBuilder extends CIModel implements QueryBuilderInterface
     public function get_set($params) {
 
     }
-=======
-	public function __construct() {
-		parent::__construct();
-	}
-	public function test() {
-		$query = $this->db->get('oc_clients', 10);
-		return $query->result();
-	}
-	public function get_var($query = null, $x = 0, $y = 0) {
-		$query = $this->db->get('oc_clients', 10);
-		return $query->result();
-	}
-	public function get_row($query = null, $output = null, $y = 0) {
-		$query = $this->db->get('oc_clients', 10);
-		return $query->result();
-	}
-	public function get_results($query = null, $output = null) {
-		$query = $this->db->get('oc_clients', 10);
-		return $query->result();
-	}
-	public function get_set($params) {
-		$query = $this->db->get('oc_clients', 10);
-		return $query->result();
-	}
->>>>>>> 25bbef86ee85ee1346a1aa24ea6859a36655ce19
 }
