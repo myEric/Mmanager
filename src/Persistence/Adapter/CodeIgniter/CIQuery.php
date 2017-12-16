@@ -37,7 +37,7 @@
 
 namespace Mmanager\Persistence\Adapter\CodeIgniter;
 
-use Mmanager\Domain\Repository\QueryInterface;
+use Mmanager\Domain\Repository\Contract\QueryInterface;
 
 /**
   * @property object $db

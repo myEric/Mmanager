@@ -90,6 +90,6 @@
 	 */
 	private function _tableArray()
 	{
-	    return include dirname(dirname(__DIR__)). '/Config/tables.config.php';
+	    return include dirname(__DIR__). '/Config/tables.config.php';
 	}
  }
