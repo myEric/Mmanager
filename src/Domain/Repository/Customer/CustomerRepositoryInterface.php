@@ -35,8 +35,8 @@
  * @filesource
  */
  
- namespace Mmanager\Domain\Repository;
- 
- class InvoiceRepository extends AbstractRepository {
- 	
- }
+namespace Mmanager\Domain\Repository\Customer;
+
+interface CustomerRepositoryInterface 
+{
+}

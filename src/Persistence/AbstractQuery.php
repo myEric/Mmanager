@@ -32,11 +32,64 @@
  * @license	http://opensource.org/licenses/MIT	MIT License
  * @link	https://codecanyon.net/item/mmanager-invoices-management-system/19866435?s_rank=1
  * @since	Version 1.0.0
- * @filesource
  */
  
- namespace Mmanager\Domain\Repository;
- 
- class CustomerRepository extends AbstractRepository {
+ namespace Mmanager\Persistence;
 
+ use Mmanager\Domain\Contract\QueryInterface;
+ /**
+  * Abstract Repository Class
+  */
+ abstract class AbstractQuery implements QueryInterface {
+ 	/**
+ 	 * @var object
+ 	 */
+ 	protected $query;
+ 	/**
+ 	 * Query Builder Interface
+ 	 * @param QueryBuilderInterface $query 
+ 	 * @return type object
+ 	 */
+ 	public function __construct(QueryInterface $query) {
+
+ 		$this->query = $query;
+ 	}
+ 	public function findAll($table, $limit = null) {
+ 	 	return $this->query->findAll($this->findTableBy($table), $limit);
+ 	}
+ 	public function get_var($table, $var) {
+ 		return $this->query->get_var($this->findTableBy($table), $var);
+ 	}
+ 	/**
+ 	 * Find Table by key
+ 	 * @param type $key 
+ 	 * @return type string
+ 	 */
+ 	public function findTableBy($key) {
+ 		$return = '';
+		foreach ($this->_tableArray() as $k => $table) {
+			if ($k === $this->_parseTableKey($key) || 
+				$k.'s' === $this->_parseTableKey($key)) {
+				$return = $table;
+			}
+		}
+		return $return;
+	}
+	/**
+	 * Helper function to parse table key
+	 * @param type $key 
+	 * @return type string
+	 */
+	private function _parseTableKey($key) {
+		return strtolower($key);
+	}
+
+	/**
+	 * Helper function to get all table
+	 * @return type array
+	 */
+	private function _tableArray()
+	{
+	    return include dirname(dirname(__DIR__)). '/Config/tables.config.php';
+	}
  }

@@ -35,8 +35,8 @@
  * @filesource
  */
  
-namespace Mmanager\Domain\Repository;
+namespace Mmanager\Domain\Repository\Contract;
 
-interface QueryBuilderInterface 
+interface QueryInterface 
 {
 }

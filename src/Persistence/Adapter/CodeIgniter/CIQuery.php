@@ -37,12 +37,12 @@
 
 namespace Mmanager\Persistence\Adapter\CodeIgniter;
 
-use Mmanager\Domain\Repository\QueryBuilderInterface;
+use Mmanager\Domain\Repository\QueryInterface;
 
 /**
   * @property object $db
   */
-class CIQueryBuilder extends CIModel implements QueryBuilderInterface
+class CIQuery extends CIModel implements QueryInterface
 {
     public function findAll($table, $limit) {
     	$query = $this->db->get($table, $limit);
