@@ -29,8 +29,8 @@ In a CodeIgniter controller file, add these lines
 <?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 require_once('vendor/autoload.php');
-use Mmanager\Domain\Repository\CustomerRepository;
-use Mmanager\Persistence\Adapter\CodeIgniter\CIQueryBuilder;
+use Mmanager\Domain\Repository\Customer\CustomerRepository;
+use Mmanager\Persistence\Adapter\CodeIgniter\CIQuery;
 
 ```
 
