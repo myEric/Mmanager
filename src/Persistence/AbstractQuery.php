@@ -40,7 +40,8 @@
  /**
   * Abstract Repository Class
   */
- abstract class AbstractQuery implements QueryInterface {
+ abstract class AbstractQuery implements QueryInterface
+ {
  	/**
  	 * @var object
  	 */
@@ -90,6 +91,6 @@
 	 */
 	private function _tableArray()
 	{
-	    return include dirname(__DIR__). '/Config/tables.config.php';
+		return include dirname(__DIR__). '/Config/tables.config.php';
 	}
  }

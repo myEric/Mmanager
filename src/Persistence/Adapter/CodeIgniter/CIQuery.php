@@ -40,27 +40,27 @@ namespace Mmanager\Persistence\Adapter\CodeIgniter;
 use Mmanager\Domain\Repository\Contract\QueryInterface;
 
 /**
-  * @property object $db
-  */
+ * @property object $db
+ */
 class CIQuery extends CIModel implements QueryInterface
 {
-    public function findAll($table, $limit) {
-    	$query = $this->db->get($table, $limit);
-        return $query->result();
-    }
-    public function get_var($table, $var) {
-    	$query = $this->db->get($table);
-    	foreach ($query->result() as $row) {
-    		return $row->$var;
-    	}
-    }
-    public function get_row() {
+	public function findAll($table, $limit) {
+		$query = $this->db->get($table, $limit);
+		return $query->result();
+	}
+	public function get_var($table, $var) {
+		$query = $this->db->get($table);
+		foreach ($query->result() as $row) {
+			return $row->$var;
+		}
+	}
+	public function get_row() {
 
-    }
-    public function get_results() {
+	}
+	public function get_results() {
 
-    }
-    public function get_set() {
+	}
+	public function get_set() {
 
-    }
+	}
 }
