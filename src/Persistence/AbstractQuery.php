@@ -110,8 +110,7 @@
 	 * Helper function to get all table
 	 * @return array
 	 */
-	private function _tableArray()
-	{
+	private function _tableArray() {
 		return include dirname(__DIR__). '/Config/tables.config.php';
 	}
  }
