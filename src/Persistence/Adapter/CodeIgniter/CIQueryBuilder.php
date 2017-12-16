@@ -50,8 +50,7 @@ class CIQueryBuilder extends CIModel implements QueryBuilderInterface
     }
     public function get_var($table, $var) {
     	$query = $this->db->get($table);
-    	foreach ($query->result() as $row)
-    	{
+    	foreach ($query->result() as $row) {
     		return $row->$var;
     	}
     }
