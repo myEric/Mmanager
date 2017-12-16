@@ -42,19 +42,66 @@
   */
  abstract class AbstractQuery implements QueryInterface
  {
+ 	protected $table;
+ 	protected $primaryKey = 'id';
+ 	protected $returnType = 'array';
+ 	protected $useSoftDeletes = false;
+ 	protected $useTimestamps = false;
+ 	protected $dateFormat = 'datetime';
+ 	protected $createdField = 'created_at';
+ 	protected $updatedField = 'updated_at';
+ 	protected $tempUseSoftDeletes;
+ 	protected $deletedField = 'deleted';
+ 	protected $tempReturnType;
+ 	protected $protectFields = true;
+ 	protected $validationRules = [];
+ 	protected $validationMessages = [];
+ 	protected $skipValidation = false;
+ 	protected $beforeInsert = [];
+	protected $afterInsert = [];
+	protected $beforeUpdate = [];
+	protected $afterUpdate = [];
+	protected $afterFind = [];
+	protected $afterDelete = [];
  	/**
  	 * @var object
  	 */
- 	protected $query;
+ 	protected $builder;
  	/**
  	 * Query Builder Interface
- 	 * @param object $query 
+ 	 * @param object $builder 
  	 * @return mixed
  	 */
- 	public function __construct(QueryInterface $query) {
+ 	public function __construct(QueryInterface $builder) {
 
- 		$this->query = $query;
+ 		$this->builder = $builder;
  	}
+
+ 	public function find($id)
+	{
+		$builder = $this->builder();
+		if ($this->tempUseSoftDeletes === true)
+		{
+			$builder->where($this->deletedField, 0);
+		}
+		if (is_array($id))
+		{
+			$row = $builder->whereIn($this->primaryKey, $id)
+					->get();
+			$row = $row->getResult($this->tempReturnType);
+		}
+		else
+		{
+			$row = $builder->where($this->primaryKey, $id)
+					->get();
+			$row = $row->getFirstRow($this->tempReturnType);
+		}
+		$row = $this->trigger('afterFind', ['id' => $id, 'data' => $row]);
+		$this->tempReturnType = $this->returnType;
+		$this->tempUseSoftDeletes = $this->useSoftDeletes;
+		return $row['data'];
+	}
+
  	public function findAll($table, $limit = null) {
  	 	return $this->query->findAll($this->findTableBy($table), $limit);
  	}
