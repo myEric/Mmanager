@@ -76,32 +76,6 @@
 
  		$this->builder = $builder;
  	}
-
- 	public function find($id)
-	{
-		$builder = $this->builder();
-		if ($this->tempUseSoftDeletes === true)
-		{
-			$builder->where($this->deletedField, 0);
-		}
-		if (is_array($id))
-		{
-			$row = $builder->whereIn($this->primaryKey, $id)
-					->get();
-			$row = $row->getResult($this->tempReturnType);
-		}
-		else
-		{
-			$row = $builder->where($this->primaryKey, $id)
-					->get();
-			$row = $row->getFirstRow($this->tempReturnType);
-		}
-		$row = $this->trigger('afterFind', ['id' => $id, 'data' => $row]);
-		$this->tempReturnType = $this->returnType;
-		$this->tempUseSoftDeletes = $this->useSoftDeletes;
-		return $row['data'];
-	}
-
  	public function findAll($table, $limit = null) {
  	 	return $this->query->findAll($this->findTableBy($table), $limit);
  	}
