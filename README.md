@@ -46,7 +46,7 @@ public function test()
 	$customerRepo = new CustomerRepository($driver);
 
 	// You can now query the customers table
-	$customerRepo->findAll('Customer');
+	echo json_encode($customerRepo->findAll('Customer'));
 }
 
 ```
