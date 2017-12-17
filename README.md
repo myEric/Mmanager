@@ -40,7 +40,7 @@ In your class, define a test function
 public function test()
 {
 	// Create a new instance of CI Query Builder
-	$driver = new CIQueryBuilder();
+	$driver = new QueryBuilder();
 
 	// Pass CI Query Builder to Customer Repository
 	$customerRepo = new CustomerRepository($driver);
