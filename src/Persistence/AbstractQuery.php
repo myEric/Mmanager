@@ -79,12 +79,10 @@
 		}
 	}
 
-	public function getTable()
-	{
+	public function getTable() {
 		return $this->findTableBy($this->table);
 	}
-	public function setTable($table)
-	{
+	public function setTable($table) {
 		$this->table = $table;
 		return $this;
 	}
@@ -118,14 +116,14 @@
 	 */
 	protected function _tableArray()
 	{
-		return include dirname(__DIR__). '/Config/tables.config.php';
+		return include dirname(__DIR__).'/Config/tables.config.php';
 	}
 	protected function isValidQueryBuilder($builder) {
-		if ( ! $builder instanceof QueryInterface)
+		if (!$builder instanceof QueryInterface)
 			throw new \InvalidArgumentException("Constructor parameter is not valid", 1);
 		return true;
 	}
-	public function query($sql, $binds = FALSE, $return_object = NULL) {
-		return $this->builder->query($sql, $binds = FALSE, $return_object = NULL);
+	public function query($sql, $binds = false, $return_object = null) {
+		return $this->builder->query($sql, $binds = false, $return_object = null);
 	}
  }

@@ -40,7 +40,7 @@ namespace Mmanager\Domain\Repository\Contract;
 /**
  * Query Interface
  */
-interface QueryInterface 
+interface QueryInterface
 {
 	/**
 	 * Query
@@ -48,5 +48,5 @@ interface QueryInterface
 	 * @param type|bool $binds 
 	 * @param type|null $return_object 
 	 */
-	public function query($sql, $binds = FALSE, $return_object = NULL);
+	public function query($sql, $binds = false, $return_object = null);
 }
