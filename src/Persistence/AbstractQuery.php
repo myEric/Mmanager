@@ -44,6 +44,7 @@
  abstract class AbstractQuery implements QueryInterface
  {
  	protected $table;
+ 	protected $primaryKey;
  	/**
  	 * @var object
  	 */
