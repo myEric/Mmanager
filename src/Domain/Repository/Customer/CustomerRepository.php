@@ -39,7 +39,20 @@
  
  use Mmanager\Domain\Repository\Customer\CustomerRepositoryInterface;
  use Mmanager\Persistence\AbstractQuery;
- 
+ use Mmanager\Domain\Repository\Contract\QueryInterface;
+
  class CustomerRepository extends AbstractQuery implements CustomerRepositoryInterface {
 
+ 	protected $builder;
+
+ 	public function __construct($builder) {
+ 		if ($builder instanceof QueryInterface)
+		{
+			$this->builder = $builder;
+		}
+		else
+		{
+			throw new Exception("Error Processing Request", 1);
+		}
+ 	}
  }

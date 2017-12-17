@@ -44,23 +44,5 @@ use Mmanager\Domain\Repository\Contract\QueryInterface;
  */
 class CIQuery extends CIModel implements QueryInterface
 {
-	public function findAll($table, $limit) {
-		$query = $this->db->get($table, $limit);
-		return $query->result();
-	}
-	public function get_var($table, $var) {
-		$query = $this->db->get($table);
-		foreach ($query->result() as $row) {
-			return $row->$var;
-		}
-	}
-	public function get_row() {
-
-	}
-	public function get_results() {
-
-	}
-	public function get_set() {
-
-	}
+	
 }
