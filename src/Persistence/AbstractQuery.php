@@ -82,15 +82,14 @@
  		$table = $this->findTableBy($this->table);
  		return $this->builder->query("SELECT * FROM {$table} limit {$limit} offset {$offset}");
  	}
-	public function setDate($userData = null) {
-		$currentDate = is_numeric($userData) ? (int) $userData : time();
+	public function setDate($userDate = null) {
 		switch ($this->dateFormat) {
 			case 'int':
-				return $currentDate;
+				return $this->_parseDate($userDate);
 			case 'datetime':
-				return date('Y-m-d H:i:s', $currentDate);
+				return date('Y-m-d H:i:s', $this->_parseDate($userDate));
 			case 'date':
-				return date('Y-m-d', $currentDate);
+				return date('Y-m-d', $this->_parseDate($userDate));
 		}
 	}
 
@@ -140,5 +139,8 @@
 	}
 	public function query($sql, $binds = FALSE, $return_object = NULL) {
 		return $this->builder->query($sql, $binds = FALSE, $return_object = NULL);
+	}
+	private function _parseDate($date) {
+		return is_numeric($date) ? (int) $date : time();
 	}
  }
