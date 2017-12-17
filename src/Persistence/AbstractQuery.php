@@ -92,7 +92,7 @@
 				return date('Y-m-d', $this->_parseDate($userDate));
 		}
 	}
-
+	
 	public function getTable() {
 		return $this->findTableBy($this->table);
 	}
