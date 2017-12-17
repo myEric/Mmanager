@@ -41,18 +41,31 @@
  use Mmanager\Persistence\AbstractQuery;
  use Mmanager\Domain\Repository\Contract\QueryInterface;
 
+ /**
+  * Customer Repository
+  */
  class CustomerRepository extends AbstractQuery implements CustomerRepositoryInterface {
 
+ 	/**
+ 	 * @var string
+ 	 */
+ 	protected $table = 'customer';
+ 	/**
+ 	 * @var string
+ 	 */
+ 	protected $primaryKey = 'client_id';
+ 	/**
+ 	 * @var object
+ 	 */
  	protected $builder;
-
+ 	/**
+ 	 * Customer Repository Construct
+ 	 * @param object $builder 
+ 	 * @return mixed
+ 	 */
  	public function __construct($builder) {
- 		if ($builder instanceof QueryInterface)
-		{
-			$this->builder = $builder;
-		}
-		else
-		{
-			throw new Exception("Error Processing Request", 1);
-		}
+ 		// Check if $builder is instance of QueryInterface
+ 		if ($this->isValidQueryBuilder($builder))
+ 			$this->builder = $builder;
  	}
  }

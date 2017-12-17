@@ -39,10 +39,43 @@ namespace Mmanager\Persistence\Adapter\CodeIgniter;
 
 use Mmanager\Domain\Repository\Contract\QueryInterface;
 
-/**
- * @property object $db
- */
-class CIQuery extends CIModel implements QueryInterface
+final class QueryBuilder implements QueryInterface
 {
-	
+
+	/**
+	 * Class constructor
+	 *
+	 * @return	void
+	 */
+	public function __construct()
+	{
+		log_message('info', 'CI Model Class Initialized');
+	}
+
+	// --------------------------------------------------------------------
+
+	/**
+	 * __get magic
+	 *
+	 * Allows models to access CI's loaded classes using the same
+	 * syntax as controllers.
+	 *
+	 * @param	string	$key
+	 */
+	public function __get($key)
+	{
+		// Debugging note:
+		//	If you're here because you're getting an error message
+		//	saying 'Undefined Property: system/core/Model.php', it's
+		//	most likely a typo in your model code.
+		return get_instance()->$key;
+	}
+	/**
+	 * Query Builder
+	 * @param string $query 
+	 * @return mixed
+	 */
+	public function query($sql, $binds = FALSE, $return_object = NULL) {
+		return $this->db->query($sql, $binds = FALSE, $return_object = NULL);
+	}
 }

@@ -37,6 +37,9 @@
 
 namespace Mmanager\Exception;
 
+/**
+ * Runtime Exception
+ */
 class RuntimeException extends \RuntimeException implements ExceptionInterface
 {
 }

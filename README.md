@@ -30,7 +30,7 @@ In a CodeIgniter controller file, add these lines
 
 require_once('vendor/autoload.php');
 use Mmanager\Domain\Repository\Customer\CustomerRepository;
-use Mmanager\Persistence\Adapter\CodeIgniter\CIQuery;
+use Mmanager\Persistence\Adapter\CodeIgniter\QueryBuilder;
 
 ```
 
@@ -45,8 +45,8 @@ public function test()
 	// Pass CI Query Builder to Customer Repository
 	$customerRepo = new CustomerRepository($driver);
 
-	// You can now query the customers table
-	echo json_encode($customerRepo->findAll('Customer'));
+	$results = $customerRepo->findAll(1);
+	echo var_dump($results->result_array());
 }
 
 ```
