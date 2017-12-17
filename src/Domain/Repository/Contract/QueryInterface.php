@@ -47,7 +47,6 @@ interface QueryInterface
 	 * @param string $sql 
 	 * @param type|bool $binds 
 	 * @param type|null $return_object 
-	 * @return mixed
 	 */
 	public function query($sql, $binds = FALSE, $return_object = NULL);
 }
