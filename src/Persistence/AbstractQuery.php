@@ -82,11 +82,9 @@
  		$table = $this->findTableBy($this->table);
  		return $this->builder->query("SELECT * FROM {$table} limit {$limit} offset {$offset}");
  	}
-	public function setDate($userData = null)
-	{
+	public function setDate($userData = null) {
 		$currentDate = is_numeric($userData) ? (int) $userData : time();
-		switch ($this->dateFormat)
-		{
+		switch ($this->dateFormat) {
 			case 'int':
 				return $currentDate;
 			case 'datetime':
@@ -96,12 +94,10 @@
 		}
 	}
 
-	public function getTable()
-	{
+	public function getTable() {
 		return $this->findTableBy($this->table);
 	}
-	public function setTable($table)
-	{
+	public function setTable($table) {
 		$this->table = $table;
 		return $this;
 	}
@@ -133,13 +129,13 @@
 	 * Helper function to get all table
 	 * @return array
 	 */
-	protected function _tableArray()
-	{
+	protected function _tableArray() {
 		return include dirname(__DIR__). '/Config/tables.config.php';
 	}
 	protected function isValidQueryBuilder($builder) {
-		if ( ! $builder instanceof QueryInterface)
-			throw new \InvalidArgumentException("Constructor parameter is not valid", 1);
+		if ( ! $builder instanceof QueryInterface) {
+					throw new \InvalidArgumentException("Constructor parameter is not valid", 1);
+		}
 		return true;
 	}
 	public function query($sql, $binds = FALSE, $return_object = NULL) {
