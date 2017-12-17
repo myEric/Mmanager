@@ -47,8 +47,7 @@ final class QueryBuilder implements QueryInterface
 	 *
 	 * @return	void
 	 */
-	public function __construct()
-	{
+	public function __construct() {
 		log_message('info', 'CI Model Class Initialized');
 	}
 
@@ -62,8 +61,7 @@ final class QueryBuilder implements QueryInterface
 	 *
 	 * @param	string	$key
 	 */
-	public function __get($key)
-	{
+	public function __get($key) {
 		// Debugging note:
 		//	If you're here because you're getting an error message
 		//	saying 'Undefined Property: system/core/Model.php', it's
@@ -75,7 +73,7 @@ final class QueryBuilder implements QueryInterface
 	 * @param string $query 
 	 * @return mixed
 	 */
-	public function query($sql, $binds = FALSE, $return_object = NULL) {
-		return $this->db->query($sql, $binds = FALSE, $return_object = NULL);
+	public function query($sql, $binds = false, $return_object = null) {
+		return $this->db->query($sql, $binds = false, $return_object = null);
 	}
 }

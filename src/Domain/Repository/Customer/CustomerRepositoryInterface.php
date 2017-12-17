@@ -40,6 +40,6 @@ namespace Mmanager\Domain\Repository\Customer;
 /**
  * Customer Repository Interface
  */
-interface CustomerRepositoryInterface 
+interface CustomerRepositoryInterface
 {
 }

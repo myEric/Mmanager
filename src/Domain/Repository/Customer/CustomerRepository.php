@@ -44,7 +44,8 @@
  /**
   * Customer Repository
   */
- class CustomerRepository extends AbstractQuery implements CustomerRepositoryInterface {
+ class CustomerRepository extends AbstractQuery implements CustomerRepositoryInterface
+ {
 
  	/**
  	 * @var string
@@ -65,7 +66,8 @@
  	 */
  	public function __construct($builder) {
  		// Check if $builder is instance of QueryInterface
- 		if ($this->isValidQueryBuilder($builder))
- 			$this->builder = $builder;
+ 		if ($this->isValidQueryBuilder($builder)) {
+ 		 			$this->builder = $builder;
+ 		}
  	}
  }
