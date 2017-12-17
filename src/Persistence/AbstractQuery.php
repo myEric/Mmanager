@@ -44,7 +44,26 @@
  abstract class AbstractQuery implements QueryInterface
  {
  	protected $table;
- 	protected $primaryKey;
+ 	protected $primaryKey = 'id';
+ 	protected $returnType = 'array';
+ 	protected $useSoftDeletes = false;
+ 	protected $useTimestamps = false;
+ 	protected $dateFormat = 'datetime';
+ 	protected $createdField = 'created_at';
+ 	protected $updatedField = 'updated_at';
+ 	protected $tempUseSoftDeletes;
+ 	protected $deletedField = 'deleted';
+ 	protected $tempReturnType;
+ 	protected $protectFields = true;
+ 	protected $validationRules = [];
+ 	protected $validationMessages = [];
+ 	protected $skipValidation = false;
+ 	protected $beforeInsert = [];
+	protected $afterInsert = [];
+	protected $beforeUpdate = [];
+	protected $afterUpdate = [];
+	protected $afterFind = [];
+	protected $afterDelete = [];
  	/**
  	 * @var object
  	 */
@@ -58,7 +77,7 @@
 
  		$this->builder = $builder;
  	}
-
+ 	
  	public function findAll($limit = 0, $offset = 0) {
  		$table = $this->findTableBy($this->table);
  		return $this->builder->query("SELECT * FROM {$table} limit {$limit} offset {$offset}");
@@ -80,10 +99,12 @@
 		}
 	}
 
-	public function getTable() {
+	public function getTable()
+	{
 		return $this->findTableBy($this->table);
 	}
-	public function setTable($table) {
+	public function setTable($table)
+	{
 		$this->table = $table;
 		return $this;
 	}
@@ -117,14 +138,14 @@
 	 */
 	protected function _tableArray()
 	{
-		return include dirname(__DIR__).'/Config/tables.config.php';
+		return include dirname(__DIR__). '/Config/tables.config.php';
 	}
 	protected function isValidQueryBuilder($builder) {
-		if (!$builder instanceof QueryInterface)
+		if ( ! $builder instanceof QueryInterface)
 			throw new \InvalidArgumentException("Constructor parameter is not valid", 1);
 		return true;
 	}
-	public function query($sql, $binds = false, $return_object = null) {
-		return $this->builder->query($sql, $binds = false, $return_object = null);
+	public function query($sql, $binds = FALSE, $return_object = NULL) {
+		return $this->builder->query($sql, $binds = FALSE, $return_object = NULL);
 	}
  }
