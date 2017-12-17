@@ -77,7 +77,7 @@
 
  		$this->builder = $builder;
  	}
- 	
+
  	public function findAll($limit = 0, $offset = 0) {
  		$table = $this->findTableBy($this->table);
  		return $this->builder->query("SELECT * FROM {$table} limit {$limit} offset {$offset}");
@@ -89,13 +89,10 @@
 		{
 			case 'int':
 				return $currentDate;
-				break;
 			case 'datetime':
 				return date('Y-m-d H:i:s', $currentDate);
-				break;
 			case 'date':
 				return date('Y-m-d', $currentDate);
-				break;
 		}
 	}
 
