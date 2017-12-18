@@ -36,13 +36,21 @@
  */
 
 namespace Mmanager\Domain\Factory;
+use Mmanager\Domain\Entity\Customer;
 
 /**
  * Customer Factory
  */
 class CustomerFactory
 {
-	public function create() {
-
+	const EMAIL = 'akaffou.eric@me.com';
+	const CREDIT = 200;
+	public static function create($name) {
+		$customer = new Customer();
+		$customer->setName($name);
+		$customer->setEmail(self::EMAIL);
+		$customer->setCredit(self::CREDIT);
+		
+		return $customer;
 	}
 }
