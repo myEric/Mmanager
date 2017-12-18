@@ -65,9 +65,6 @@
  	 * @return mixed
  	 */
  	public function __construct($builder) {
- 		// Check if $builder is instance of QueryInterface
- 		if ($this->isValidQueryBuilder($builder)) {
- 		 			$this->builder = $builder;
- 		}
+ 		$this->builder = $builder;
  	}
  }

@@ -37,9 +37,7 @@
 
 namespace Mmanager\Persistence\Adapter\CodeIgniter;
 
-use Mmanager\Domain\Repository\Contract\QueryInterface;
-
-final class QueryBuilder implements QueryInterface
+class CIQueryBuilder
 {
 
 	/**
@@ -67,13 +65,5 @@ final class QueryBuilder implements QueryInterface
 		//	saying 'Undefined Property: system/core/Model.php', it's
 		//	most likely a typo in your model code.
 		return get_instance()->$key;
-	}
-	/**
-	 * Query Builder
-	 * @param string $query 
-	 * @return mixed
-	 */
-	public function query($sql, $binds = false, $return_object = null) {
-		return $this->db->query($sql, $binds = false, $return_object = null);
 	}
 }

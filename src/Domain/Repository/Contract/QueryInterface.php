@@ -43,10 +43,18 @@ namespace Mmanager\Domain\Repository\Contract;
 interface QueryInterface
 {
 	/**
-	 * Query
-	 * @param string $sql 
-	 * @param type|bool $binds 
-	 * @param type|null $return_object 
+	 * Execute the query
+	 *
+	 * Accepts an SQL string as input and returns a result object upon
+	 * successful execution of a "read" type query. Returns boolean TRUE
+	 * upon successful execution of a "write" type query. Returns boolean
+	 * FALSE upon failure, and if the $db_debug variable is set to TRUE
+	 * will raise an error.
+	 *
+	 * @param	string	$sql
+	 * @param	array	$binds = FALSE		An array of binding data
+	 * @param	bool	$return_object = NULL
+	 * @return	mixed
 	 */
 	public function query($sql, $binds = false, $return_object = null);
 }

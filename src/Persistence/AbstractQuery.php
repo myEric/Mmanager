@@ -133,7 +133,7 @@
 	}
 	protected function isValidQueryBuilder($builder) {
 		if ( ! $builder instanceof QueryInterface) {
-					throw new \InvalidArgumentException("Constructor parameter is not valid", 1);
+			throw new \InvalidArgumentException("Constructor parameter is not valid", 1);
 		}
 		return true;
 	}
