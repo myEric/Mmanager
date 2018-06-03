@@ -35,24 +35,24 @@
  * @filesource
  */
  
- namespace Mmanager\Domain\Repository\Customer;
+ namespace Mmanager\Domain\Repository\Invoice;
  
- use Mmanager\Domain\Repository\Customer\CustomerRepositoryInterface;
+ use Mmanager\Domain\Repository\Invoice\InvoiceRepositoryInterface;
  use Mmanager\Domain\Repository\AbstractRepository;
  /**
   * Customer Repository
   */
- class CustomerRepository extends AbstractRepository implements CustomerRepositoryInterface
+ class InvoiceRepository extends AbstractRepository implements InvoiceRepositoryInterface
  {
 
  	/**
  	 * @var string
  	 */
- 	protected $table = 'customer';
+ 	protected $table = 'invoices';
  	/**
  	 * @var string
  	 */
- 	protected $primaryKey = 'client_id';
+ 	protected $primaryKey = 'id';
  	/**
  	 * @var object
  	 */

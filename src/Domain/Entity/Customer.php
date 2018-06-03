@@ -36,36 +36,13 @@
  */
 
 namespace Mmanager\Domain\Entity;
+use Mmanager\Domain\Entity\AbstractEntity;
+
 /**
  * Customer Entity
  */
-class Customer
+class Customer extends AbstractEntity
 {
-	protected $name;
-	protected $email;
-	protected $credit;
 	public function __construct() {
-
-	}
-	public function setName($name) {
-		$this->name = $name;
-		return $this;
-	}
-	public function setEmail($email) {
-		$this->email = $email;
-		return $this;
-	}
-	public function setCredit($credit) {
-		$this->credit = $credit;
-		return $this;
-	}
-	public function getCredit() {
-		return $this->credit;
-	}
-	public function getEmail() {
-		return $this->email;
-	}
-	public function getName() {
-		return $this->name;
 	}
 }

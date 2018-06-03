@@ -43,7 +43,7 @@ class Version
     /**
      * Current Mmanager Version
      */
-    const VERSION = '1.7.2';
+    const VERSION = '1.93';
 
     /**
      * Compares a Mmanager version with the current one.

@@ -39,7 +39,6 @@ namespace Mmanager\Persistence\Adapter\CodeIgniter;
 
 class CIQueryBuilder
 {
-
 	/**
 	 * Class constructor
 	 *

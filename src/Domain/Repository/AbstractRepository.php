@@ -34,36 +34,19 @@
  * @since	Version 1.0.0
  */
  
- namespace Mmanager\Persistence;
+ namespace Mmanager\Domain\Repository;
 
  use Mmanager\Domain\Repository\Contract\QueryInterface;
 
  /**
   * Abstract Repository Class
   */
- abstract class AbstractQuery implements QueryInterface
+ abstract class AbstractRepository implements QueryInterface
  {
  	protected $table;
  	protected $primaryKey = 'id';
  	protected $returnType = 'array';
- 	protected $useSoftDeletes = false;
- 	protected $useTimestamps = false;
- 	protected $dateFormat = 'datetime';
- 	protected $createdField = 'created_at';
- 	protected $updatedField = 'updated_at';
- 	protected $tempUseSoftDeletes;
- 	protected $deletedField = 'deleted';
- 	protected $tempReturnType;
  	protected $protectFields = true;
- 	protected $validationRules = [];
- 	protected $validationMessages = [];
- 	protected $skipValidation = false;
- 	protected $beforeInsert = [];
-	protected $afterInsert = [];
-	protected $beforeUpdate = [];
-	protected $afterUpdate = [];
-	protected $afterFind = [];
-	protected $afterDelete = [];
  	/**
  	 * @var object
  	 */
@@ -79,19 +62,8 @@
 
  	public function findAll() {
  		$table = $this->findTableBy($this->table);
- 		return $this->builder->db->query("SELECT * FROM {$table}")->result_object();
+ 		return $this->query("SELECT * FROM {$table}")->result_array();
  	}
-	public function setDate($userDate = null) {
-		switch ($this->dateFormat) {
-			case 'int':
-				return $this->_parseDate($userDate);
-			case 'datetime':
-				return date('Y-m-d H:i:s', $this->_parseDate($userDate));
-			case 'date':
-				return date('Y-m-d', $this->_parseDate($userDate));
-		}
-	}
-	
 	public function getTable() {
 		return $this->findTableBy($this->table);
 	}
@@ -128,7 +100,7 @@
 	 * @return array
 	 */
 	protected function _tableArray() {
-		return include dirname(__DIR__). '/Config/tables.config.php';
+		return include dirname(dirname(__DIR__)). '/Config/tables.config.php';
 	}
 	protected function isValidQueryBuilder($builder) {
 		if ( ! $builder instanceof QueryInterface) {
@@ -138,8 +110,5 @@
 	}
 	public function query($sql, $binds = FALSE, $return_object = NULL) {
 		return $this->builder->db->query($sql, $binds = FALSE, $return_object = NULL);
-	}
-	private function _parseDate($date) {
-		return is_numeric($date) ? (int) $date : time();
 	}
  }

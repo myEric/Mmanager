@@ -35,34 +35,11 @@
  * @filesource
  */
  
- namespace Mmanager\Domain\Repository\Customer;
- 
- use Mmanager\Domain\Repository\Customer\CustomerRepositoryInterface;
- use Mmanager\Domain\Repository\AbstractRepository;
- /**
-  * Customer Repository
-  */
- class CustomerRepository extends AbstractRepository implements CustomerRepositoryInterface
- {
+namespace Mmanager\Domain\Repository\Invoice;
 
- 	/**
- 	 * @var string
- 	 */
- 	protected $table = 'customer';
- 	/**
- 	 * @var string
- 	 */
- 	protected $primaryKey = 'client_id';
- 	/**
- 	 * @var object
- 	 */
- 	protected $builder;
- 	/**
- 	 * Customer Repository Construct
- 	 * @param object $builder 
- 	 * @return mixed
- 	 */
- 	public function __construct($builder) {
- 		$this->builder = $builder;
- 	}
- }
+/**
+ * Invoice Repository Interface
+ */
+interface InvoiceRepositoryInterface
+{
+}

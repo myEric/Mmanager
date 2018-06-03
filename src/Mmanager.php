@@ -26,43 +26,36 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  *
- * @package	m'Manager
- * @author	Eric Claver AKAFFOU
- * @copyright	Copyright (c) 2017, on'Eric Computing, Inc. (https://www.onericcomputing.com/)
- * @license	http://opensource.org/licenses/MIT	MIT License
- * @link	https://codecanyon.net/item/mmanager-invoices-management-system/19866435?s_rank=1
- * @since	Version 1.0.0
+ * @package m'Manager
+ * @author  Eric Claver AKAFFOU
+ * @copyright   Copyright (c) 2017, on'Eric Computing, Inc. (https://www.onericcomputing.com/)
+ * @license http://opensource.org/licenses/MIT  MIT License
+ * @link    https://codecanyon.net/item/mmanager-invoices-management-system/19866435?s_rank=1
+ * @since   Version 1.0.0
  * @filesource
  */
- 
- namespace Mmanager\Domain\Repository\Customer;
- 
- use Mmanager\Domain\Repository\Customer\CustomerRepositoryInterface;
- use Mmanager\Domain\Repository\AbstractRepository;
- /**
-  * Customer Repository
-  */
- class CustomerRepository extends AbstractRepository implements CustomerRepositoryInterface
- {
 
- 	/**
- 	 * @var string
- 	 */
- 	protected $table = 'customer';
- 	/**
- 	 * @var string
- 	 */
- 	protected $primaryKey = 'client_id';
- 	/**
- 	 * @var object
- 	 */
- 	protected $builder;
- 	/**
- 	 * Customer Repository Construct
- 	 * @param object $builder 
- 	 * @return mixed
- 	 */
- 	public function __construct($builder) {
- 		$this->builder = $builder;
- 	}
- }
+namespace Mmanager;
+
+use Mmanager\Domain\Repository\Customer\CustomerRepository;
+use Mmanager\Domain\Repository\Invoice\InvoiceRepository;
+use Mmanager\Persistence\Adapter\CodeIgniter\CIQueryBuilder;
+
+class Mmanager
+{
+    protected $user_id;
+
+    public function __construct() {
+        $this->Customer = new CustomerRepository(new CIQueryBuilder);
+        $this->Invoice = new InvoiceRepository(new CIQueryBuilder);
+        $this->user_id = get_user_id();
+    }
+    public function setUserID($user_id = null) {
+        $this->user_id = isset($user_id) ? $user_id : get_user_id();
+        return $this;
+    }
+    public function getUserID()
+    {
+        return $this->user_id;
+    }
+}

@@ -34,35 +34,17 @@
  * @since	Version 1.0.0
  * @filesource
  */
- 
- namespace Mmanager\Domain\Repository\Customer;
- 
- use Mmanager\Domain\Repository\Customer\CustomerRepositoryInterface;
- use Mmanager\Domain\Repository\AbstractRepository;
- /**
-  * Customer Repository
-  */
- class CustomerRepository extends AbstractRepository implements CustomerRepositoryInterface
- {
 
- 	/**
- 	 * @var string
- 	 */
- 	protected $table = 'customer';
- 	/**
- 	 * @var string
- 	 */
- 	protected $primaryKey = 'client_id';
- 	/**
- 	 * @var object
- 	 */
- 	protected $builder;
- 	/**
- 	 * Customer Repository Construct
- 	 * @param object $builder 
- 	 * @return mixed
- 	 */
- 	public function __construct($builder) {
- 		$this->builder = $builder;
- 	}
- }
+namespace Mmanager\Domain\Factory;
+use Mmanager\Domain\Entity\Invoice;
+use Mmanager\Domain\Factory\CustomerFactory;
+
+/**
+ * Customer Factory
+ */
+class InvoiceFactory
+{
+	public function getCustomer($id = null, $var = null) {
+		return CustomerFactory::getCustomer($id, $var);
+	}
+}

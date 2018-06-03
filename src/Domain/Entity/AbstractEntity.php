@@ -32,37 +32,14 @@
  * @license	http://opensource.org/licenses/MIT	MIT License
  * @link	https://codecanyon.net/item/mmanager-invoices-management-system/19866435?s_rank=1
  * @since	Version 1.0.0
- * @filesource
  */
  
- namespace Mmanager\Domain\Repository\Customer;
- 
- use Mmanager\Domain\Repository\Customer\CustomerRepositoryInterface;
- use Mmanager\Domain\Repository\AbstractRepository;
- /**
-  * Customer Repository
-  */
- class CustomerRepository extends AbstractRepository implements CustomerRepositoryInterface
- {
+ namespace Mmanager\Entity;
 
- 	/**
- 	 * @var string
- 	 */
- 	protected $table = 'customer';
- 	/**
- 	 * @var string
- 	 */
- 	protected $primaryKey = 'client_id';
- 	/**
- 	 * @var object
- 	 */
- 	protected $builder;
- 	/**
- 	 * Customer Repository Construct
- 	 * @param object $builder 
- 	 * @return mixed
- 	 */
- 	public function __construct($builder) {
- 		$this->builder = $builder;
- 	}
+
+ /**
+  * Abstract Repository Class
+  */
+ abstract class AbstractEntity
+ {
  }

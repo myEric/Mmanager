@@ -43,14 +43,11 @@ use Mmanager\Domain\Entity\Customer;
  */
 class CustomerFactory
 {
-	const EMAIL = 'akaffou.eric@me.com';
-	const CREDIT = 200;
-	public static function create($name) {
-		$customer = new Customer();
-		$customer->setName($name);
-		$customer->setEmail(self::EMAIL);
-		$customer->setCredit(self::CREDIT);
-		
-		return $customer;
+	public static function getCustomer($id = null, $var = null) {
+		if ( ! isset($id) || $id == 0) {
+			return null;
+		} else {
+			return client($id, $var);
+		}
 	}
 }
