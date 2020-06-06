@@ -1,5 +1,5 @@
 {
-    "name": "myeric/mmanager",
+    "name": "myeric/mmanager-module-builder",
     "description": "m'Manager Module Builder",
     "keywords": ["mmanager", "composer", "package"],
     "license": "MIT",
