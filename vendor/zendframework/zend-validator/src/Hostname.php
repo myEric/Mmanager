@@ -69,7 +69,7 @@ class Hostname extends AbstractValidator
 
     /**
      * Array of valid top-level-domains
-     * IanaVersion 2017082200
+     * IanaVersion 2019122700
      *
      * @see ftp://data.iana.org/TLD/tlds-alpha-by-domain.txt  List of all TLDs by domain
      * @see http://www.iana.org/domains/root/db/ Official list of supported TLDs
@@ -92,7 +92,6 @@ class Hostname extends AbstractValidator
         'accountant',
         'accountants',
         'aco',
-        'active',
         'actor',
         'ad',
         'adac',
@@ -222,7 +221,6 @@ class Hostname extends AbstractValidator
         'bj',
         'black',
         'blackfriday',
-        'blanco',
         'blockbuster',
         'blog',
         'bloomberg',
@@ -231,7 +229,6 @@ class Hostname extends AbstractValidator
         'bms',
         'bmw',
         'bn',
-        'bnl',
         'bnpparibas',
         'bo',
         'boats',
@@ -242,7 +239,6 @@ class Hostname extends AbstractValidator
         'boo',
         'book',
         'booking',
-        'boots',
         'bosch',
         'bostik',
         'boston',
@@ -291,7 +287,6 @@ class Hostname extends AbstractValidator
         'career',
         'careers',
         'cars',
-        'cartier',
         'casa',
         'case',
         'caseih',
@@ -317,14 +312,13 @@ class Hostname extends AbstractValidator
         'ch',
         'chanel',
         'channel',
+        'charity',
         'chase',
         'chat',
         'cheap',
         'chintai',
-        'chloe',
         'christmas',
         'chrome',
-        'chrysler',
         'church',
         'ci',
         'cipriani',
@@ -376,6 +370,7 @@ class Hostname extends AbstractValidator
         'coupon',
         'coupons',
         'courses',
+        'cpa',
         'cr',
         'credit',
         'creditcard',
@@ -437,9 +432,7 @@ class Hostname extends AbstractValidator
         'do',
         'docs',
         'doctor',
-        'dodge',
         'dog',
-        'doha',
         'domains',
         'dot',
         'download',
@@ -448,7 +441,6 @@ class Hostname extends AbstractValidator
         'dubai',
         'duck',
         'dunlop',
-        'duns',
         'dupont',
         'durban',
         'dvag',
@@ -469,7 +461,6 @@ class Hostname extends AbstractValidator
         'engineer',
         'engineering',
         'enterprises',
-        'epost',
         'epson',
         'equipment',
         'er',
@@ -485,7 +476,6 @@ class Hostname extends AbstractValidator
         'eurovision',
         'eus',
         'events',
-        'everbank',
         'exchange',
         'expert',
         'exposed',
@@ -565,6 +555,7 @@ class Hostname extends AbstractValidator
         'games',
         'gap',
         'garden',
+        'gay',
         'gb',
         'gbiz',
         'gd',
@@ -600,7 +591,6 @@ class Hostname extends AbstractValidator
         'goldpoint',
         'golf',
         'goo',
-        'goodhands',
         'goodyear',
         'goog',
         'google',
@@ -658,7 +648,6 @@ class Hostname extends AbstractValidator
         'homes',
         'homesense',
         'honda',
-        'honeywell',
         'horse',
         'hospital',
         'host',
@@ -672,7 +661,6 @@ class Hostname extends AbstractValidator
         'hr',
         'hsbc',
         'ht',
-        'htc',
         'hu',
         'hughes',
         'hyatt',
@@ -693,6 +681,7 @@ class Hostname extends AbstractValidator
         'immo',
         'immobilien',
         'in',
+        'inc',
         'industries',
         'infiniti',
         'info',
@@ -712,7 +701,6 @@ class Hostname extends AbstractValidator
         'ir',
         'irish',
         'is',
-        'iselect',
         'ismaili',
         'ist',
         'istanbul',
@@ -720,7 +708,6 @@ class Hostname extends AbstractValidator
         'itau',
         'itv',
         'iveco',
-        'iwc',
         'jaguar',
         'java',
         'jcb',
@@ -730,7 +717,6 @@ class Hostname extends AbstractValidator
         'jetzt',
         'jewelry',
         'jio',
-        'jlc',
         'jll',
         'jm',
         'jmp',
@@ -779,12 +765,10 @@ class Hostname extends AbstractValidator
         'kz',
         'la',
         'lacaixa',
-        'ladbrokes',
         'lamborghini',
         'lamer',
         'lancaster',
         'lancia',
-        'lancome',
         'land',
         'landrover',
         'lanxess',
@@ -823,6 +807,8 @@ class Hostname extends AbstractValidator
         'living',
         'lixil',
         'lk',
+        'llc',
+        'llp',
         'loan',
         'loans',
         'locker',
@@ -866,8 +852,6 @@ class Hostname extends AbstractValidator
         'mattel',
         'mba',
         'mc',
-        'mcd',
-        'mcdonalds',
         'mckinsey',
         'md',
         'me',
@@ -879,7 +863,6 @@ class Hostname extends AbstractValidator
         'memorial',
         'men',
         'menu',
-        'meo',
         'merckmsd',
         'metlife',
         'mg',
@@ -901,7 +884,6 @@ class Hostname extends AbstractValidator
         'mo',
         'mobi',
         'mobile',
-        'mobily',
         'moda',
         'moe',
         'moi',
@@ -909,8 +891,6 @@ class Hostname extends AbstractValidator
         'monash',
         'money',
         'monster',
-        'montblanc',
-        'mopar',
         'mormon',
         'mortgage',
         'moscow',
@@ -918,7 +898,6 @@ class Hostname extends AbstractValidator
         'motorcycles',
         'mov',
         'movie',
-        'movistar',
         'mp',
         'mq',
         'mr',
@@ -1015,9 +994,7 @@ class Hostname extends AbstractValidator
         'ovh',
         'pa',
         'page',
-        'pamperedchef',
         'panasonic',
-        'panerai',
         'paris',
         'pars',
         'partners',
@@ -1040,7 +1017,6 @@ class Hostname extends AbstractValidator
         'photography',
         'photos',
         'physio',
-        'piaget',
         'pics',
         'pictet',
         'pictures',
@@ -1156,7 +1132,6 @@ class Hostname extends AbstractValidator
         'sandvikcoromant',
         'sanofi',
         'sap',
-        'sapo',
         'sarl',
         'sas',
         'save',
@@ -1238,20 +1213,18 @@ class Hostname extends AbstractValidator
         'sony',
         'soy',
         'space',
-        'spiegel',
+        'sport',
         'spot',
         'spreadbetting',
         'sr',
         'srl',
-        'srt',
+        'ss',
         'st',
         'stada',
         'staples',
         'star',
-        'starhub',
         'statebank',
         'statefarm',
-        'statoil',
         'stc',
         'stcgroup',
         'stockholm',
@@ -1297,8 +1270,6 @@ class Hostname extends AbstractValidator
         'tech',
         'technology',
         'tel',
-        'telecity',
-        'telefonica',
         'temasek',
         'tennis',
         'teva',
@@ -1358,7 +1329,6 @@ class Hostname extends AbstractValidator
         'ua',
         'ubank',
         'ubs',
-        'uconnect',
         'ug',
         'uk',
         'unicom',
@@ -1392,7 +1362,6 @@ class Hostname extends AbstractValidator
         'virgin',
         'visa',
         'vision',
-        'vista',
         'vistaprint',
         'viva',
         'vivo',
@@ -1412,7 +1381,6 @@ class Hostname extends AbstractValidator
         'walter',
         'wang',
         'wanggou',
-        'warman',
         'watch',
         'watches',
         'weather',
@@ -1540,9 +1508,9 @@ class Hostname extends AbstractValidator
         'اتصالات',
         'امارات',
         'بازار',
+        'موريتانيا',
         'پاکستان',
         'الاردن',
-        'موبايلي',
         'بارت',
         'بھارت',
         'المغرب',
@@ -1566,6 +1534,7 @@ class Hostname extends AbstractValidator
         '健康',
         'ไทย',
         'سورية',
+        '招聘',
         'рус',
         'рф',
         '珠宝',
@@ -1573,6 +1542,7 @@ class Hostname extends AbstractValidator
         '大拿',
         'みんな',
         'グーグル',
+        'ευ',
         'ελ',
         '世界',
         '書籍',
@@ -1598,7 +1568,6 @@ class Hostname extends AbstractValidator
         '新加坡',
         'فلسطين',
         '政务',
-        'xperia',
         'xxx',
         'xyz',
         'yachts',
@@ -1618,7 +1587,6 @@ class Hostname extends AbstractValidator
         'zara',
         'zero',
         'zip',
-        'zippo',
         'zm',
         'zone',
         'zuerich',
@@ -1640,7 +1608,7 @@ class Hostname extends AbstractValidator
      * (.CH) Switzerland https://nic.switch.ch/reg/ocView.action?res=EF6GW2JBPVTG67DLNIQXU234MN6SC33JNQQGI7L6#anhang1
      * (.CL) Chile http://www.iana.org/domains/idn-tables/tables/cl_latn_1.0.html
      * (.COM) International http://www.verisign.com/information-services/naming-services/internationalized-domain-names/index.html
-     * (.DE) Germany http://www.denic.de/en/domains/idns/liste.html
+     * (.DE) Germany https://www.denic.de/en/know-how/idn-domains/idn-character-list/
      * (.DK) Danmark http://www.dk-hostmaster.dk/index.php?id=151
      * (.EE) Estonia https://www.iana.org/domains/idn-tables/tables/pl_et-pl_1.0.html
      * (.ES) Spain https://www.nic.es/media/2008-05/1210147705287.pdf
@@ -1652,7 +1620,7 @@ class Hostname extends AbstractValidator
      * (.INFO) International http://www.nic.info/info/idn
      * (.IO) British Indian Ocean Territory http://www.nic.io/IO-IDN-Policy.pdf
      * (.IR) Iran http://www.nic.ir/Allowable_Characters_dot-iran
-     * (.IS) Iceland http://www.isnic.is/domain/rules.php
+     * (.IS) Iceland https://www.isnic.is/en/domain/rules#2
      * (.KR) Korea http://www.iana.org/domains/idn-tables/tables/kr_ko-kr_1.0.html
      * (.LI) Liechtenstein https://nic.switch.ch/reg/ocView.action?res=EF6GW2JBPVTG67DLNIQXU234MN6SC33JNQQGI7L6#anhang1
      * (.LT) Lithuania http://www.domreg.lt/static/doc/public/idn_symbols-en.pdf
@@ -1693,7 +1661,7 @@ class Hostname extends AbstractValidator
         'CL'  => [1 => '/^[\x{002d}0-9a-záéíñóúü]{1,63}$/iu'],
         'CN'  => 'Hostname/Cn.php',
         'COM' => 'Hostname/Com.php',
-        'DE'  => [1 => '/^[\x{002d}0-9a-zà-öø-ÿăąāćĉčċďđĕěėęēğĝġģĥħĭĩįīıĵķĺľļłńňņŋŏőōœĸŕřŗśŝšşťţŧŭůűũųūŵŷźžż]{1,63}$/iu'],
+        'DE'  => [1 => '/^[\x{002d}0-9a-záàăâåäãąāæćĉčċçďđéèĕêěëėęēğĝġģĥħíìĭîïĩįīıĵķĺľļłńňñņŋóòŏôöőõøōœĸŕřŗśŝšşßťţŧúùŭûůüűũųūŵýŷÿźžżðþ]{1,63}$/iu'],
         'DK'  => [1 => '/^[\x{002d}0-9a-zäåæéöøü]{1,63}$/iu'],
         'EE'  => [1 => '/^[\x{002d}0-9a-zäõöüšž]{1,63}$/iu'],
         'ES'  => [1 => '/^[\x{002d}0-9a-zàáçèéíïñòóúü·]{1,63}$/iu'],
@@ -1773,6 +1741,7 @@ class Hostname extends AbstractValidator
             33 => '/^[\x{002d}0-9א-ת]{1,63}$/iu'],
         'PR'  => [1 => '/^[\x{002d}0-9a-záéíóúñäëïüöâêîôûàèùæçœãõ]{1,63}$/iu'],
         'PT'  => [1 => '/^[\x{002d}0-9a-záàâãçéêíóôõú]{1,63}$/iu'],
+        'RS'  => [1 => '/^[\x{002d}0-9a-zßáâäçéëíîóôöúüýăąćčďđęěĺľłńňőŕřśşšţťůűźżž]{1,63}$/iu'],
         'RU'  => [1 => '/^[\x{002d}0-9а-яё]{1,63}$/iu'],
         'SA'  => [1 => '/^[\x{002d}.0-9\x{0621}-\x{063A}\x{0641}-\x{064A}\x{0660}-\x{0669}]{1,63}$/iu'],
         'SE'  => [1 => '/^[\x{002d}0-9a-zäåéöü]{1,63}$/iu'],
@@ -2065,6 +2034,7 @@ class Hostname extends AbstractValidator
                     }
 
                     // Match TLD against known list
+                    $removedTld = false;
                     if ($this->getTldCheck()) {
                         if (! in_array(strtolower($this->tld), $this->validTlds)
                             && ! in_array($this->tld, $this->validTlds)) {
@@ -2075,6 +2045,7 @@ class Hostname extends AbstractValidator
                         // We have already validated that the TLD is fine. We don't want it to go through the below
                         // checks as new UTF-8 TLDs will incorrectly fail if there is no IDN regex for it.
                         array_pop($domainParts);
+                        $removedTld = true;
                     }
 
                     /**
@@ -2094,6 +2065,10 @@ class Hostname extends AbstractValidator
 
                     // Check each hostname part
                     $check = 0;
+                    $lastDomainPart = end($domainParts);
+                    if (! $removedTld) {
+                        $lastDomainPart = prev($domainParts);
+                    }
                     foreach ($domainParts as $domainPart) {
                         // Decode Punycode domain names to IDN
                         if (strpos($domainPart, 'xn--') === 0) {
@@ -2101,6 +2076,13 @@ class Hostname extends AbstractValidator
                             if ($domainPart === false) {
                                 return false;
                             }
+                        }
+
+                        // Skip following checks if domain part is empty, as it definitely is not a valid hostname then
+                        if ($domainPart === '') {
+                            $this->error(self::INVALID_HOSTNAME);
+                            $status = false;
+                            break 2;
                         }
 
                         // Check dash (-) does not start, end or appear in 3rd and 4th positions
@@ -2122,7 +2104,9 @@ class Hostname extends AbstractValidator
 
                         // Check each domain part
                         $checked = false;
-                        foreach ($regexChars as $regexKey => $regexChar) {
+                        $isSubDomain = $domainPart != $lastDomainPart;
+                        $partRegexChars = $isSubDomain ? ['/^[a-z0-9_\x2d]{1,63}$/i'] + $regexChars : $regexChars;
+                        foreach ($partRegexChars as $regexKey => $regexChar) {
                             $status = preg_match($regexChar, $domainPart);
                             if ($status > 0) {
                                 $length = 63;

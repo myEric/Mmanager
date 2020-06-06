@@ -7,4 +7,6 @@ $baseDir = dirname($vendorDir);
 
 return array(
     'PHP_Timer' => $vendorDir . '/phpunit/php-timer/src/Timer.php',
+    'Stringable' => $vendorDir . '/symfony/polyfill-php80/Resources/stubs/Stringable.php',
+    'ValueError' => $vendorDir . '/symfony/polyfill-php80/Resources/stubs/ValueError.php',
 );
