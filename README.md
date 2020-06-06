@@ -16,7 +16,7 @@ If you're using **[m'Manager | Invoices Management System](https://codecanyon.ne
 In the `composer.json` file of your **m'Manager installation**, add this line:
 ```
 "require-dev": {
-	"myeric/mmanager": "dev-master"
+	"onericcomputing/mmanager-module-builder": "dev-master"
 }
 ```
 
