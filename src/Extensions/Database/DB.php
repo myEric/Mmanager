@@ -20,9 +20,9 @@
 namespace Mmanager\Extensions\Database;
 
 final class DB {
-	public static function connect($host,$usr,$pw,$db) { 
+	public static function connect($host, $usr, $pw, $db) { 
 		try {
-			$mysqli = new \Mysqli($host,$usr,$pw,$db);
+			$mysqli = new \Mysqli($host, $usr, $pw, $db);
 			return true;
 		} catch (mysqli_sql_exception $e) {
 			throw $e;

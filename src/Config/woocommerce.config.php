@@ -20,19 +20,19 @@
 namespace Mmanager\Config;
 $db = [];
 $return = [];
-$options = null != get_option('woocommerce_mmanager_connect_config') ? json_decode(get_option('woocommerce_mmanager_connect_config'), true): false;
+$options = null != get_option('woocommerce_mmanager_connect_config') ? json_decode(get_option('woocommerce_mmanager_connect_config'), true) : false;
 if ($options) {
 	$configs = $options;
 	$db = $configs['db'];
 
 	$return = [
-	    'db' => [
-	        'host' => $db['host'],
-	        'username' => $db['username'],
-	        'password' => $db['password'],
-	        'database' => $db['database'],
-	        'charset' => $db['charset']
-	    ]
+		'db' => [
+			'host' => $db['host'],
+			'username' => $db['username'],
+			'password' => $db['password'],
+			'database' => $db['database'],
+			'charset' => $db['charset']
+		]
 	];
 }
 return $return;

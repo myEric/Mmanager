@@ -22,5 +22,5 @@ namespace Mmanager\Logger;
 
 interface LoggerInterface
 {
-    public function log(string $message);
+	public function log(string $message);
 }

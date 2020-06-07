@@ -22,8 +22,8 @@ namespace Mmanager\Logger;
 
 class StdoutLoggerFactory implements LoggerFactory
 {
-    public function createLogger(): LoggerInterface
-    {
-        return new StdoutLogger();
-    }
+	public function createLogger(): LoggerInterface
+	{
+		return new StdoutLogger();
+	}
 }

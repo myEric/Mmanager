@@ -30,69 +30,69 @@ class UserAgent
 		$this->UserAgent = $_SERVER['HTTP_USER_AGENT'];
 		$this->UserIP = $this->__getUserIP();
 	}
-    /**
-     * @return mixed
-     */
-    public function getUserAgent()
-    {
-        return $this->UserAgent;
-    }
+	/**
+	 * @return mixed
+	 */
+	public function getUserAgent()
+	{
+		return $this->UserAgent;
+	}
 
-    /**
-     * @param mixed $UserAgent
-     *
-     * @return self
-     */
-    public function setUserAgent($UserAgent)
-    {
-        $this->UserAgent = $UserAgent;
+	/**
+	 * @param mixed $UserAgent
+	 *
+	 * @return self
+	 */
+	public function setUserAgent($UserAgent)
+	{
+		$this->UserAgent = $UserAgent;
 
-        return $this;
-    }
+		return $this;
+	}
 
-    /**
-     * @return mixed
-     */
-    public function getUserIP()
-    {
-        return $this->UserIP;
-    }
+	/**
+	 * @return mixed
+	 */
+	public function getUserIP()
+	{
+		return $this->UserIP;
+	}
 
-    /**
-     * @param mixed $UserIP
-     *
-     * @return self
-     */
-    public function setUserIP($UserIP)
-    {
-        $this->UserIP = $UserIP;
+	/**
+	 * @param mixed $UserIP
+	 *
+	 * @return self
+	 */
+	public function setUserIP($UserIP)
+	{
+		$this->UserIP = $UserIP;
 
-        return $this;
-    }
-    private function __getUserIP()
-    {
-        // Get real visitor IP behind CloudFlare network
-        if (isset($_SERVER["HTTP_CF_CONNECTING_IP"])) {
-          $_SERVER['REMOTE_ADDR'] = $_SERVER["HTTP_CF_CONNECTING_IP"];
-          $_SERVER['HTTP_CLIENT_IP'] = $_SERVER["HTTP_CF_CONNECTING_IP"];
-        }
-        $client  = @$_SERVER['HTTP_CLIENT_IP'];
-        $forward = @$_SERVER['HTTP_X_FORWARDED_FOR'];
-        $remote  = $_SERVER['REMOTE_ADDR'];
+		return $this;
+	}
+	private function __getUserIP()
+	{
+		// Get real visitor IP behind CloudFlare network
+		if (isset($_SERVER["HTTP_CF_CONNECTING_IP"])) {
+		  $_SERVER['REMOTE_ADDR'] = $_SERVER["HTTP_CF_CONNECTING_IP"];
+		  $_SERVER['HTTP_CLIENT_IP'] = $_SERVER["HTTP_CF_CONNECTING_IP"];
+		}
+		$client  = @$_SERVER['HTTP_CLIENT_IP'];
+		$forward = @$_SERVER['HTTP_X_FORWARDED_FOR'];
+		$remote  = $_SERVER['REMOTE_ADDR'];
 
-        if(filter_var($client, FILTER_VALIDATE_IP))
-        {
-            $ip = $client;
-        }
-        elseif(filter_var($forward, FILTER_VALIDATE_IP))
-        {
-            $ip = $forward;
-        }
-        else
-        {
-            $ip = $remote;
-        }
+		if(filter_var($client, FILTER_VALIDATE_IP))
+		{
+			$ip = $client;
+		}
+		elseif(filter_var($forward, FILTER_VALIDATE_IP))
+		{
+			$ip = $forward;
+		}
+		else
+		{
+			$ip = $remote;
+		}
 
-        return $ip;
-    }
+		return $ip;
+	}
 }

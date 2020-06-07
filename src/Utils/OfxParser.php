@@ -23,18 +23,18 @@ use Mmanager\Contract\ParserInterface;
 
 class OfxParser implements ParserInterface
 {
-    public function parse($filePath)
-    {
-        $ofxParser = new \OfxParser\Parser();
-        $ofx = $ofxParser->loadFromFile($filePath);
+	public function parse($filePath)
+	{
+		$ofxParser = new \OfxParser\Parser();
+		$ofx = $ofxParser->loadFromFile($filePath);
 
-        $bankAccount = reset($ofx->bankAccounts);
+		$bankAccount = reset($ofx->bankAccounts);
 
-        // Get the statement start and end dates
-        $startDate = $bankAccount->statement->startDate;
-        $endDate = $bankAccount->statement->endDate;
+		// Get the statement start and end dates
+		$startDate = $bankAccount->statement->startDate;
+		$endDate = $bankAccount->statement->endDate;
 
-        // Get the statement transactions for the account
-        return $bankAccount->statement->transactions;
-    }
+		// Get the statement transactions for the account
+		return $bankAccount->statement->transactions;
+	}
 }

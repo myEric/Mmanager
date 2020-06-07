@@ -111,7 +111,7 @@
 	 * @return array
 	 */
 	protected function _tableArray() {
-		return include dirname(__DIR__). '/Config/tables.config.php';
+		return include dirname(__DIR__).'/Config/tables.config.php';
 	}
 	protected function isValidQueryBuilder($builder) {
 		if ( ! $builder instanceof QueryInterface) {

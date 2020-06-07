@@ -12,10 +12,9 @@ namespace Mmanager\Extensions\Database;
 	*  ezSQL error strings - mySQLi
 	*/
     
-    global $ezsql_mysqli_str;
+	global $ezsql_mysqli_str;
 
-	$ezsql_mysqli_str = array
-	(
+	$ezsql_mysqli_str = array(
 		1 => 'Require $dbuser and $dbpassword to connect to a database server',
 		2 => 'Error establishing mySQLi database connection. Correct user/password? Correct hostname? Database server running?',
 		3 => 'Require $dbname to select a database',
@@ -27,8 +26,8 @@ namespace Mmanager\Extensions\Database;
 	*  ezSQL Database specific class - mySQLi
 	*/
 
-	if ( ! function_exists ('mysqli_connect') ) die('<b>Fatal Error:</b> ezSQL_mysql requires mySQLi Lib to be compiled and or linked in to the PHP engine');
-	if ( ! class_exists ('ezSQLcore') ) die('<b>Fatal Error:</b> ezSQL_mysql requires ezSQLcore (ez_sql_core.php) to be included/loaded before it can be used');
+	if ( ! function_exists('mysqli_connect')) die('<b>Fatal Error:</b> ezSQL_mysql requires mySQLi Lib to be compiled and or linked in to the PHP engine');
+	if ( ! class_exists('ezSQLcore')) die('<b>Fatal Error:</b> ezSQL_mysql requires ezSQLcore (ez_sql_core.php) to be included/loaded before it can be used');
 
 	class ezSQL_mysqli extends ezSQLcore
 	{
@@ -46,12 +45,12 @@ namespace Mmanager\Extensions\Database;
 		*  same time as initialising the ezSQL_mysqli class
 		*/
 
-		function __construct($dbuser='', $dbpassword='', $dbname='', $dbhost='localhost', $encoding='')
+		function __construct($dbuser = '', $dbpassword = '', $dbname = '', $dbhost = 'localhost', $encoding = '')
 		{
 			$this->dbuser = $dbuser;
 			$this->dbpassword = $dbpassword;
 			$this->dbname = $dbname;
-			list( $this->dbhost, $this->dbport ) = $this->get_host_port( $dbhost, 3306 );
+			list($this->dbhost, $this->dbport) = $this->get_host_port($dbhost, 3306);
 			$this->encoding = $encoding;
 		}
 
@@ -60,11 +59,11 @@ namespace Mmanager\Extensions\Database;
 		*  and select a mySQL database at the same time
 		*/
 
-		function quick_connect($dbuser='', $dbpassword='', $dbname='', $dbhost='localhost', $dbport='3306', $encoding='')
+		function quick_connect($dbuser = '', $dbpassword = '', $dbname = '', $dbhost = 'localhost', $dbport = '3306', $encoding = '')
 		{
 			$return_val = false;
-			if ( ! $this->connect($dbuser, $dbpassword, $dbhost, $dbport) ) ;
-			else if ( ! $this->select($dbname,$encoding) ) ;
+			if ( ! $this->connect($dbuser, $dbpassword, $dbhost, $dbport));
+			else if ( ! $this->select($dbname, $encoding));
 			else $return_val = true;
 			return $return_val;
 		}
@@ -73,7 +72,7 @@ namespace Mmanager\Extensions\Database;
 		*  Try to connect to mySQL database server
 		*/
 
-		function connect($dbuser='', $dbpassword='', $dbhost='localhost', $dbport=false)
+		function connect($dbuser = '', $dbpassword = '', $dbhost = 'localhost', $dbport = false)
 		{
 			global $ezsql_mysqli_str; $return_val = false;
 			
@@ -81,25 +80,25 @@ namespace Mmanager\Extensions\Database;
 			$this->timer_start('db_connect_time');
 			
 			// If port not specified (new connection issued), get it
-			if( ! $dbport ) {
-				list( $dbhost, $dbport ) = $this->get_host_port( $dbhost, 3306 );
+			if ( ! $dbport) {
+				list($dbhost, $dbport) = $this->get_host_port($dbhost, 3306);
 			}
 			
 			// Must have a user and a password
-			if ( ! $dbuser )
+			if ( ! $dbuser)
 			{
 				$this->register_error($ezsql_mysqli_str[1].' in '.__FILE__.' on line '.__LINE__);
-				$this->show_errors ? trigger_error($ezsql_mysqli_str[1],E_USER_WARNING) : null;
+				$this->show_errors ? trigger_error($ezsql_mysqli_str[1], E_USER_WARNING) : null;
 			}
 			// Try to establish the server database handle
 			else
 			{
-				$this->dbh = new \Mysqli($dbhost,$dbuser,$dbpassword, '', $dbport);
+				$this->dbh = new \Mysqli($dbhost, $dbuser, $dbpassword, '', $dbport);
 				// Check for connection problem
-				if( $this->dbh->connect_errno )
+				if ($this->dbh->connect_errno)
 				{
 					$this->register_error($ezsql_mysqli_str[2].' in '.__FILE__.' on line '.__LINE__);
-					$this->show_errors ? trigger_error($ezsql_mysqli_str[2],E_USER_WARNING) : null;
+					$this->show_errors ? trigger_error($ezsql_mysqli_str[2], E_USER_WARNING) : null;
 				}
 				else
 				{
@@ -120,47 +119,47 @@ namespace Mmanager\Extensions\Database;
 		*  Try to select a mySQL database
 		*/
 
-		function select($dbname='', $encoding='')
+		function select($dbname = '', $encoding = '')
 		{
 			global $ezsql_mysqli_str; $return_val = false;
 
 			// Must have a database name
-			if ( ! $dbname )
+			if ( ! $dbname)
 			{
 				$this->register_error($ezsql_mysqli_str[3].' in '.__FILE__.' on line '.__LINE__);
-				$this->show_errors ? trigger_error($ezsql_mysqli_str[3],E_USER_WARNING) : null;
+				$this->show_errors ? trigger_error($ezsql_mysqli_str[3], E_USER_WARNING) : null;
 			}
 
 			// Must have an active database connection
-			else if ( ! $this->dbh )
+			else if ( ! $this->dbh)
 			{
 				$this->register_error($ezsql_mysqli_str[4].' in '.__FILE__.' on line '.__LINE__);
-				$this->show_errors ? trigger_error($ezsql_mysqli_str[4],E_USER_WARNING) : null;
+				$this->show_errors ? trigger_error($ezsql_mysqli_str[4], E_USER_WARNING) : null;
 			}
 
 			// Try to connect to the database
-			else if ( !@$this->dbh->select_db($dbname) )
+			else if ( ! @$this->dbh->select_db($dbname))
 			{
 				// Try to get error supplied by mysql if not use our own
-				if ( !$str = @$this->dbh->error)
+				if ( ! $str = @$this->dbh->error)
 					  $str = $ezsql_mysqli_str[5];
 
 				$this->register_error($str.' in '.__FILE__.' on line '.__LINE__);
-				$this->show_errors ? trigger_error($str,E_USER_WARNING) : null;
+				$this->show_errors ? trigger_error($str, E_USER_WARNING) : null;
 			}
 			else
 			{
 				$this->dbname = $dbname;
-				if($encoding!='')
+				if ($encoding != '')
 				{
-					$encoding = strtolower(str_replace("-","",$encoding));
+					$encoding = strtolower(str_replace("-", "", $encoding));
 					$charsets = array();
 					$result = $this->dbh->query("SHOW CHARACTER SET");
-					while($row = $result->fetch_array(MYSQLI_ASSOC))
+					while ($row = $result->fetch_array(MYSQLI_ASSOC))
 					{
 						$charsets[] = $row["Charset"];
 					}
-					if(in_array($encoding,$charsets)){
+					if (in_array($encoding, $charsets)) {
 						$this->dbh->set_charset($encoding);
 					}
 				}
@@ -185,9 +184,9 @@ namespace Mmanager\Extensions\Database;
 				$this->select($this->dbname, $this->encoding);
 			}
                         
-                        if ( get_magic_quotes_gpc() ) {
+						if ( get_magic_quotes_gpc() ) {
 				$str = stripslashes($str);
-                        }                        
+						}                        
 
 			return $this->dbh->escape_string($str);
 		}
@@ -210,10 +209,10 @@ namespace Mmanager\Extensions\Database;
 		{
 
 			// This keeps the connection alive for very long running scripts
-			if ( $this->count(false) >= 500 )
+			if ($this->count(false) >= 500)
 			{
 				$this->disconnect();
-				$this->quick_connect($this->dbuser,$this->dbpassword,$this->dbname,$this->dbhost,$this->dbport,$this->encoding);
+				$this->quick_connect($this->dbuser, $this->dbpassword, $this->dbname, $this->dbhost, $this->dbport, $this->encoding);
 			}
 
 			// Initialise return
@@ -238,13 +237,13 @@ namespace Mmanager\Extensions\Database;
 			$this->timer_start($this->num_queries);
 
 			// Use core file cache function
-			if ( $cache = $this->get_cache($query) )
+			if ($cache = $this->get_cache($query))
 			{
 				// Keep tack of how long all queries have taken
 				$this->timer_update_global($this->num_queries);
 
 				// Trace all queries
-				if ( $this->use_trace_log )
+				if ($this->use_trace_log)
 				{
 					$this->trace_log[] = $this->debug(false);
 				}
@@ -253,12 +252,12 @@ namespace Mmanager\Extensions\Database;
 			}
 
 			// If there is no existing database connection then try to connect
-			if ( ! isset($this->dbh) || ! $this->dbh )
+			if ( ! isset($this->dbh) || ! $this->dbh)
 			{
 				$this->connect($this->dbuser, $this->dbpassword, $this->dbhost, $this->dbport);
-				$this->select($this->dbname,$this->encoding);
+				$this->select($this->dbname, $this->encoding);
 				// No existing connection at this point means the server is unreachable
-				if ( ! isset($this->dbh) || ! $this->dbh || $this->dbh->connect_errno )
+				if ( ! isset($this->dbh) || ! $this->dbh || $this->dbh->connect_errno)
 					return false;
 			}
 
@@ -266,21 +265,21 @@ namespace Mmanager\Extensions\Database;
 			$this->result = @$this->dbh->query($query);
 
 			// If there is an error then take note of it..
-			if ( $str = @$this->dbh->error )
+			if ($str = @$this->dbh->error)
 			{
 				$this->register_error($str);
-				$this->show_errors ? trigger_error($str,E_USER_WARNING) : null;
+				$this->show_errors ? trigger_error($str, E_USER_WARNING) : null;
 				return false;
 			}
 
 			// Query was a Data Manipulation Query (insert, delete, update, replace, ...)
-			if ( !is_object($this->result) )
+			if ( ! is_object($this->result))
 			{
 				$is_insert = true;
 				$this->rows_affected = @$this->dbh->affected_rows;
 
 				// Take note of the insert_id
-				if ( preg_match("/^(insert|replace)\s+/i",$query) )
+				if (preg_match("/^(insert|replace)\s+/i", $query))
 				{
 					$this->insert_id = @$this->dbh->insert_id;
 				}
@@ -294,7 +293,7 @@ namespace Mmanager\Extensions\Database;
 				$is_insert = false;
 
 				// Take note of column info
-				$i=0;
+				$i = 0;
 				while ($i < @$this->result->field_count)
 				{
 					$this->col_info[$i] = @$this->result->fetch_field();
@@ -302,8 +301,8 @@ namespace Mmanager\Extensions\Database;
 				}
 
 				// Store Query Results
-				$num_rows=0;
-				while ( $row = @$this->result->fetch_object() )
+				$num_rows = 0;
+				while ($row = @$this->result->fetch_object())
 				{
 					// Store relults as an objects within main array
 					$this->last_result[$num_rows] = $row;
@@ -320,16 +319,16 @@ namespace Mmanager\Extensions\Database;
 			}
 
 			// disk caching of queries
-			$this->store_cache($query,$is_insert);
+			$this->store_cache($query, $is_insert);
 
 			// If debug ALL queries
-			$this->trace || $this->debug_all ? $this->debug() : null ;
+			$this->trace || $this->debug_all ? $this->debug() : null;
 
 			// Keep tack of how long all queries have taken
 			$this->timer_update_global($this->num_queries);
 
 			// Trace all queries
-			if ( $this->use_trace_log )
+			if ($this->use_trace_log)
 			{
 				$this->trace_log[] = $this->debug(false);
 			}
@@ -368,21 +367,21 @@ namespace Mmanager\Extensions\Database;
 		*/
 		function execute()
 		{
-			if($this->s_query != '')
+			if ($this->s_query != '')
 			{
 				$query = $this->s_query;
 
-				if(!empty($this->s_params))
+				if ( ! empty($this->s_params))
 				{
-					foreach($this->s_params as $param => $value)
+					foreach ($this->s_params as $param => $value)
 					{
 						$count = 0;
 						$query = str_replace($param, $value, $query, $count);
-						if($count == 0)
+						if ($count == 0)
 						{
-							$str = $query .' no parameter was changed';
-							$this->register_error($str .' in '.__FILE__.' on line '.__LINE__);
-							$this->show_errors ? trigger_error($str,E_USER_WARNING) : null;
+							$str = $query.' no parameter was changed';
+							$this->register_error($str.' in '.__FILE__.' on line '.__LINE__);
+							$this->show_errors ? trigger_error($str, E_USER_WARNING) : null;
 						}
 					}
 				}
@@ -391,8 +390,7 @@ namespace Mmanager\Extensions\Database;
 				$this->s_params = array();
 
 				return $this->query($query);
-			}
-			else
+			} else
 			{
 				return NULL;
 			}

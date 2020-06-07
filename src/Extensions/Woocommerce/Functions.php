@@ -34,39 +34,39 @@ class Functions {
 	}
 	public function getUserKeys() {
 		return array(
-	    	'store_url' => $this->getOption('home'),
-	    	'consumer_key' => $this->getOption('wpt_wc_api_consumer_consumer_key'),
-	    	'consumer_secret' => $this->getOption('wpt_wc_api_consumer_consumer_secret')
-	    );
+			'store_url' => $this->getOption('home'),
+			'consumer_key' => $this->getOption('wpt_wc_api_consumer_consumer_key'),
+			'consumer_secret' => $this->getOption('wpt_wc_api_consumer_consumer_secret')
+		);
 	}
 	public function get($endpoint, $params) {
 		if ($this->synched()) {
 			try {
-			    // Array of response results.
-			    $woocommerce = $this->wc_api_connect();
-			    $results = $woocommerce->get($endpoint, $params);
-			    // Example: ['customers' => [[ 'id' => 8, 'created_at' => '2015-05-06T17:43:51Z', 'email' => ...
+				// Array of response results.
+				$woocommerce = $this->wc_api_connect();
+				$results = $woocommerce->get($endpoint, $params);
+				// Example: ['customers' => [[ 'id' => 8, 'created_at' => '2015-05-06T17:43:51Z', 'email' => ...
 
-			    // Last request data.
-			    $lastRequest = $woocommerce->http->getRequest();
-			    $lastRequest->getUrl(); // Requested URL (string).
-			    $lastRequest->getMethod(); // Request method (string).
-			    $lastRequest->getParameters(); // Request parameters (array).
-			    $lastRequest->getHeaders(); // Request headers (array).
-			    $lastRequest->getBody(); // Request body (JSON).
+				// Last request data.
+				$lastRequest = $woocommerce->http->getRequest();
+				$lastRequest->getUrl(); // Requested URL (string).
+				$lastRequest->getMethod(); // Request method (string).
+				$lastRequest->getParameters(); // Request parameters (array).
+				$lastRequest->getHeaders(); // Request headers (array).
+				$lastRequest->getBody(); // Request body (JSON).
 
-			    // Last response data.
-			    $lastResponse = $woocommerce->http->getResponse();
-			    $lastResponse->getCode(); // Response code (int).
-			    $lastResponse->getHeaders(); // Response headers (array).
-			    $lastResponse->getBody(); // Response body (JSON).
+				// Last response data.
+				$lastResponse = $woocommerce->http->getResponse();
+				$lastResponse->getCode(); // Response code (int).
+				$lastResponse->getHeaders(); // Response headers (array).
+				$lastResponse->getBody(); // Response body (JSON).
 
-			    return $results;
+				return $results;
 
 			} catch (HttpClientException $e) {
-			    $e->getMessage(); // Error message.
-			    $e->getRequest(); // Last request data.
-			    $e->getResponse(); // Last response data.
+				$e->getMessage(); // Error message.
+				$e->getRequest(); // Last request data.
+				$e->getResponse(); // Last response data.
 			}
 		}
 	}
@@ -131,32 +131,32 @@ class Functions {
 	 * @return \Automattic\WooCommerce\Client|bool
 	 */
 	public function wc_api_connect() {
-	    static $connection;
+		static $connection;
 	 
-	    if ( isset( $connection ) ) {
-	        return $connection;
-	    }
+		if ( isset( $connection ) ) {
+			return $connection;
+		}
 	 
-	    $keys = $this->getUserKeys();
+		$keys = $this->getUserKeys();
 
-	    if ( ! $keys ) {
-	        $connection = false;
+		if ( ! $keys ) {
+			$connection = false;
 	 
-	        return $connection;
-	    }
+			return $connection;
+		}
 	 
-	    $connection = new Client(
-    		$keys['store_url'],
-    		$keys['consumer_key'],
-    		$keys['consumer_secret'],
-    		array(
-    			'wp_api'     => true,
-    			'version'    => 'wc/v2',
-    			'verify_ssl' => false, // Allow self-signed certificates (remove for prod)
-    		)
-	    );
+		$connection = new Client(
+			$keys['store_url'],
+			$keys['consumer_key'],
+			$keys['consumer_secret'],
+			array(
+				'wp_api'     => true,
+				'version'    => 'wc/v2',
+				'verify_ssl' => false, // Allow self-signed certificates (remove for prod)
+			)
+		);
 	 
-	    return $connection;
+		return $connection;
 	}
 }
 

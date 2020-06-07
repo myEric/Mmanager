@@ -26,16 +26,16 @@ use Mmanager\Utils\OfxParser;
 
 class ParserFactory
 {
-    public function createCsvParser(): CsvParser
-    {
-        return new CsvParser();
-    }
-    public function createJsonParser(): JsonParser
-    {
-        return new JsonParser();
-    }
-    public function createOfxParser(): OfxParser
-    {
-        return new OfxParser();
-    }
+	public function createCsvParser(): CsvParser
+	{
+		return new CsvParser();
+	}
+	public function createJsonParser(): JsonParser
+	{
+		return new JsonParser();
+	}
+	public function createOfxParser(): OfxParser
+	{
+		return new OfxParser();
+	}
 }
