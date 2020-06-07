@@ -27,61 +27,61 @@ use Mmanager\Logger\FileLoggerFactory;
 
 class Mmanager
 {
-    protected $user_id;
+	protected $user_id;
 
-    public function __construct() {
-        $this->Customer = new CustomerRepository(new CIQueryBuilder);
-        $this->Invoice = new InvoiceRepository(new CIQueryBuilder);
-        $this->user_id = get_user_id();
-    }
-    public function setUserID($user_id = null) {
-        $this->user_id = isset($user_id) ? $user_id : get_user_id();
-        return $this;
-    }
-    public function getUserID()
-    {
-        return $this->user_id;
-    }
-    public static function getUrl($request_url) {
-      $ch = curl_init();
-      curl_setopt($ch, CURLOPT_URL, $request_url);
-      curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 10);
-      curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-      $response = curl_exec($ch);
-      curl_close($ch);
+	public function __construct() {
+		$this->Customer = new CustomerRepository(new CIQueryBuilder);
+		$this->Invoice = new InvoiceRepository(new CIQueryBuilder);
+		$this->user_id = get_user_id();
+	}
+	public function setUserID($user_id = null) {
+		$this->user_id = isset($user_id) ? $user_id : get_user_id();
+		return $this;
+	}
+	public function getUserID()
+	{
+		return $this->user_id;
+	}
+	public static function getUrl($request_url) {
+	  $ch = curl_init();
+	  curl_setopt($ch, CURLOPT_URL, $request_url);
+	  curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 10);
+	  curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+	  $response = curl_exec($ch);
+	  curl_close($ch);
 
-      return $response;
-    }
-    public static function isValidLicense() {
-        $request_url = 'https://www.mmanager.fr/process.php?r=cl&rf='.base_url().'&pc='.get_option('purchase_code');
-        return self::getUrl($request_url);
-    }
-    public static function expire() {
-      $validity = self::isValidLicense();
-      if ($validity == 1) {
-        return '<span style="color:green">'. strtoupper(__('label_never')).'</span>';
-      } else {
-        return '<span style="color:red">'.strtoupper(__('message_contact_reseller_support')).'</span>';
-      }
-    }
-    public static function LicenseDetails() {
-        return '<p><span><strong>'. __('label_license_details'). '</strong></span><ul><li>'.__('label_domain'). rtrim(base_url(), '/').'</li><li>Status: '. is_valid_license(self::isValidLicense()).'</li><li>Expires: '. self::expire().'</li></ul></em></p>';
-    }
-    public static function render($module, $view_file, $data = null, $return = false) {
-      return __render($module, $view_file, $data, $return);
-    }
-    public static function write_log($log_msg, $folder, $extension)
-    {
-        if (!file_exists($folder)) 
-        {
-            // create directory.
-            mkdir($folder, 0777, true);
-        }
-        $filePath = $folder.'/log-' . date('Y-m-d') . '.'.$extension;
+	  return $response;
+	}
+	public static function isValidLicense() {
+		$request_url = 'https://www.mmanager.fr/process.php?r=cl&rf='.base_url().'&pc='.get_option('purchase_code');
+		return self::getUrl($request_url);
+	}
+	public static function expire() {
+	  $validity = self::isValidLicense();
+	  if ($validity == 1) {
+		return '<span style="color:green">'. strtoupper(__('label_never')).'</span>';
+	  } else {
+		return '<span style="color:red">'.strtoupper(__('message_contact_reseller_support')).'</span>';
+	  }
+	}
+	public static function LicenseDetails() {
+		return '<p><span><strong>'. __('label_license_details'). '</strong></span><ul><li>'.__('label_domain'). rtrim(base_url(), '/').'</li><li>Status: '. is_valid_license(self::isValidLicense()).'</li><li>Expires: '. self::expire().'</li></ul></em></p>';
+	}
+	public static function render($module, $view_file, $data = null, $return = false) {
+	  return __render($module, $view_file, $data, $return);
+	}
+	public static function write_log($log_msg, $folder, $extension)
+	{
+		if (!file_exists($folder)) 
+		{
+			// create directory.
+			mkdir($folder, 0777, true);
+		}
+		$filePath = $folder.'/log-' . date('Y-m-d') . '.'.$extension;
 
-        $loggerFactory = new FileLoggerFactory($filePath);
-        $logger = $loggerFactory->createLogger();
+		$loggerFactory = new FileLoggerFactory($filePath);
+		$logger = $loggerFactory->createLogger();
 
-        $logger->log($log_msg);
-    }
+		$logger->log($log_msg);
+	}
 }

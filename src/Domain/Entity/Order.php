@@ -27,43 +27,43 @@ class Order extends AbstractEntity {
 	protected $customer;
 	protected $orderNumber;
 	
-    /**
-     * @return mixed
-     */
-    public function getCustomer()
-    {
-        return $this->customer;
-    }
+	/**
+	 * @return mixed
+	 */
+	public function getCustomer()
+	{
+		return $this->customer;
+	}
 
-    /**
-     * @param mixed $customer
-     *
-     * @return self
-     */
-    public function setCustomer($customer)
-    {
-        $this->customer = $customer;
+	/**
+	 * @param mixed $customer
+	 *
+	 * @return self
+	 */
+	public function setCustomer($customer)
+	{
+		$this->customer = $customer;
 
-        return $this;
-    }
+		return $this;
+	}
 
-    /**
-     * @return mixed
-     */
-    public function getOrderNumber()
-    {
-        return $this->orderNumber;
-    }
+	/**
+	 * @return mixed
+	 */
+	public function getOrderNumber()
+	{
+		return $this->orderNumber;
+	}
 
-    /**
-     * @param mixed $orderNumber
-     *
-     * @return self
-     */
-    public function setOrderNumber($orderNumber)
-    {
-        $this->orderNumber = $orderNumber;
+	/**
+	 * @param mixed $orderNumber
+	 *
+	 * @return self
+	 */
+	public function setOrderNumber($orderNumber)
+	{
+		$this->orderNumber = $orderNumber;
 
-        return $this;
-    }
+		return $this;
+	}
 }

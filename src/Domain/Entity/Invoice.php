@@ -28,43 +28,43 @@ class Invoice extends AbstractEntity {
 	protected $order;
 	protected $invoiceDate;
 
-    /**
-     * @return mixed
-     */
-    public function getOrder()
-    {
-        return $this->order;
-    }
+	/**
+	 * @return mixed
+	 */
+	public function getOrder()
+	{
+		return $this->order;
+	}
 
-    /**
-     * @param mixed $order
-     *
-     * @return self
-     */
-    public function setOrder(Order $order)
-    {
-        $this->order = $order;
+	/**
+	 * @param mixed $order
+	 *
+	 * @return self
+	 */
+	public function setOrder(Order $order)
+	{
+		$this->order = $order;
 
-        return $this;
-    }
+		return $this;
+	}
 
-    /**
-     * @return mixed
-     */
-    public function getInvoiceDate()
-    {
-        return $this->invoiceDate;
-    }
+	/**
+	 * @return mixed
+	 */
+	public function getInvoiceDate()
+	{
+		return $this->invoiceDate;
+	}
 
-    /**
-     * @param mixed $invoiceDate
-     *
-     * @return self
-     */
-    public function setInvoiceDate($invoiceDate)
-    {
-        $this->invoiceDate = $invoiceDate;
+	/**
+	 * @param mixed $invoiceDate
+	 *
+	 * @return self
+	 */
+	public function setInvoiceDate($invoiceDate)
+	{
+		$this->invoiceDate = $invoiceDate;
 
-        return $this;
-    }
+		return $this;
+	}
 }

@@ -42,7 +42,7 @@ class MRepair {
 		$fn = new Functions();
 		return $fn->generateRepairReference();
 	}
-	public static function implodeAddress($id=null, $context) {
+	public static function implodeAddress($id = null, $context) {
 		$fn = new Functions();
 		return $fn->implodeAddress($id, $context);
 	}

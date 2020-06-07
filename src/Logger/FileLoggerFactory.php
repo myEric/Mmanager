@@ -22,18 +22,18 @@ namespace Mmanager\Logger;
 
 class FileLoggerFactory implements LoggerFactory
 {
-    /**
-     * @var string
-     */
-    private $filePath;
+	/**
+	 * @var string
+	 */
+	private $filePath;
 
-    public function __construct(string $filePath)
-    {
-        $this->filePath = $filePath;
-    }
+	public function __construct(string $filePath)
+	{
+		$this->filePath = $filePath;
+	}
 
-    public function createLogger(): LoggerInterface
-    {
-        return new FileLogger($this->filePath);
-    }
+	public function createLogger(): LoggerInterface
+	{
+		return new FileLogger($this->filePath);
+	}
 }

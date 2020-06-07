@@ -28,7 +28,7 @@ class Builder {
 		$this->db = $this->__connect();
 	}
 	public function getConfig() {
-		return include dirname(dirname(__DIR__)). '/Config/'.$this->cms.'.config.php';
+		return include dirname(dirname(__DIR__)).'/Config/'.$this->cms.'.config.php';
 	}
 	private function __connect() {
 		$config = $this->getConfig();

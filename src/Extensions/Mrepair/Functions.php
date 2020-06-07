@@ -129,13 +129,13 @@ class Functions {
 		return 'REPAIR-'.date('ymd').'-'.strtoupper($this->generateRandomString());
 	}
 	public function generateRandomString($length = 5) {
-	    $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
-	    $charactersLength = strlen($characters);
-	    $randomString = '';
-	    for ($i = 0; $i < $length; $i++) {
-	        $randomString .= $characters[rand(0, $charactersLength - 1)];
-	    }
-	    return $randomString;
+		$characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+		$charactersLength = strlen($characters);
+		$randomString = '';
+		for ($i = 0; $i < $length; $i++) {
+			$randomString .= $characters[rand(0, $charactersLength - 1)];
+		}
+		return $randomString;
 	}
 	public function getTicketIssueTypes($id = null) {
 		if ( ! $id) {
@@ -193,7 +193,7 @@ class Functions {
 				if ($appointment->appointment_datetime) {
 					array_push($list, array(
 						'id' => $appointment->id,
-						'title' => $appointment->ticket_reference . ' ( '.$appointment->appointment_datetime.' ) ',
+						'title' => $appointment->ticket_reference.' ( '.$appointment->appointment_datetime.' ) ',
 						'start' => $appointment->appointment_datetime,
 					));
 				}
@@ -213,7 +213,7 @@ class Functions {
 	}
 	
 	public function getRepairStatuses($id = null, $str = false) {
-		$statuses =  array(
+		$statuses = array(
 			'1' => __('label_new'),
 			'2' => __('label_progress'),
 			'3' => __('label_resolved'),
@@ -224,7 +224,7 @@ class Functions {
 			'8' => __('label_customer_reply')
 		);
 
-		if ( !$id && ! $str) {
+		if ( ! $id && ! $str) {
 			return $statuses;
 		} else {
 			return $statuses[$id]; 
@@ -232,8 +232,8 @@ class Functions {
 	} 
 	
 	public function getAppointmentTypes($id = null, $str = false) {
-		if ( !$id ) {
-			$id =  1;
+		if ( ! $id) {
+			$id = 1;
 		}
 		$types = array(
 			'1' => array('id' => 1, 'value' => __('label_in_shop')),
@@ -241,7 +241,7 @@ class Functions {
 			'3' => array('id' => 3, 'value' => __('label_phone_call')),
 		);
 
-		if ( !$id && ! $str) {
+		if ( ! $id && ! $str) {
 			return $types;
 		} else {
 			return $types[$id]['value']; 
@@ -291,7 +291,7 @@ class Functions {
 		return [];
 	}
 
-	public function implodeAddress($id=null, $context) {
+	public function implodeAddress($id = null, $context) {
 		
 		switch ($context) {
 			case 'client':

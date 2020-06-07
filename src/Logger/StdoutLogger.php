@@ -22,8 +22,8 @@ namespace Mmanager\Logger;
 
 class StdoutLogger implements LoggerInterface
 {
-    public function log(string $message)
-    {
-        echo $message;
-    }
+	public function log(string $message)
+	{
+		echo $message;
+	}
 }

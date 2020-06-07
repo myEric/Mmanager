@@ -23,6 +23,6 @@ use Mmanager\Contract\TemplateInterface;
 class Template implements TemplateInterface
 {
   public function render($module, $view_file, $data = null, $return = false) {
-    return __render($module, $view_file, $data, $return);
+	return __render($module, $view_file, $data, $return);
   }
 }

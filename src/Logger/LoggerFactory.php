@@ -22,5 +22,5 @@ namespace Mmanager\Logger;
 
 interface LoggerFactory
 {
-    public function createLogger(): LoggerInterface;
+	public function createLogger(): LoggerInterface;
 }

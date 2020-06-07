@@ -25,7 +25,7 @@ use Mmanager\Contract\ParserInterface;
 class JsonParser implements ParserInterface 
 {
 	public function parse(string $input): array
-    {
-        return json_decode($input, true);
-    }
+	{
+		return json_decode($input, true);
+	}
 }

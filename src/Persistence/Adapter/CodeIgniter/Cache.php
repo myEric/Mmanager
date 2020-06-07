@@ -27,7 +27,7 @@
  class Cache implements CacheInterface {
  	protected $CI;
  	public function __construct() {
- 		$this->CI =& get_instance();
+ 		$this->CI = & get_instance();
  		$this->CI->load->driver('cache', array('adapter' => 'apc', 'backup' => 'file'));
  	}
  	public function get($key, $default = null) {

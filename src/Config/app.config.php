@@ -27,13 +27,13 @@ if ($options) {
 	$db = get_db_vars();
 
 	$return = [
-	    'db' => [
-	        'host' => $db['hostname'],
-	        'username' => $db['username'],
-	        'password' => $db['password'],
-	        'database' => $db['database'],
-	        'charset' => 'utf8mb4'
-	    ]
+		'db' => [
+			'host' => $db['hostname'],
+			'username' => $db['username'],
+			'password' => $db['password'],
+			'database' => $db['database'],
+			'charset' => 'utf8mb4'
+		]
 	];
 }
 return $return;

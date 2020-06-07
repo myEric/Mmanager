@@ -31,8 +31,8 @@ class SmsService {
 
   	public function __construct($platform = null, $api_key = null) {
 
-		$this->platform = isset($platform) ? $platform: null;
-		$this->api_key = isset($api_key) ? $api_key: null;
+		$this->platform = isset($platform) ? $platform : null;
+		$this->api_key = isset($api_key) ? $api_key : null;
   	}
 	/**
 	 * @return mixed
@@ -82,7 +82,7 @@ class SmsService {
 
 		switch ($platform) {
 			case 'clickatell':
-				$url = "https://platform.clickatell.com/messages/http/send?apiKey=". $api_key. "&to=".$phone_number."&content=".$message;
+				$url = "https://platform.clickatell.com/messages/http/send?apiKey=".$api_key."&to=".$phone_number."&content=".$message;
 				break;
 		}
 		// Get cURL resource
@@ -99,7 +99,7 @@ class SmsService {
 			array(
 				'time' => date('Y-m-d h:i:sa'),
 				'to' => $resp['messages'][0]['to'],
-				'status' => 1 == $resp['messages'][0]['accepted'] ? "success": "failed",
+				'status' => 1 == $resp['messages'][0]['accepted'] ? "success" : "failed",
 				'errorCode' => $resp['messages'][0]['errorCode'],
 				'errorDescription' => $resp['messages'][0]['errorDescription']
 			)

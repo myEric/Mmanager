@@ -103,23 +103,23 @@ class BootstrapTable {
 			foreach ($orders as &$order) {
 				if ($order->amount_paid > 0 AND $order->order_status == 'Refunded')
 				{
-					$number_prefix = null == get_option('credit_note_prefix') ? __('credit_note_prefix') . sprintf( "%04s", $order->order_number ) : get_option('credit_note_prefix') . sprintf( "%04s", $order->order_number );
+					$number_prefix = null == get_option('credit_note_prefix') ? __('credit_note_prefix').sprintf("%04s", $order->order_number) : get_option('credit_note_prefix').sprintf("%04s", $order->order_number);
 				}
 				elseif ($order->order_status == 'Refunded')
 				{
-					$number_prefix = null == get_option('credit_note_prefix') ? __('credit_note_prefix') . sprintf( "%04s", $order->order_number ) : get_option('credit_note_prefix') . sprintf( "%04s", $order->order_number );
+					$number_prefix = null == get_option('credit_note_prefix') ? __('credit_note_prefix').sprintf("%04s", $order->order_number) : get_option('credit_note_prefix').sprintf("%04s", $order->order_number);
 				}
 				elseif ($order->amount_paid > 0 AND $order->amount_due > 0 AND $order->order_status !== 'Paid')
 				{
-					$number_prefix = null == get_option('sale_order_prefix') ? __('sale_order_prefix_short') . sprintf( "%04s", $order->order_number ) : get_option('sale_order_prefix') . sprintf( "%04s", $order->order_number );
+					$number_prefix = null == get_option('sale_order_prefix') ? __('sale_order_prefix_short').sprintf("%04s", $order->order_number) : get_option('sale_order_prefix').sprintf("%04s", $order->order_number);
 				}
-				elseif( $order->order_status == 'Expired' || $order->order_status == 'Open' || $order->order_status == 'Pending' || $order->order_status == 'Failed')
+				elseif ($order->order_status == 'Expired' || $order->order_status == 'Open' || $order->order_status == 'Pending' || $order->order_status == 'Failed')
 				{
-					$number_prefix = null == get_option('sale_order_prefix') ? __('sale_order_prefix_short') . sprintf( "%04s", $order->order_number ) : get_option('sale_order_prefix') . sprintf( "%04s", $order->order_number );
+					$number_prefix = null == get_option('sale_order_prefix') ? __('sale_order_prefix_short').sprintf("%04s", $order->order_number) : get_option('sale_order_prefix').sprintf("%04s", $order->order_number);
 				}
 				else
 				{
-					$number_prefix = null == get_option('sale_order_prefix') ? __('sale_order_prefix_short') . sprintf( "%04s", $order->order_number ) : get_option('sale_order_prefix') . sprintf( "%04s", $order->order_number );
+					$number_prefix = null == get_option('sale_order_prefix') ? __('sale_order_prefix_short').sprintf("%04s", $order->order_number) : get_option('sale_order_prefix').sprintf("%04s", $order->order_number);
 				}
 				array_push($this->list, array(
 					'id' 				  => $order->id,
@@ -127,9 +127,9 @@ class BootstrapTable {
 					'number_prefix'   	  => $number_prefix,
 					'order_number'   	  => $order->order_number,
 					'enc_order_number'    => _eID($order->order_number),
-					'name_company'		  => $invoiceObj->getCustomer($order->client_id,'name_company'),
-					'date'				  => _fdate( language_string_to_locale_notation( get_option('user_language', 'users_options') ), $order->date ),
-					'due_date'			  => _fdate( language_string_to_locale_notation( get_option('user_language', 'users_options') ), $order->due_date ),
+					'name_company'		  => $invoiceObj->getCustomer($order->client_id, 'name_company'),
+					'date'				  => _fdate(language_string_to_locale_notation(get_option('user_language', 'users_options')), $order->date),
+					'due_date'			  => _fdate(language_string_to_locale_notation(get_option('user_language', 'users_options')), $order->due_date),
 					'total'				  => format_number($order->total),
 					'amount_due'		  => format_number($order->amount_due),
 					'amount_paid'		  => format_number($order->amount_paid),
@@ -155,7 +155,7 @@ class BootstrapTable {
 			foreach ($clients as &$client) {
 				if (isset($client->client_address1) && $client->client_postcode && $client->client_city && $client->client_country)
 				{
-					$address = $client->client_address1 . ' ' . $client->client_postcode . ' ' . $client->client_city . ' ' . get_countries($client->client_country);
+					$address = $client->client_address1.' '.$client->client_postcode.' '.$client->client_city.' '.get_countries($client->client_country);
 				}
 				else
 				{
@@ -174,7 +174,7 @@ class BootstrapTable {
 					'client_tax_number'	  => isset($client->client_tax_number) ? $client->client_tax_number : "",
 					'client_bank_number'  => isset($client->client_bank_number) ? $client->client_bank_number : "",
 					'client_status_str'   => status_str($client->client_status),
-					'client_date_created' => _fdate( language_string_to_locale_notation( get_option('user_language', 'users_options') ), $client->client_date_created)
+					'client_date_created' => _fdate(language_string_to_locale_notation(get_option('user_language', 'users_options')), $client->client_date_created)
 					)
 				);
 			}
@@ -207,7 +207,7 @@ class BootstrapTable {
 					'qrcode'         	  => $item->qrcode,
 					'barcode'         	  => $item->barcode,
 					'hasqrbar'         	  => $hasqrbar,
-					'item_status_str'     => '0.00' !== $item->current_stock ? $item->current_stock .'&nbsp;' .item_status_str($item->item_status) : '' .'&nbsp;' .item_status_str($item->item_status)
+					'item_status_str'     => '0.00' !== $item->current_stock ? $item->current_stock.'&nbsp;'.item_status_str($item->item_status) : ''.'&nbsp;'.item_status_str($item->item_status)
 					)
 				);
 			}
@@ -234,7 +234,7 @@ class BootstrapTable {
 					'price'		  		  =>format_number($item->price),
 					'tax_percent'		  => $item->tax_percent,
 					'item_status'         => $item->item_status,
-					'item_status_str'     => '0.00' !== $item->current_stock ? $item->current_stock .'&nbsp;' .item_status_str($item->item_status) : '' .'&nbsp;' .item_status_str($item->item_status)
+					'item_status_str'     => '0.00' !== $item->current_stock ? $item->current_stock.'&nbsp;'.item_status_str($item->item_status) : ''.'&nbsp;'.item_status_str($item->item_status)
 					)
 				);
 			}
