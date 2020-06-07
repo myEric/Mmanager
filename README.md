@@ -1,9 +1,9 @@
 # m'Manager Module Builder
-[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/myEric/mmanager/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/myEric/mmanager/?branch=master)
-[![Build Status](https://travis-ci.org/myEric/mmanager.svg?branch=master)](https://travis-ci.org/myEric/mmanager)
-[![Latest Stable Version](https://poser.pugx.org/myeric/mmanager/v/stable.svg)](https://packagist.org/packages/myeric/mmanager) [![Total Downloads](https://poser.pugx.org/myeric/mmanager/downloads.svg)](https://travis-ci.org/myEric/mmanager)
-[![Latest Unstable Version](https://poser.pugx.org/myeric/mmanager/v/unstable.svg)](https://packagist.org/packages/myeric/mmanager) [![License](https://poser.pugx.org/myeric/mmanager/license.svg)](https://packagist.org/packages/myeric/mmanager)
-[![Code Intelligence Status](https://scrutinizer-ci.com/g/myEric/mmanager/badges/code-intelligence.svg?b=master)](https://scrutinizer-ci.com/code-intelligence)
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/onericcomputing/mmanager-module-builder/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/onericcomputing/mmanager-module-builder/?branch=master)
+[![Build Status](https://travis-ci.org/onericcomputing/mmanager-module-builder.svg?branch=master)](https://travis-ci.org/onericcomputing/mmanager-module-builder)
+[![Latest Stable Version](https://poser.pugx.org/onericcomputing/mmanager-module-builder/v/stable.svg)](https://packagist.org/packages/onericcomputing/mmanager-module-builder) [![Total Downloads](https://poser.pugx.org/onericcomputing/mmanager-module-builder/downloads.svg)](https://travis-ci.org/onericcomputing/mmanager-module-builder)
+[![Latest Unstable Version](https://poser.pugx.org/onericcomputing/mmanager-module-builder/v/unstable.svg)](https://packagist.org/packages/onericcomputing/mmanager-module-builder) [![License](https://poser.pugx.org/onericcomputing/mmanager-module-builder/license.svg)](https://packagist.org/packages/onericcomputing/mmanager-module-builder)
+[![Code Intelligence Status](https://scrutinizer-ci.com/g/onericcomputing/mmanager-module-builder/badges/code-intelligence.svg?b=master)](https://scrutinizer-ci.com/code-intelligence)
 
 Official API to create modules for **[m'Manager | Invoices Management System](https://codecanyon.net/item/mmanager-invoices-management-system/19866435?s_rank=1)**
 
